@@ -25,16 +25,7 @@ module.exports = {
           ie8: true
         }
       })
-    ],
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+    ]
   },
   module: {
     rules: [
