@@ -7,7 +7,14 @@
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:juewuly/real-name-pc.git"
+  },
+  "keywords": [
+    "real-name-pc",
+    "real-name"
+  ],
   "author": "liuyang9",
   "license": "ISC",
   "devDependencies": {
