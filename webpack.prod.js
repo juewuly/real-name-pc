@@ -23,21 +23,21 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        include: /\.min\.js$/,
+        include: /(\.min|vendors)\.js$/,
         terserOptions: {
           ie8: true
         }
       })
     ],
-    // splitChunks: {
-    //   cacheGroups: {
-    //     vendor: {
-    //       test: /[\\/]node_modules[\\/]/,
-    //       name: 'vendors',
-    //       chunks: 'all'
-    //     }
-    //   }
-    // }
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /(react|react-dom|redux|immutable)/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   },
   module: {
     rules: [
@@ -96,30 +96,30 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     // new BundleAnalyzerPlugin(),
-    new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'react',
-          entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
-          global: 'React',
-        },
-        {
-          module: 'react-dom',
-          entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
-          global: 'ReactDOM',
-        },
-        {
-          module: 'redux',
-          entry: 'https://unpkg.com/redux@4.0.5/dist/redux.min.js',
-          global: 'Redux'
-        },
-        {
-          module: 'immutable',
-          entry: 'https://unpkg.com/immutable@4.0.0-rc.12/dist/immutable.min.js',
-          global: 'Immutable'
-        }
-      ]
-    })
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: [
+    //     {
+    //       module: 'react',
+    //       entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
+    //       global: 'React',
+    //     },
+    //     {
+    //       module: 'react-dom',
+    //       entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+    //       global: 'ReactDOM',
+    //     },
+    //     {
+    //       module: 'redux',
+    //       entry: 'https://unpkg.com/redux@4.0.5/dist/redux.min.js',
+    //       global: 'Redux'
+    //     },
+    //     {
+    //       module: 'immutable',
+    //       entry: 'https://unpkg.com/immutable@4.0.0-rc.12/dist/immutable.min.js',
+    //       global: 'Immutable'
+    //     }
+    //   ]
+    // })
   ],
   resolve: {
     extensions: ['.js'],
