@@ -1,6 +1,8 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+
 
 module.exports = {
   entry: {
@@ -68,6 +70,30 @@ module.exports = {
       filename: 'index.html',
       chunks: ['vendors', 'real-name-pc'],
       inject: false
+    }),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'react',
+          entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
+          global: 'React',
+        },
+        {
+          module: 'react-dom',
+          entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+          global: 'ReactDOM',
+        },
+        {
+          module: 'redux',
+          entry: 'https://unpkg.com/redux@4.0.5/dist/redux.min.js',
+          global: 'Redux'
+        },
+        {
+          module: 'immutable',
+          entry: 'https://unpkg.com/immutable@4.0.0-rc.12/dist/immutable.min.js',
+          global: 'Immutable'
+        }
+      ]
     })
   ],
   resolve: {
