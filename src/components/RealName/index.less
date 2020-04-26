@@ -1,0 +1,149 @@
+.real-name {
+  width:420px;
+  height: 346px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+
+  h4 {
+    position: relative;
+    background-color: #eee;
+    font-weight: 100;
+    padding:10px;
+    margin: 0;
+    color:#333;
+    font-size:13px;
+  }
+
+  &__close {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right:10px;
+    margin: auto;
+    width: 13px;
+    height: 13px;
+    background: url("https://p2.ssl.qhimg.com/t01317462acf5b893a5.png") center center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+  }
+
+  &__title {
+    width: 360px;
+    height: 29px;
+    padding: 0;
+    margin: 10px auto;
+    border-bottom: 1px solid #e4e4e4;
+    list-style: none;
+
+    li {
+      width: 104px;
+      height: 22px;
+      float: left;
+      margin: 0 125px;
+      padding: 0 0 8px;
+      color: #999;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: center;
+    }
+  }
+
+  &__main {
+    margin-top: 20px;
+  }
+
+  &__item {
+    font-size: 14px;
+    color: #4e4e4c;
+    padding-left: 35px;
+
+    &-label {
+      display: inline-block;
+      width:60px;
+      text-align: right;
+      margin-right: 5px;
+    }
+
+    span {
+      display: inline-block;
+      height: 20px;
+      line-height:20px;
+    }
+
+    &-input {
+      width: 248px;
+      height: 36px;
+      border: 1px solid #d9d9d9;
+      padding: 4px;
+      border-radius: 3px;
+      line-height: 26px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      position: relative;
+      top: 4px;
+      background-image: none;
+      &.icon-error {
+        background: url('https://p0.ssl.qhimg.com/t010babd19e5bcd27d7.png') center center no-repeat;
+        background-size: contain;
+      }
+
+      &.icon-succ {
+        background: url('https://p0.ssl.qhimg.com/t01348ca7b1f4664b79.png') center center no-repeat;
+        background-size: contain;
+      }
+    }
+
+    .hint {
+      padding-left: 70px;
+      margin: 0;
+      height: 18px;
+      line-height:18px;
+      color: red;
+      font-size: 14px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+  }
+  
+  &__submit {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    background: url('https://p0.ssl.qhimg.com/t01d87ca5d77cdf29d4.png') center center no-repeat;
+    width: 200px;
+    height: 42px;
+    line-height:42px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__bottom {
+    width: 360px;
+    height: 40px;
+    margin:15px auto;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0 0 8px;
+    color: #999;
+    display: block;
+    text-align: left;
+
+    span {
+      color: red;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Modal, Tip } from 'components';
+import { Modal, Tip, RealName } from 'components';
 
 import { updatePopupData } from 'src/redux/actions';
 
@@ -26,6 +26,14 @@ class Home extends Component {
 
   render() {
     const { show, title, subTitle, subTitle2, content, canClose, noMask } = this.props;
+
+    return (
+      <Modal>
+        <RealName>
+          
+        </RealName>
+      </Modal>
+    );
 
     if (!show) {
       return null;
