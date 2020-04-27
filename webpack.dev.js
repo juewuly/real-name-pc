@@ -99,10 +99,11 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      src: path.resolve(__dirname, './src'),
       components: path.resolve(__dirname, './src/components'),
+      request: path.resolve(__dirname, './src/request'),
+      src: path.resolve(__dirname, './src'),
+      utils: path.resolve(__dirname, './src/utils'),
       views: path.resolve(__dirname, './src/views'),
-      utils: path.resolve(__dirname, './src/utils')
     },
     mainFields: ['main'],
     // 在模块中添加 src, 当导入文件时，可以将 src 作为相关路径
@@ -113,7 +114,29 @@ module.exports = {
     port: 3000,
     hot: true,
     contentBase: './dist',
-    disableHostCheck: true
+    disableHostCheck: true,
+    proxy: {
+      '/user/open_check_auth': {
+        target: 'https://mpay.mgame.360.cn',
+        changeOrigin: true,
+        secure: false,
+        logLevel: 'debug',
+        headers: {
+          referer: 'https://pay.wan.360.cn/',
+          origin: 'https://pay.wan.360.cn/'
+        }
+      },
+      'location /user/open_auth': {
+        target: 'https://mpay.mgame.360.cn',
+        changeOrigin: true,
+        secure: false,
+        logLevel: 'debug',
+        headers: {
+          referer: 'https://pay.wan.360.cn/',
+          origin: 'https://pay.wan.360.cn/'
+        }
+      }
+    }
   },
   devtool: 'inline-source-map'
 }

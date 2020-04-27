@@ -4,12 +4,14 @@ import { reducer as updateGlobalData } from './action-reducer/updateGlobalData';
 import { reducer as updatePopupData } from './action-reducer/updatePopupData';
 import { reducer as setPopupData } from './action-reducer/setPopupData';
 import { reducer as updateRealNameData } from './action-reducer/updateRealNameData';
+import { reducer as fetchRealName } from './action-reducer/fetchRealName';
 
 const allReducers = [
   updateGlobalData,
   updatePopupData,
   setPopupData,
-  updateRealNameData
+  updateRealNameData,
+  fetchRealName
 ];
 
 export default function reducer(state=initialState, action) {

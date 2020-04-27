@@ -17,6 +17,15 @@
     // SdkInstance.showEight();
     SdkInstance.showRealName(true);
 
+    SdkInstance.fetchRealName({
+      appkey: '',
+      qids: '3211038786',
+      platform: 'h5_game',
+      idcard_check_type: 'pay_before',
+    })
+    .then(res => console.log('res...', res))
+    .catch(err => console.error('获取实名信息异常', err));
+
   </script>
 </body>
 </html>

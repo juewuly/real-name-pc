@@ -15,6 +15,8 @@ import {
 } from 'src/redux/constants';
 import Config from './config';
 
+import { fetchRealName } from 'request';
+
 const store = configStore();
 
 export default class RealNamePc {
@@ -165,6 +167,23 @@ export default class RealNamePc {
    */
   closeRealName() {
     updateRealNameData({ show: false });
+  }
+
+  /**
+   * 获取实名信息
+   * @param {*} param0 
+   */
+  fetchRealName({
+    appkey, 
+    qids, 
+    platform, 
+    idcard_check_type
+  }) {
+    return new Promise((resolve, reject) => {
+      fetchRealName({ appkey, qids, platform, idcard_check_type})
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+    });
   }
 }
 

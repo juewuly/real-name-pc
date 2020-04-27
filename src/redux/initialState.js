@@ -11,7 +11,7 @@ const initialState = I.fromJS({
     subTitle: '',
     content: ''
   },
-  
+
   // 实名认证相关数据
   realName: {
     // 是否显示实名认证
@@ -19,7 +19,10 @@ const initialState = I.fromJS({
     // 是否可关闭
     canClose: false,
     // 实名认证信息
-    data: {}
+    data: {
+      fetching: false,
+      data: {}
+    }
   }
 });
 
