@@ -8,49 +8,40 @@ import { updatePopupData } from 'src/redux/actions';
 
 import './index.less';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-
-  }
-
-  handleClose = () => {
-    const { actions } = this.props;
+const Home = ({ show, title, subTitle, subTitle2, content, canClose, noMask, actions }) => {
+  const handleClose = () => {
     actions.updatePopupData({
       show: false
     });
   }
 
-  render() {
-    const { show, title, subTitle, subTitle2, content, canClose, noMask } = this.props;
-
-    return (
-      <Modal>
-        <RealName>
-          
-        </RealName>
-      </Modal>
-    );
-
-    if (!show) {
-      return null;
-    }
-
-    return (
-      <Modal noMask={noMask}>
-        <Tip
-          title={title}
-          subTitle={subTitle}
-          subTitle2={subTitle2}
-          content={content}
-          canClose={canClose}
-          onClose={this.handleClose} />
-      </Modal>
-    );
+  const handleCloseRealName = () => {
+    console.log('关闭实名。。。。');
   }
+
+  return (
+    <Modal>
+      <RealName canClose={true} onClose={handleCloseRealName}>
+        
+      </RealName>
+    </Modal>
+  );
+
+  if (!show) {
+    return null;
+  }
+
+  return (
+    <Modal noMask={noMask}>
+      <Tip
+        title={title}
+        subTitle={subTitle}
+        subTitle2={subTitle2}
+        content={content}
+        canClose={canClose}
+        onClose={handleClose} />
+    </Modal>
+  );
 }
 
 const mapStateToProps = state => ({

@@ -23,10 +23,7 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        include: /(\.min|vendors)\.js$/,
-        terserOptions: {
-          ie8: true
-        }
+        include: /(\.min|vendors)\.js$/
       })
     ],
     splitChunks: {
@@ -126,7 +123,8 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, './src'),
       components: path.resolve(__dirname, './src/components'),
-      views: path.resolve(__dirname, './src/views')
+      views: path.resolve(__dirname, './src/views'),
+      utils: path.resolve(__dirname, './src/utils')
     },
     mainFields: ['main'],
     // 在模块中添加 src, 当导入文件时，可以将 src 作为相关路径
