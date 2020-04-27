@@ -3,11 +3,13 @@ import initialState from './initialState';
 import { reducer as updateGlobalData } from './action-reducer/updateGlobalData';
 import { reducer as updatePopupData } from './action-reducer/updatePopupData';
 import { reducer as setPopupData } from './action-reducer/setPopupData';
+import { reducer as updateRealNameData } from './action-reducer/updateRealNameData';
 
 const allReducers = [
   updateGlobalData,
   updatePopupData,
-  setPopupData
+  setPopupData,
+  updateRealNameData
 ];
 
 export default function reducer(state=initialState, action) {

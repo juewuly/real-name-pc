@@ -8,7 +8,11 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import configStore from 'src/common/configStore';
 import App from './app';
-import { UPDATE_POPUP_DATA, SET_POPUP_DATA } from 'src/redux/constants';
+import { 
+  UPDATE_POPUP_DATA, 
+  SET_POPUP_DATA,
+  UPDATE_REAL_NAME_DATA
+} from 'src/redux/constants';
 import Config from './config';
 
 const store = configStore();
@@ -133,6 +137,9 @@ export default class RealNamePc {
     })
   }
 
+  /**
+   * 关闭弹窗
+   */
   close() {
     store.dispatch({
       type: UPDATE_POPUP_DATA,
@@ -140,6 +147,24 @@ export default class RealNamePc {
         show: false
       }
     });
+  }
+
+  /**
+   * 显示实名认证
+   * @param {*} canClose 是否可关闭
+   */
+  showRealName(canClose) {
+    updateRealNameData({ 
+      show: true,
+      canClose
+    });
+  }
+
+  /**
+   * 关闭实名
+   */
+  closeRealName() {
+    updateRealNameData({ show: false });
   }
 }
 
@@ -153,6 +178,17 @@ const updatePopupData = data => {
 const setPopupData = data => {
   store.dispatch({
     type: SET_POPUP_DATA,
+    data
+  });
+}
+
+/**
+ * 更新实名数据
+ * @param {*} data 
+ */
+const updateRealNameData = data => {
+  store.dispatch({
+    type: UPDATE_REAL_NAME_DATA,
     data
   });
 }
