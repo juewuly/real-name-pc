@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { validateMate } from 'utils';
 import './index.less';
 
-const RealName = ({ className, canClose, onClose }) => {
+const RealName = ({ className, canClose, onClose, onSubmit }) => {
   const componentClassName = classnames('real-name', className);
   // 姓名
   const [name, setName] = useState('');
@@ -91,7 +91,7 @@ const RealName = ({ className, canClose, onClose }) => {
       return false;
     }
 
-    console.log('提交实名认证');
+    onSubmit(name, card);
   }
 
   return (

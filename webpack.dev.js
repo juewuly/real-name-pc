@@ -126,7 +126,7 @@ module.exports = {
           origin: 'https://pay.wan.360.cn/'
         }
       },
-      'location /user/open_auth': {
+      '/user/open_auth': {
         target: 'https://mpay.mgame.360.cn',
         changeOrigin: true,
         secure: false,

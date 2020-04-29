@@ -155,11 +155,59 @@ export default class RealNamePc {
    * 显示实名认证
    * @param {*} canClose 是否可关闭
    */
-  showRealName(canClose) {
+  showRealName({ canClose, onClose, onSubmitSuccess, onSubmitError }) {
     updateRealNameData({ 
       show: true,
       canClose
     });
+
+    // 获取是否显示实名认证窗口
+    const getStatus = state => state.getIn(['data', 'realName', 'show']);
+    // 获取实名认证结果
+    const getSubmitResult = state => state.getIn(['data', 'realName', 'add', 'result'])
+    const initSubmitResult = getSubmitResult(store.getState());
+
+    const handleStoreChange = () => {
+      const show = getStatus(store.getState());
+      const submitResult = getSubmitResult(store.getState());
+
+      if (!show) {
+        onClose && onClose();
+        unsubscribe();
+        return;
+      }
+
+      if (submitResult !== initSubmitResult) {
+        const result = submitResult.toJS();
+
+        if (result.error_code !== '0') {
+          alert(result.error);
+          onSubmitError && onSubmitError({ 
+            errno: result.error_code,
+            errmsg: result.error
+          });
+          return;
+        }
+
+        const { ret } = result;
+        if (ret.code !== '999') {
+          alert(ret.msg);
+          onSubmitError && onSubmitError({
+            errno: ret.code,
+            errmsg: ret.msg
+          });
+          return;
+        }
+
+        alert('实名认证成功！');
+        onSubmitSuccess && onSubmitSuccess(result);
+        this.closeRealName();
+        unsubscribe();
+        return;
+      }
+    }
+
+    const unsubscribe = store.subscribe(handleStoreChange);
   }
 
   /**
@@ -180,7 +228,7 @@ export default class RealNamePc {
     idcard_check_type
   }) {
     return new Promise((resolve, reject) => {
-      fetchRealName({ appkey, qids, platform, idcard_check_type})
+      fetchRealName({ appkey, qids, platform, idcard_check_type })
       .then(res => resolve(res))
       .catch(err => reject(err));
     });

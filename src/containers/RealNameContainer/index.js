@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Modal, RealName } from 'components';
 
-import { updateRealNameData } from 'src/redux/actions';
+import { 
+  updateRealNameData,
+  addRealName
+} from 'src/redux/actions';
 
 const Home = ({ show, canClose, actions }) => {
   const handleClose = () => {
@@ -13,15 +16,29 @@ const Home = ({ show, canClose, actions }) => {
     });
   }
 
+  const handleSubmit = (name, card) => {
+    const { addRealName } = actions;
+    addRealName({
+      appkey: '',
+      qid: '3211038786',
+      name: name,
+      id: card,
+      platform: 'h5_game',
+      idcard_check_type: 'pay_before',
+    })
+    console.log('submit...', name, card);
+  }
+
   if (!show) {
     return null;
   }
 
   return (
     <Modal>
-      <RealName canClose={canClose} onClose={handleClose}>
-        
-      </RealName>
+      <RealName 
+        canClose={canClose} 
+        onClose={handleClose}
+        onSubmit={handleSubmit} />
     </Modal>
   );
 }
@@ -33,7 +50,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    updateRealNameData
+    updateRealNameData,
+    addRealName
   }, dispatch)
 });
 

@@ -1,6 +1,5 @@
 import { fromJS } from 'immutable';
 import axios from 'axios';
-import { Dispatch } from 'redux';
 
 import {
   FETCH_REAL_NAME_BEGIN,
@@ -58,14 +57,14 @@ export const fetchRealName = ({
 export const reducer = (state, action) => {
   switch (action.type) {
   case FETCH_REAL_NAME_BEGIN:
-    return state.setIn([INDEX, 'data', 'fetching'], true);
+    return state.setIn([INDEX, 'fetch', 'fetching'], true);
   case FETCH_REAL_NAME_SUCCESS:
-    return state.set(INDEX, 'data', fromJS({
+    return state.set(INDEX, 'fetch', fromJS({
       fetching: false,
       data: action.data
     }));
   case FETCH_REAL_NAME_FAILURE:
-    return state.set(INDEX, 'data', fromJS({
+    return state.set(INDEX, 'fetch', fromJS({
       fetching: false,
       errno: action.errno,
       errmsg: action.errmsg

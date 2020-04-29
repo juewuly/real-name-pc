@@ -15,12 +15,29 @@
     const SdkInstance = RealNamePc.Instance;
     const SdkConfig = RealNamePc.Config;
     // SdkInstance.showEight();
-    SdkInstance.showRealName(true);
+    SdkInstance.showRealName({ 
+      canClose: true,
+      onClose: handleClose,
+      onSubmitSuccess: handleSubmitSuccess,
+      onSubmitError: handleSubmitError
+    });
+
+    function handleClose() {
+      console.log('🍉。。close');
+    }
+
+    function handleSubmitSuccess(result) {
+      console.log('🍉。。。submit-succ', result);
+    }
+
+    function handleSubmitError(err) {
+      console.log('🍉。。。submit-err', err);
+    }
 
     SdkInstance.fetchRealName({
       appkey: '',
       qids: '3211038786',
-      platform: 'h5_game',
+      platform: 'page_game',
       idcard_check_type: 'pay_before',
     })
     .then(res => console.log('res...', res))
