@@ -18,6 +18,8 @@ const initialState = I.fromJS({
     show: false,
     // 是否可关闭
     canClose: false,
+    // 进行实名认证时需要传递的参数
+    options: {},
     // 实名认证信息
     fetch: {
       fetching: false,

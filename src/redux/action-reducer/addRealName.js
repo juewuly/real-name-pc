@@ -31,9 +31,7 @@ export const addRealName = ({
       ts: Math.ceil(new Date().getTime() / 1000)
     })
     .then(res => {
-      console.log('result...🍉', res);
       const { data } = res;
-
       if (data.error_code === '0') {
         dispatch({
           type: ADD_REAL_NAME_SUCCESS,

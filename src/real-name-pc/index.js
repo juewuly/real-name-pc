@@ -16,11 +16,12 @@ import {
 import Config from './config';
 
 import { fetchRealName } from 'request';
-import { storeHelper, logHelper } from 'utils';
+import { storeHelper, logHelper, paramsHelper } from 'utils';
 
 const store = configStore();
 const storeHelperInstance = storeHelper.Instance(store);
 const logInstance = logHelper.Instance;
+const paramsInstance = paramsHelper.Instance;
 
 export default class RealNamePc {
   constructor() {
@@ -158,11 +159,24 @@ export default class RealNamePc {
    * 显示实名认证
    * @param {*} canClose 是否可关闭
    */
-  showRealName({ canClose, onClose, onSubmitSuccess, onSubmitError }) {
+  showRealName({ options, canClose, onClose, onSubmitSuccess, onSubmitError }) {
+    const pass = paramsInstance.validateRealNameParams(options);
+    if (!pass) {
+      return;
+    }
+
+    const { appkey, qid, platform, idcard_check_type } = options;
+    
     // 更新redux状态
     updateRealNameData({ 
       show: true,
-      canClose
+      canClose,
+      options: {
+        appkey,
+        qid,
+        platform,
+        idcard_check_type
+      }
     });
 
     // 处理实名认证成功

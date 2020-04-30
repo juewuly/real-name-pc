@@ -15,8 +15,17 @@
     const SdkInstance = RealNamePc.Instance;
     const SdkConfig = RealNamePc.Config;
     // SdkInstance.showEight();
+
+    const options = {
+      appkey: '',
+      qid: '3211038786',
+      platform: 'h5_game',
+      idcard_check_type: 'pay_before',
+    };
+
     SdkInstance.showRealName({ 
       canClose: true,
+      options,
       onClose: handleClose,
       onSubmitSuccess: handleSubmitSuccess,
       onSubmitError: handleSubmitError

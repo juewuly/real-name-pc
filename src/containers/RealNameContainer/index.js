@@ -9,7 +9,7 @@ import {
   addRealName
 } from 'src/redux/actions';
 
-const Home = ({ show, canClose, actions }) => {
+const Home = ({ show, canClose, options, actions }) => {
   const handleClose = () => {
     actions.updateRealNameData({
       show: false
@@ -19,14 +19,13 @@ const Home = ({ show, canClose, actions }) => {
   const handleSubmit = (name, card) => {
     const { addRealName } = actions;
     addRealName({
-      appkey: '',
-      qid: '3211038786',
+      appkey: options.get('appkey'),
+      qid: options.get('qid'),
+      platform: options.get('platform'),
+      idcard_check_type: options.get('idcard_check_type'),
       name: name,
       id: card,
-      platform: 'h5_game',
-      idcard_check_type: 'pay_before',
     })
-    console.log('submit...', name, card);
   }
 
   if (!show) {
@@ -46,6 +45,8 @@ const Home = ({ show, canClose, actions }) => {
 const mapStateToProps = state => ({
   show: state.getIn(['data', 'realName', 'show']),
   canClose: state.getIn(['data', 'realName', 'canClose']),
+  // 提交实名认证时需要传递的一些参数
+  options: state.getIn(['data', 'realName', 'options'])
 });
 
 const mapDispatchToProps = dispatch => ({
