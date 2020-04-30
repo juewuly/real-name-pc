@@ -16,8 +16,11 @@ import {
 import Config from './config';
 
 import { fetchRealName } from 'request';
+import { storeHelper, logHelper } from 'utils';
 
 const store = configStore();
+const storeHelperInstance = storeHelper.Instance(store);
+const logInstance = logHelper.Instance;
 
 export default class RealNamePc {
   constructor() {
@@ -156,64 +159,30 @@ export default class RealNamePc {
    * @param {*} canClose 是否可关闭
    */
   showRealName({ canClose, onClose, onSubmitSuccess, onSubmitError }) {
+    // 更新redux状态
     updateRealNameData({ 
       show: true,
       canClose
     });
 
-    // 获取是否显示实名认证窗口
-    const getStatus = state => state.getIn(['data', 'realName', 'show']);
-    // 获取实名认证结果
-    const getSubmitResult = state => state.getIn(['data', 'realName', 'add', 'result'])
-    const initSubmitResult = getSubmitResult(store.getState());
-
-    const handleStoreChange = () => {
-      const show = getStatus(store.getState());
-      const submitResult = getSubmitResult(store.getState());
-
-      if (!show) {
-        onClose && onClose();
-        unsubscribe();
-        return;
-      }
-
-      if (submitResult !== initSubmitResult) {
-        const result = submitResult.toJS();
-
-        if (result.error_code !== '0') {
-          alert(result.error);
-          onSubmitError && onSubmitError({ 
-            errno: result.error_code,
-            errmsg: result.error
-          });
-          return;
-        }
-
-        const { ret } = result;
-        if (ret.code !== '999') {
-          alert(ret.msg);
-          onSubmitError && onSubmitError({
-            errno: ret.code,
-            errmsg: ret.msg
-          });
-          return;
-        }
-
-        alert('实名认证成功！');
-        onSubmitSuccess && onSubmitSuccess(result);
-        this.closeRealName();
-        unsubscribe();
-        return;
-      }
+    // 处理实名认证成功
+    const handleSubmitSuccess = result => {
+      this.closeRealName();
+      onSubmitSuccess(result);
     }
 
-    const unsubscribe = store.subscribe(handleStoreChange);
+    storeHelperInstance.subscribeCloseRealName(onClose);
+    storeHelperInstance.subscribeSubmitRealName({
+      onSubmitError,
+      onSubmitSuccess: handleSubmitSuccess
+    });
   }
 
   /**
    * 关闭实名
    */
   closeRealName() {
+    logInstance.closeRealName();
     updateRealNameData({ show: false });
   }
 
