@@ -160,6 +160,7 @@ export default class RealNamePc {
    * @param {*} canClose 是否可关闭
    */
   showRealName({ options, canClose, onClose, onSubmitSuccess, onSubmitError }) {
+    // 验证参数是否合法
     const pass = paramsInstance.validateRealNameParams(options);
     if (!pass) {
       return;
@@ -211,6 +212,19 @@ export default class RealNamePc {
     idcard_check_type
   }) {
     return new Promise((resolve, reject) => {
+      // 验证参数是否合法
+      const pass = paramsInstance.validateKeys({
+        appkey, 
+        qids, 
+        platform, 
+        idcard_check_type
+      }, ['appkey', 'qids', 'platform', 'idcard_check_type']);
+      
+      if (!pass) {
+        reject('参数异常');
+        return;
+      }
+
       fetchRealName({ appkey, qids, platform, idcard_check_type })
       .then(res => resolve(res))
       .catch(err => reject(err));

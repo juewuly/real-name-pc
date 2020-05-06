@@ -54,6 +54,29 @@ class paramsHelper {
 
     return paramError ? false : true;
   }
+
+  /**
+   * 验证参数的key （拉取实名认证时需要）
+   * @param {*} params 
+   * @param {*} keys 
+   */
+  validateKeys(options, keys) {
+    const paramError = keys.some(param => {
+      // 验证参数是否已传
+      if (typeof options[param] === 'undefined') {
+        logInstance.error(`缺少参数${param}`);
+        return true;
+      }
+
+      // 验证参数是否为空
+      if (param !== 'appkey' && !options[param]) {
+        logInstance.error(`参数${param}不能为空`);
+        return true;
+      }
+    });
+
+    return paramError ? false : true;
+  }
    
 }
 

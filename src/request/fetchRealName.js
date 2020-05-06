@@ -17,7 +17,15 @@ const fetchRealName = ({
   })
   .then(response => {
     const { data } = response;
-    resolve(data);
+    if (data.error_code === '0') {
+      resolve(data.ret[0]);
+      return;
+    }
+
+    reject({
+      errno: data.error_code,
+      errmsg: data.error
+    });
   })
   .catch(error => {
     reject(error);

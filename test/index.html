@@ -23,13 +23,15 @@
       idcard_check_type: 'pay_before',
     };
 
-    SdkInstance.showRealName({ 
-      canClose: true,
-      options,
-      onClose: handleClose,
-      onSubmitSuccess: handleSubmitSuccess,
-      onSubmitError: handleSubmitError
-    });
+    function showRealName() {
+      SdkInstance.showRealName({ 
+        canClose: true,
+        options,
+        onClose: handleClose,
+        onSubmitSuccess: handleSubmitSuccess,
+        onSubmitError: handleSubmitError
+      });
+    }
 
     function handleClose() {
       console.log('🍉。。close');
@@ -49,7 +51,16 @@
       platform: 'page_game',
       idcard_check_type: 'pay_before',
     })
-    .then(res => console.log('res...', res))
+    .then(res => {
+      // if (res.error_code)
+      console.log('res...', res);
+      const { auth_type, status} = res;
+
+      // 已开启实名
+      if (auth_type !== '0' && status === '0') {
+        showRealName();
+      }
+    })
     .catch(err => console.error('获取实名信息异常', err));
 
   </script>

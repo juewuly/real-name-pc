@@ -14,16 +14,6 @@ import {
 import './index.less';
 
 const Home = ({ showRealName, showPopup }) => {
-  const handleClose = () => {
-    actions.updatePopupData({
-      show: false
-    });
-  }
-
-  const handleCloseRealName = () => {
-    console.log('关闭实名。。。。');
-  }
-
   if (showRealName) {
     return <RealNameContainer />
   }
