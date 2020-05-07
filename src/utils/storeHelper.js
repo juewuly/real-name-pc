@@ -138,16 +138,6 @@ class storeHelper {
     const unsubscribeSubmitRealName = this.store.subscribe(handleStoreChange);
   }
 
-  // 关闭弹窗
-  closePopup() {
-    this.store.dispatch({
-      type: UPDATE_POPUP_DATA,
-      data: {
-        show: false
-      }
-    });
-  }
-
   // 设置popup数据
   setPopupData(data) {
     this.store.dispatch({
