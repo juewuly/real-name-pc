@@ -56,6 +56,16 @@ export default class RealNamePc {
   }
 
   /**
+   * 未成年人在禁止充值时间段内，且未开启年龄段限制
+   */
+  showNonage() {
+    setPopupData({
+      show: true,
+      content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。'
+    });
+  }
+
+  /**
    * 年龄小于8周岁的提示
    */
   showEight() {
@@ -200,6 +210,32 @@ export default class RealNamePc {
   }
 
   /**
+   * 根据check接口返回的状态码和年龄，来弹相应的弹窗提示
+   * @param {*} status 
+   * @param {*} ageLower 
+   */
+  showTipByStatus(status, ageLower) {
+    const popupFuncMap = {
+      1: null,
+      2: {
+        0: this.showEight,
+        8: this.showSixteenCharge,
+        16: this.showEighteenCharge
+      },
+      3: {
+        0: this.showEight,
+        8: this.showSixteen,
+        16: this.showEighteen
+      }
+    }
+
+    const popupFunc = popupFuncMap[status][ageLower];
+    if (popupFunc) {
+      popupFunc();
+    }
+  }
+
+  /**
    * 关闭实名
    */
   closeRealName() {
@@ -256,6 +292,8 @@ export default class RealNamePc {
 
       checkAmount({ amount, gkey })
       .then(res => {
+        resolve(res);
+
         modelDataInstance.setRealNameData(res.open_check_auth);
         modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
 
@@ -263,28 +301,49 @@ export default class RealNamePc {
           switch (modelDataInstance.getRealNameStatus()) {
             // 未实名
             case '0':
-              // this.showRealName({
-              //   canClose: modelDataInstance.canCloseRealName(),
-              //   options,
-              //   onClose: handleClose,
-              //   onSubmitSuccess: handleSubmitSuccess,
-              //   onSubmitError: handleSubmitError
-              // });
-              
               logInstance.log('未实名');
+
+              this.showRealName({
+                canClose: modelDataInstance.canCloseRealName(),
+                options,
+                onClose: handleClose,
+              });
+              
               break;
             // 已实名但未成年
             case '1':
-              logInstance.log('已实名，但未成年');
+              logInstance.log('已实名，未成年');
+
+              if (modelDataInstance.ageLimitIsOpen()) {
+                const fcmPayStatus = modelDataInstance.getFcmPayStatus();
+                const { status, age } = fcmPayStatus;
+          
+                if (status === 1) {
+                  // modelData.dispatchRecharge();
+                } else {
+                  logInstance.log(`禁止充值: status:${status}, age: ${age}`);
+                  this.showTipByStatus(status, age);
+                }
+          
+                return;
+              }
+          
+              if (modelDataInstance.canRechargeTime()) {
+                // modelData.dispatchRecharge();
+              } else {
+                logInstance.log('在禁止充值时间段内');
+                // 在禁止充值时间段内给出提示
+                this.showNonage();
+              }
+
               break;
             // 已实名并已成年
             case '2':
-              logInstance.log('已实名，且已成年');
+              logInstance.log('已实名，已成年');
               break;
           }
         }
 
-        resolve(res);
       })
       .catch(err => reject(err));
     });

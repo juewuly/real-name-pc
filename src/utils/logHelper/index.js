@@ -30,8 +30,9 @@ class logHelper {
    * 输出日志信息
    * @param {*} info 
    */
-  log(info) {
-    console.log(`${this._prefix}${info}`);
+  log() {
+    const info = [this._prefix, ...arguments];
+    console.log.apply(null, info)
   }
 
   /**
@@ -39,8 +40,9 @@ class logHelper {
    * @param {*} info 
    * @param {*} err 
    */
-  error(info, err) {
-    console.error(`${this._prefix}${info}`, err ? err : '');
+  error() {
+    const info = [this._prefix, ...arguments];
+    console.error.apply(null, info);
   }
 
   /**
