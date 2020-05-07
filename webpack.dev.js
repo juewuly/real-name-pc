@@ -135,8 +135,18 @@ module.exports = {
           referer: 'https://pay.wan.360.cn/',
           origin: 'https://pay.wan.360.cn/'
         }
+      },
+      '/api/order/check': {
+        target: 'https://h5.wan.360.cn',
+        changeOrigin: true,
+        secure: false,
+        logLevel: 'debug',
+        headers: {
+          referer: 'https://h5.wan.360.cn/',
+          origin: 'https://h5.wan.360.cn/'
+        }
       }
     }
   },
-  devtool: 'inline-source-map'
+  devtool: 'cheap-source-map'
 }

@@ -1,3 +1,7 @@
+/**
+ * @description: 获取实名认证信息
+ */
+
 import axios from 'axios';
 
 const fetchRealName = ({

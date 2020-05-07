@@ -23,9 +23,9 @@
       idcard_check_type: 'pay_before',
     };
 
-    function showRealName() {
+    function showRealName(canClose) {
       SdkInstance.showRealName({ 
-        canClose: true,
+        canClose: canClose,
         options,
         onClose: handleClose,
         onSubmitSuccess: handleSubmitSuccess,
@@ -45,23 +45,31 @@
       console.log('🍉。。。submit-err', err);
     }
 
-    SdkInstance.fetchRealName({
-      appkey: '',
-      qids: '3211038786',
-      platform: 'page_game',
-      idcard_check_type: 'pay_before',
+    // SdkInstance.fetchRealName({
+    //   appkey: '',
+    //   qids: '3211038786',
+    //   platform: 'page_game',
+    //   idcard_check_type: 'pay_before',
+    // })
+    // .then(res => {
+    //   console.log('res...', res);
+    //   const { auth_type, status } = res;
+
+    //   // 已开启实名
+    //   if (auth_type !== '0' && status === '0') {
+    //     showRealName();
+    //   }
+    // })
+    // .catch(err => console.error('获取实名信息异常', err));
+
+    SdkInstance.checkAmount({
+      amount: 30,
+      gkey: 'rxhjh5'
     })
     .then(res => {
-      // if (res.error_code)
-      console.log('res...', res);
-      const { auth_type, status} = res;
-
-      // 已开启实名
-      if (auth_type !== '0' && status === '0') {
-        showRealName();
-      }
+      console.log('res...checkAmount', res);
     })
-    .catch(err => console.error('获取实名信息异常', err));
+    .catch(err => console.error('请求checkAmount接口时，参数异常', err));
 
   </script>
 </body>

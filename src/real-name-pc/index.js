@@ -15,13 +15,19 @@ import {
 } from 'src/redux/constants';
 import Config from './config';
 
-import { fetchRealName } from 'request';
-import { storeHelper, logHelper, paramsHelper } from 'utils';
+import { fetchRealName, checkAmount } from 'request';
+import { 
+  storeHelper, 
+  logHelper, 
+  paramsHelper,
+  modelData
+} from 'utils';
 
 const store = configStore();
 const storeHelperInstance = storeHelper.Instance(store);
 const logInstance = logHelper.Instance;
 const paramsInstance = paramsHelper.Instance;
+const modelDataInstance = modelData.Instance;
 
 export default class RealNamePc {
   constructor() {
@@ -227,6 +233,59 @@ export default class RealNamePc {
 
       fetchRealName({ appkey, qids, platform, idcard_check_type })
       .then(res => resolve(res))
+      .catch(err => reject(err));
+    });
+  }
+
+  /**
+   * 验证金额是否允许充值
+   * @param {*} param0 
+   */
+  checkAmount({ amount, gkey }) {
+    return new Promise((resolve, reject) => {
+      // 验证参数是否合法
+      const pass = paramsInstance.validateKeys({
+        amount,
+        gkey
+      }, ['amount', 'gkey']);
+
+      if (!pass) {
+        reject('参数异常');
+        return;
+      }
+
+      checkAmount({ amount, gkey })
+      .then(res => {
+        modelDataInstance.setRealNameData(res.open_check_auth);
+        modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
+
+        if (modelDataInstance.needCheckRealName()) {
+          switch (modelDataInstance.getRealNameStatus()) {
+            // 未实名
+            case '0':
+              // this.showRealName({
+              //   canClose: modelDataInstance.canCloseRealName(),
+              //   options,
+              //   onClose: handleClose,
+              //   onSubmitSuccess: handleSubmitSuccess,
+              //   onSubmitError: handleSubmitError
+              // });
+              
+              logInstance.log('未实名');
+              break;
+            // 已实名但未成年
+            case '1':
+              logInstance.log('已实名，但未成年');
+              break;
+            // 已实名并已成年
+            case '2':
+              logInstance.log('已实名，且已成年');
+              break;
+          }
+        }
+
+        resolve(res);
+      })
       .catch(err => reject(err));
     });
   }

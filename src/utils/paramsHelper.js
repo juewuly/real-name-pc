@@ -77,7 +77,6 @@ class paramsHelper {
 
     return paramError ? false : true;
   }
-   
 }
 
  export default paramsHelper;

@@ -1,3 +1,8 @@
+/**
+ * @description: 提交实名认证
+ */
+
+
 import axios from 'axios';
 
 const addRealName = ({
