@@ -2,20 +2,10 @@
  * author: liuyang9
  * description: PC端实名认证
  */
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
-import configStore from 'src/common/configStore';
-import App from './app';
-import { 
-  UPDATE_POPUP_DATA, 
-  SET_POPUP_DATA,
-  UPDATE_REAL_NAME_DATA
-} from 'src/redux/constants';
-import Config from './config';
 
 import { fetchRealName, checkAmount } from 'request';
+import viewHelper from './viewHelper';
+import Config from './config';
 import { 
   storeHelper, 
   logHelper, 
@@ -23,11 +13,14 @@ import {
   modelData
 } from 'utils';
 
-const store = configStore();
-const storeHelperInstance = storeHelper.Instance(store);
+const storeHelperInstance = storeHelper.Instance;
 const logInstance = logHelper.Instance;
 const paramsInstance = paramsHelper.Instance;
 const modelDataInstance = modelData.Instance;
+const viewHelperInstance = viewHelper.Instance;
+
+const setPopupData = data => storeHelperInstance.setPopupData(data);
+const updateRealNameData = data => storeHelperInstance.updateRealNameData(data);
 
 export default class RealNamePc {
   constructor() {
@@ -43,16 +36,22 @@ export default class RealNamePc {
   }
 
   init() {
+    // 显示容器
     this.root = document.createElement('div');
     this.root.setAttribute('id', 'real-name-pc');
 
+    // 背景蒙层
     this.modalRoot = document.createElement('div');
     this.modalRoot.setAttribute('id', 'real-name-pc-modal');
 
     document.getElementsByTagName('body')[0].append(this.root);
     document.getElementsByTagName('body')[0].append(this.modalRoot);
 
-    renderApp(App);
+    viewHelperInstance.renderApp();
+  }
+
+  test() {
+    this.showNonage();
   }
 
   /**
@@ -163,12 +162,7 @@ export default class RealNamePc {
    * 关闭弹窗
    */
   close() {
-    store.dispatch({
-      type: UPDATE_POPUP_DATA,
-      data: {
-        show: false
-      }
-    });
+    storeHelper.closePopup();
   }
 
   /**
@@ -350,46 +344,3 @@ export default class RealNamePc {
   }
 }
 
-const updatePopupData = data => {
-  store.dispatch({
-    type: UPDATE_POPUP_DATA,
-    data
-  });
-}
-
-const setPopupData = data => {
-  store.dispatch({
-    type: SET_POPUP_DATA,
-    data
-  });
-}
-
-/**
- * 更新实名数据
- * @param {*} data 
- */
-const updateRealNameData = data => {
-  store.dispatch({
-    type: UPDATE_REAL_NAME_DATA,
-    data
-  });
-}
-
-
-const renderApp = Component => {
-  render(
-    <AppContainer>
-      <Provider store={store}>
-        <Component />
-      </Provider>
-    </AppContainer>,
-    document.getElementById('real-name-pc')
-  );
-}
-
-if (module.hot) {
-  module.hot.accept('./app', () => {
-    const App = require('./app').default;
-    renderApp(App);
-  });
-}

@@ -2,9 +2,16 @@
  * @description: 订阅store里的相关数据
  */
 
+import store from 'src/common/store';
 import logHelper from './logHelper';
+import { 
+  UPDATE_POPUP_DATA, 
+  SET_POPUP_DATA,
+  UPDATE_REAL_NAME_DATA
+} from 'src/redux/constants';
 
 const logInstance = logHelper.Instance;
+const storeInstance = store.Instance;
 
 class storeHelper {
   constructor(store) {
@@ -12,9 +19,9 @@ class storeHelper {
     this._store = store;
   }
 
-  static Instance(store) {
+  static get Instance() {
     if (!this._instance) {
-      this._instance = new storeHelper(store);
+      this._instance = new storeHelper(storeInstance);
     }
 
     return this._instance;
@@ -129,6 +136,32 @@ class storeHelper {
 
     logInstance.subscribeSubmitRealName();
     const unsubscribeSubmitRealName = this.store.subscribe(handleStoreChange);
+  }
+
+  // 关闭弹窗
+  closePopup() {
+    this.store.dispatch({
+      type: UPDATE_POPUP_DATA,
+      data: {
+        show: false
+      }
+    });
+  }
+
+  // 设置popup数据
+  setPopupData(data) {
+    this.store.dispatch({
+      type: SET_POPUP_DATA,
+      data
+    });
+  }
+
+  // 更新实名数据
+  updateRealNameData(data) {
+    this.store.dispatch({
+      type: UPDATE_REAL_NAME_DATA,
+      data
+    });
   }
 }
 
