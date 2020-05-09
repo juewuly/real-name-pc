@@ -61,6 +61,15 @@ class paramsHelper {
    * @param {*} keys 
    */
   validateKeys(options, keys) {
+    if (!this.isObjectAndNotNull(options)) {
+      logInstance.error('参数类型错误，需要为非空对象');
+      return false;
+    }
+
+    if (!keys) {
+      keys = Object.keys(options);
+    }
+
     const paramError = keys.some(param => {
       // 验证参数是否已传
       if (typeof options[param] === 'undefined') {
@@ -76,6 +85,24 @@ class paramsHelper {
     });
 
     return paramError ? false : true;
+  }
+
+  /**
+   * 验证参数是否为非空对象类型
+   * @param {*} options 
+   */
+  isObjectAndNotNull(options) {
+    // 参数不能为空
+    if (!options) {
+      return false;
+    }
+
+    // 参数需要为object
+    if (Object.prototype.toString.call(options) !== '[object Object]') {
+      return false;
+    }
+
+    return true;
   }
 }
 

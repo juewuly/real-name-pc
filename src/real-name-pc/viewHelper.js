@@ -1,14 +1,13 @@
+import { fetchRealName, checkAmount } from 'request';
 import renderApp from './renderApp';
 import App from './app';
-import Config from 'src/real-name-pc/config';
 import { 
-  storeHelper, 
+  logHelper,
+  paramsHelper
 } from 'utils';
 
-const storeHelperInstance = storeHelper.Instance;
-
-const setPopupData = data => storeHelperInstance.setPopupData(data);
-const updateRealNameData = data => storeHelperInstance.updateRealNameData(data);
+const logInstance = logHelper.Instance;
+const paramsInstance = paramsHelper.Instance;
 
 class viewHelper {
   constructor() {
@@ -28,100 +27,105 @@ class viewHelper {
     renderApp(App);
   }
 
-  // 未成年人在禁止充值时间段内，且未开启年龄段限制
-  showNonage() {
-    setPopupData({
-      show: true,
-      content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。'
+  /**
+   * 根据check接口返回的状态码和年龄，来弹相应的弹窗提示
+   * @param {*} status 
+   * @param {*} ageLower 
+   */
+  showTipByStatus(status, ageLower) {
+    const popupFuncMap = {
+      1: null,
+      2: {
+        0: this.showEight,
+        8: this.showSixteenCharge,
+        16: this.showEighteenCharge
+      },
+      3: {
+        0: this.showEight,
+        8: this.showSixteen,
+        16: this.showEighteen
+      }
+    }
+
+    const popupFunc = popupFuncMap[status][ageLower];
+    if (popupFunc) {
+      popupFunc();
+    }
+  }
+
+  /**
+   * 验证金额是否允许充值
+   * @param {*} param0 
+   */
+  checkAmount({ amount, gkey }) {
+    return new Promise((resolve, reject) => {
+      // 验证参数是否合法
+      const pass = paramsInstance.validateKeys({
+        amount,
+        gkey
+      }, ['amount', 'gkey']);
+
+      if (!pass) {
+        reject('参数异常');
+        return;
+      }
+
+      checkAmount({ amount, gkey })
+      .then(res => {
+        resolve(res);
+
+        modelDataInstance.setRealNameData(res.open_check_auth);
+        modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
+        if (!modelDataInstance.needCheckRealName()) {
+          return;
+        }
+
+        const realNameStatus = modelDataInstance.getRealNameStatus();
+        switch (realNameStatus) {
+          // 未实名
+          case '0':
+            logInstance.log('未实名');
+            this.showRealName({
+              canClose: modelDataInstance.canCloseRealName(),
+              options,
+              onClose: handleClose,
+            });
+            break;
+          // 已实名但未成年
+          case '1':
+            logInstance.log('已实名，未成年');
+            if (modelDataInstance.ageLimitIsOpen()) {
+              const fcmPayStatus = modelDataInstance.getFcmPayStatus();
+              const { status, age } = fcmPayStatus;
+        
+              if (status === 1) {
+                // modelData.dispatchRecharge();
+              } else {
+                logInstance.log(`禁止充值: status:${status}, age: ${age}`);
+                this.showTipByStatus(status, age);
+              }
+              return;
+            }
+        
+            if (modelDataInstance.canRechargeTime()) {
+              // modelData.dispatchRecharge();
+            } else {
+              logInstance.log('在禁止充值时间段内');
+              // 在禁止充值时间段内给出提示
+              this.showNonage();
+            }
+
+            break;
+          // 已实名并已成年
+          case '2':
+            logInstance.log('已实名，已成年');
+            break;
+        }
+
+      })
+      .catch(err => reject(err));
     });
   }
-
-  // 年龄小于8周岁的提示
-  showEight() {
-    const { title, subTitle, content } = Config.pay.ageLessThanEight;
-    setPopupData({
-      show: true,
-      title,
-      subTitle,
-      content
-    });
-  }
-
-  // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen() {
-    const { title, subTitle, content } = Config.pay.ageLessThanSixteen;
-    setPopupData({
-      show: true,
-      title,
-      subTitle,
-      content
-    });
-  }
-
-  // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge() {
-    const { title, subTitle, content } = Config.pay.ageLessThanSixteenCharge;
-    setPopupData({
-      show: true,
-      title,
-      subTitle,
-      content
-    });    
-  }
-
-  // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen() {
-    const { title, subTitle, content } = Config.pay.ageLessThanEighteen;
-    setPopupData({
-      show: true,
-      title,
-      subTitle,
-      content
-    });
-  }
-
-  // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge() {
-    const { title, subTitle, content } = Config.pay.ageLessThanEighteenCharge;
-    setPopupData({
-      show: true,
-      title,
-      subTitle,
-      content
-    });
-  }
-
-  // 登录后游戏时长已达到上限时的提示
-  showTimeLimitAfterLogin() {
-    const { title, content } = Config.login.gameTimeLimit;
-    setPopupData({
-      show: true,
-      title,
-      content,
-      canClose: false,
-      noMask: true
-    });
-  }
-
-  // 游戏中时长已达到上限时的提示
-  showTimeLimitWhenPlaying() {
-    const { title, subTitle, content } = Config.playing.gameTimeLimit;
-    setPopupData({
-      show: true,
-      title,
-      subTitle,
-      content,
-      canClose: false,
-      noMask: true
-    })
-  }
-
-  // 关闭弹窗
-  closePopup() {
-    setPopupData({ show: false });
-  }
-
-
 }
 
 export default viewHelper;

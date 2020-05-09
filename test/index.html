@@ -45,22 +45,22 @@
       console.log('🍉。。。submit-err', err);
     }
 
-    // SdkInstance.fetchRealName({
-    //   appkey: '',
-    //   qids: '3211038786',
-    //   platform: 'page_game',
-    //   idcard_check_type: 'pay_before',
-    // })
-    // .then(res => {
-    //   console.log('res...', res);
-    //   const { auth_type, status } = res;
+    SdkInstance.fetchRealName({
+      appkey: '',
+      qids: '3211038786',
+      platform: 'page_game',
+      idcard_check_type: 'pay_before',
+    })
+    .then(res => {
+      console.log('res...', res);
+      const { auth_type, status } = res;
 
-    //   // 已开启实名
-    //   if (auth_type !== '0' && status === '0') {
-    //     showRealName();
-    //   }
-    // })
-    // .catch(err => console.error('获取实名信息异常', err));
+      // 已开启实名
+      if (auth_type !== '0' && status === '0') {
+        showRealName(true);
+      }
+    })
+    .catch(err => console.error('获取实名信息异常', err));
 
     // SdkInstance.checkAmount({
     //   amount: 30,
@@ -71,7 +71,7 @@
     // })
     // .catch(err => console.error('请求checkAmount接口异常', err));
 
-    SdkInstance.test()
+    // SdkInstance.test()
 
   </script>
 </body>

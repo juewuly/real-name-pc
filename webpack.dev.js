@@ -148,5 +148,5 @@ module.exports = {
       }
     }
   },
-  devtool: 'cheap-source-map'
+  devtool: 'inline-source-map'
 }
