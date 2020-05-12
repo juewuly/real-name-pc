@@ -23,17 +23,29 @@
       idcard_check_type: 'pay_before',
     };
 
+    function config() {
+      SdkInstance.config({
+        appkey: '',
+        qid: '3211038786',
+        platform: 'h5_game',
+        idcard_check_type: 'pay_before',
+        onCloseRealName: () => console.log('触发关闭实名事件'),
+        onSubmitSuccess: () => console.log('触发实名认证成功事件'),
+        onSubmitError: () => console.log('触发实名认证失败事件')
+      });
+    }
+
     function showRealName(canClose) {
       SdkInstance.showRealName({ 
         canClose: canClose,
         options,
-        onClose: handleClose,
+        onClose: handleCloseRealName,
         onSubmitSuccess: handleSubmitSuccess,
         onSubmitError: handleSubmitError
       });
     }
 
-    function handleClose() {
+    function handleCloseRealName() {
       console.log('🍉。。close');
     }
 
@@ -45,12 +57,10 @@
       console.log('🍉。。。submit-err', err);
     }
 
-    SdkInstance.fetchRealName({
-      appkey: '',
-      qids: '3211038786',
-      platform: 'page_game',
-      idcard_check_type: 'pay_before',
-    })
+    // 配置相关参数
+    config();
+
+    SdkInstance.fetchRealName()
     .then(res => {
       console.log('res...', res);
       const { auth_type, status } = res;

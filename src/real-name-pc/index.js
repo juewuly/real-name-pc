@@ -7,10 +7,16 @@
 import viewHelper from './viewHelper';
 import { realNameView, popupView } from './view';
 import { realNameData } from './data';
+import { paramsConfig, eventConfig } from './config/index';
+
+import { 
+  paramsHelper
+} from 'utils';
 
 const viewHelperInstance = viewHelper.Instance;
 const realNameViewInstance = realNameView.Instance;
 const popupViewInstance = popupView.Instance;
+const paramsInstance = paramsHelper.Instance;
 
 export default class RealNamePc {
   constructor() {
@@ -43,6 +49,34 @@ export default class RealNamePc {
   // 临时测试
   test() {
     this.showNonage();
+  }
+
+  // 配置一些参数和事件
+  config({ 
+    appkey,
+    qid,
+    platform,
+    idcard_check_type,
+    onCloseRealName,
+    onSubmitSuccess,
+    onSubmitError 
+  }) {
+    // 验证参数是否合法
+    const pass = paramsInstance.validateRealNameParams({ appkey, qid, platform, idcard_check_type });
+    if (!pass) {
+      return;
+    }
+
+    // 参数配置
+    paramsConfig.appkey = appkey;
+    paramsConfig.qid = qid;
+    paramsConfig.platform = platform;
+    paramsConfig.idcard_check_type = idcard_check_type;
+
+    // 事件配置
+    eventConfig.onCloseRealName = onCloseRealName;
+    eventConfig.onSubmitSuccess = onSubmitSuccess;
+    eventConfig.onSubmitError = onSubmitError;
   }
 
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
@@ -109,7 +143,11 @@ export default class RealNamePc {
    * 获取实名信息
    * @param {*} param0 
    */
-  fetchRealName({ appkey, qids, platform, idcard_check_type }) {
+  fetchRealName() {
+    const appkey = paramsConfig.appkey;
+    const qids = paramsConfig.qid;
+    const platform = paramsConfig.platform;
+    const idcard_check_type = paramsConfig.idcard_check_type;
     return realNameData.fetch({ appkey, qids, platform, idcard_check_type });
   }
 
