@@ -172,7 +172,7 @@ export default class RealNamePc {
    * @param {*} param0 
    */
   checkAmount({ amount, gkey }) {
-    return viewHelperInstance.checkAmount({ amount, gkey });
+    return realNameData.checkAmount({ amount, gkey });
   }
 }
 

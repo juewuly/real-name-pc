@@ -1,11 +1,13 @@
 import { checkAmount } from 'request';
 import { 
   logHelper,
-  paramsHelper
+  paramsHelper,
+  modelData
 } from 'utils';
 
 const logInstance = logHelper.Instance;
 const paramsInstance = paramsHelper.Instance;
+const modelDataInstance = modelData.Instance;
 
 class viewHelper {
   constructor() {
@@ -69,60 +71,56 @@ class viewHelper {
       // 验证金额参数是否有效
       await this.validateAmountParams({ amount, gkey });
 
-      checkAmount({ amount, gkey })
-      .then(res => {
-        resolve(res);
+      const res = await checkAmount({ amount, gkey}).catch(err => reject(err));
+      if (!res) {
+        return;
+      }
 
-        modelDataInstance.setRealNameData(res.open_check_auth);
-        modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
-        if (!modelDataInstance.needCheckRealName()) {
-          return;
-        }
+      resolve(res);
 
-        const realNameStatus = modelDataInstance.getRealNameStatus();
-        switch (realNameStatus) {
-          // 未实名
-          case '0':
-            logInstance.log('未实名');
-            this.showRealName({
-              canClose: modelDataInstance.canCloseRealName(),
-              options,
-              onClose: handleClose,
-            });
-            break;
-          // 已实名但未成年
-          case '1':
-            logInstance.log('已实名，未成年');
-            if (modelDataInstance.ageLimitIsOpen()) {
-              const fcmPayStatus = modelDataInstance.getFcmPayStatus();
-              const { status, age } = fcmPayStatus;
-        
-              if (status === 1) {
-                // modelData.dispatchRecharge();
-              } else {
-                logInstance.log(`禁止充值: status:${status}, age: ${age}`);
-                this.showTipByStatus(status, age);
-              }
-              return;
-            }
-        
-            if (modelDataInstance.canRechargeTime()) {
+      modelDataInstance.setRealNameData(res.open_check_auth);
+      modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
+      if (!modelDataInstance.needCheckRealName()) {
+        return;
+      }
+
+      const realNameStatus = modelDataInstance.getRealNameStatus();
+      switch (realNameStatus) {
+        // 未实名
+        case '0':
+          logInstance.log('未实名');
+          this.showRealName({ canClose: modelDataInstance.canCloseRealName() });
+          break;
+        // 已实名但未成年
+        case '1':
+          logInstance.log('已实名，未成年');
+          if (modelDataInstance.ageLimitIsOpen()) {
+            const fcmPayStatus = modelDataInstance.getFcmPayStatus();
+            const { status, age } = fcmPayStatus;
+      
+            if (status === 1) {
               // modelData.dispatchRecharge();
             } else {
-              logInstance.log('在禁止充值时间段内');
-              // 在禁止充值时间段内给出提示
-              this.showNonage();
+              logInstance.log(`禁止充值: status:${status}, age: ${age}`);
+              this.showTipByStatus(status, age);
             }
+            return;
+          }
+      
+          if (modelDataInstance.canRechargeTime()) {
+            // modelData.dispatchRecharge();
+          } else {
+            logInstance.log('在禁止充值时间段内');
+            // 在禁止充值时间段内给出提示
+            this.showNonage();
+          }
 
-            break;
-          // 已实名并已成年
-          case '2':
-            logInstance.log('已实名，已成年');
-            break;
-        }
-
-      })
-      .catch(err => reject(err));
+          break;
+        // 已实名并已成年
+        case '2':
+          logInstance.log('已实名，已成年');
+          break;
+      }
     });
   }
 }

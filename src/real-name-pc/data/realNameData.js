@@ -1,9 +1,9 @@
-import { fetchRealName } from 'request';
-import { 
-  paramsHelper
-} from 'utils';
+import { fetchRealName, checkAmount } from 'request';
+import { paramsHelper, modelData, logHelper } from 'utils';
 
 const paramsInstance = paramsHelper.Instance;
+const modelDataInstance = modelData.Instance;
+const logInstance = logHelper.Instance;
 
 class realNameData {
   constructor() {
@@ -28,9 +28,8 @@ class realNameData {
         platform, 
         idcard_check_type
       });
-      
       if (!pass) {
-        reject('参数异常');
+        reject('访问获取实名信息api时，参数异常');
         return;
       }
 
@@ -38,6 +37,33 @@ class realNameData {
       .then(res => resolve(res))
       .catch(err => reject(err));
     });
+  }
+
+  static checkAmount({ amount, gkey }) {
+    return new Promise((resolve, reject) => {
+      const pass = paramsInstance.validateKeys({ amount, gkey });
+      if (!pass) {
+        reject('访问金额检查api时，参数异常');
+        return;
+      }
+
+      checkAmount({ amount, gkey })
+      .then(res => {
+        this.storeCheckAmountResult(res);
+        resolve(res);
+      })
+      .catch(err => reject(err));
+    });
+  }
+
+  // 存储金额验证结果信息
+  static storeCheckAmountResult(res) {
+    try {
+      modelDataInstance.setRealNameData(res.open_check_auth);
+      modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
+    } catch (error) {
+      logInstance.error('存储金额验证结果信息时出现异常', error);
+    }
   }
 }
 
