@@ -1,6 +1,4 @@
-import { fetchRealName, checkAmount } from 'request';
-import renderApp from './renderApp';
-import App from './app';
+import { checkAmount } from 'request';
 import { 
   logHelper,
   paramsHelper
@@ -20,11 +18,6 @@ class viewHelper {
     }
 
     return this._instance;
-  }
-
-  // 渲染App
-  renderApp() {
-    renderApp(App);
   }
 
   /**

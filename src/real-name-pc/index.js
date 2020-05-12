@@ -5,7 +5,7 @@
 
 
 import viewHelper from './viewHelper';
-import { realNameView, popupView } from './view';
+import { appView, realNameView, popupView } from './view';
 import { realNameData } from './data';
 import { paramsConfig, eventConfig } from './config/index';
 
@@ -43,7 +43,7 @@ export default class RealNamePc {
     document.getElementsByTagName('body')[0].append(this.root);
     document.getElementsByTagName('body')[0].append(this.modalRoot);
 
-    viewHelperInstance.renderApp();
+    appView.renderApp();
   }
 
   // 临时测试
@@ -126,7 +126,6 @@ export default class RealNamePc {
 
   /**
    * 显示实名认证
-   * @param {*} options 提交实名认证时需要的相关参数
    * @param {*} canClose 是否可关闭
    */
   showRealName({ canClose }) {
@@ -159,7 +158,6 @@ export default class RealNamePc {
 
   /**
    * 获取实名信息
-   * @param {*} param0 
    */
   fetchRealName() {
     const appkey = paramsConfig.appkey;
