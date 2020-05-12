@@ -129,8 +129,26 @@ export default class RealNamePc {
    * @param {*} options 提交实名认证时需要的相关参数
    * @param {*} canClose 是否可关闭
    */
-  showRealName({ options, canClose, onClose, onSubmitSuccess, onSubmitError }) {
-    realNameViewInstance.showRealName({ options, canClose, onClose, onSubmitSuccess, onSubmitError });
+  showRealName({ canClose }) {
+    const appkey = paramsConfig.appkey;
+    const qid = paramsConfig.qid;
+    const platform = paramsConfig.platform;
+    const idcard_check_type = paramsConfig.idcard_check_type;
+
+    const onClose = eventConfig.onCloseRealName;
+    const onSubmitSuccess = eventConfig.onSubmitSuccess;
+    const onSubmitError = eventConfig.onSubmitError;
+
+    realNameViewInstance.showRealName({
+      appkey,
+      qid,
+      platform,
+      idcard_check_type,
+      canClose, 
+      onClose, 
+      onSubmitSuccess, 
+      onSubmitError
+    });
   }
 
 

@@ -38,14 +38,13 @@ class realNameView {
    * 显示实名认证
    * @param {*} canClose 是否可关闭
    */
-  showRealName({ options, canClose, onClose, onSubmitSuccess, onSubmitError }) {
+  showRealName({ appkey, qid, platform, idcard_check_type, canClose, onClose, onSubmitSuccess, onSubmitError }) {
     // 验证参数是否合法
-    const pass = paramsInstance.validateRealNameParams(options);
+    const pass = paramsInstance.validateRealNameParams({ appkey, qid, platform, idcard_check_type });
     if (!pass) {
       return;
     }
 
-    const { appkey, qid, platform, idcard_check_type } = options;
     // 更新redux状态
     updateRealNameData({ 
       show: true,
