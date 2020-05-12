@@ -46,22 +46,28 @@ class viewHelper {
     }
   }
 
+  // 验证金额参数是否有效
+  validateAmountParams({ amount, gkey }) {
+    return new Promise((resolve, reject) => {
+      const pass = paramsInstance.validateKeys({ amount, gkey });
+
+      if (pass) {
+        resolve(true);
+        return;
+      }
+    
+      reject('参数异常');
+    })
+  }
+
   /**
    * 验证金额是否允许充值
    * @param {*} param0 
    */
   checkAmount({ amount, gkey }) {
-    return new Promise((resolve, reject) => {
-      // 验证参数是否合法
-      const pass = paramsInstance.validateKeys({
-        amount,
-        gkey
-      }, ['amount', 'gkey']);
-
-      if (!pass) {
-        reject('参数异常');
-        return;
-      }
+    return new Promise(async (resolve, reject) => {
+      // 验证金额参数是否有效
+      await this.validateAmountParams({ amount, gkey });
 
       checkAmount({ amount, gkey })
       .then(res => {

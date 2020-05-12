@@ -40,3 +40,5 @@ class paramsLog {
     this.error('options参数需要是object对象');
   }
 }
+
+export default paramsLog;

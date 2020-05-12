@@ -35,26 +35,26 @@
     // 配置相关参数
     config();
 
-    SdkInstance.fetchRealName()
-    .then(res => {
-      console.log('res...', res);
-      const { auth_type, status } = res;
-
-      // 已开启实名
-      if (auth_type !== '0' && status === '0') {
-        showRealName(true);
-      }
-    })
-    .catch(err => console.error('获取实名信息异常', err));
-
-    // SdkInstance.checkAmount({
-    //   amount: 30,
-    //   gkey: 'rxhjh5'
-    // })
+    // SdkInstance.fetchRealName()
     // .then(res => {
-    //   console.log('res...checkAmount', res);
+    //   console.log('res...', res);
+    //   const { auth_type, status } = res;
+
+    //   // 已开启实名
+    //   if (auth_type !== '0' && status === '0') {
+    //     showRealName(true);
+    //   }
     // })
-    // .catch(err => console.error('请求checkAmount接口异常', err));
+    // .catch(err => console.error('获取实名信息异常', err));
+
+    SdkInstance.checkAmount({
+      amount: 30,
+      gkey: 'rxhjh5'
+    })
+    .then(res => {
+      console.log('res...checkAmount', res);
+    })
+    .catch(err => console.error('请求checkAmount接口异常', err));
 
     // SdkInstance.test()
 
