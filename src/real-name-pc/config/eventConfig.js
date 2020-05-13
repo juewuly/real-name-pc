@@ -16,7 +16,7 @@ class eventConfig {
   }
 
   static get onSubmitSuccess() {
-    return this._onSubmitSuccess();
+    return this._onSubmitSuccess;
   }
 
   static set onSubmitError(callback) {

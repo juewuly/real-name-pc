@@ -7,6 +7,16 @@ import nonageHandler from './nonageHandler';
 import adultHandler from './adultHandler';
 
 
+import { 
+  paramsHelper,
+  modelData,
+  logHelper
+} from 'utils';
+
+const modelDataInstance = modelData.Instance;
+const logInstance = logHelper.Instance;
+
+
 class statusHandler {
   constructor() {
 
@@ -16,9 +26,13 @@ class statusHandler {
    * 根据用户的实名状态，获取相应的处理器
    * @param {*} status 实名状态
    */
-  getHander(status) {
+  static getHander(status) {
     if (['0', '1', '2'].indexOf(status) === -1) {
-      console.error('用户的实名状态参数异常');
+      logInstance.error('用户的实名状态参数异常');
+      return null;
+    }
+
+    if (!modelDataInstance.needCheckRealName()) {
       return null;
     }
 
@@ -28,10 +42,8 @@ class statusHandler {
       '2': adultHandler
     }
 
-    return statusMap(status);
+    return statusMap[status];
   }
-
-
 }
 
 export default statusHandler;

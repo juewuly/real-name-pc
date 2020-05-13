@@ -4,19 +4,22 @@
  */
 
 
-import viewHelper from './viewHelper';
 import { appView, realNameView, popupView } from './view';
 import { realNameData } from './data';
 import { paramsConfig, eventConfig } from './config/index';
+import { statusHandler } from './handler';
 
 import { 
-  paramsHelper
+  paramsHelper,
+  modelData,
+  logHelper
 } from 'utils';
 
-const viewHelperInstance = viewHelper.Instance;
 const realNameViewInstance = realNameView.Instance;
 const popupViewInstance = popupView.Instance;
 const paramsInstance = paramsHelper.Instance;
+const modelDataInstance = modelData.Instance;
+const logInstance = logHelper.Instance;
 
 export default class RealNamePc {
   constructor() {
@@ -150,7 +153,6 @@ export default class RealNamePc {
     });
   }
 
-
   // 关闭实名
   closeRealName() {
     realNameViewInstance.closeRealName();
@@ -172,7 +174,18 @@ export default class RealNamePc {
    * @param {*} param0 
    */
   checkAmount({ amount, gkey }) {
-    return realNameData.checkAmount({ amount, gkey });
+    return new Promise(async (resolve, reject) => {
+      const res = await realNameData.checkAmount({ amount, gkey }).catch(err => reject(err));
+      if (!res) {
+        return;
+      }
+      
+      const handler = statusHandler.getHander(modelDataInstance.getRealNameStatus())
+      resolve({
+        checkResult: res,
+        handler
+      });
+    });
   }
 }
 

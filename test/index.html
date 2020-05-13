@@ -23,7 +23,7 @@
         platform: 'h5_game',
         idcard_check_type: 'pay_before',
         onCloseRealName: () => console.log('触发关闭实名事件'),
-        onSubmitSuccess: () => console.log('触发实名认证成功事件'),
+        onSubmitSuccess: () => console.log('触发实名认证成功事件11'),
         onSubmitError: () => console.log('触发实名认证失败事件')
       });
     }
@@ -53,6 +53,9 @@
     })
     .then(res => {
       console.log('res...checkAmount', res);
+      const { checkResult, handler } = res;
+      console.log('handler...', handler);
+      handler.exec();
     })
     .catch(err => console.error('请求checkAmount接口异常', err));
 
