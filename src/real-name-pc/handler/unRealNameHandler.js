@@ -1,3 +1,7 @@
+/**
+ * @description: 实名状态为未实名时的处理器
+ */
+
 import { realNameView } from '../view';
 import { logHelper } from 'utils';
 import { paramsConfig, eventConfig } from '../config/index';

@@ -180,7 +180,7 @@ export default class RealNamePc {
         return;
       }
       
-      const handler = statusHandler.getHander(modelDataInstance.getRealNameStatus())
+      const handler = statusHandler.getHander()
       resolve({
         checkResult: res,
         handler

@@ -1,3 +1,7 @@
+/**
+ * @description: 实名状态为已成年时的处理器
+ */
+
 import { logHelper } from 'utils';
 
 const logInstance = logHelper.Instance;

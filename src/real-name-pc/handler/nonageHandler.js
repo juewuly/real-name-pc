@@ -1,3 +1,7 @@
+/**
+ * @description: 实名状态为未成年时的处理器
+ */
+
 import { modelData, logHelper } from 'utils';
 import { popupView } from '../view';
 

@@ -1,5 +1,5 @@
 /**
- * @description: 根据用户的实名状态，进行相关处理
+ * @description: 根据用户的实名状态，返回相应的处理器
  */
 
 import unRealNameHandler from './unRealNameHandler';
@@ -8,7 +8,6 @@ import adultHandler from './adultHandler';
 
 
 import { 
-  paramsHelper,
   modelData,
   logHelper
 } from 'utils';
@@ -24,9 +23,10 @@ class statusHandler {
 
   /**
    * 根据用户的实名状态，获取相应的处理器
-   * @param {*} status 实名状态
    */
-  static getHander(status) {
+  static getHander() {
+    const status = modelDataInstance.getRealNameStatus();
+
     if (['0', '1', '2'].indexOf(status) === -1) {
       logInstance.error('用户的实名状态参数异常');
       return null;
