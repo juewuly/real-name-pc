@@ -31,6 +31,7 @@ class popupView {
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
   showNonage({ canClose } = { canClose: true }) {
     setPopupData({
+      className: 'nonage',
       show: true,
       content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。',
       canClose
@@ -39,9 +40,10 @@ class popupView {
 
   // 年龄小于8周岁的提示
   showEight({ canClose } = { canClose: true }) {
-    const { title, subTitle, content } = Config.pay.ageLessThanEight;
+    const { className, title, subTitle, content } = Config.pay.ageLessThanEight;
     setPopupData({
       show: true,
+      className,
       title,
       subTitle,
       content,
@@ -51,9 +53,10 @@ class popupView {
 
   // 8~16周岁不可充值，充值已达到上限的提示
   showSixteen({ canClose } = { canClose: true }) {
-    const { title, subTitle, content } = Config.pay.ageLessThanSixteen;
+    const { className, title, subTitle, content } = Config.pay.ageLessThanSixteen;
     setPopupData({
       show: true,
+      className,
       title,
       subTitle,
       content,
@@ -63,9 +66,10 @@ class popupView {
 
   // 8~16周岁可充值，但充值金额达到上限的提示
   showSixteenCharge({ canClose } = { canClose: true }) {
-    const { title, subTitle, content } = Config.pay.ageLessThanSixteenCharge;
+    const { className, title, subTitle, content } = Config.pay.ageLessThanSixteenCharge;
     setPopupData({
       show: true,
+      className,
       title,
       subTitle,
       content,
@@ -75,9 +79,10 @@ class popupView {
 
   // 16~18周岁不可充值，充值已达到上限的提示
   showEighteen({ canClose } = { canClose: true }) {
-    const { title, subTitle, content } = Config.pay.ageLessThanEighteen;
+    const { className, title, subTitle, content } = Config.pay.ageLessThanEighteen;
     setPopupData({
       show: true,
+      className,
       title,
       subTitle,
       content,
@@ -90,6 +95,7 @@ class popupView {
     const { title, subTitle, content } = Config.pay.ageLessThanEighteenCharge;
     setPopupData({
       show: true,
+      className,
       title,
       subTitle,
       content,
@@ -102,6 +108,7 @@ class popupView {
     const { title, content } = Config.login.gameTimeLimit;
     setPopupData({
       show: true,
+      className,
       title,
       content,
       canClose: false,
@@ -114,6 +121,7 @@ class popupView {
     const { title, subTitle, content } = Config.playing.gameTimeLimit;
     setPopupData({
       show: true,
+      className,
       title,
       subTitle,
       content,
