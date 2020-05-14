@@ -1,7 +1,6 @@
 
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
-const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -91,32 +90,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    // new BundleAnalyzerPlugin(),
-    // new HtmlWebpackExternalsPlugin({
-    //   externals: [
-    //     {
-    //       module: 'react',
-    //       entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
-    //       global: 'React',
-    //     },
-    //     {
-    //       module: 'react-dom',
-    //       entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
-    //       global: 'ReactDOM',
-    //     },
-    //     {
-    //       module: 'redux',
-    //       entry: 'https://unpkg.com/redux@4.0.5/dist/redux.min.js',
-    //       global: 'Redux'
-    //     },
-    //     {
-    //       module: 'immutable',
-    //       entry: 'https://unpkg.com/immutable@4.0.0-rc.12/dist/immutable.min.js',
-    //       global: 'Immutable'
-    //     }
-    //   ]
-    // })
+    new CleanWebpackPlugin()
   ],
   resolve: {
     extensions: ['.js'],
