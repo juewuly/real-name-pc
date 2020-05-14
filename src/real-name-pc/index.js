@@ -43,8 +43,8 @@ export default class RealNamePc {
     this.modalRoot = document.createElement('div');
     this.modalRoot.setAttribute('id', 'real-name-pc-modal');
 
-    document.getElementsByTagName('body')[0].append(this.root);
-    document.getElementsByTagName('body')[0].append(this.modalRoot);
+    document.getElementsByTagName('body')[0].appendChild(this.root);
+    document.getElementsByTagName('body')[0].appendChild(this.modalRoot);
 
     appView.renderApp();
   }

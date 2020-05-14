@@ -11911,7 +11911,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(75);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".modal-mask {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  z-index: 9000;\n  background-color: #000;\n  opacity: 0.86;\n}\n.modal-mask.no-mask {\n  opacity: 0;\n}\n.modal-wrap {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  z-index: 9999;\n}\n", ""]);
+exports.push([module.i, ".modal-mask {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  z-index: 9000;\n  background-color: #000;\n  opacity: 0.86;\n}\n.modal-mask.no-mask {\n  opacity: 0;\n}\n.modal-wrap {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  z-index: 9999;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -11950,7 +11950,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(75);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".tip {\n  box-sizing: border-box;\n  position: relative;\n  width: 660px;\n  height: 300px;\n  background-color: #fff;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-align: center;\n  padding-left: 30px;\n  padding-right: 30px;\n  color: #000;\n}\n.tip__title {\n  font-size: 25px;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n.tip__content {\n  margin-top: 50px;\n  font-size: 20px;\n  text-align: left;\n}\n.tip__close {\n  position: absolute;\n  cursor: pointer;\n  top: 4px;\n  right: -47px;\n  width: 27px;\n  height: 27px;\n  background: url('https://p2.ssl.qhimg.com/t0179abee0d1b9be50a.png') center center no-repeat;\n  background-size: contain;\n}\n", ""]);
+exports.push([module.i, ".tip {\n  box-sizing: border-box;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n  width: 660px;\n  height: 300px;\n  background-color: #fff;\n  text-align: center;\n  padding-left: 30px;\n  padding-right: 30px;\n  color: #000;\n}\n.tip__table {\n  display: table;\n  width: 100%;\n  height: 100%;\n}\n.tip__cell {\n  display: table-cell;\n  vertical-align: middle;\n}\n.tip__title {\n  font-size: 25px;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n.tip__content {\n  margin-top: 50px;\n  font-size: 20px;\n  text-align: left;\n}\n.tip__close {\n  position: absolute;\n  cursor: pointer;\n  top: 4px;\n  right: -47px;\n  width: 27px;\n  height: 27px;\n  background: url('https://p2.ssl.qhimg.com/t0179abee0d1b9be50a.png') center center no-repeat;\n  background-size: contain;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -12075,7 +12075,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(75);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".real-name {\n  width: 420px;\n  height: 346px;\n  border-radius: 5px;\n  overflow: hidden;\n  background-color: #fff;\n}\n.real-name h4 {\n  position: relative;\n  background-color: #eee;\n  font-weight: 100;\n  padding: 10px;\n  margin: 0;\n  color: #333;\n  font-size: 13px;\n}\n.real-name__close {\n  display: inline-block;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  right: 10px;\n  margin: auto;\n  width: 13px;\n  height: 13px;\n  background: url(\"https://p2.ssl.qhimg.com/t01317462acf5b893a5.png\") center center no-repeat;\n  background-size: contain;\n  cursor: pointer;\n}\n.real-name__title {\n  width: 360px;\n  height: 29px;\n  padding: 0;\n  margin: 10px auto;\n  border-bottom: 1px solid #e4e4e4;\n  list-style: none;\n}\n.real-name__title li {\n  width: 104px;\n  height: 22px;\n  float: left;\n  margin: 0 125px;\n  padding: 0 0 8px;\n  color: #999;\n  font-size: 16px;\n  line-height: 22px;\n  text-align: center;\n}\n.real-name__main {\n  margin-top: 20px;\n}\n.real-name__item {\n  font-size: 14px;\n  color: #4e4e4c;\n  padding-left: 35px;\n}\n.real-name__item-label {\n  display: inline-block;\n  width: 60px;\n  text-align: right;\n  margin-right: 5px;\n}\n.real-name__item span {\n  display: inline-block;\n  height: 20px;\n  line-height: 20px;\n}\n.real-name__item-input {\n  width: 248px;\n  height: 36px;\n  border: 1px solid #d9d9d9;\n  padding: 4px;\n  border-radius: 3px;\n  line-height: 26px;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);\n  text-decoration: none;\n  outline: none;\n  box-sizing: border-box;\n}\n.real-name__item .icon {\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  position: relative;\n  top: 4px;\n  background-image: none;\n  margin-left: 5px;\n}\n.real-name__item .icon.icon-error {\n  background: url('https://p0.ssl.qhimg.com/t010babd19e5bcd27d7.png') center center no-repeat;\n  background-size: contain;\n}\n.real-name__item .icon.icon-succ {\n  background: url('https://p0.ssl.qhimg.com/t01348ca7b1f4664b79.png') center center no-repeat;\n  background-size: contain;\n}\n.real-name__item .hint {\n  padding-left: 70px;\n  margin: 0;\n  height: 18px;\n  line-height: 18px;\n  color: red;\n  font-size: 14px;\n  margin-bottom: 5px;\n  margin-top: 5px;\n}\n.real-name__submit {\n  display: block;\n  margin: auto;\n  margin-top: 5px;\n  background: url('https://p0.ssl.qhimg.com/t01d87ca5d77cdf29d4.png') center center no-repeat;\n  width: 200px;\n  height: 42px;\n  line-height: 42px;\n  color: #fff;\n  font-size: 18px;\n  text-align: center;\n  text-decoration: none;\n  outline: none;\n  cursor: pointer;\n}\n.real-name__bottom {\n  width: 360px;\n  height: 40px;\n  margin: 15px auto;\n  font-size: 12px;\n  line-height: 20px;\n  padding: 0 0 8px;\n  color: #999;\n  display: block;\n  text-align: left;\n}\n.real-name__bottom span {\n  color: red;\n}\n", ""]);
+exports.push([module.i, ".real-name {\n  width: 420px;\n  height: 346px;\n  border-radius: 5px;\n  overflow: hidden;\n  background-color: #fff;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n}\n.real-name h4 {\n  position: relative;\n  background-color: #eee;\n  font-weight: 100;\n  padding: 10px;\n  margin: 0;\n  color: #333;\n  font-size: 13px;\n}\n.real-name__close {\n  display: inline-block;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  right: 10px;\n  margin: auto;\n  width: 13px;\n  height: 13px;\n  background: url(\"https://p2.ssl.qhimg.com/t01317462acf5b893a5.png\") center center no-repeat;\n  background-size: contain;\n  cursor: pointer;\n}\n.real-name__title {\n  width: 360px;\n  height: 29px;\n  padding: 0;\n  margin: 10px auto;\n  border-bottom: 1px solid #e4e4e4;\n  list-style: none;\n}\n.real-name__title li {\n  width: 104px;\n  height: 22px;\n  float: left;\n  margin: 0 125px;\n  padding: 0 0 8px;\n  color: #999;\n  font-size: 16px;\n  line-height: 22px;\n  text-align: center;\n}\n.real-name__main {\n  margin-top: 20px;\n}\n.real-name__item {\n  font-size: 14px;\n  color: #4e4e4c;\n  padding-left: 35px;\n}\n.real-name__item-label {\n  display: inline-block;\n  width: 60px;\n  text-align: right;\n  margin-right: 5px;\n}\n.real-name__item span {\n  display: inline-block;\n  height: 20px;\n  line-height: 20px;\n}\n.real-name__item-input {\n  width: 248px;\n  height: 36px;\n  border: 1px solid #d9d9d9;\n  padding: 4px;\n  border-radius: 3px;\n  line-height: 26px;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);\n  text-decoration: none;\n  outline: none;\n  box-sizing: border-box;\n}\n.real-name__item .icon {\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  position: relative;\n  top: 4px;\n  background-image: none;\n  margin-left: 5px;\n}\n.real-name__item .icon.icon-error {\n  background: url('https://p0.ssl.qhimg.com/t010babd19e5bcd27d7.png') center center no-repeat;\n  background-size: contain;\n}\n.real-name__item .icon.icon-succ {\n  background: url('https://p0.ssl.qhimg.com/t01348ca7b1f4664b79.png') center center no-repeat;\n  background-size: contain;\n}\n.real-name__item .hint {\n  padding-left: 70px;\n  margin: 0;\n  height: 18px;\n  line-height: 18px;\n  color: red;\n  font-size: 14px;\n  margin-bottom: 5px;\n  margin-top: 5px;\n}\n.real-name__submit {\n  display: block;\n  margin: auto;\n  margin-top: 5px;\n  background: url('https://p0.ssl.qhimg.com/t01d87ca5d77cdf29d4.png') center center no-repeat;\n  width: 200px;\n  height: 42px;\n  line-height: 42px;\n  color: #fff;\n  font-size: 18px;\n  text-align: center;\n  text-decoration: none;\n  outline: none;\n  cursor: pointer;\n}\n.real-name__bottom {\n  width: 360px;\n  height: 40px;\n  margin: 15px auto;\n  font-size: 12px;\n  line-height: 20px;\n  padding: 0 0 8px;\n  color: #999;\n  display: block;\n  text-align: left;\n}\n.real-name__bottom span {\n  color: red;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -12360,7 +12360,11 @@ var Tip_Tip = function Tip(_ref) {
   var componentClassName = classnames_default()('tip', className);
   return /*#__PURE__*/react_default.a.createElement("div", {
     className: componentClassName
-  }, /*#__PURE__*/react_default.a.createElement("div", null, /*#__PURE__*/react_default.a.createElement("h3", {
+  }, /*#__PURE__*/react_default.a.createElement("div", {
+    className: "tip__table"
+  }, /*#__PURE__*/react_default.a.createElement("div", {
+    className: "tip__cell"
+  }, /*#__PURE__*/react_default.a.createElement("h3", {
     className: "tip__title"
   }, title), subTitle && /*#__PURE__*/react_default.a.createElement("h3", {
     className: "tip__title"
@@ -12368,7 +12372,7 @@ var Tip_Tip = function Tip(_ref) {
     className: "tip__title"
   }, subTitle2), /*#__PURE__*/react_default.a.createElement("main", {
     className: "tip__content"
-  }, /*#__PURE__*/react_default.a.createElement("p", null, content))), canClose && /*#__PURE__*/react_default.a.createElement("i", {
+  }, /*#__PURE__*/react_default.a.createElement("p", null, content)))), canClose && /*#__PURE__*/react_default.a.createElement("i", {
     onClick: onClose,
     className: "tip__close"
   }));
@@ -14659,8 +14663,8 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
 
       this.modalRoot = document.createElement('div');
       this.modalRoot.setAttribute('id', 'real-name-pc-modal');
-      document.getElementsByTagName('body')[0].append(this.root);
-      document.getElementsByTagName('body')[0].append(this.modalRoot);
+      document.getElementsByTagName('body')[0].appendChild(this.root);
+      document.getElementsByTagName('body')[0].appendChild(this.modalRoot);
       view_appView.renderApp();
     } // 临时测试
 
