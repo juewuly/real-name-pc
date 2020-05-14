@@ -29,65 +29,71 @@ class popupView {
   }
 
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
-  showNonage() {
+  showNonage({ canClose } = { canClose: true }) {
     setPopupData({
       show: true,
-      content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。'
+      content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。',
+      canClose
     });
   }
 
   // 年龄小于8周岁的提示
-  showEight() {
+  showEight({ canClose } = { canClose: true }) {
     const { title, subTitle, content } = Config.pay.ageLessThanEight;
     setPopupData({
       show: true,
       title,
       subTitle,
-      content
+      content,
+      canClose
     });
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen() {
+  showSixteen({ canClose } = { canClose: true }) {
     const { title, subTitle, content } = Config.pay.ageLessThanSixteen;
     setPopupData({
       show: true,
       title,
       subTitle,
-      content
+      content,
+      canClose
     });
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge() {
+  showSixteenCharge({ canClose } = { canClose: true }) {
     const { title, subTitle, content } = Config.pay.ageLessThanSixteenCharge;
     setPopupData({
       show: true,
       title,
       subTitle,
-      content
+      content,
+      canClose
     });    
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen() {
+  showEighteen({ canClose } = { canClose: true }) {
     const { title, subTitle, content } = Config.pay.ageLessThanEighteen;
     setPopupData({
       show: true,
       title,
       subTitle,
-      content
+      content,
+      canClose
     });
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge() {
+  showEighteenCharge({ canClose } = { canClose: true }) {
     const { title, subTitle, content } = Config.pay.ageLessThanEighteenCharge;
     setPopupData({
       show: true,
       title,
       subTitle,
-      content
+      content,
+      canClose
     });
   }
 

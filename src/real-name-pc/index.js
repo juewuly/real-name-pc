@@ -83,33 +83,33 @@ export default class RealNamePc {
   }
 
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
-  showNonage() {
-    popupViewInstance.showNonage();
+  showNonage({ canClose } = { canClose: true }) {
+    popupViewInstance.showNonage({ canClose});
   }
 
   // 年龄小于8周岁的提示
-  showEight() {
-    popupViewInstance.showEight();
+  showEight({ canClose } = { canClose: true }) {
+    popupViewInstance.showEight({ canClose });
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen() {
-    popupViewInstance.showSixteen();
+  showSixteen({ canClose } = { canClose: true }) {
+    popupViewInstance.showSixteen({ canClose });
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge() {
-    popupViewInstance.showSixteenCharge();
+  showSixteenCharge({ canClose } = { canClose: true }) {
+    popupViewInstance.showSixteenCharge({ canClose });
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen() {
-    popupViewInstance.showEighteen();
+  showEighteen({ canClose } = { canClose: true }) {
+    popupViewInstance.showEighteen({ canClose });
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge() {
-    popupViewInstance.showEighteenCharge();
+  showEighteenCharge({ canClose } = { canClose: true }) {
+    popupViewInstance.showEighteenCharge({ canClose });
   }
 
   // 登录后游戏时长已达到上限时的提示

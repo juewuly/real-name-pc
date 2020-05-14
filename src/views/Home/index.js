@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Modal, Tip, RealName } from 'components';
 
 import { updatePopupData } from 'src/redux/actions';
 
