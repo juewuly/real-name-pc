@@ -18,8 +18,6 @@ import {
 const realNameViewInstance = realNameView.Instance;
 const popupViewInstance = popupView.Instance;
 const paramsInstance = paramsHelper.Instance;
-const modelDataInstance = modelData.Instance;
-const logInstance = logHelper.Instance;
 
 export default class RealNamePc {
   constructor() {

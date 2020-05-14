@@ -6,7 +6,7 @@ import { Modal, Tip } from 'components';
 
 import { updatePopupData } from 'src/redux/actions';
 
-const PopupContainer = ({ show, title, subTitle, subTitle2, content, canClose, noMask, actions }) => {
+const PopupContainer = ({ className, show, title, subTitle, subTitle2, content, canClose, noMask, actions }) => {
   const handleClose = () => {
     actions.updatePopupData({
       show: false
@@ -20,6 +20,7 @@ const PopupContainer = ({ show, title, subTitle, subTitle2, content, canClose, n
   return (
     <Modal noMask={noMask}>
       <Tip
+        className={className}
         title={title}
         subTitle={subTitle}
         subTitle2={subTitle2}
@@ -31,6 +32,7 @@ const PopupContainer = ({ show, title, subTitle, subTitle2, content, canClose, n
 }
 
 const mapStateToProps = state => ({
+  className: state.getIn(['data', 'popup', 'className']),
   show: state.getIn(['data', 'popup', 'show']),
   title: state.getIn(['data', 'popup', 'title']),
   subTitle: state.getIn(['data', 'popup', 'subTitle']),

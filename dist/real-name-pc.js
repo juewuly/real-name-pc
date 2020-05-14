@@ -11950,7 +11950,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(75);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".tip {\n  box-sizing: border-box;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n  width: 660px;\n  height: 300px;\n  background-color: #fff;\n  text-align: center;\n  padding-left: 30px;\n  padding-right: 30px;\n  color: #000;\n}\n.tip__table {\n  display: table;\n  width: 100%;\n  height: 100%;\n}\n.tip__cell {\n  display: table-cell;\n  vertical-align: middle;\n}\n.tip__title {\n  font-size: 25px;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n.tip__content {\n  margin-top: 50px;\n  font-size: 20px;\n  text-align: left;\n}\n.tip__close {\n  position: absolute;\n  cursor: pointer;\n  top: 4px;\n  right: -47px;\n  width: 27px;\n  height: 27px;\n  background: url('https://p2.ssl.qhimg.com/t0179abee0d1b9be50a.png') center center no-repeat;\n  background-size: contain;\n}\n", ""]);
+exports.push([module.i, ".tip {\n  box-sizing: border-box;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n  width: 660px;\n  height: 300px;\n  background-color: #fff;\n  text-align: center;\n  padding-left: 30px;\n  padding-right: 30px;\n  color: #000;\n}\n.tip.nonage {\n  height: 150px;\n}\n.tip__table {\n  display: table;\n  width: 100%;\n  height: 100%;\n}\n.tip__cell {\n  display: table-cell;\n  vertical-align: middle;\n}\n.tip__title {\n  font-size: 25px;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n.tip__content {\n  margin-top: 50px;\n  font-size: 20px;\n  text-align: left;\n}\n.tip__close {\n  position: absolute;\n  cursor: pointer;\n  top: 4px;\n  right: -47px;\n  width: 27px;\n  height: 27px;\n  background: url('https://p2.ssl.qhimg.com/t0179abee0d1b9be50a.png') center center no-repeat;\n  background-size: contain;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -13576,7 +13576,8 @@ var RealName_RealName = function RealName(_ref) {
 
 
 var PopupContainer_PopupContainer = function PopupContainer(_ref) {
-  var show = _ref.show,
+  var className = _ref.className,
+      show = _ref.show,
       title = _ref.title,
       subTitle = _ref.subTitle,
       subTitle2 = _ref.subTitle2,
@@ -13598,6 +13599,7 @@ var PopupContainer_PopupContainer = function PopupContainer(_ref) {
   return /*#__PURE__*/react_default.a.createElement(src_components_Modal, {
     noMask: noMask
   }, /*#__PURE__*/react_default.a.createElement(src_components_Tip, {
+    className: className,
     title: title,
     subTitle: subTitle,
     subTitle2: subTitle2,
@@ -13609,6 +13611,7 @@ var PopupContainer_PopupContainer = function PopupContainer(_ref) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    className: state.getIn(['data', 'popup', 'className']),
     show: state.getIn(['data', 'popup', 'show']),
     title: state.getIn(['data', 'popup', 'title']),
     subTitle: state.getIn(['data', 'popup', 'subTitle']),
@@ -13904,30 +13907,35 @@ var Config = {
   pay: {
     // 年龄小于8周岁的提示
     ageLessThanEight: {
+      className: 'ageLessThanEight',
       title: '根据相关部门对于未成年用户监管要求',
       subTitle: '该帐号不能充值游戏',
       content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u7F51\u7EDC\u6E38\u620F\u4F01\u4E1A\u4E0D\u5F97\u4E3A\u672A\u6EE18\u5468\u5C81\u4EE5\u4E0B\u7528\u6237\u63D0\u4F9B\u6E38\u620F\u4ED8\u8D39\u670D\u52A1\u3002")
     },
     // 8-16周岁充值金额达到上限的提示
     ageLessThanSixteen: {
+      className: 'ageLessThanSixteen',
       title: '该游戏本月累计充值金额已达到上限',
       subTitle: '每个游戏每月累计充值不能超过200元',
       content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
     },
     // 8-16周岁可充值，但充值金额达到上限的提示
     ageLessThanSixteenCharge: {
+      className: 'ageLessThanSixteenCharge',
       title: '本次充值金额超过单笔上限',
       subTitle: '请重新选择充值金额',
       content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
     },
     // 16-18周岁充值金额达到上限的提示
     ageLessThanEighteen: {
+      className: 'ageLessThanEighteen',
       title: '该游戏本月累计充值金额已达到上限',
       subTitle: '每个游戏每月累计充值不能超过400元',
       content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
     },
     // 16-18周岁可充值，但充值金额达到上限的提示
     ageLessThanEighteenCharge: {
+      className: 'ageLessThanEighteenCharge',
       title: '本次充值金额超过单笔上限',
       subTitle: '请重新选择充值金额',
       content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
@@ -13937,6 +13945,7 @@ var Config = {
   login: {
     // 登录后时长已达到上限的提示
     gameTimeLimit: {
+      className: 'login-gameTimeLimit',
       title: '您今日在该游戏时长已经达到上限',
       content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
     }
@@ -13945,6 +13954,7 @@ var Config = {
   playing: {
     // 游戏中时长已达到上限的提示
     gameTimeLimit: {
+      className: 'playing-gameTimeLimit',
       title: '您今日在该游戏时长已达到上限',
       subTitle: '30秒后将返回登录页',
       content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
@@ -13990,6 +14000,7 @@ var popupView_popupView = /*#__PURE__*/function () {
           canClose = _ref.canClose;
 
       popupView_setPopupData({
+        className: 'nonage',
         show: true,
         content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。',
         canClose: canClose
@@ -14005,11 +14016,13 @@ var popupView_popupView = /*#__PURE__*/function () {
           canClose = _ref2.canClose;
 
       var _Config$pay$ageLessTh = real_name_pc_config.pay.ageLessThanEight,
+          className = _Config$pay$ageLessTh.className,
           title = _Config$pay$ageLessTh.title,
           subTitle = _Config$pay$ageLessTh.subTitle,
           content = _Config$pay$ageLessTh.content;
       popupView_setPopupData({
         show: true,
+        className: className,
         title: title,
         subTitle: subTitle,
         content: content,
@@ -14026,11 +14039,13 @@ var popupView_popupView = /*#__PURE__*/function () {
           canClose = _ref3.canClose;
 
       var _Config$pay$ageLessTh2 = real_name_pc_config.pay.ageLessThanSixteen,
+          className = _Config$pay$ageLessTh2.className,
           title = _Config$pay$ageLessTh2.title,
           subTitle = _Config$pay$ageLessTh2.subTitle,
           content = _Config$pay$ageLessTh2.content;
       popupView_setPopupData({
         show: true,
+        className: className,
         title: title,
         subTitle: subTitle,
         content: content,
@@ -14047,11 +14062,13 @@ var popupView_popupView = /*#__PURE__*/function () {
           canClose = _ref4.canClose;
 
       var _Config$pay$ageLessTh3 = real_name_pc_config.pay.ageLessThanSixteenCharge,
+          className = _Config$pay$ageLessTh3.className,
           title = _Config$pay$ageLessTh3.title,
           subTitle = _Config$pay$ageLessTh3.subTitle,
           content = _Config$pay$ageLessTh3.content;
       popupView_setPopupData({
         show: true,
+        className: className,
         title: title,
         subTitle: subTitle,
         content: content,
@@ -14068,11 +14085,13 @@ var popupView_popupView = /*#__PURE__*/function () {
           canClose = _ref5.canClose;
 
       var _Config$pay$ageLessTh4 = real_name_pc_config.pay.ageLessThanEighteen,
+          className = _Config$pay$ageLessTh4.className,
           title = _Config$pay$ageLessTh4.title,
           subTitle = _Config$pay$ageLessTh4.subTitle,
           content = _Config$pay$ageLessTh4.content;
       popupView_setPopupData({
         show: true,
+        className: className,
         title: title,
         subTitle: subTitle,
         content: content,
@@ -14094,6 +14113,7 @@ var popupView_popupView = /*#__PURE__*/function () {
           content = _Config$pay$ageLessTh5.content;
       popupView_setPopupData({
         show: true,
+        className: className,
         title: title,
         subTitle: subTitle,
         content: content,
@@ -14109,6 +14129,7 @@ var popupView_popupView = /*#__PURE__*/function () {
           content = _Config$login$gameTim.content;
       popupView_setPopupData({
         show: true,
+        className: className,
         title: title,
         content: content,
         canClose: false,
@@ -14125,6 +14146,7 @@ var popupView_popupView = /*#__PURE__*/function () {
           content = _Config$playing$gameT.content;
       popupView_setPopupData({
         show: true,
+        className: className,
         title: title,
         subTitle: subTitle,
         content: content,
@@ -14678,8 +14700,6 @@ var statusHandler_statusHandler = /*#__PURE__*/function () {
 var real_name_pc_realNameViewInstance = view_realNameView.Instance;
 var real_name_pc_popupViewInstance = view_popupView.Instance;
 var real_name_pc_paramsInstance = utils_paramsHelper.Instance;
-var real_name_pc_modelDataInstance = utils_modelData.Instance;
-var real_name_pc_logInstance = utils_logHelper.Instance;
 
 var real_name_pc_RealNamePc = /*#__PURE__*/function () {
   function RealNamePc() {
