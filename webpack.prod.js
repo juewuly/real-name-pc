@@ -7,8 +7,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: {
-    'real-name-pc': './src/index.js',
-    'real-name-pc.min': './src/index.js'
+    'real-name-pc': ['@babel/polyfill', './src/index.js'],
+    'real-name-pc.min': ['@babel/polyfill', './src/index.js']
   },
   output: {
     path: path.join(__dirname, 'dist'),
