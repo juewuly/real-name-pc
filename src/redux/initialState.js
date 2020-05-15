@@ -1,7 +1,19 @@
 import I from 'immutable';
 
 const initialState = I.fromJS({
-  global: {},
+  global: {
+
+    // 应用的场景
+    type: 'default'
+  },
+
+  // 大厅相关提示信息
+  lobby: {
+    show: false,
+    title: '',
+    subTitle: '',
+    content: ''
+  },
 
   // 弹窗相关数据
   popup: {

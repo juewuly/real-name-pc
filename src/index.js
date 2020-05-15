@@ -8,7 +8,7 @@ import RealNamePc from './real-name-pc';
 export default class RealNamePcSdk {
   constructor() {
     if (!RealNamePcSdk._instance) {
-      RealNamePcSdk._instance = RealNamePc.Instance;
+      RealNamePcSdk._instance = RealNamePc.Instance();
     }
 
     return RealNamePcSdk._instance;
@@ -17,9 +17,9 @@ export default class RealNamePcSdk {
   /**
    * 获取单例
    */
-  static get Instance() {
+  static Instance({ type, containerId } = { type: 'default', containerId: null }) {
     if (!this._instance) {
-      this._instance = RealNamePc.Instance;
+      this._instance = RealNamePc.Instance({ type, containerId});
     }
 
     return this._instance;

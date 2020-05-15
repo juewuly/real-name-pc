@@ -7,7 +7,9 @@ import logHelper from './logHelper';
 import { 
   UPDATE_POPUP_DATA, 
   SET_POPUP_DATA,
-  UPDATE_REAL_NAME_DATA
+  UPDATE_REAL_NAME_DATA,
+  UPDATE_GLOBAL_DATA,
+  SET_LOBBY_DATA
 } from 'src/redux/constants';
 
 const logInstance = logHelper.Instance;
@@ -150,6 +152,22 @@ class storeHelper {
   updateRealNameData(data) {
     this.store.dispatch({
       type: UPDATE_REAL_NAME_DATA,
+      data
+    });
+  }
+
+  // 更新全局数据
+  updateGlobalData(data) {
+    this.store.dispatch({
+      type: UPDATE_GLOBAL_DATA,
+      data
+    });
+  }
+
+  // 设置大厅数据
+  setLobbyData(data) {
+    this.store.dispatch({
+      type: SET_LOBBY_DATA,
       data
     });
   }

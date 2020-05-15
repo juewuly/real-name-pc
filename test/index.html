@@ -7,12 +7,14 @@
 </head>
 <body>
   <div>test page</div>
+  <div style="position: relative; width: 900px; height: 400px; border-width: 1px; border-color: red; border-style: solid;" id='test-lobby'></div>
   <% for (var jsIndex in htmlWebpackPlugin.files.js) { %>
     <script type="text/javascript" src="<%=htmlWebpackPlugin.files.js[jsIndex] %>"></script>
   <% } %>
 
   <script>
-    const SdkInstance = RealNamePc.Instance;
+    const SdkInstance = RealNamePc.Instance({ type: 'lobby', containerId: 'test-lobby' });
+    // const SdkInstance = RealNamePc.Instance();
     // SdkInstance.showEight();
 
     function config() {
@@ -32,10 +34,12 @@
     }
 
     // 配置相关参数
-    config();
+    // config();
 
     // SdkInstance.showEight();
-    SdkInstance.showNonage({ canClose: false });
+    // SdkInstance.showNonage({ canClose: true });
+
+    SdkInstance.showSixteen();
 
     // SdkInstance.fetchRealName()
     // .then(res => {

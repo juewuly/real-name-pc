@@ -6,12 +6,17 @@ import { updatePopupData } from 'src/redux/actions';
 
 import {
   PopupContainer,
-  RealNameContainer
+  RealNameContainer,
+  LobbyContainer
 } from 'src/containers';
 
 import './index.less';
 
-const Home = ({ showRealName, showPopup }) => {
+const Home = ({ type, showRealName, showPopup }) => {
+  if (type === 'lobby') {
+    return <LobbyContainer />
+  }
+
   if (showRealName) {
     return <RealNameContainer />
   }
@@ -24,6 +29,7 @@ const Home = ({ showRealName, showPopup }) => {
 }
 
 const mapStateToProps = state => ({
+  type: state.getIn(['data', 'global', 'type']),
   showRealName: state.getIn(['data', 'realName', 'show']),
   showPopup: state.getIn(['data', 'popup', 'show'])
 });

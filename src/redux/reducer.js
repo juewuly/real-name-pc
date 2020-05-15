@@ -3,6 +3,7 @@ import initialState from './initialState';
 import { reducer as updateGlobalData } from './action-reducer/updateGlobalData';
 import { reducer as updatePopupData } from './action-reducer/updatePopupData';
 import { reducer as setPopupData } from './action-reducer/setPopupData';
+import { reducer as setLobbyData } from './action-reducer/setLobbyData';
 import { reducer as updateRealNameData } from './action-reducer/updateRealNameData';
 import { reducer as fetchRealName } from './action-reducer/fetchRealName';
 import { reducer as addRealName } from './action-reducer/addRealName';
@@ -11,6 +12,7 @@ const allReducers = [
   updateGlobalData,
   updatePopupData,
   setPopupData,
+  setLobbyData,
   updateRealNameData,
   fetchRealName,
   addRealName
