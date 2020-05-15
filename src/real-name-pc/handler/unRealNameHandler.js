@@ -4,7 +4,7 @@
 
 import { realNameView } from '../view';
 import { logHelper } from 'utils';
-import { paramsConfig, eventConfig } from '../config/index';
+import { paramsConfig, eventConfig } from '../config';
 
 const realNameViewInstance = realNameView.Instance;
 const logInstance = logHelper.Instance;

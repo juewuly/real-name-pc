@@ -11950,7 +11950,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(75);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".tip {\n  box-sizing: border-box;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n  width: 660px;\n  height: 300px;\n  background-color: #fff;\n  text-align: center;\n  padding-left: 30px;\n  padding-right: 30px;\n  color: #000;\n}\n.tip.nonage {\n  height: 150px;\n}\n.tip__table {\n  display: table;\n  width: 100%;\n  height: 100%;\n}\n.tip__cell {\n  display: table-cell;\n  vertical-align: middle;\n}\n.tip__title {\n  font-size: 25px;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n.tip__content {\n  margin-top: 50px;\n  font-size: 20px;\n  text-align: left;\n}\n.tip__close {\n  position: absolute;\n  cursor: pointer;\n  top: 4px;\n  right: -47px;\n  width: 27px;\n  height: 27px;\n  background: url('https://p2.ssl.qhimg.com/t0179abee0d1b9be50a.png') center center no-repeat;\n  background-size: contain;\n}\n", ""]);
+exports.push([module.i, ".tip {\n  box-sizing: border-box;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n  width: 660px;\n  height: 300px;\n  background-color: #fff;\n  text-align: center;\n  padding-left: 30px;\n  padding-right: 30px;\n  color: #000;\n}\n.tip.nonageForbidCharge {\n  height: 150px;\n}\n.tip__table {\n  display: table;\n  width: 100%;\n  height: 100%;\n}\n.tip__cell {\n  display: table-cell;\n  vertical-align: middle;\n}\n.tip__title {\n  font-size: 25px;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n.tip__content {\n  margin-top: 50px;\n  font-size: 20px;\n  text-align: left;\n}\n.tip__close {\n  position: absolute;\n  cursor: pointer;\n  top: 4px;\n  right: -47px;\n  width: 27px;\n  height: 27px;\n  background: url('https://p2.ssl.qhimg.com/t0179abee0d1b9be50a.png') center center no-repeat;\n  background-size: contain;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -13895,73 +13895,272 @@ var realNameView_realNameView = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ var view_realNameView = (realNameView_realNameView);
-// CONCATENATED MODULE: ./src/real-name-pc/config.js
-/**
- * author: liuyang9
- * description: 提示信息的相关配置
- */
-// 通知名称
-var NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
-var Config = {
-  // 支付相关提示信息的配置
-  pay: {
-    // 年龄小于8周岁的提示
-    ageLessThanEight: {
-      className: 'ageLessThanEight',
-      title: '根据相关部门对于未成年用户监管要求',
-      subTitle: '该帐号不能充值游戏',
-      content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u7F51\u7EDC\u6E38\u620F\u4F01\u4E1A\u4E0D\u5F97\u4E3A\u672A\u6EE18\u5468\u5C81\u4EE5\u4E0B\u7528\u6237\u63D0\u4F9B\u6E38\u620F\u4ED8\u8D39\u670D\u52A1\u3002")
-    },
-    // 8-16周岁充值金额达到上限的提示
-    ageLessThanSixteen: {
-      className: 'ageLessThanSixteen',
-      title: '该游戏本月累计充值金额已达到上限',
-      subTitle: '每个游戏每月累计充值不能超过200元',
-      content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
-    },
-    // 8-16周岁可充值，但充值金额达到上限的提示
-    ageLessThanSixteenCharge: {
-      className: 'ageLessThanSixteenCharge',
-      title: '本次充值金额超过单笔上限',
-      subTitle: '请重新选择充值金额',
-      content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
-    },
-    // 16-18周岁充值金额达到上限的提示
-    ageLessThanEighteen: {
-      className: 'ageLessThanEighteen',
-      title: '该游戏本月累计充值金额已达到上限',
-      subTitle: '每个游戏每月累计充值不能超过400元',
-      content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
-    },
-    // 16-18周岁可充值，但充值金额达到上限的提示
-    ageLessThanEighteenCharge: {
-      className: 'ageLessThanEighteenCharge',
-      title: '本次充值金额超过单笔上限',
-      subTitle: '请重新选择充值金额',
-      content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
-    }
-  },
-  // 登录后相关提示信息的配置
-  login: {
-    // 登录后时长已达到上限的提示
-    gameTimeLimit: {
-      className: 'login-gameTimeLimit',
-      title: '您今日在该游戏时长已经达到上限',
-      content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
-    }
-  },
-  // 游戏中相关提示信息的配置
-  playing: {
-    // 游戏中时长已达到上限的提示
-    gameTimeLimit: {
-      className: 'playing-gameTimeLimit',
-      title: '您今日在该游戏时长已达到上限',
-      subTitle: '30秒后将返回登录页',
-      content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
-    }
+// CONCATENATED MODULE: ./src/real-name-pc/config/eventConfig.js
+
+
+
+var eventConfig_eventConfig = /*#__PURE__*/function () {
+  function eventConfig() {
+    classCallCheck_default()(this, eventConfig);
   }
-};
-/* harmony default export */ var real_name_pc_config = (Config);
+
+  createClass_default()(eventConfig, null, [{
+    key: "onCloseRealName",
+    set: function set(callback) {
+      this._onCloseRealName = callback;
+    },
+    get: function get() {
+      return this._onCloseRealName;
+    }
+  }, {
+    key: "onSubmitSuccess",
+    set: function set(callback) {
+      this._onSubmitSuccess = callback;
+    },
+    get: function get() {
+      return this._onSubmitSuccess;
+    }
+  }, {
+    key: "onSubmitError",
+    set: function set(callback) {
+      this._onSubmitError = callback;
+    },
+    get: function get() {
+      return this._onSubmitError;
+    }
+  }]);
+
+  return eventConfig;
+}();
+
+/* harmony default export */ var config_eventConfig = (eventConfig_eventConfig);
+// CONCATENATED MODULE: ./src/real-name-pc/config/paramsConfig.js
+
+
+
+var paramsConfig_paramsConfig = /*#__PURE__*/function () {
+  function paramsConfig() {
+    classCallCheck_default()(this, paramsConfig);
+  }
+
+  createClass_default()(paramsConfig, null, [{
+    key: "appkey",
+    set: function set(value) {
+      this._appkey = value;
+    },
+    get: function get() {
+      return this._appkey;
+    }
+  }, {
+    key: "qid",
+    set: function set(value) {
+      this._qid = value;
+    },
+    get: function get() {
+      return this._qid;
+    }
+  }, {
+    key: "platform",
+    set: function set(value) {
+      this._platform = value;
+    },
+    get: function get() {
+      return this._platform;
+    }
+  }, {
+    key: "idcard_check_type",
+    set: function set(value) {
+      this._idcard_check_type = value;
+    },
+    get: function get() {
+      return this._idcard_check_type;
+    }
+  }]);
+
+  return paramsConfig;
+}();
+
+/* harmony default export */ var config_paramsConfig = (paramsConfig_paramsConfig);
+// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/popupType.js
+
+
+
+var popupType_popupType = /*#__PURE__*/function () {
+  function popupType() {
+    classCallCheck_default()(this, popupType);
+  } // 未成年人在禁止充值的时间段内
+
+
+  createClass_default()(popupType, null, [{
+    key: "nonageForbidCharge",
+    get: function get() {
+      return 'nonageForbidCharge';
+    } // 年龄小于8周岁的提示
+
+  }, {
+    key: "ageLessThanEight",
+    get: function get() {
+      return 'ageLessThanEight';
+    } // 8-16周岁充值金额达到上限的提示
+
+  }, {
+    key: "ageLessThanSixteen",
+    get: function get() {
+      return 'ageLessThanSixteen';
+    } // 8-16周岁可充值，但充值金额达到上限的提示
+
+  }, {
+    key: "ageLessThanSixteenCharge",
+    get: function get() {
+      return 'ageLessThanSixteenCharge';
+    } // 16-18周岁充值金额达到上限的提示
+
+  }, {
+    key: "ageLessThanEighteen",
+    get: function get() {
+      return 'ageLessThanEighteen';
+    } // 16-18周岁可充值，但充值金额达到上限的提示
+
+  }, {
+    key: "ageLessThanEighteenCharge",
+    get: function get() {
+      return 'ageLessThanEighteenCharge';
+    } // 登录后时长已达到上限的提示
+
+  }, {
+    key: "gameTimeLimitWhenLogin",
+    get: function get() {
+      return 'gameTimeLimitWhenLogin';
+    } // 游戏中时长已达到上限的提示
+
+  }, {
+    key: "gameTimeLimitWhenPlaying",
+    get: function get() {
+      return 'gameTimeLimitWhenPlaying';
+    }
+  }]);
+
+  return popupType;
+}();
+
+/* harmony default export */ var popupConfig_popupType = (popupType_popupType);
+// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/popupEntity.js
+
+
+
+var popupEntity_popupEntity = /*#__PURE__*/function () {
+  function popupEntity(_ref) {
+    var className = _ref.className,
+        title = _ref.title,
+        subTitle = _ref.subTitle,
+        content = _ref.content;
+
+    classCallCheck_default()(this, popupEntity);
+
+    this._className = className;
+    this._title = title;
+    this._subTitle = subTitle;
+    this._content = content;
+  }
+
+  createClass_default()(popupEntity, [{
+    key: "className",
+    get: function get() {
+      return this._className;
+    }
+  }, {
+    key: "title",
+    get: function get() {
+      return this._title;
+    }
+  }, {
+    key: "subTitle",
+    get: function get() {
+      return this._subTitle;
+    }
+  }, {
+    key: "content",
+    get: function get() {
+      return this._content;
+    }
+  }]);
+
+  return popupEntity;
+}();
+
+/* harmony default export */ var popupConfig_popupEntity = (popupEntity_popupEntity);
+// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/popupConfig.js
+
+
+ // 通知名称
+
+var NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
+
+var popupConfig_popupConfig = function popupConfig() {
+  classCallCheck_default()(this, popupConfig);
+}; // 未成年人在禁止充值的时间段内
+
+
+popupConfig_popupConfig[popupConfig_popupType.nonageForbidCharge] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.nonageForbidCharge,
+  content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。'
+}); // 年龄小于8周岁的提示
+
+popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.ageLessThanEight,
+  title: '根据相关部门对于未成年用户监管要求',
+  subTitle: '该帐号不能充值游戏',
+  content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u7F51\u7EDC\u6E38\u620F\u4F01\u4E1A\u4E0D\u5F97\u4E3A\u672A\u6EE18\u5468\u5C81\u4EE5\u4E0B\u7528\u6237\u63D0\u4F9B\u6E38\u620F\u4ED8\u8D39\u670D\u52A1\u3002")
+}); // 8-16周岁充值金额达到上限的提示
+
+popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.ageLessThanSixteen,
+  title: '该游戏本月累计充值金额已达到上限',
+  subTitle: '每个游戏每月累计充值不能超过200元',
+  content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
+}); // 8-16周岁可充值，但充值金额达到上限的提示
+
+popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.ageLessThanSixteenCharge,
+  title: '本次充值金额超过单笔上限',
+  subTitle: '请重新选择充值金额',
+  content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
+}); // 16-18周岁充值金额达到上限的提示
+
+popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.ageLessThanEighteen,
+  title: '该游戏本月累计充值金额已达到上限',
+  subTitle: '每个游戏每月累计充值不能超过400元',
+  content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
+}); // 16-18周岁可充值，但充值金额达到上限的提示
+
+popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.ageLessThanEighteenCharge,
+  title: '本次充值金额超过单笔上限',
+  subTitle: '请重新选择充值金额',
+  content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
+}); // 登录后时长已达到上限的提示
+
+popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenLogin] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.gameTimeLimitWhenLogin,
+  title: '您今日在该游戏时长已经达到上限',
+  content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
+}); // 游戏中时长已达到上限的提示
+
+popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenPlaying] = new popupConfig_popupEntity({
+  className: popupConfig_popupType.gameTimeLimitWhenPlaying,
+  title: '您今日在该游戏时长已达到上限',
+  subTitle: '30秒后将返回登录页',
+  content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
+});
+/* harmony default export */ var config_popupConfig_popupConfig = (popupConfig_popupConfig);
+// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/index.js
+
+
+// CONCATENATED MODULE: ./src/real-name-pc/config/index.js
+
+
+
 // CONCATENATED MODULE: ./src/real-name-pc/view/popupView.js
 
 
@@ -13999,10 +14198,13 @@ var popupView_popupView = /*#__PURE__*/function () {
       },
           canClose = _ref.canClose;
 
+      var _popupConfig$popupTyp = config_popupConfig_popupConfig[popupConfig_popupType.nonageForbidCharge],
+          className = _popupConfig$popupTyp.className,
+          content = _popupConfig$popupTyp.content;
       popupView_setPopupData({
-        className: 'nonage',
         show: true,
-        content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。',
+        className: className,
+        content: content,
         canClose: canClose
       });
     } // 年龄小于8周岁的提示
@@ -14015,11 +14217,11 @@ var popupView_popupView = /*#__PURE__*/function () {
       },
           canClose = _ref2.canClose;
 
-      var _Config$pay$ageLessTh = real_name_pc_config.pay.ageLessThanEight,
-          className = _Config$pay$ageLessTh.className,
-          title = _Config$pay$ageLessTh.title,
-          subTitle = _Config$pay$ageLessTh.subTitle,
-          content = _Config$pay$ageLessTh.content;
+      var _popupConfig$popupTyp2 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight],
+          className = _popupConfig$popupTyp2.className,
+          title = _popupConfig$popupTyp2.title,
+          subTitle = _popupConfig$popupTyp2.subTitle,
+          content = _popupConfig$popupTyp2.content;
       popupView_setPopupData({
         show: true,
         className: className,
@@ -14038,11 +14240,11 @@ var popupView_popupView = /*#__PURE__*/function () {
       },
           canClose = _ref3.canClose;
 
-      var _Config$pay$ageLessTh2 = real_name_pc_config.pay.ageLessThanSixteen,
-          className = _Config$pay$ageLessTh2.className,
-          title = _Config$pay$ageLessTh2.title,
-          subTitle = _Config$pay$ageLessTh2.subTitle,
-          content = _Config$pay$ageLessTh2.content;
+      var _popupConfig$popupTyp3 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen],
+          className = _popupConfig$popupTyp3.className,
+          title = _popupConfig$popupTyp3.title,
+          subTitle = _popupConfig$popupTyp3.subTitle,
+          content = _popupConfig$popupTyp3.content;
       popupView_setPopupData({
         show: true,
         className: className,
@@ -14061,11 +14263,11 @@ var popupView_popupView = /*#__PURE__*/function () {
       },
           canClose = _ref4.canClose;
 
-      var _Config$pay$ageLessTh3 = real_name_pc_config.pay.ageLessThanSixteenCharge,
-          className = _Config$pay$ageLessTh3.className,
-          title = _Config$pay$ageLessTh3.title,
-          subTitle = _Config$pay$ageLessTh3.subTitle,
-          content = _Config$pay$ageLessTh3.content;
+      var _popupConfig$popupTyp4 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge],
+          className = _popupConfig$popupTyp4.className,
+          title = _popupConfig$popupTyp4.title,
+          subTitle = _popupConfig$popupTyp4.subTitle,
+          content = _popupConfig$popupTyp4.content;
       popupView_setPopupData({
         show: true,
         className: className,
@@ -14084,11 +14286,11 @@ var popupView_popupView = /*#__PURE__*/function () {
       },
           canClose = _ref5.canClose;
 
-      var _Config$pay$ageLessTh4 = real_name_pc_config.pay.ageLessThanEighteen,
-          className = _Config$pay$ageLessTh4.className,
-          title = _Config$pay$ageLessTh4.title,
-          subTitle = _Config$pay$ageLessTh4.subTitle,
-          content = _Config$pay$ageLessTh4.content;
+      var _popupConfig$popupTyp5 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen],
+          className = _popupConfig$popupTyp5.className,
+          title = _popupConfig$popupTyp5.title,
+          subTitle = _popupConfig$popupTyp5.subTitle,
+          content = _popupConfig$popupTyp5.content;
       popupView_setPopupData({
         show: true,
         className: className,
@@ -14107,10 +14309,10 @@ var popupView_popupView = /*#__PURE__*/function () {
       },
           canClose = _ref6.canClose;
 
-      var _Config$pay$ageLessTh5 = real_name_pc_config.pay.ageLessThanEighteenCharge,
-          title = _Config$pay$ageLessTh5.title,
-          subTitle = _Config$pay$ageLessTh5.subTitle,
-          content = _Config$pay$ageLessTh5.content;
+      var _popupConfig$popupTyp6 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge],
+          title = _popupConfig$popupTyp6.title,
+          subTitle = _popupConfig$popupTyp6.subTitle,
+          content = _popupConfig$popupTyp6.content;
       popupView_setPopupData({
         show: true,
         className: className,
@@ -14124,9 +14326,9 @@ var popupView_popupView = /*#__PURE__*/function () {
   }, {
     key: "showTimeLimitAfterLogin",
     value: function showTimeLimitAfterLogin() {
-      var _Config$login$gameTim = real_name_pc_config.login.gameTimeLimit,
-          title = _Config$login$gameTim.title,
-          content = _Config$login$gameTim.content;
+      var _popupConfig$popupTyp7 = config_popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenLogin],
+          title = _popupConfig$popupTyp7.title,
+          content = _popupConfig$popupTyp7.content;
       popupView_setPopupData({
         show: true,
         className: className,
@@ -14140,10 +14342,10 @@ var popupView_popupView = /*#__PURE__*/function () {
   }, {
     key: "showTimeLimitWhenPlaying",
     value: function showTimeLimitWhenPlaying() {
-      var _Config$playing$gameT = real_name_pc_config.playing.gameTimeLimit,
-          title = _Config$playing$gameT.title,
-          subTitle = _Config$playing$gameT.subTitle,
-          content = _Config$playing$gameT.content;
+      var _popupConfig$popupTyp8 = config_popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenPlaying],
+          title = _popupConfig$popupTyp8.title,
+          subTitle = _popupConfig$popupTyp8.subTitle,
+          content = _popupConfig$popupTyp8.content;
       popupView_setPopupData({
         show: true,
         className: className,
@@ -14411,95 +14613,6 @@ var realNameData_realNameData = /*#__PURE__*/function () {
 
 /* harmony default export */ var data_realNameData = (realNameData_realNameData);
 // CONCATENATED MODULE: ./src/real-name-pc/data/index.js
-
-// CONCATENATED MODULE: ./src/real-name-pc/config/eventConfig.js
-
-
-
-var eventConfig_eventConfig = /*#__PURE__*/function () {
-  function eventConfig() {
-    classCallCheck_default()(this, eventConfig);
-  }
-
-  createClass_default()(eventConfig, null, [{
-    key: "onCloseRealName",
-    set: function set(callback) {
-      this._onCloseRealName = callback;
-    },
-    get: function get() {
-      return this._onCloseRealName;
-    }
-  }, {
-    key: "onSubmitSuccess",
-    set: function set(callback) {
-      this._onSubmitSuccess = callback;
-    },
-    get: function get() {
-      return this._onSubmitSuccess;
-    }
-  }, {
-    key: "onSubmitError",
-    set: function set(callback) {
-      this._onSubmitError = callback;
-    },
-    get: function get() {
-      return this._onSubmitError;
-    }
-  }]);
-
-  return eventConfig;
-}();
-
-/* harmony default export */ var config_eventConfig = (eventConfig_eventConfig);
-// CONCATENATED MODULE: ./src/real-name-pc/config/paramsConfig.js
-
-
-
-var paramsConfig_paramsConfig = /*#__PURE__*/function () {
-  function paramsConfig() {
-    classCallCheck_default()(this, paramsConfig);
-  }
-
-  createClass_default()(paramsConfig, null, [{
-    key: "appkey",
-    set: function set(value) {
-      this._appkey = value;
-    },
-    get: function get() {
-      return this._appkey;
-    }
-  }, {
-    key: "qid",
-    set: function set(value) {
-      this._qid = value;
-    },
-    get: function get() {
-      return this._qid;
-    }
-  }, {
-    key: "platform",
-    set: function set(value) {
-      this._platform = value;
-    },
-    get: function get() {
-      return this._platform;
-    }
-  }, {
-    key: "idcard_check_type",
-    set: function set(value) {
-      this._idcard_check_type = value;
-    },
-    get: function get() {
-      return this._idcard_check_type;
-    }
-  }]);
-
-  return paramsConfig;
-}();
-
-/* harmony default export */ var config_paramsConfig = (paramsConfig_paramsConfig);
-// CONCATENATED MODULE: ./src/real-name-pc/config/index.js
-
 
 // CONCATENATED MODULE: ./src/real-name-pc/handler/unRealNameHandler.js
 
@@ -14987,7 +15100,6 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
  */
 
 
-
 var src_RealNamePcSdk = /*#__PURE__*/function () {
   function RealNamePcSdk() {
     classCallCheck_default()(this, RealNamePcSdk);
@@ -15011,15 +15123,6 @@ var src_RealNamePcSdk = /*#__PURE__*/function () {
       }
 
       return this._instance;
-    }
-    /**
-     * 获取相关提示信息的配置
-     */
-
-  }, {
-    key: "Config",
-    get: function get() {
-      return real_name_pc_config;
     }
   }]);
 

@@ -2,8 +2,7 @@
  * @description: 弹窗提示视图
  */
 
-
-import Config from 'src/real-name-pc/config';
+import { popupConfig, popupType } from '../config';
 import { storeHelper } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;
@@ -30,17 +29,18 @@ class popupView {
 
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
   showNonage({ canClose } = { canClose: true }) {
+    const { className, content } = popupConfig[popupType.nonageForbidCharge];
     setPopupData({
-      className: 'nonage',
       show: true,
-      content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。',
+      className,
+      content,
       canClose
     });
   }
 
   // 年龄小于8周岁的提示
   showEight({ canClose } = { canClose: true }) {
-    const { className, title, subTitle, content } = Config.pay.ageLessThanEight;
+    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEight];
     setPopupData({
       show: true,
       className,
@@ -53,7 +53,7 @@ class popupView {
 
   // 8~16周岁不可充值，充值已达到上限的提示
   showSixteen({ canClose } = { canClose: true }) {
-    const { className, title, subTitle, content } = Config.pay.ageLessThanSixteen;
+    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteen];
     setPopupData({
       show: true,
       className,
@@ -66,7 +66,7 @@ class popupView {
 
   // 8~16周岁可充值，但充值金额达到上限的提示
   showSixteenCharge({ canClose } = { canClose: true }) {
-    const { className, title, subTitle, content } = Config.pay.ageLessThanSixteenCharge;
+    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteenCharge];
     setPopupData({
       show: true,
       className,
@@ -79,7 +79,7 @@ class popupView {
 
   // 16~18周岁不可充值，充值已达到上限的提示
   showEighteen({ canClose } = { canClose: true }) {
-    const { className, title, subTitle, content } = Config.pay.ageLessThanEighteen;
+    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteen];
     setPopupData({
       show: true,
       className,
@@ -92,7 +92,7 @@ class popupView {
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
   showEighteenCharge({ canClose } = { canClose: true }) {
-    const { title, subTitle, content } = Config.pay.ageLessThanEighteenCharge;
+    const { title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
     setPopupData({
       show: true,
       className,
@@ -105,7 +105,7 @@ class popupView {
 
   // 登录后游戏时长已达到上限时的提示
   showTimeLimitAfterLogin() {
-    const { title, content } = Config.login.gameTimeLimit;
+    const { title, content } = popupConfig[popupType.gameTimeLimitWhenLogin];
     setPopupData({
       show: true,
       className,
@@ -118,7 +118,7 @@ class popupView {
 
   // 游戏中时长已达到上限时的提示
   showTimeLimitWhenPlaying() {
-    const { title, subTitle, content } = Config.playing.gameTimeLimit;
+    const { title, subTitle, content } = popupConfig[popupType.gameTimeLimitWhenPlaying];
     setPopupData({
       show: true,
       className,

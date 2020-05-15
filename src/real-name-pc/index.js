@@ -6,7 +6,7 @@
 
 import { appView, realNameView, popupView } from './view';
 import { realNameData } from './data';
-import { paramsConfig, eventConfig } from './config/index';
+import { paramsConfig, eventConfig } from './config';
 import { statusHandler } from './handler';
 
 import { 

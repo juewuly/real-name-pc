@@ -4,7 +4,6 @@
  */
 
 import RealNamePc from './real-name-pc';
-import Config from './real-name-pc/config';
 
 export default class RealNamePcSdk {
   constructor() {
@@ -24,12 +23,5 @@ export default class RealNamePcSdk {
     }
 
     return this._instance;
-  }
-
-  /**
-   * 获取相关提示信息的配置
-   */
-  static get Config() {
-    return Config;
   }
 }
