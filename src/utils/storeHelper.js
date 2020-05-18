@@ -9,7 +9,8 @@ import {
   SET_POPUP_DATA,
   UPDATE_REAL_NAME_DATA,
   UPDATE_GLOBAL_DATA,
-  SET_LOBBY_DATA
+  SET_LOBBY_DATA,
+  SET_LOBBY_MINI_DATA
 } from 'src/redux/constants';
 
 const logInstance = logHelper.Instance;
@@ -168,6 +169,14 @@ class storeHelper {
   setLobbyData(data) {
     this.store.dispatch({
       type: SET_LOBBY_DATA,
+      data
+    });
+  }
+
+  // 设置大厅mini付的数据
+  setLobbyMiniData(data) {
+    this.store.dispatch({
+      type: SET_LOBBY_MINI_DATA,
       data
     });
   }

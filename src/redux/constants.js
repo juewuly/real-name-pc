@@ -10,6 +10,9 @@ export const SET_POPUP_DATA = 'SET_POPUP_DATA';
 // 设置大厅数据
 export const SET_LOBBY_DATA = 'SET_LOBBY_DATA';
 
+// 设置大厅mini支付数据
+export const SET_LOBBY_MINI_DATA = 'SET_LOBBY_MINI_DATA';
+
 // 更新实名数据
 export const UPDATE_REAL_NAME_DATA = 'UPDATE_REAL_NAME_DATA';
 

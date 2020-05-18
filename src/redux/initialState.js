@@ -15,6 +15,14 @@ const initialState = I.fromJS({
     content: ''
   },
 
+  // 大厅mini支付相关提示信息
+  lobbyMini: {
+    show: false,
+    title: '',
+    subTitle: '',
+    content: ''
+  },
+
   // 弹窗相关数据
   popup: {
     // 是否显示弹窗

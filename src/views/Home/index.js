@@ -7,7 +7,8 @@ import { updatePopupData } from 'src/redux/actions';
 import {
   PopupContainer,
   RealNameContainer,
-  LobbyContainer
+  LobbyContainer,
+  LobbyMiniContainer
 } from 'src/containers';
 
 import './index.less';
@@ -15,6 +16,10 @@ import './index.less';
 const Home = ({ type, showRealName, showPopup }) => {
   if (type === 'lobby') {
     return <LobbyContainer />
+  }
+
+  if (type === 'lobbyMini') {
+    return <LobbyMiniContainer />
   }
 
   if (showRealName) {
