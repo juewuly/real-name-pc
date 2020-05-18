@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Tip } from 'components';
 
+import './index.less';
+
 
 const LobbyContainer = ({ className, show, title, subTitle, content }) => {
   if (!show) {
@@ -10,11 +12,13 @@ const LobbyContainer = ({ className, show, title, subTitle, content }) => {
   }
 
   return (
-    <Tip
+    <div className='lobby-container'>
+      <Tip
       className={className}
       title={title}
       subTitle={subTitle}
       content={content} />
+    </div>
   );
 }
 

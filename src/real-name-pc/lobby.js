@@ -60,8 +60,8 @@ export default class lobby {
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge({ canClose } = { canClose: true }) {
-    lobbyViewInstance.showSixteenCharge({ canClose });
+  showSixteenCharge( { amount, canClose } = { canClose: true }) {
+    lobbyViewInstance.showSixteenCharge({ amount, canClose });
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
@@ -70,8 +70,8 @@ export default class lobby {
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge({ canClose } = { canClose: true }) {
-    lobbyViewInstance.showEighteenCharge({ canClose });
+  showEighteenCharge({ amount, canClose } = { canClose: true }) {
+    lobbyViewInstance.showEighteenCharge({ amount, canClose });
   }
 }
 

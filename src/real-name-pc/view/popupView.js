@@ -92,7 +92,7 @@ class popupView {
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
   showEighteenCharge({ canClose } = { canClose: true }) {
-    const { title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
+    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
     setPopupData({
       show: true,
       className,
