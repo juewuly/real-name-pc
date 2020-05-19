@@ -1,10 +1,10 @@
 import I from 'immutable';
+import { features } from '../real-name-pc/config';
 
 const initialState = I.fromJS({
   global: {
-
     // 应用的场景
-    type: 'default'
+    feature: features.h5Platform
   },
 
   // 大厅相关提示信息

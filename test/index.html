@@ -13,7 +13,8 @@
   <% } %>
 
   <script>
-    const SdkInstance = RealNamePc.Instance({ type: 'lobbyMini', containerId: 'test-lobby' });
+    const Features = RealNamePc.Features;
+    const SdkInstance = RealNamePc.Instance({ feature: Features.lobbyMini, containerId: 'test-lobby' });
     // const SdkInstance = RealNamePc.Instance();
     // SdkInstance.showEight();
 

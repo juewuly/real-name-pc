@@ -7,24 +7,31 @@
 import realName from './realName';
 import lobby from './lobby';
 import lobbyMini from './lobbyMini';
+import { features } from './config';
 
 export default class RealNamePc {
-  constructor({ type, containerId }) {
-    this.init({ type, containerId });
+  constructor() {
+
   }
 
-  static Instance({ type, containerId }) {
+  static Instance({ feature, containerId }) {
     if(!this._instance) {
-      if (type === 'lobby') {
-        this._instance = new lobby({ type, containerId });
-      } else if (type === 'lobbyMini') {
-        this._instance = new lobbyMini({ type, containerId });
-      } else {
-        this._instance = new realName({ type, containerId });
-      }
+      const featureClass = getFeatureClass(feature);
+      this._instance = new featureClass({ feature, containerId });
     }
 
     return this._instance;
   }
+}
+
+// 根据feature名称获取相应的class
+const getFeatureClass = (feature) => {
+  const featuresMap = {
+    [features.h5Platform]: realName,
+    [features.lobby]: lobby,
+    [features.lobbyMini]: lobbyMini
+  };
+
+  return featuresMap[feature] ? featuresMap[feature] : realName;
 }
 

@@ -16,21 +16,21 @@ const lobbyViewInstance = lobbyView.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
 export default class lobby {
-  constructor({ type, containerId }) {
-    this.init({ type, containerId });
+  constructor({ feature, containerId }) {
+    this.init({ feature, containerId });
   }
 
-  static Instance({ type, containerId }) {
+  static Instance({ feature, containerId }) {
     if(!this._instance) {
-      this._instance = new lobby({ type, containerId });
+      this._instance = new lobby({ feature, containerId });
     }
 
     return this._instance;
   }
 
-  init({ type, containerId }) {
+  init({ feature, containerId }) {
     const containerEle = this.getContainerElement(containerId);
-    storeHelperInstance.updateGlobalData({ type });
+    storeHelperInstance.updateGlobalData({ feature });
 
     // 显示容器
     this.root = document.createElement('div');

@@ -11,15 +11,14 @@ import {
   LobbyMiniContainer
 } from 'src/containers';
 
+import { features } from 'src/real-name-pc/config';
+
 import './index.less';
 
-const Home = ({ type, showRealName, showPopup }) => {
-  if (type === 'lobby') {
-    return <LobbyContainer />
-  }
-
-  if (type === 'lobbyMini') {
-    return <LobbyMiniContainer />
+const Home = ({ feature, showRealName, showPopup }) => {
+  const FeatureComponent = getFeatureComponent(feature);
+  if (FeatureComponent) {
+    return FeatureComponent;
   }
 
   if (showRealName) {
@@ -33,8 +32,18 @@ const Home = ({ type, showRealName, showPopup }) => {
   );
 }
 
+// 获取feature对应的组件
+const getFeatureComponent = feature => {
+  const featureMap = {
+    [features.lobby]: <LobbyContainer />,
+    [features.lobbyMini]: <LobbyMiniContainer />
+  };
+
+  return featureMap[feature] ? featureMap[feature] : null;
+}
+
 const mapStateToProps = state => ({
-  type: state.getIn(['data', 'global', 'type']),
+  feature: state.getIn(['data', 'global', 'feature']),
   showRealName: state.getIn(['data', 'realName', 'show']),
   showPopup: state.getIn(['data', 'popup', 'show'])
 });
