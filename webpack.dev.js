@@ -55,7 +55,7 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /(react|react-dom|redux|immutable)/,
+          test: /(react|react-dom|redux)/,
           name: 'vendors',
           chunks: 'all'
         }
