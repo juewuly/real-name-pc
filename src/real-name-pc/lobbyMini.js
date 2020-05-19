@@ -5,6 +5,7 @@
 
 
 import { appView, lobbyMiniView } from './view';
+import { lobbyMiniData } from './data';
 
 import { 
   storeHelper
@@ -70,6 +71,11 @@ export default class lobbyMini {
   // 16~18周岁可充值，但充值金额已达到上限的提示
   showEighteenCharge({ canClose, onClickOk } = { canClose: true }) {
     lobbyMiniViewInstance.showEighteenCharge({ canClose, onClickOk });
+  }
+
+  // 验证是否允许充值
+  checkCharge({ gkey, exts }) {
+    return lobbyMiniData.checkCharge({ gkey, exts });
   }
 }
 

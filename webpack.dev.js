@@ -119,6 +119,16 @@ module.exports = {
           referer: 'https://h5.wan.360.cn/',
           origin: 'https://h5.wan.360.cn/'
         }
+      },
+      '/api/user/mg_fcm': {
+        target: 'http://hermes.pay.wan.360.cn',
+        changeOrigin: true,
+        secure: false,
+        logLevel: 'debug',
+        headers: {
+          referer: 'https://pay.wan.360.cn/',
+          origin: 'https://pay.wan.360.cn/'
+        }
       }
     }
   },
