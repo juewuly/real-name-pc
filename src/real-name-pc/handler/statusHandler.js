@@ -24,7 +24,7 @@ class statusHandler {
   /**
    * 根据用户的实名状态，获取相应的处理器
    */
-  static getHander() {
+  static getHandler() {
     const status = modelDataInstance.getRealNameStatus();
 
     if (['0', '1', '2'].indexOf(status) === -1) {

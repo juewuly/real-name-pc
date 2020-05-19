@@ -105,11 +105,11 @@ class lobbyView {
   }
 
   /**
-   * 根据check接口返回的状态码和年龄，来弹相应的弹窗提示
+   * 根据mg_fcm接口返回的状态码和年龄，来弹相应的弹窗提示
    * @param {*} status 
    * @param {*} ageLower 
    */
-  showTipByStatus(status, ageLower) {
+  showTipByStatus({ status, ageLower, onClickOk }) {
     const popupFuncMap = {
       1: null,
       2: {
@@ -126,7 +126,7 @@ class lobbyView {
 
     const popupFunc = popupFuncMap[status][ageLower];
     if (popupFunc) {
-      popupFunc();
+      popupFunc({ onClickOk });
     }
   }
 }

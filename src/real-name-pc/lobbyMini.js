@@ -6,6 +6,7 @@
 
 import { appView, lobbyMiniView } from './view';
 import { lobbyMiniData } from './data';
+import { lobbyMiniHandler } from './handler';
 
 import { 
   storeHelper
@@ -73,9 +74,21 @@ export default class lobbyMini {
     lobbyMiniViewInstance.showEighteenCharge({ canClose, onClickOk });
   }
 
+
   // 验证是否允许充值
   checkCharge({ gkey, exts }) {
-    return lobbyMiniData.checkCharge({ gkey, exts });
+    return new Promise(async (resolve, reject) => {
+      const res = await lobbyMiniData.checkCharge({ gkey, exts }).catch(err => reject(err));
+      if (!res) {
+        return;
+      }
+
+      const handler = lobbyMiniHandler.getHandler({ status: res.charge_status, age: res.age });
+      resolve({
+        checkResult: res,
+        handler
+      });
+    });
   }
 }
 

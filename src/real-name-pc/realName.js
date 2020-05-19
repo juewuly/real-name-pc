@@ -196,7 +196,7 @@ export default class realName {
         return;
       }
       
-      const handler = statusHandler.getHander()
+      const handler = statusHandler.getHandler()
       resolve({
         checkResult: res,
         handler
