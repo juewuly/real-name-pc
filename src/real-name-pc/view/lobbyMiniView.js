@@ -50,7 +50,7 @@ class lobbyView {
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen({ canClose } = { canClose: true }) {
+  showSixteen({ canClose, onClickOk } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteen];
     setLobbyMiniData({
       show: true,
@@ -58,26 +58,27 @@ class lobbyView {
       title: '该月累计充值金额已达到上限，无法充值',
       subTitle: '每月累计充值不能超过200元',
       content: `根据${NoticeName}，8~16周岁用户单次充值金额不得超过50元人民币，每月充值金额累计不得超过200元人民币。`,
-      canClose
+      canClose,
+      onClickOk
     });
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge({ amount, canClose } = { canClose: true }) {
+  showSixteenCharge({ canClose, onClickOk } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteenCharge];
     const newTitle = `${title}，${subTitle}`
     setLobbyMiniData({
       show: true,
       className,
       title: newTitle,
-      subTitle: `该游戏本月还可充值${amount}元`,
       content,
-      canClose
+      canClose,
+      onClickOk
     });    
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen({ canClose } = { canClose: true }) {
+  showEighteen({ canClose, onClickOk } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteen];
     setLobbyMiniData({
       show: true,
@@ -85,20 +86,21 @@ class lobbyView {
       title: '该月累计充值金额已达到上限，无法充值',
       subTitle: '每月累计充值不能超过400元',
       content,
-      canClose
+      canClose,
+      onClickOk
     });
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge({ amount, canClose } = { canClose: true }) {
+  showEighteenCharge({ canClose, onClickOk } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
     setLobbyMiniData({
       show: true,
       className,
       title: `${title}，${subTitle}`,
-      subTitle: `该游戏本月还可充值${amount}元`,
       content,
-      canClose
+      canClose,
+      onClickOk
     });
   }
 
