@@ -48,8 +48,8 @@ export default class lobbyMini {
   }
 
   // 年龄小于8周岁的提示
-  showEight({ canClose } = { canClose: true }) {
-    lobbyMiniViewInstance.showEight({ canClose });
+  showEight({ canClose, onClickOk } = { canClose: true }) {
+    lobbyMiniViewInstance.showEight({ canClose, onClickOk });
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示

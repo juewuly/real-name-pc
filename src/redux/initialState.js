@@ -20,7 +20,8 @@ const initialState = I.fromJS({
     show: false,
     title: '',
     subTitle: '',
-    content: ''
+    content: '',
+    onClickOk: () => {}
   },
 
   // 弹窗相关数据

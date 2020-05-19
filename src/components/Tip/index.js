@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './index.less';
 
-const Tip = ({ className, title, subTitle, subTitle2, content, canClose, onClose }) => {
+const Tip = ({ className, title, subTitle, subTitle2, content, canClose, onClose, showButton, onClickOk }) => {
   const componentClassName = classnames('tip', className);
 
   return (
@@ -18,6 +18,8 @@ const Tip = ({ className, title, subTitle, subTitle2, content, canClose, onClose
           <main className='tip__content'>
             <p>{content}</p>
           </main>
+
+          {showButton && <div className='tip__button' onClick={onClickOk}>确定</div>}
         </div>
       </div>
       {canClose && <i onClick={onClose} className='tip__close' />}
@@ -30,7 +32,9 @@ Tip.propTypes = {
 }
 
 Tip.defaultProps = {
-  canClose: true
+  canClose: true,
+  showButton: false,
+  onClickOk: () => {}
 }
 
 export default Tip;

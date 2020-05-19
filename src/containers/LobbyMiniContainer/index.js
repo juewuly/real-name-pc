@@ -6,7 +6,7 @@ import { Tip } from 'components';
 import './index.less';
 
 
-const LobbyMiniContainer = ({ className, show, title, subTitle, content }) => {
+const LobbyMiniContainer = ({ className, show, title, subTitle, content, onClickOk }) => {
   if (!show) {
     return null;
   }
@@ -14,10 +14,12 @@ const LobbyMiniContainer = ({ className, show, title, subTitle, content }) => {
   return (
     <div className='lobby-mini-container'>
       <Tip
-      className={className}
-      title={title}
-      subTitle={subTitle}
-      content={content} />
+        className={className}
+        title={title}
+        subTitle={subTitle}
+        content={content}
+        showButton={true}
+        onClickOk= {onClickOk} />
     </div>
   );
 }
@@ -28,6 +30,7 @@ const mapStateToProps = state => ({
   title: state.getIn(['data', 'lobbyMini', 'title']),
   subTitle: state.getIn(['data', 'lobbyMini', 'subTitle']),
   content: state.getIn(['data', 'lobbyMini', 'content']),
+  onClickOk: state.getIn(['data', 'lobbyMini', 'onClickOk'])
 });
 
 export default connect(mapStateToProps, null)(LobbyMiniContainer);

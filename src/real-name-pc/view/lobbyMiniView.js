@@ -35,15 +35,17 @@ class lobbyView {
   }
 
   // 年龄小于8周岁的提示
-  showEight({ canClose } = { canClose: true }) {
+  showEight({ canClose, onClickOk } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEight];
-    const newTitle = `${title}，${subTitle}`
+    const newTitle = `${title}，${subTitle}`;
+
     setLobbyMiniData({
       show: true,
       className,
       title: newTitle,
       content,
-      canClose
+      canClose,
+      onClickOk
     });
   }
 
