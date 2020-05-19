@@ -37,6 +37,26 @@ $ npm i real-name-pc -S
 ***
 ## Example
 
+### 大厅mini付
+```javascript
+  const Features = RealNamePc.Features;
+  const SdkInstance = RealNamePc.Instance({ feature: Features.lobbyMini });
+  SdkInstance.checkCharge({
+    gkey: 'dsws',
+    exts: 'eyJhbW91bnQiOjYsInNpZ24iOiJiM2MyNjc0N2EyNzJjNWY4MDJhMmRkMDdjMjc4MGYxOSIsIml0ZW1faWQiOiJwY3dlaWR1YW5wcm9kdWN0NiIsInNlcnZlcl9pZCI6MjIxfQ'
+  })
+  .then(res => {
+    console.log('res', res);
+    const { checkResult, handler } = res;
+
+    if (checkResult.charge_status !== 1) {
+      handler.exec(() => console.log('click...111'));
+    }
+  })
+  .catch(err => console.error('接口异常', err));
+
+```
+
 ### 配置实名认证相关参数
 ```javascript
   const SdkInstance = RealNamePc.Instance;
