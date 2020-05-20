@@ -24385,7 +24385,6 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
       var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          amount = _ref3.amount,
           canClose = _ref3.canClose;
 
       var _popupConfig$popupTyp4 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge],
@@ -24398,7 +24397,6 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         show: true,
         className: className,
         title: newTitle,
-        subTitle: "\u8BE5\u6E38\u620F\u672C\u6708\u8FD8\u53EF\u5145\u503C".concat(amount, "\u5143"),
         content: content,
         canClose: canClose
       });
@@ -24433,7 +24431,6 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
       var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          amount = _ref5.amount,
           canClose = _ref5.canClose;
 
       var _popupConfig$popupTyp6 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge],
@@ -24445,7 +24442,6 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         show: true,
         className: className,
         title: "".concat(title, "\uFF0C").concat(subTitle),
-        subTitle: "\u8BE5\u6E38\u620F\u672C\u6708\u8FD8\u53EF\u5145\u503C".concat(amount, "\u5143"),
         content: content,
         canClose: canClose
       });

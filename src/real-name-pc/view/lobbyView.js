@@ -61,14 +61,13 @@ class lobbyView {
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge({ amount, canClose } = { canClose: true }) {
+  showSixteenCharge({ canClose } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteenCharge];
     const newTitle = `${title}，${subTitle}`
     setLobbyData({
       show: true,
       className,
       title: newTitle,
-      subTitle: `该游戏本月还可充值${amount}元`,
       content,
       canClose
     });    
@@ -88,13 +87,12 @@ class lobbyView {
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge({ amount, canClose } = { canClose: true }) {
+  showEighteenCharge({ canClose } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
     setLobbyData({
       show: true,
       className,
       title: `${title}，${subTitle}`,
-      subTitle: `该游戏本月还可充值${amount}元`,
       content,
       canClose
     });
