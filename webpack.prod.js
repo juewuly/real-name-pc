@@ -25,15 +25,15 @@ module.exports = {
         include: /(\.min|vendors)\.js$/
       })
     ],
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /(react|react-dom|redux)/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+    // splitChunks: {
+    //   cacheGroups: {
+    //     vendor: {
+    //       test: /(react|react-dom|redux)/,
+    //       name: 'vendors',
+    //       chunks: 'all'
+    //     }
+    //   }
+    // }
   },
   module: {
     rules: [
