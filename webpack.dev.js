@@ -23,7 +23,15 @@ const setMPA = () => {
         inject: false
       }),
     );
-  })
+  });
+
+  // 添加测试页首页
+  htmlWebpackPlugins.push(
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'test/index.html'),
+      filename: 'index.html'
+    })
+  );
 
   return htmlWebpackPlugins;
 }

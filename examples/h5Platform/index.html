@@ -7,6 +7,7 @@
 </head>
 <body>
   <div>h5联运平台pc端防沉迷测试页</div>
+
   <div class="button-group">
     <button id='lessThenEight' onclick='handleLessThenEight()'>8岁以下</button>
     <button id='lessThenSixteenCharge' onclick='handleLessThenSixteenCharge()'>8~16岁，单笔超额</button>
@@ -18,9 +19,8 @@
     <button id='checkAmount' onclick="handleCheckAmount()">验证金额是否允许充值</button>
   </div>
 
-  <% for (var jsIndex in htmlWebpackPlugin.files.js) { %>
-    <script type="text/javascript" src="<%=htmlWebpackPlugin.files.js[jsIndex] %>"></script>
-  <% } %>
+  <!--引入防沉迷sdk-->
+  <script type="text/javascript" src="https://unpkg.com/real-name-pc/dist/real-name-pc.min.js"></script>
 
   <script>
     const feature= RealNamePc.Features.h5Platform;
