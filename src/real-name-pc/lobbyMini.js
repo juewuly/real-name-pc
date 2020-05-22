@@ -50,30 +50,29 @@ export default class lobbyMini {
   }
 
   // 年龄小于8周岁的提示
-  showEight({ canClose, onClickOk } = { canClose: true }) {
-    lobbyMiniViewInstance.showEight({ canClose, onClickOk });
+  showEight(callback) {
+    lobbyMiniViewInstance.showEight(callback);
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen({ canClose, onClickOk } = { canClose: true }) {
-    lobbyMiniViewInstance.showSixteen({ canClose, onClickOk });
+  showSixteen(callback) {
+    lobbyMiniViewInstance.showSixteen(callback);
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge( { canClose, onClickOk } = { canClose: true }) {
-    lobbyMiniViewInstance.showSixteenCharge({ canClose, onClickOk });
+  showSixteenCharge(callback) {
+    lobbyMiniViewInstance.showSixteenCharge(callback);
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen({ canClose, onClickOk } = { canClose: true }) {
-    lobbyMiniViewInstance.showEighteen({ canClose, onClickOk });
+  showEighteen(callback) {
+    lobbyMiniViewInstance.showEighteen(callback);
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge({ canClose, onClickOk } = { canClose: true }) {
-    lobbyMiniViewInstance.showEighteenCharge({ canClose, onClickOk });
+  showEighteenCharge(callback) {
+    lobbyMiniViewInstance.showEighteenCharge(callback);
   }
-
 
   // 验证是否允许充值
   checkCharge({ gkey, exts }) {

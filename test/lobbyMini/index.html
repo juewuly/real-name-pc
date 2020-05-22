@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>大厅mini付防沉迷测试页</div>
+  <div class="button-group">
+    <button id='lessThenEight' onclick='handleLessThenEight()'>8岁以下</button>
+    <button id='lessThenSixteenCharge' onclick='handleLessThenSixteenCharge()'>8~16岁，单笔超额</button>
+    <button id='lessThenSixteen' onclick="handleLessThenSixteen()">8~16岁，当月超额</button>
+    <button id='lessThenEighteenCharge' onclick="handleLessThenEighteenCharge()">16~18岁，单笔超额</button>
+    <button id='lessThenEighteen' onclick="handleLessThenEighteen()">16~18岁，当月超额</button>
+    <button id='checkCharge' onclick="handleCheckCharge()">验证是否允许充值</button>
+  </div>
+
+  <% for (var jsIndex in htmlWebpackPlugin.files.js) { %>
+    <script type="text/javascript" src="<%=htmlWebpackPlugin.files.js[jsIndex] %>"></script>
+  <% } %>
+
+  <script>
+     // 大厅mini付的相关测试
+
+    const feature= RealNamePc.Features.lobbyMini;
+    const SdkInstance = RealNamePc.Instance({ feature });
+    SdkInstance.showEight(() => console.log('点击了确实按钮'));
+   
+    // 8岁以下的提示
+    function handleLessThenEight() {
+      SdkInstance.showEight(() => console.log('单击确定'));
+    }
+
+    // 8~16岁，单笔超额的提示
+    function handleLessThenSixteenCharge() {
+      SdkInstance.showSixteenCharge(() => console.log('单击确定'));
+    }
+
+    // 8~16岁，当月超额的提示
+    function handleLessThenSixteen() {
+      SdkInstance.showSixteen(() => console.log('单击确定'));
+    }
+
+    // 16~18岁，单笔超额的提示
+    function handleLessThenEighteenCharge() {
+      SdkInstance.showEighteenCharge(() => console.log('单击确定'));
+    }
+
+    // 16~18岁，当月超额的提示
+    function handleLessThenEighteen() {
+      SdkInstance.showEighteen(() => console.log('单击确定'));
+    }
+
+    // 验证是否允许充值
+    function handleCheckCharge() {
+      // 检验是否允许充值
+      SdkInstance.checkCharge({
+        gkey: 'dsws',
+        exts: 'eyJhbW91bnQiOjYsInNpZ24iOiJiM2MyNjc0N2EyNzJjNWY4MDJhMmRkMDdjMjc4MGYxOSIsIml0ZW1faWQiOiJwY3dlaWR1YW5wcm9kdWN0NiIsInNlcnZlcl9pZCI6MjIxfQ'
+      })
+      .then(res => {
+        const { checkResult, handler } = res;
+        console.log('res', res);
+        handler.exec(() => console.log('单击了确定按钮'));
+      })
+      .catch(err => console.error('接口异常', err));
+    }
+  </script>
+</body>
+</html>

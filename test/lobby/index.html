@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>大厅支付防沉迷测试页</div>
+  <div class="button-group">
+    <button id='lessThenEight' onclick='handleLessThenEight()'>8岁以下</button>
+    <button id='lessThenSixteenCharge' onclick='handleLessThenSixteenCharge()'>8~16岁，单笔超额</button>
+    <button id='lessThenSixteen' onclick="handleLessThenSixteen()">8~16岁，当月超额</button>
+    <button id='lessThenEighteenCharge' onclick="handleLessThenEighteenCharge()">16~18岁，单笔超额</button>
+    <button id='lessThenEighteen' onclick="handleLessThenEighteen()">16~18岁，当月超额</button>
+  </div>
+
+  <div id='test-lobby' style="position: relative; width: 900px; height: 400px; border-width: 1px; border-color: red; border-style: solid;"></div>
+  
+  <% for (var jsIndex in htmlWebpackPlugin.files.js) { %>
+    <script type="text/javascript" src="<%=htmlWebpackPlugin.files.js[jsIndex] %>"></script>
+  <% } %>
+  
+  <script>
+    // 大厅支付相关测试
+
+    const feature= RealNamePc.Features.lobby;
+    const SdkInstance = RealNamePc.Instance({ feature, containerId: 'test-lobby' });
+    SdkInstance.showEight();
+
+    // 8岁以下的提示
+    function handleLessThenEight() {
+      SdkInstance.showEight();
+    }
+
+    // 8~16岁，单笔超额的提示
+    function handleLessThenSixteenCharge() {
+      SdkInstance.showSixteenCharge();
+    }
+
+    // 8~16岁，当月超额的提示
+    function handleLessThenSixteen() {
+      SdkInstance.showSixteen();
+    }
+
+    // 16~18岁，单笔超额的提示
+    function handleLessThenEighteenCharge() {
+      SdkInstance.showEighteenCharge();
+    }
+
+    // 16~18岁，当月超额的提示
+    function handleLessThenEighteen() {
+      SdkInstance.showEighteen();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>h5联运平台pc端防沉迷测试页</div>
+  <% for (var jsIndex in htmlWebpackPlugin.files.js) { %>
+    <script type="text/javascript" src="<%=htmlWebpackPlugin.files.js[jsIndex] %>"></script>
+  <% } %>
+
+  <div class="button-group">
+    <button id='lessThenEight' onclick='handleLessThenEight()'>8岁以下</button>
+    <button id='lessThenSixteenCharge' onclick='handleLessThenSixteenCharge()'>8~16岁，单笔超额</button>
+    <button id='lessThenSixteen' onclick="handleLessThenSixteen()">8~16岁，当月超额</button>
+    <button id='lessThenEighteenCharge' onclick="handleLessThenEighteenCharge()">16~18岁，单笔超额</button>
+    <button id='lessThenEighteen' onclick="handleLessThenEighteen()">16~18岁，当月超额</button>
+    <button id='fetchRealNameInfo' onclick="handleFetchRealNameInfo()">获取实名信息</button>
+    <button id='showRealName' onclick="handleShowRealName()">显示实名认证</button>
+    <button id='checkAmount' onclick="handleCheckAmount()">验证金额是否允许充值</button>
+  </div>
+
+  <script>
+    const feature= RealNamePc.Features.h5Platform;
+    const SdkInstance = RealNamePc.Instance({ feature });
+
+    // 8岁以下的提示
+    function handleLessThenEight() {
+      SdkInstance.showEight();
+    }
+
+    // 8~16岁，单笔超额的提示
+    function handleLessThenSixteenCharge() {
+      SdkInstance.showSixteenCharge();
+    }
+
+    // 8~16岁，当月超额的提示
+    function handleLessThenSixteen() {
+      SdkInstance.showSixteen();
+    }
+
+    // 16~18岁，单笔超额的提示
+    function handleLessThenEighteenCharge() {
+      SdkInstance.showEighteenCharge();
+    }
+
+    // 16~18岁，当月超额的提示
+    function handleLessThenEighteen() {
+      SdkInstance.showEighteen();
+    }
+
+    // 配置实名相关参数
+    function configParams() {
+      SdkInstance.config({
+        appkey: '',
+        qid: '3211038786',
+        platform: 'h5_game',
+        idcard_check_type: 'pay_before',
+        onCloseRealName: () => console.log('触发关闭实名事件'),
+        onSubmitSuccess: () => console.log('触发实名认证成功事件11'),
+        onSubmitError: () => console.log('触发实名认证失败事件')
+      });
+    }
+
+    // 获取实名信息
+    function handleFetchRealNameInfo() {
+      configParams();
+
+      SdkInstance.fetchRealName()
+      .then(res => {
+        console.log('res...', res);
+        const { auth_type, status } = res;
+
+        // 已开启实名
+        if (auth_type !== '0' && status === '0') {
+          SdkInstance.showRealName({ canClose: true });
+        }
+      })
+      .catch(err => console.error('获取实名信息异常', err));
+    }
+
+    // 显示实名认证
+    function clickShowRealName() {
+      configParams();
+
+      SdkInstance.showRealName({ canClose: true });
+    }
+
+    // 验证金额是否允许充值
+    function handleCheckAmount() {
+      configParams();
+
+      SdkInstance.checkAmount({
+        amount: 30,
+        gkey: 'rxhjh5'
+      })
+      .then(res => {
+        console.log('res...checkAmount', res);
+        const { checkResult, handler } = res;
+        console.log('handler...', handler);
+        handler.exec();
+      })
+      .catch(err => console.error('请求checkAmount接口异常', err));
+    }
+
+  </script>
+</body>
+</html>

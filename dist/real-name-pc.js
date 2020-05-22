@@ -24528,13 +24528,7 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
 
   }, {
     key: "showEight",
-    value: function showEight() {
-      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref.canClose,
-          onClickOk = _ref.onClickOk;
-
+    value: function showEight(callback) {
       var _popupConfig$popupTyp2 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight],
           className = _popupConfig$popupTyp2.className,
           title = _popupConfig$popupTyp2.title,
@@ -24546,20 +24540,13 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
         className: className,
         title: newTitle,
         content: content,
-        canClose: canClose,
-        onClickOk: onClickOk
+        onClickOk: callback
       });
     } // 8~16周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showSixteen",
-    value: function showSixteen() {
-      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref2.canClose,
-          onClickOk = _ref2.onClickOk;
-
+    value: function showSixteen(callback) {
       var _popupConfig$popupTyp3 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen],
           className = _popupConfig$popupTyp3.className,
           title = _popupConfig$popupTyp3.title,
@@ -24571,20 +24558,13 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
         title: '该月累计充值金额已达到上限，无法充值',
         subTitle: '每月累计充值不能超过200元',
         content: "\u6839\u636E".concat(lobbyMiniView_NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6708\u5145\u503C\u91D1\u989D\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002"),
-        canClose: canClose,
-        onClickOk: onClickOk
+        onClickOk: callback
       });
     } // 8~16周岁可充值，但充值金额达到上限的提示
 
   }, {
     key: "showSixteenCharge",
-    value: function showSixteenCharge() {
-      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref3.canClose,
-          onClickOk = _ref3.onClickOk;
-
+    value: function showSixteenCharge(callback) {
       var _popupConfig$popupTyp4 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge],
           className = _popupConfig$popupTyp4.className,
           title = _popupConfig$popupTyp4.title,
@@ -24596,20 +24576,13 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
         className: className,
         title: newTitle,
         content: content,
-        canClose: canClose,
-        onClickOk: onClickOk
+        onClickOk: callback
       });
     } // 16~18周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showEighteen",
-    value: function showEighteen() {
-      var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref4.canClose,
-          onClickOk = _ref4.onClickOk;
-
+    value: function showEighteen(callback) {
       var _popupConfig$popupTyp5 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen],
           className = _popupConfig$popupTyp5.className,
           title = _popupConfig$popupTyp5.title,
@@ -24621,20 +24594,13 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
         title: '该月累计充值金额已达到上限，无法充值',
         subTitle: '每月累计充值不能超过400元',
         content: content,
-        canClose: canClose,
-        onClickOk: onClickOk
+        onClickOk: callback
       });
     } // 16~18周岁可充值，但充值金额已达到上限的提示
 
   }, {
     key: "showEighteenCharge",
-    value: function showEighteenCharge() {
-      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref5.canClose,
-          onClickOk = _ref5.onClickOk;
-
+    value: function showEighteenCharge(callback) {
       var _popupConfig$popupTyp6 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge],
           className = _popupConfig$popupTyp6.className,
           title = _popupConfig$popupTyp6.title,
@@ -24645,8 +24611,7 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
         className: className,
         title: "".concat(title, "\uFF0C").concat(subTitle),
         content: content,
-        canClose: canClose,
-        onClickOk: onClickOk
+        onClickOk: callback
       });
     }
     /**
@@ -24657,10 +24622,10 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
 
   }, {
     key: "showTipByStatus",
-    value: function showTipByStatus(_ref6) {
-      var status = _ref6.status,
-          ageLower = _ref6.ageLower,
-          onClickOk = _ref6.onClickOk;
+    value: function showTipByStatus(_ref) {
+      var status = _ref.status,
+          ageLower = _ref.ageLower,
+          onClickOk = _ref.onClickOk;
       var popupFuncMap = {
         1: null,
         2: {
@@ -25822,86 +25787,41 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
 
   }, {
     key: "showEight",
-    value: function showEight() {
-      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref3.canClose,
-          onClickOk = _ref3.onClickOk;
-
-      lobbyMini_lobbyMiniViewInstance.showEight({
-        canClose: canClose,
-        onClickOk: onClickOk
-      });
+    value: function showEight(callback) {
+      lobbyMini_lobbyMiniViewInstance.showEight(callback);
     } // 8~16周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showSixteen",
-    value: function showSixteen() {
-      var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref4.canClose,
-          onClickOk = _ref4.onClickOk;
-
-      lobbyMini_lobbyMiniViewInstance.showSixteen({
-        canClose: canClose,
-        onClickOk: onClickOk
-      });
+    value: function showSixteen(callback) {
+      lobbyMini_lobbyMiniViewInstance.showSixteen(callback);
     } // 8~16周岁可充值，但充值金额达到上限的提示
 
   }, {
     key: "showSixteenCharge",
-    value: function showSixteenCharge() {
-      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref5.canClose,
-          onClickOk = _ref5.onClickOk;
-
-      lobbyMini_lobbyMiniViewInstance.showSixteenCharge({
-        canClose: canClose,
-        onClickOk: onClickOk
-      });
+    value: function showSixteenCharge(callback) {
+      lobbyMini_lobbyMiniViewInstance.showSixteenCharge(callback);
     } // 16~18周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showEighteen",
-    value: function showEighteen() {
-      var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref6.canClose,
-          onClickOk = _ref6.onClickOk;
-
-      lobbyMini_lobbyMiniViewInstance.showEighteen({
-        canClose: canClose,
-        onClickOk: onClickOk
-      });
+    value: function showEighteen(callback) {
+      lobbyMini_lobbyMiniViewInstance.showEighteen(callback);
     } // 16~18周岁可充值，但充值金额已达到上限的提示
 
   }, {
     key: "showEighteenCharge",
-    value: function showEighteenCharge() {
-      var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref7.canClose,
-          onClickOk = _ref7.onClickOk;
-
-      lobbyMini_lobbyMiniViewInstance.showEighteenCharge({
-        canClose: canClose,
-        onClickOk: onClickOk
-      });
+    value: function showEighteenCharge(callback) {
+      lobbyMini_lobbyMiniViewInstance.showEighteenCharge(callback);
     } // 验证是否允许充值
 
   }, {
     key: "checkCharge",
-    value: function checkCharge(_ref8) {
-      var gkey = _ref8.gkey,
-          exts = _ref8.exts;
+    value: function checkCharge(_ref3) {
+      var gkey = _ref3.gkey,
+          exts = _ref3.exts;
       return new Promise( /*#__PURE__*/function () {
-        var _ref9 = asyncToGenerator_default()( /*#__PURE__*/regenerator_default.a.mark(function _callee(resolve, reject) {
+        var _ref4 = asyncToGenerator_default()( /*#__PURE__*/regenerator_default.a.mark(function _callee(resolve, reject) {
           var res, handler;
           return regenerator_default.a.wrap(function _callee$(_context) {
             while (1) {
@@ -25944,15 +25864,15 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
         }));
 
         return function (_x, _x2) {
-          return _ref9.apply(this, arguments);
+          return _ref4.apply(this, arguments);
         };
       }());
     }
   }], [{
     key: "Instance",
-    value: function Instance(_ref10) {
-      var feature = _ref10.feature,
-          containerId = _ref10.containerId;
+    value: function Instance(_ref5) {
+      var feature = _ref5.feature,
+          containerId = _ref5.containerId;
 
       if (!this._instance) {
         this._instance = new lobbyMini({

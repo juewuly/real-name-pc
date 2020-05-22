@@ -13,11 +13,6 @@
 
 ## Installing
 
-**先引入第三方库**
-```bash
-  <script type="text/javascript" src="https://unpkg.com/real-name-pc/dist/vendors.js"></script>
-```
-
 **NPM**
 ```bash
 $ npm i real-name-pc -S
@@ -39,8 +34,8 @@ $ npm i real-name-pc -S
 
 ### 大厅mini付
 ```javascript
-  const Features = RealNamePc.Features;
-  const SdkInstance = RealNamePc.Instance({ feature: Features.lobbyMini });
+  const feature = RealNamePc.Features.lobbyMini;
+  const SdkInstance = RealNamePc.Instance({ feature });
   SdkInstance.checkCharge({
     gkey: 'dsws',
     exts: 'eyJhbW91bnQiOjYsInNpZ24iOiJiM2MyNjc0N2EyNzJjNWY4MDJhMmRkMDdjMjc4MGYxOSIsIml0ZW1faWQiOiJwY3dlaWR1YW5wcm9kdWN0NiIsInNlcnZlcl9pZCI6MjIxfQ'

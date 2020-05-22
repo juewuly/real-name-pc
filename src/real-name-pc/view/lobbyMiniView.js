@@ -35,7 +35,7 @@ class lobbyView {
   }
 
   // 年龄小于8周岁的提示
-  showEight({ canClose, onClickOk } = { canClose: true }) {
+  showEight(callback) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEight];
     const newTitle = `${title}，${subTitle}`;
 
@@ -44,13 +44,12 @@ class lobbyView {
       className,
       title: newTitle,
       content,
-      canClose,
-      onClickOk
+      onClickOk: callback
     });
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen({ canClose, onClickOk } = { canClose: true }) {
+  showSixteen(callback) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteen];
     setLobbyMiniData({
       show: true,
@@ -58,27 +57,25 @@ class lobbyView {
       title: '该月累计充值金额已达到上限，无法充值',
       subTitle: '每月累计充值不能超过200元',
       content: `根据${NoticeName}，8~16周岁用户单次充值金额不得超过50元人民币，每月充值金额累计不得超过200元人民币。`,
-      canClose,
-      onClickOk
+      onClickOk: callback
     });
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge({ canClose, onClickOk } = { canClose: true }) {
+  showSixteenCharge(callback) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteenCharge];
-    const newTitle = `${title}，${subTitle}`
+    const newTitle = `${title}，${subTitle}`;
     setLobbyMiniData({
       show: true,
       className,
       title: newTitle,
       content,
-      canClose,
-      onClickOk
+      onClickOk: callback
     });    
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen({ canClose, onClickOk } = { canClose: true }) {
+  showEighteen(callback) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteen];
     setLobbyMiniData({
       show: true,
@@ -86,21 +83,19 @@ class lobbyView {
       title: '该月累计充值金额已达到上限，无法充值',
       subTitle: '每月累计充值不能超过400元',
       content,
-      canClose,
-      onClickOk
+      onClickOk: callback
     });
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge({ canClose, onClickOk } = { canClose: true }) {
+  showEighteenCharge(callback) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
     setLobbyMiniData({
       show: true,
       className,
       title: `${title}，${subTitle}`,
       content,
-      canClose,
-      onClickOk
+      onClickOk: callback
     });
   }
 

@@ -1,6 +1,35 @@
 
+const glob = require('glob');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+
+const setMPA = () => {
+  const htmlWebpackPlugins = [];
+
+  const entryFiles = glob.sync(path.join(__dirname, './test/*/index.html'));
+
+  Object.keys(entryFiles)
+  .map(index => {
+    const entryFile = entryFiles[index];
+
+    const match = entryFile.match(/test\/(.*)\/index\.html/);
+    const pageName = match && match[1];
+    htmlWebpackPlugins.push(
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, `test/${pageName}/index.html`),
+        filename: `${pageName}.html`,
+        chunks: ['real-name-pc'],
+        inject: false
+      }),
+    );
+  })
+
+  return htmlWebpackPlugins;
+}
+
+const htmlWebpackPlugins = setMPA();
+
 
 module.exports = {
   entry: {
@@ -52,24 +81,17 @@ module.exports = {
     ]
   },
   optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /(react|react-dom|redux)/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+    // splitChunks: {
+    //   cacheGroups: {
+    //     vendor: {
+    //       test: /(react|react-dom|redux)/,
+    //       name: 'vendors',
+    //       chunks: 'all'
+    //     }
+    //   }
+    // }
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, `test/index.html`),
-      filename: 'index.html',
-      chunks: ['vendors', 'real-name-pc'],
-      inject: false
-    })
-  ],
+  plugins: htmlWebpackPlugins,
   resolve: {
     extensions: ['.js'],
     alias: {
@@ -121,7 +143,7 @@ module.exports = {
         }
       },
       '/api/user/mg_fcm': {
-        target: 'http://hermes.pay.wan.360.cn',
+        target: 'http://pay-demo.wan.360.cn',
         changeOrigin: true,
         secure: false,
         logLevel: 'debug',
