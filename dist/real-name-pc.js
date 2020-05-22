@@ -25197,7 +25197,8 @@ var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
   createClass_default()(forbidChargeHandler, [{
     key: "exec",
     value: function exec(callBack) {
-      forbidChargeHandler_logInstance.log('禁止充值');
+      // logInstance.log('禁止充值');
+      console.log('禁止充值');
       lobbyMiniViewInstance.showTipByStatus({
         status: this._status,
         ageLower: this._age,
