@@ -121,7 +121,7 @@ class lobbyView {
 
     const popupFunc = popupFuncMap[status][ageLower];
     if (popupFunc) {
-      popupFunc({ onClickOk });
+      popupFunc(onClickOk);
     }
   }
 }

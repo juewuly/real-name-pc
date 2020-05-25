@@ -24642,9 +24642,7 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
       var popupFunc = popupFuncMap[status][ageLower];
 
       if (popupFunc) {
-        popupFunc({
-          onClickOk: onClickOk
-        });
+        popupFunc(onClickOk);
       }
     }
   }], [{
