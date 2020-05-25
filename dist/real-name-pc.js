@@ -22780,7 +22780,7 @@ var logHelper_logHelper = /*#__PURE__*/function () {
      */
     value: function log() {
       var info = [this._prefix].concat(Array.prototype.slice.call(arguments));
-      console.log.apply(null, info);
+      console.log.apply(console, info);
     }
     /**
      * 输出异常信息
@@ -22792,7 +22792,7 @@ var logHelper_logHelper = /*#__PURE__*/function () {
     key: "error",
     value: function error() {
       var info = [this._prefix].concat(Array.prototype.slice.call(arguments));
-      console.error.apply(null, info);
+      console.error.apply(console, info);
     }
     /**
      * 订阅“关闭实名认证”
@@ -25195,8 +25195,7 @@ var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
   createClass_default()(forbidChargeHandler, [{
     key: "exec",
     value: function exec(callBack) {
-      // logInstance.log('禁止充值');
-      console.log('禁止充值');
+      forbidChargeHandler_logInstance.log('禁止充值');
       lobbyMiniViewInstance.showTipByStatus({
         status: this._status,
         ageLower: this._age,

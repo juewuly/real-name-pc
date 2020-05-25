@@ -32,7 +32,7 @@ class logHelper {
    */
   log() {
     const info = [this._prefix, ...arguments];
-    console.log.apply(null, info)
+    console.log.apply(console, info)
   }
 
   /**
@@ -42,7 +42,7 @@ class logHelper {
    */
   error() {
     const info = [this._prefix, ...arguments];
-    console.error.apply(null, info);
+    console.error.apply(console, info);
   }
 
   /**
