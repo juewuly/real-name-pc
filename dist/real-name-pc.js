@@ -25288,13 +25288,11 @@ var realName_storeHelperInstance = utils_storeHelper.Instance;
 
 var realName_realName = /*#__PURE__*/function () {
   function realName(_ref) {
-    var feature = _ref.feature,
-        containerId = _ref.containerId;
+    var containerId = _ref.containerId;
 
     classCallCheck_default()(this, realName);
 
     this.init({
-      feature: feature,
       containerId: containerId
     });
   }
@@ -25302,11 +25300,10 @@ var realName_realName = /*#__PURE__*/function () {
   createClass_default()(realName, [{
     key: "init",
     value: function init(_ref2) {
-      var feature = _ref2.feature,
-          containerId = _ref2.containerId;
+      var containerId = _ref2.containerId;
       var containerEle = this.getContainerElement(containerId);
       realName_storeHelperInstance.updateGlobalData({
-        feature: feature
+        feature: config_features.h5Platform
       }); // 显示容器
 
       this.root = document.createElement('div');
@@ -25565,12 +25562,10 @@ var realName_realName = /*#__PURE__*/function () {
   }], [{
     key: "Instance",
     value: function Instance(_ref13) {
-      var feature = _ref13.feature,
-          containerId = _ref13.containerId;
+      var containerId = _ref13.containerId;
 
       if (!this._instance) {
         this._instance = new realName({
-          feature: feature,
           containerId: containerId
         });
       }
@@ -25599,13 +25594,11 @@ var lobby_storeHelperInstance = utils_storeHelper.Instance;
 
 var lobby_lobby = /*#__PURE__*/function () {
   function lobby(_ref) {
-    var feature = _ref.feature,
-        containerId = _ref.containerId;
+    var containerId = _ref.containerId;
 
     classCallCheck_default()(this, lobby);
 
     this.init({
-      feature: feature,
       containerId: containerId
     });
   }
@@ -25613,11 +25606,10 @@ var lobby_lobby = /*#__PURE__*/function () {
   createClass_default()(lobby, [{
     key: "init",
     value: function init(_ref2) {
-      var feature = _ref2.feature,
-          containerId = _ref2.containerId;
+      var containerId = _ref2.containerId;
       var containerEle = this.getContainerElement(containerId);
       lobby_storeHelperInstance.updateGlobalData({
-        feature: feature
+        feature: config_features.lobby
       }); // 显示容器
 
       this.root = document.createElement('div');
@@ -25667,12 +25659,10 @@ var lobby_lobby = /*#__PURE__*/function () {
   }], [{
     key: "Instance",
     value: function Instance(_ref3) {
-      var feature = _ref3.feature,
-          containerId = _ref3.containerId;
+      var containerId = _ref3.containerId;
 
       if (!this._instance) {
         this._instance = new lobby({
-          feature: feature,
           containerId: containerId
         });
       }
@@ -25705,13 +25695,11 @@ var lobbyMini_storeHelperInstance = utils_storeHelper.Instance;
 
 var lobbyMini_lobbyMini = /*#__PURE__*/function () {
   function lobbyMini(_ref) {
-    var feature = _ref.feature,
-        containerId = _ref.containerId;
+    var containerId = _ref.containerId;
 
     classCallCheck_default()(this, lobbyMini);
 
     this.init({
-      feature: feature,
       containerId: containerId
     });
   }
@@ -25719,11 +25707,10 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
   createClass_default()(lobbyMini, [{
     key: "init",
     value: function init(_ref2) {
-      var feature = _ref2.feature,
-          containerId = _ref2.containerId;
+      var containerId = _ref2.containerId;
       var containerEle = this.getContainerElement(containerId);
       lobbyMini_storeHelperInstance.updateGlobalData({
-        feature: feature
+        feature: config_features.lobbyMini
       }); // 显示容器
 
       this.root = document.createElement('div');
@@ -25827,12 +25814,10 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
   }], [{
     key: "Instance",
     value: function Instance(_ref5) {
-      var feature = _ref5.feature,
-          containerId = _ref5.containerId;
+      var containerId = _ref5.containerId;
 
       if (!this._instance) {
         this._instance = new lobbyMini({
-          feature: feature,
           containerId: containerId
         });
       }
@@ -25898,7 +25883,6 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
       if (!this._instance) {
         var featureClass = real_name_pc_features.getFeatureClass(feature);
         this._instance = new featureClass({
-          feature: feature,
           containerId: containerId
         });
       }

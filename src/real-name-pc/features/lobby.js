@@ -6,27 +6,27 @@
 
 import { appView, lobbyView } from '../view';
 import { storeHelper } from 'utils';
-import { ids } from '../config';
+import { ids, features } from '../config';
 
 const lobbyViewInstance = lobbyView.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
 export default class lobby {
-  constructor({ feature, containerId }) {
-    this.init({ feature, containerId });
+  constructor({ containerId }) {
+    this.init({ containerId });
   }
 
-  static Instance({ feature, containerId }) {
+  static Instance({ containerId }) {
     if(!this._instance) {
-      this._instance = new lobby({ feature, containerId });
+      this._instance = new lobby({ containerId });
     }
 
     return this._instance;
   }
 
-  init({ feature, containerId }) {
+  init({ containerId }) {
     const containerEle = this.getContainerElement(containerId);
-    storeHelperInstance.updateGlobalData({ feature });
+    storeHelperInstance.updateGlobalData({ feature: features.lobby });
 
     // 显示容器
     this.root = document.createElement('div');

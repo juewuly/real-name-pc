@@ -7,7 +7,7 @@
 import { appView, lobbyMiniView } from '../view';
 import { lobbyMiniData } from '../data';
 import { lobbyMiniHandler } from '../handler';
-import { ids } from '../config';
+import { ids, features } from '../config';
 
 import { storeHelper } from 'utils';
 
@@ -15,21 +15,21 @@ const lobbyMiniViewInstance = lobbyMiniView.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
 export default class lobbyMini {
-  constructor({ feature, containerId }) {
-    this.init({ feature, containerId });
+  constructor({ containerId }) {
+    this.init({ containerId });
   }
 
-  static Instance({ feature, containerId }) {
+  static Instance({ containerId }) {
     if(!this._instance) {
-      this._instance = new lobbyMini({ feature, containerId });
+      this._instance = new lobbyMini({ containerId });
     }
 
     return this._instance;
   }
 
-  init({ feature, containerId }) {
+  init({ containerId }) {
     const containerEle = this.getContainerElement(containerId);
-    storeHelperInstance.updateGlobalData({ feature });
+    storeHelperInstance.updateGlobalData({ feature: features.lobbyMini });
 
     // 显示容器
     this.root = document.createElement('div');

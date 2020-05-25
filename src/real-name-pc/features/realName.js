@@ -6,7 +6,7 @@
 
 import { appView, realNameView, popupView } from '../view';
 import { realNameData } from '../data';
-import { paramsConfig, eventConfig, ids } from '../config';
+import { paramsConfig, eventConfig, ids, features } from '../config';
 import { statusHandler } from '../handler';
 
 import { 
@@ -20,21 +20,21 @@ const paramsInstance = paramsHelper.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
 export default class realName {
-  constructor({ feature, containerId }) {
-    this.init({ feature, containerId });
+  constructor({ containerId }) {
+    this.init({ containerId });
   }
 
-  static Instance({ feature, containerId }) {
+  static Instance({ containerId }) {
     if(!this._instance) {
-      this._instance = new realName({ feature, containerId });
+      this._instance = new realName({ containerId });
     }
 
     return this._instance;
   }
 
-  init({ feature, containerId }) {
+  init({ containerId }) {
     const containerEle = this.getContainerElement(containerId);
-    storeHelperInstance.updateGlobalData({ feature });
+    storeHelperInstance.updateGlobalData({ feature: features.h5Platform });
 
     // 显示容器
     this.root = document.createElement('div');
