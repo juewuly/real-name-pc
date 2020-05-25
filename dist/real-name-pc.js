@@ -21822,7 +21822,35 @@ var features_features = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ var config_features = (features_features);
+// CONCATENATED MODULE: ./src/real-name-pc/config/ids.js
+
+
+
+var ids_ids = /*#__PURE__*/function () {
+  function ids() {
+    classCallCheck_default()(this, ids);
+  } // sdk的id
+
+
+  createClass_default()(ids, null, [{
+    key: "sdkId",
+    get: function get() {
+      return 'real-name-pc';
+    } // 遮罩层id
+
+  }, {
+    key: "modalId",
+    get: function get() {
+      return 'real-name-pc-modal';
+    }
+  }]);
+
+  return ids;
+}();
+
+/* harmony default export */ var config_ids = (ids_ids);
 // CONCATENATED MODULE: ./src/real-name-pc/config/index.js
+
 
 
 
@@ -23936,6 +23964,7 @@ var app_App = function App() {
 
 
 
+
 var appView_storeInstance = common_store.Instance;
 
 var appView_appView = /*#__PURE__*/function () {
@@ -23958,7 +23987,7 @@ var appView_appView = /*#__PURE__*/function () {
     }(function () {
       Object(react_dom["render"])( /*#__PURE__*/react_default.a.createElement(react_hot_loader["AppContainer"], null, /*#__PURE__*/react_default.a.createElement(lib["Provider"], {
         store: appView_storeInstance
-      }, /*#__PURE__*/react_default.a.createElement(app, null))), document.getElementById('real-name-pc'));
+      }, /*#__PURE__*/react_default.a.createElement(app, null))), document.getElementById(config_ids.sdkId));
 
       if (false) {}
     })
@@ -24311,18 +24340,17 @@ var popupView_popupView = /*#__PURE__*/function () {
 
 
 /**
- * @description: 大厅的提示视图
+ * @description: 大厅支付的提示视图
  */
 
 
-var lobbyView_storeHelperInstance = utils_storeHelper.Instance;
+var lobbyView_storeHelperInstance = utils_storeHelper.Instance; // 通知名称
+
+var lobbyView_NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
 
 var lobbyView_setLobbyData = function setLobbyData(data) {
   return lobbyView_storeHelperInstance.setLobbyData(data);
-}; // 通知名称
-
-
-var lobbyView_NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
+};
 
 var lobbyView_lobbyView = /*#__PURE__*/function () {
   function lobbyView() {
@@ -24346,11 +24374,6 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showEight",
     value: function showEight() {
-      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref.canClose;
-
       var _popupConfig$popupTyp2 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight],
           className = _popupConfig$popupTyp2.className,
           title = _popupConfig$popupTyp2.title,
@@ -24361,19 +24384,13 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         show: true,
         className: className,
         title: newTitle,
-        content: content,
-        canClose: canClose
+        content: content
       });
     } // 8~16周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showSixteen",
     value: function showSixteen() {
-      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref2.canClose;
-
       var _popupConfig$popupTyp3 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen],
           className = _popupConfig$popupTyp3.className,
           title = _popupConfig$popupTyp3.title,
@@ -24384,19 +24401,13 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         className: className,
         title: '该月累计充值金额已达到上限，无法充值',
         subTitle: '每月累计充值不能超过200元',
-        content: "\u6839\u636E".concat(lobbyView_NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6708\u5145\u503C\u91D1\u989D\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002"),
-        canClose: canClose
+        content: "\u6839\u636E".concat(lobbyView_NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6708\u5145\u503C\u91D1\u989D\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
       });
     } // 8~16周岁可充值，但充值金额达到上限的提示
 
   }, {
     key: "showSixteenCharge",
     value: function showSixteenCharge() {
-      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref3.canClose;
-
       var _popupConfig$popupTyp4 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge],
           className = _popupConfig$popupTyp4.className,
           title = _popupConfig$popupTyp4.title,
@@ -24407,19 +24418,13 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         show: true,
         className: className,
         title: newTitle,
-        content: content,
-        canClose: canClose
+        content: content
       });
     } // 16~18周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showEighteen",
     value: function showEighteen() {
-      var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref4.canClose;
-
       var _popupConfig$popupTyp5 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen],
           className = _popupConfig$popupTyp5.className,
           title = _popupConfig$popupTyp5.title,
@@ -24430,19 +24435,13 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         className: className,
         title: '该月累计充值金额已达到上限，无法充值',
         subTitle: '每月累计充值不能超过400元',
-        content: content,
-        canClose: canClose
+        content: content
       });
     } // 16~18周岁可充值，但充值金额已达到上限的提示
 
   }, {
     key: "showEighteenCharge",
     value: function showEighteenCharge() {
-      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref5.canClose;
-
       var _popupConfig$popupTyp6 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge],
           className = _popupConfig$popupTyp6.className,
           title = _popupConfig$popupTyp6.title,
@@ -24452,8 +24451,7 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         show: true,
         className: className,
         title: "".concat(title, "\uFF0C").concat(subTitle),
-        content: content,
-        canClose: canClose
+        content: content
       });
     }
     /**
@@ -25285,7 +25283,6 @@ var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
 
 var realName_realNameViewInstance = view_realNameView.Instance;
 var realName_popupViewInstance = view_popupView.Instance;
-var lobbyViewInstance = view_lobbyView.Instance;
 var realName_paramsInstance = utils_paramsHelper.Instance;
 var realName_storeHelperInstance = utils_storeHelper.Instance;
 
@@ -25313,10 +25310,10 @@ var realName_realName = /*#__PURE__*/function () {
       }); // 显示容器
 
       this.root = document.createElement('div');
-      this.root.setAttribute('id', 'real-name-pc'); // 背景蒙层
+      this.root.setAttribute('id', config_ids.sdkId); // 背景蒙层
 
       this.modalRoot = document.createElement('div');
-      this.modalRoot.setAttribute('id', 'real-name-pc-modal');
+      this.modalRoot.setAttribute('id', config_ids.modalId);
       containerEle.appendChild(this.root);
       containerEle.appendChild(this.modalRoot);
       view_appView.renderApp();
@@ -25329,12 +25326,6 @@ var realName_realName = /*#__PURE__*/function () {
       }
 
       return document.getElementsByTagName('body')[0];
-    } // 临时测试
-
-  }, {
-    key: "test",
-    value: function test() {
-      this.showNonage();
     } // 配置一些参数和事件
 
   }, {
@@ -25368,11 +25359,6 @@ var realName_realName = /*#__PURE__*/function () {
       config_eventConfig.onCloseRealName = onCloseRealName;
       config_eventConfig.onSubmitSuccess = onSubmitSuccess;
       config_eventConfig.onSubmitError = onSubmitError;
-    }
-  }, {
-    key: "testShowLobby",
-    value: function testShowLobby() {
-      lobbyViewInstance.showEight();
     } // 未成年人在禁止充值时间段内，且未开启年龄段限制
 
   }, {
@@ -25608,7 +25594,7 @@ var realName_realName = /*#__PURE__*/function () {
 
 
 
-var lobby_lobbyViewInstance = view_lobbyView.Instance;
+var lobbyViewInstance = view_lobbyView.Instance;
 var lobby_storeHelperInstance = utils_storeHelper.Instance;
 
 var lobby_lobby = /*#__PURE__*/function () {
@@ -25635,7 +25621,7 @@ var lobby_lobby = /*#__PURE__*/function () {
       }); // 显示容器
 
       this.root = document.createElement('div');
-      this.root.setAttribute('id', 'real-name-pc');
+      this.root.setAttribute('id', config_ids.sdkId);
       containerEle.appendChild(this.root);
       view_appView.renderApp();
     }
@@ -25652,76 +25638,37 @@ var lobby_lobby = /*#__PURE__*/function () {
   }, {
     key: "showEight",
     value: function showEight() {
-      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref3.canClose;
-
-      lobby_lobbyViewInstance.showEight({
-        canClose: canClose
-      });
+      lobbyViewInstance.showEight();
     } // 8~16周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showSixteen",
     value: function showSixteen() {
-      var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref4.canClose;
-
-      lobby_lobbyViewInstance.showSixteen({
-        canClose: canClose
-      });
+      lobbyViewInstance.showSixteen();
     } // 8~16周岁可充值，但充值金额达到上限的提示
 
   }, {
     key: "showSixteenCharge",
     value: function showSixteenCharge() {
-      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          amount = _ref5.amount,
-          canClose = _ref5.canClose;
-
-      lobby_lobbyViewInstance.showSixteenCharge({
-        amount: amount,
-        canClose: canClose
-      });
+      lobbyViewInstance.showSixteenCharge();
     } // 16~18周岁不可充值，充值已达到上限的提示
 
   }, {
     key: "showEighteen",
     value: function showEighteen() {
-      var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref6.canClose;
-
-      lobby_lobbyViewInstance.showEighteen({
-        canClose: canClose
-      });
+      lobbyViewInstance.showEighteen();
     } // 16~18周岁可充值，但充值金额已达到上限的提示
 
   }, {
     key: "showEighteenCharge",
     value: function showEighteenCharge() {
-      var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          amount = _ref7.amount,
-          canClose = _ref7.canClose;
-
-      lobby_lobbyViewInstance.showEighteenCharge({
-        amount: amount,
-        canClose: canClose
-      });
+      lobbyViewInstance.showEighteenCharge();
     }
   }], [{
     key: "Instance",
-    value: function Instance(_ref8) {
-      var feature = _ref8.feature,
-          containerId = _ref8.containerId;
+    value: function Instance(_ref3) {
+      var feature = _ref3.feature,
+          containerId = _ref3.containerId;
 
       if (!this._instance) {
         this._instance = new lobby({
@@ -25748,6 +25695,7 @@ var lobby_lobby = /*#__PURE__*/function () {
  * author: liuyang9
  * description: 大厅mini付的相关提示
  */
+
 
 
 
@@ -25779,7 +25727,7 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
       }); // 显示容器
 
       this.root = document.createElement('div');
-      this.root.setAttribute('id', 'real-name-pc');
+      this.root.setAttribute('id', config_ids.sdkId);
       containerEle.appendChild(this.root);
       view_appView.renderApp();
     }
