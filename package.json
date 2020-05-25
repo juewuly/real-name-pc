@@ -88,5 +88,5 @@
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0"
   },
-  "version": "1.0.20"
+  "version": "1.0.21"
 }
