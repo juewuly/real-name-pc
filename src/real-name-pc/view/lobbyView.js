@@ -1,15 +1,15 @@
 /**
- * @description: 大厅的提示视图
+ * @description: 大厅支付的提示视图
  */
 
 import { popupConfig, popupType } from '../config';
 import { storeHelper } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;
-
-const setLobbyData = data => storeHelperInstance.setLobbyData(data);
 // 通知名称
 const NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
+const setLobbyData = data => storeHelperInstance.setLobbyData(data);
+
 
 class lobbyView {
   constructor() {
@@ -35,33 +35,31 @@ class lobbyView {
   }
 
   // 年龄小于8周岁的提示
-  showEight({ canClose } = { canClose: true }) {
+  showEight() {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEight];
     const newTitle = `${title}，${subTitle}`
     setLobbyData({
       show: true,
       className,
       title: newTitle,
-      content,
-      canClose
+      content
     });
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen({ canClose } = { canClose: true }) {
+  showSixteen() {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteen];
     setLobbyData({
       show: true,
       className,
       title: '该月累计充值金额已达到上限，无法充值',
       subTitle: '每月累计充值不能超过200元',
-      content: `根据${NoticeName}，8~16周岁用户单次充值金额不得超过50元人民币，每月充值金额累计不得超过200元人民币。`,
-      canClose
+      content: `根据${NoticeName}，8~16周岁用户单次充值金额不得超过50元人民币，每月充值金额累计不得超过200元人民币。`
     });
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge({ canClose } = { canClose: true }) {
+  showSixteenCharge() {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteenCharge];
     const newTitle = `${title}，${subTitle}`
     setLobbyData({
@@ -69,32 +67,29 @@ class lobbyView {
       className,
       title: newTitle,
       content,
-      canClose
     });    
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen({ canClose } = { canClose: true }) {
+  showEighteen() {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteen];
     setLobbyData({
       show: true,
       className,
       title: '该月累计充值金额已达到上限，无法充值',
       subTitle: '每月累计充值不能超过400元',
-      content,
-      canClose
+      content
     });
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge({ canClose } = { canClose: true }) {
+  showEighteenCharge() {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
     setLobbyData({
       show: true,
       className,
       title: `${title}，${subTitle}`,
-      content,
-      canClose
+      content
     });
   }
 

@@ -5,12 +5,7 @@
 
 
 import { appView, lobbyView } from './view';
-import { paramsConfig, eventConfig } from './config';
-
-import { 
-  paramsHelper,
-  storeHelper
-} from 'utils';
+import { storeHelper } from 'utils';
 
 const lobbyViewInstance = lobbyView.Instance;
 const storeHelperInstance = storeHelper.Instance;
@@ -35,9 +30,7 @@ export default class lobby {
     // 显示容器
     this.root = document.createElement('div');
     this.root.setAttribute('id', 'real-name-pc');
-
     containerEle.appendChild(this.root);
-
     appView.renderApp();
   }
 
@@ -50,28 +43,28 @@ export default class lobby {
   }
 
   // 年龄小于8周岁的提示
-  showEight({ canClose } = { canClose: true }) {
-    lobbyViewInstance.showEight({ canClose });
+  showEight() {
+    lobbyViewInstance.showEight();
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen({ canClose } = { canClose: true }) {
-    lobbyViewInstance.showSixteen({ canClose });
+  showSixteen() {
+    lobbyViewInstance.showSixteen();
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge( { amount, canClose } = { canClose: true }) {
-    lobbyViewInstance.showSixteenCharge({ amount, canClose });
+  showSixteenCharge() {
+    lobbyViewInstance.showSixteenCharge();
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen({ canClose } = { canClose: true }) {
-    lobbyViewInstance.showEighteen({ canClose });
+  showEighteen() {
+    lobbyViewInstance.showEighteen();
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge({ amount, canClose } = { canClose: true }) {
-    lobbyViewInstance.showEighteenCharge({ amount, canClose });
+  showEighteenCharge() {
+    lobbyViewInstance.showEighteenCharge();
   }
 }
 

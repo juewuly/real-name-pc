@@ -9,7 +9,7 @@ import { features } from './real-name-pc/config';
 export default class RealNamePcSdk {
   constructor({ feature, containerId } = { feature: features.h5Platform, containerId: null }) {
     if (!RealNamePcSdk._instance) {
-      RealNamePcSdk._instance = RealNamePc.Instance({ feature, containerId});
+      RealNamePcSdk._instance = RealNamePc.Instance({ feature, containerId });
     }
 
     return RealNamePcSdk._instance;
@@ -20,7 +20,7 @@ export default class RealNamePcSdk {
    */
   static Instance({ feature, containerId } = { feature: features.h5Platform, containerId: null }) {
     if (!this._instance) {
-      this._instance = RealNamePc.Instance({ feature, containerId});
+      this._instance = RealNamePc.Instance({ feature, containerId });
     }
 
     return this._instance;
