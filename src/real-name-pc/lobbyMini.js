@@ -7,6 +7,7 @@
 import { appView, lobbyMiniView } from './view';
 import { lobbyMiniData } from './data';
 import { lobbyMiniHandler } from './handler';
+import { ids } from './config';
 
 import { storeHelper } from 'utils';
 
@@ -32,7 +33,7 @@ export default class lobbyMini {
 
     // 显示容器
     this.root = document.createElement('div');
-    this.root.setAttribute('id', 'real-name-pc');
+    this.root.setAttribute('id', ids.sdkId);
     containerEle.appendChild(this.root);
     appView.renderApp();
   }

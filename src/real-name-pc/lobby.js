@@ -6,6 +6,7 @@
 
 import { appView, lobbyView } from './view';
 import { storeHelper } from 'utils';
+import { ids } from './config';
 
 const lobbyViewInstance = lobbyView.Instance;
 const storeHelperInstance = storeHelper.Instance;
@@ -29,7 +30,7 @@ export default class lobby {
 
     // 显示容器
     this.root = document.createElement('div');
-    this.root.setAttribute('id', 'real-name-pc');
+    this.root.setAttribute('id', ids.sdkId);
     containerEle.appendChild(this.root);
     appView.renderApp();
   }

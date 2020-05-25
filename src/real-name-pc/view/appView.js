@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import store from 'src/common/store';
 import App from '../app';
+import { ids } from '../config';
 
 const storeInstance = store.Instance;
 
@@ -19,7 +20,7 @@ class appView {
           <App />
         </Provider>
       </AppContainer>,
-      document.getElementById('real-name-pc')
+      document.getElementById(ids.sdkId)
     );
   
     if (module.hot) {

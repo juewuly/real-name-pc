@@ -6,7 +6,7 @@
 
 import { appView, realNameView, popupView } from './view';
 import { realNameData } from './data';
-import { paramsConfig, eventConfig } from './config';
+import { paramsConfig, eventConfig, ids } from './config';
 import { statusHandler } from './handler';
 
 import { 
@@ -38,11 +38,11 @@ export default class realName {
 
     // 显示容器
     this.root = document.createElement('div');
-    this.root.setAttribute('id', 'real-name-pc');
+    this.root.setAttribute('id', ids.sdkId);
 
     // 背景蒙层
     this.modalRoot = document.createElement('div');
-    this.modalRoot.setAttribute('id', 'real-name-pc-modal');
+    this.modalRoot.setAttribute('id', ids.modalId);
 
     containerEle.appendChild(this.root);
     containerEle.appendChild(this.modalRoot);
