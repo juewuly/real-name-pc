@@ -22779,8 +22779,13 @@ var logHelper_logHelper = /*#__PURE__*/function () {
      * @param {*} info 
      */
     value: function log() {
-      var info = [this._prefix].concat(Array.prototype.slice.call(arguments));
-      console.log.apply(console, info);
+      var _console;
+
+      for (var _len = arguments.length, rest = new Array(_len), _key = 0; _key < _len; _key++) {
+        rest[_key] = arguments[_key];
+      }
+
+      (_console = console).log.apply(_console, [this._prefix].concat(rest));
     }
     /**
      * 输出异常信息
@@ -22791,8 +22796,13 @@ var logHelper_logHelper = /*#__PURE__*/function () {
   }, {
     key: "error",
     value: function error() {
-      var info = [this._prefix].concat(Array.prototype.slice.call(arguments));
-      console.error.apply(console, info);
+      var _console2;
+
+      for (var _len2 = arguments.length, rest = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        rest[_key2] = arguments[_key2];
+      }
+
+      (_console2 = console).error.apply(_console2, [this._prefix].concat(rest));
     }
     /**
      * 订阅“关闭实名认证”
