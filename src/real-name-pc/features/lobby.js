@@ -4,9 +4,9 @@
  */
 
 
-import { appView, lobbyView } from './view';
+import { appView, lobbyView } from '../view';
 import { storeHelper } from 'utils';
-import { ids } from './config';
+import { ids } from '../config';
 
 const lobbyViewInstance = lobbyView.Instance;
 const storeHelperInstance = storeHelper.Instance;

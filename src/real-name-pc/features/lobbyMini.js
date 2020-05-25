@@ -4,10 +4,10 @@
  */
 
 
-import { appView, lobbyMiniView } from './view';
-import { lobbyMiniData } from './data';
-import { lobbyMiniHandler } from './handler';
-import { ids } from './config';
+import { appView, lobbyMiniView } from '../view';
+import { lobbyMiniData } from '../data';
+import { lobbyMiniHandler } from '../handler';
+import { ids } from '../config';
 
 import { storeHelper } from 'utils';
 

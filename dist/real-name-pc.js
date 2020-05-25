@@ -25266,7 +25266,7 @@ var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
 // CONCATENATED MODULE: ./src/real-name-pc/handler/index.js
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/realName.js
+// CONCATENATED MODULE: ./src/real-name-pc/features/realName.js
 
 
 
@@ -25583,7 +25583,7 @@ var realName_realName = /*#__PURE__*/function () {
 }();
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/lobby.js
+// CONCATENATED MODULE: ./src/real-name-pc/features/lobby.js
 
 
 
@@ -25685,7 +25685,7 @@ var lobby_lobby = /*#__PURE__*/function () {
 }();
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/lobbyMini.js
+// CONCATENATED MODULE: ./src/real-name-pc/features/lobbyMini.js
 
 
 
@@ -25845,8 +25845,36 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
 }();
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/index.js
+// CONCATENATED MODULE: ./src/real-name-pc/features/index.js
 
+
+
+
+
+
+
+
+var real_name_pc_features_features = /*#__PURE__*/function () {
+  function features() {
+    classCallCheck_default()(this, features);
+  } // 根据feature名称获取相应的class
+
+
+  createClass_default()(features, null, [{
+    key: "getFeatureClass",
+    value: function getFeatureClass(feature) {
+      var _featuresMap;
+
+      var featuresMap = (_featuresMap = {}, defineProperty_default()(_featuresMap, config_features.h5Platform, realName_realName), defineProperty_default()(_featuresMap, config_features.lobby, lobby_lobby), defineProperty_default()(_featuresMap, config_features.lobbyMini, lobbyMini_lobbyMini), _featuresMap);
+      return featuresMap[feature] ? featuresMap[feature] : realName_realName;
+    }
+  }]);
+
+  return features;
+}();
+
+/* harmony default export */ var real_name_pc_features = (real_name_pc_features_features);
+// CONCATENATED MODULE: ./src/real-name-pc/index.js
 
 
 
@@ -25854,9 +25882,6 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
  * author: liuyang9
  * description: PC端实名认证
  */
-
-
-
 
 
 var real_name_pc_RealNamePc = /*#__PURE__*/function () {
@@ -25871,7 +25896,7 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
           containerId = _ref.containerId;
 
       if (!this._instance) {
-        var featureClass = real_name_pc_getFeatureClass(feature);
+        var featureClass = real_name_pc_features.getFeatureClass(feature);
         this._instance = new featureClass({
           feature: feature,
           containerId: containerId
@@ -25883,17 +25908,9 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
   }]);
 
   return RealNamePc;
-}(); // 根据feature名称获取相应的class
+}();
 
 
-
-
-var real_name_pc_getFeatureClass = function getFeatureClass(feature) {
-  var _featuresMap;
-
-  var featuresMap = (_featuresMap = {}, defineProperty_default()(_featuresMap, config_features.h5Platform, realName_realName), defineProperty_default()(_featuresMap, config_features.lobby, lobby_lobby), defineProperty_default()(_featuresMap, config_features.lobbyMini, lobbyMini_lobbyMini), _featuresMap);
-  return featuresMap[feature] ? featuresMap[feature] : realName_realName;
-};
 // CONCATENATED MODULE: ./src/index.js
 
 

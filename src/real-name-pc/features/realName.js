@@ -4,10 +4,10 @@
  */
 
 
-import { appView, realNameView, popupView } from './view';
-import { realNameData } from './data';
-import { paramsConfig, eventConfig, ids } from './config';
-import { statusHandler } from './handler';
+import { appView, realNameView, popupView } from '../view';
+import { realNameData } from '../data';
+import { paramsConfig, eventConfig, ids } from '../config';
+import { statusHandler } from '../handler';
 
 import { 
   paramsHelper,
