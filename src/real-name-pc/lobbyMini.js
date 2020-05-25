@@ -8,9 +8,7 @@ import { appView, lobbyMiniView } from './view';
 import { lobbyMiniData } from './data';
 import { lobbyMiniHandler } from './handler';
 
-import { 
-  storeHelper
-} from 'utils';
+import { storeHelper } from 'utils';
 
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
 const storeHelperInstance = storeHelper.Instance;
@@ -35,9 +33,7 @@ export default class lobbyMini {
     // 显示容器
     this.root = document.createElement('div');
     this.root.setAttribute('id', 'real-name-pc');
-
     containerEle.appendChild(this.root);
-
     appView.renderApp();
   }
 

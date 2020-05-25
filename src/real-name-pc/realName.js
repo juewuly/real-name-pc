@@ -4,21 +4,18 @@
  */
 
 
-import { appView, realNameView, popupView, lobbyView } from './view';
+import { appView, realNameView, popupView } from './view';
 import { realNameData } from './data';
 import { paramsConfig, eventConfig } from './config';
 import { statusHandler } from './handler';
 
 import { 
   paramsHelper,
-  modelData,
-  logHelper,
   storeHelper
 } from 'utils';
 
 const realNameViewInstance = realNameView.Instance;
 const popupViewInstance = popupView.Instance;
-const lobbyViewInstance = lobbyView.Instance;
 const paramsInstance = paramsHelper.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
@@ -49,7 +46,6 @@ export default class realName {
 
     containerEle.appendChild(this.root);
     containerEle.appendChild(this.modalRoot);
-
     appView.renderApp();
   }
 
@@ -59,11 +55,6 @@ export default class realName {
     }
 
     return document.getElementsByTagName('body')[0];
-  }
-
-  // 临时测试
-  test() {
-    this.showNonage();
   }
 
   // 配置一些参数和事件
@@ -92,10 +83,6 @@ export default class realName {
     eventConfig.onCloseRealName = onCloseRealName;
     eventConfig.onSubmitSuccess = onSubmitSuccess;
     eventConfig.onSubmitError = onSubmitError;
-  }
-
-  testShowLobby() {
-    lobbyViewInstance.showEight();
   }
 
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
