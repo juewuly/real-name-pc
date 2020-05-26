@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { hot } from 'react-hot-loader/root';
 
 import { updatePopupData } from 'src/redux/actions';
 
@@ -12,8 +13,6 @@ import {
 } from 'src/containers';
 
 import { features } from 'src/real-name-pc/config';
-
-import './index.less';
 
 const Home = ({ feature, showRealName, showPopup }) => {
   const FeatureComponent = getFeatureComponent(feature);
@@ -58,4 +57,4 @@ Home.defaultProps = {
   noMask: false
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default hot(connect(mapStateToProps, mapDispatchToProps)(Home));
