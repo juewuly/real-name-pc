@@ -8,8 +8,8 @@ class ids {
     return 'real-name-pc';
   }
 
-  // 遮罩层id
-  static get modalId() {
+  // sdk遮罩层id
+  static get sdkModalId() {
     return 'real-name-pc-modal';
   }
 

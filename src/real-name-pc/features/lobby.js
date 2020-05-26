@@ -13,10 +13,6 @@ const lobbyViewInstance = lobbyView.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
 export default class lobby {
-  constructor({ containerId }) {
-    this.init({ containerId });
-  }
-
   static Instance({ containerId }) {
     if(!this._instance) {
       this._instance = new lobby({ containerId });
@@ -25,14 +21,13 @@ export default class lobby {
     return this._instance;
   }
 
-  init({ containerId }) {
-    const containerEle = domHelper.getContainerElement(containerId);
-    storeHelperInstance.updateGlobalData({ feature: features.lobby });
+  constructor({ containerId }) {
+    this.init({ containerId });
+  }
 
-    // 显示容器
-    this.root = document.createElement('div');
-    this.root.setAttribute('id', ids.sdkId);
-    containerEle.appendChild(this.root);
+  init({ containerId }) {
+    storeHelperInstance.updateGlobalData({ feature: features.lobby });
+    domHelper.initSdkElement(containerId)
     appView.renderApp();
   }
 

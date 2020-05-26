@@ -29,13 +29,8 @@ export default class lobbyMini {
   }
 
   init({ containerId }) {
-    const containerEle = domHelper.getContainerElement(containerId);
     storeHelperInstance.updateGlobalData({ feature: features.lobbyMini });
-
-    // 显示容器
-    this.root = document.createElement('div');
-    this.root.setAttribute('id', ids.sdkId);
-    containerEle.appendChild(this.root);
+    domHelper.initSdkElement(containerId);
     appView.renderApp();
   }
 

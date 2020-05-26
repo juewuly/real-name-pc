@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { ids } from 'src/real-name-pc/config';
 
 import './index.less';
 
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    this.modalRoot = document.getElementById('real-name-pc-modal');
+    this.modalRoot = document.getElementById(ids.sdkModalId);
 
     const maskClassName = props.noMask ? 'modal-mask no-mask' : 'modal-mask';
     this.mask = document.createElement('div');

@@ -34,19 +34,10 @@ export default class realName {
   }
 
   init({ containerId }) {
-    const containerEle = domHelper.getContainerElement(containerId);
     storeHelperInstance.updateGlobalData({ feature: features.h5Platform });
 
-    // 显示容器
-    this.root = document.createElement('div');
-    this.root.setAttribute('id', ids.sdkId);
-
-    // 背景蒙层
-    this.modalRoot = document.createElement('div');
-    this.modalRoot.setAttribute('id', ids.modalId);
-
-    containerEle.appendChild(this.root);
-    containerEle.appendChild(this.modalRoot);
+    domHelper.initSdkElement(containerId)
+    domHelper.initSdkModalElement(containerId);
     appView.renderApp();
   }
 
