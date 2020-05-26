@@ -7,10 +7,8 @@ import { paramsHelper } from 'utils';
 
 const paramsInstance = paramsHelper.Instance;
 
-class lobbyMiniData {
-  constructor() {
-
-  }
+export default class lobbyMiniData {
+  constructor() { }
 
   /**
    * 验证是否允许充值
@@ -34,5 +32,3 @@ class lobbyMiniData {
     });
   }
 }
-
-export default lobbyMiniData;

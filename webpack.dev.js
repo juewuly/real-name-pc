@@ -105,7 +105,7 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, './src'),
       utils: path.resolve(__dirname, './src/utils'),
-      sdk: path.resolve(__dirname, './src/real-name-pc'),
+      sdk: path.resolve(__dirname, './src/sdk'),
       components: path.resolve(__dirname, './src/components'),
       request: path.resolve(__dirname, './src/request'),
     },
