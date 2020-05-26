@@ -1,5 +1,6 @@
 /**
- * @description: 大厅mini付需要的相关数据
+ * @author: liuyang9
+ * @description: 大厅mini付防沉迷的数据层
  */
 
 import { fetchMgFcm } from 'request';
@@ -8,8 +9,6 @@ import { paramsHelper } from 'utils';
 const paramsInstance = paramsHelper.Instance;
 
 export default class lobbyMiniData {
-  constructor() { }
-
   /**
    * 验证是否允许充值
    * @param {*} param0 
@@ -31,4 +30,6 @@ export default class lobbyMiniData {
       .catch(err => reject(err));
     });
   }
+
+  constructor() { }
 }

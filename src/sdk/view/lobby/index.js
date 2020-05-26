@@ -1,4 +1,5 @@
 /**
+ * @author: liuyang9
  * @description: 大厅支付的提示视图
  */
 
@@ -10,19 +11,15 @@ const storeHelperInstance = storeHelper.Instance;
 const NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
 const setLobbyData = data => storeHelperInstance.setLobbyData(data);
 
-
-class lobbyView {
-  constructor() {
-
-  }
-
+export default class lobbyView {
   static get Instance() {
     if (!this._instance) {
       this._instance = new lobbyView();
     }
-
     return this._instance;
   }
+
+  constructor() { }
 
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
   showNonage() {
@@ -119,5 +116,3 @@ class lobbyView {
     }
   }
 }
-
-export default lobbyView;

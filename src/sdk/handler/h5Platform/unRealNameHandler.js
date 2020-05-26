@@ -1,4 +1,5 @@
 /**
+ * @author: liuyang9
  * @description: 实名状态为未实名时的处理器
  */
 
@@ -9,11 +10,7 @@ import { paramsConfig, eventConfig } from 'sdk/config';
 const realNameViewInstance = realNameView.Instance;
 const logInstance = logHelper.Instance;
 
-class unRealNameHandler {
-  constructor() {
-
-  }
-
+export default class unRealNameHandler {
   static exec({ canClose } = { canClose: false }) {
     logInstance.log('未实名');
     
@@ -38,6 +35,5 @@ class unRealNameHandler {
     });
   }
 
+  constructor() { }
 }
-
-export default unRealNameHandler;

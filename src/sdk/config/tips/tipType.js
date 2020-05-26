@@ -3,11 +3,7 @@
  * @description: 防沉迷提示信息所属的类型
  */
 
-class tipType {
-  constructor() {
-
-  }
-
+export default class tipType {
   // 未成年人在禁止充值的时间段内
   static get nonageForbidCharge() {
     return 'nonageForbidCharge';
@@ -47,6 +43,6 @@ class tipType {
   static get gameTimeLimitWhenPlaying() {
     return 'gameTimeLimitWhenPlaying';
   }
-}
 
-export default tipType;
+  constructor() { }
+}

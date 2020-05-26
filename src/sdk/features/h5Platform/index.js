@@ -1,6 +1,6 @@
 /**
  * author: liuyang9
- * description: PC端实名认证
+ * description: h5联运平台的防沉迷
  */
 
 
@@ -20,10 +20,10 @@ const popupViewInstance = popupView.Instance;
 const paramsInstance = paramsHelper.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
-export default class realName {
+export default class h5Platform {
   static Instance({ containerId }) {
     if(!this._instance) {
-      this._instance = new realName({ containerId });
+      this._instance = new h5Platform({ containerId });
     }
 
     return this._instance;

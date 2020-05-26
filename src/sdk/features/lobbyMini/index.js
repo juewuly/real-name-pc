@@ -1,6 +1,6 @@
 /**
  * author: liuyang9
- * description: 大厅mini付的相关提示
+ * description: 大厅mini付的防沉迷
  */
 
 

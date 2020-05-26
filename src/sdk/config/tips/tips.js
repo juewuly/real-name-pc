@@ -9,7 +9,7 @@ import tipEntity from './tipEntity';
 // 通知名称
 const NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
 
-class tips {
+export default class tips {
   constructor() {
   }
 }
@@ -74,5 +74,3 @@ tips[tipType.gameTimeLimitWhenPlaying] = new tipEntity({
   subTitle: '30秒后将返回登录页',
   content: `根据${NoticeName}，未成年用户法定节假日每日累计不得超过3小时，其它时间每日不得超过1.5小时。`
 });
-
-export default tips;

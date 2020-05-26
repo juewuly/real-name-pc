@@ -1,3 +1,8 @@
+/**
+ * @author: liuyang9
+ * @description: h5联运平台防沉迷的数据层
+ */
+
 import { fetchRealName, checkAmount } from 'request';
 import { paramsHelper, modelData, logHelper } from 'utils';
 
@@ -5,11 +10,7 @@ const paramsInstance = paramsHelper.Instance;
 const modelDataInstance = modelData.Instance;
 const logInstance = logHelper.Instance;
 
-export default  class h5PlatformData {
-  constructor() {
-
-  }
-
+export default class h5PlatformData {
   /**
    * 获取实名信息
    * @param {*} param0 
@@ -65,4 +66,6 @@ export default  class h5PlatformData {
       logInstance.error('存储金额验证结果信息时出现异常', error);
     }
   }
+
+  constructor() { }
 }

@@ -4,8 +4,6 @@
  */
 
 export default class paramsConfig {
-  constructor() { }
-
   static set appkey(value) {
     this._appkey = value;
   }
@@ -37,4 +35,6 @@ export default class paramsConfig {
   static get idcard_check_type() {
     return this._idcard_check_type;
   }
+
+  constructor() { }
 }

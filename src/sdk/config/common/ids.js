@@ -4,8 +4,6 @@
  */
 
 export default class ids {
-  constructor() { }
-
   // sdk的id
   static get sdkId() {
     return 'real-name-pc';
@@ -15,4 +13,6 @@ export default class ids {
   static get sdkModalId() {
     return 'real-name-pc-modal';
   }
+
+  constructor() { }
 }

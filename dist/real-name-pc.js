@@ -7292,7 +7292,7 @@ module.exports = __webpack_require__(12) ? function (object, key, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(61);
+var IObject = __webpack_require__(59);
 var defined = __webpack_require__(34);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -7459,7 +7459,7 @@ module.exports = function (it) {
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(62);
+var pIE = __webpack_require__(60);
 var createDesc = __webpack_require__(38);
 var toIObject = __webpack_require__(21);
 var toPrimitive = __webpack_require__(36);
@@ -7505,7 +7505,7 @@ module.exports = function (KEY, exec) {
 // 5 -> Array#find
 // 6 -> Array#findIndex
 var ctx = __webpack_require__(27);
-var IObject = __webpack_require__(61);
+var IObject = __webpack_require__(59);
 var toObject = __webpack_require__(14);
 var toLength = __webpack_require__(9);
 var asc = __webpack_require__(128);
@@ -7589,7 +7589,7 @@ if (__webpack_require__(12)) {
   var toAbsoluteIndex = __webpack_require__(42);
   var toPrimitive = __webpack_require__(36);
   var has = __webpack_require__(19);
-  var classof = __webpack_require__(63);
+  var classof = __webpack_require__(61);
   var isObject = __webpack_require__(7);
   var toObject = __webpack_require__(14);
   var isArrayIter = __webpack_require__(96);
@@ -7601,7 +7601,7 @@ if (__webpack_require__(12)) {
   var wks = __webpack_require__(8);
   var createArrayMethod = __webpack_require__(32);
   var createArrayIncludes = __webpack_require__(67);
-  var speciesConstructor = __webpack_require__(64);
+  var speciesConstructor = __webpack_require__(62);
   var ArrayIterators = __webpack_require__(100);
   var Iterators = __webpack_require__(53);
   var $iterDetect = __webpack_require__(70);
@@ -8453,6 +8453,133 @@ module.exports = function (target, src, safe) {
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(143);
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__(33);
+// eslint-disable-next-line no-prototype-builtins
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__(33);
+var TAG = __webpack_require__(8)('toStringTag');
+// ES3 wrong here
+var ARG = cof(function () { return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (e) { /* empty */ }
+};
+
+module.exports = function (it) {
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.3.20 SpeciesConstructor(O, defaultConstructor)
+var anObject = __webpack_require__(6);
+var aFunction = __webpack_require__(28);
+var SPECIES = __webpack_require__(8)('species');
+module.exports = function (O, D) {
+  var C = anObject(O).constructor;
+  var S;
+  return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
+};
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -8725,7 +8852,7 @@ module.exports = function (list, options) {
 };
 
 /***/ }),
-/* 58 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8823,133 +8950,6 @@ function toComment(sourceMap) {
   var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
   return "/*# ".concat(data, " */");
 }
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(143);
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg) && arg.length) {
-				var inner = classNames.apply(null, arg);
-				if (inner) {
-					classes.push(inner);
-				}
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if ( true && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-			return classNames;
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}());
-
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(33);
-// eslint-disable-next-line no-prototype-builtins
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-  return cof(it) == 'String' ? it.split('') : Object(it);
-};
-
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports) {
-
-exports.f = {}.propertyIsEnumerable;
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(33);
-var TAG = __webpack_require__(8)('toStringTag');
-// ES3 wrong here
-var ARG = cof(function () { return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (e) { /* empty */ }
-};
-
-module.exports = function (it) {
-  var O, T, B;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
-    // builtinTag case
-    : ARG ? cof(O)
-    // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-};
-
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.3.20 SpeciesConstructor(O, defaultConstructor)
-var anObject = __webpack_require__(6);
-var aFunction = __webpack_require__(28);
-var SPECIES = __webpack_require__(8)('species');
-module.exports = function (O, D) {
-  var C = anObject(O).constructor;
-  var S;
-  return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
-};
-
 
 /***/ }),
 /* 65 */
@@ -9105,7 +9105,7 @@ module.exports = function () {
 "use strict";
 
 
-var classof = __webpack_require__(63);
+var classof = __webpack_require__(61);
 var builtinExec = RegExp.prototype.exec;
 
  // `RegExpExec` abstract operation
@@ -9850,7 +9850,7 @@ module.exports = function (object, index, value) {
 /* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof = __webpack_require__(63);
+var classof = __webpack_require__(61);
 var ITERATOR = __webpack_require__(8)('iterator');
 var Iterators = __webpack_require__(53);
 module.exports = __webpack_require__(11).getIteratorMethod = function (it) {
@@ -10702,9 +10702,9 @@ module.exports.f = function getOwnPropertyNames(it) {
 var DESCRIPTORS = __webpack_require__(12);
 var getKeys = __webpack_require__(41);
 var gOPS = __webpack_require__(68);
-var pIE = __webpack_require__(62);
+var pIE = __webpack_require__(60);
 var toObject = __webpack_require__(14);
-var IObject = __webpack_require__(61);
+var IObject = __webpack_require__(59);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -10920,7 +10920,7 @@ module.exports = function (original, length) {
 
 var aFunction = __webpack_require__(28);
 var toObject = __webpack_require__(14);
-var IObject = __webpack_require__(61);
+var IObject = __webpack_require__(59);
 var toLength = __webpack_require__(9);
 
 module.exports = function (that, callbackfn, aLen, memo, isRight) {
@@ -11026,13 +11026,13 @@ if (__webpack_require__(12) && /./g.flags != 'g') __webpack_require__(13).f(RegE
 var LIBRARY = __webpack_require__(40);
 var global = __webpack_require__(4);
 var ctx = __webpack_require__(27);
-var classof = __webpack_require__(63);
+var classof = __webpack_require__(61);
 var $export = __webpack_require__(0);
 var isObject = __webpack_require__(7);
 var aFunction = __webpack_require__(28);
 var anInstance = __webpack_require__(55);
 var forOf = __webpack_require__(74);
-var speciesConstructor = __webpack_require__(64);
+var speciesConstructor = __webpack_require__(62);
 var task = __webpack_require__(103).set;
 var microtask = __webpack_require__(292)();
 var newPromiseCapabilityModule = __webpack_require__(135);
@@ -11657,7 +11657,7 @@ module.exports = function (that, maxLength, fillString, left) {
 var DESCRIPTORS = __webpack_require__(12);
 var getKeys = __webpack_require__(41);
 var toIObject = __webpack_require__(21);
-var isEnum = __webpack_require__(62).f;
+var isEnum = __webpack_require__(60).f;
 module.exports = function (isEntries) {
   return function (it) {
     var O = toIObject(it);
@@ -14083,7 +14083,7 @@ if (false) { var parent, cache, hot; } else {
 
 
 if (true) {
-  module.exports = __webpack_require__(435);
+  module.exports = __webpack_require__(433);
 } else { var jsFeaturesPresent, evalError, evalAllowed; }
 
 
@@ -14092,7 +14092,7 @@ if (true) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(178);
-module.exports = __webpack_require__(436);
+module.exports = __webpack_require__(434);
 
 
 /***/ }),
@@ -14451,7 +14451,7 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(44).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(62).f = $propertyIsEnumerable;
+  __webpack_require__(60).f = $propertyIsEnumerable;
   $GOPS.f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(40)) {
@@ -14561,7 +14561,7 @@ module.exports = __webpack_require__(66)('native-function-to-string', Function.t
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(41);
 var gOPS = __webpack_require__(68);
-var pIE = __webpack_require__(62);
+var pIE = __webpack_require__(60);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -14779,7 +14779,7 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(85).set });
 "use strict";
 
 // 19.1.3.6 Object.prototype.toString()
-var classof = __webpack_require__(63);
+var classof = __webpack_require__(61);
 var test = {};
 test[__webpack_require__(8)('toStringTag')] = 'z';
 if (test + '' != '[object z]') {
@@ -16082,7 +16082,7 @@ var toIObject = __webpack_require__(21);
 var arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(61) != Object || !__webpack_require__(24)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(59) != Object || !__webpack_require__(24)(arrayJoin)), 'Array', {
   join: function join(separator) {
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
@@ -16720,7 +16720,7 @@ __webpack_require__(73)('search', 1, function (defined, SEARCH, $search, maybeCa
 
 var isRegExp = __webpack_require__(94);
 var anObject = __webpack_require__(6);
-var speciesConstructor = __webpack_require__(64);
+var speciesConstructor = __webpack_require__(62);
 var advanceStringIndex = __webpack_require__(102);
 var toLength = __webpack_require__(9);
 var callRegExpExec = __webpack_require__(72);
@@ -17089,7 +17089,7 @@ var toAbsoluteIndex = __webpack_require__(42);
 var toLength = __webpack_require__(9);
 var isObject = __webpack_require__(7);
 var ArrayBuffer = __webpack_require__(4).ArrayBuffer;
-var speciesConstructor = __webpack_require__(64);
+var speciesConstructor = __webpack_require__(62);
 var $ArrayBuffer = buffer.ArrayBuffer;
 var $DataView = buffer.DataView;
 var $isView = $typed.ABV && ArrayBuffer.isView;
@@ -17903,7 +17903,7 @@ module.exports = __webpack_require__(11).Promise['finally'];
 var $export = __webpack_require__(0);
 var core = __webpack_require__(11);
 var global = __webpack_require__(4);
-var speciesConstructor = __webpack_require__(64);
+var speciesConstructor = __webpack_require__(62);
 var promiseResolve = __webpack_require__(136);
 
 $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
@@ -21134,7 +21134,7 @@ module.exports = _assertThisInitialized;
 /* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(57);
+var api = __webpack_require__(63);
             var content = __webpack_require__(419);
 
             content = content.__esModule ? content.default : content;
@@ -21161,7 +21161,7 @@ module.exports = exported;
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(58);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(64);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, ".modal-mask {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  z-index: 9000;\n  background-color: #000;\n  opacity: 0.86;\n}\n.modal-mask.no-mask {\n  opacity: 0;\n}\n.modal-wrap {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  z-index: 9999;\n}\n", ""]);
@@ -21173,7 +21173,7 @@ module.exports = exports;
 /* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(57);
+var api = __webpack_require__(63);
             var content = __webpack_require__(421);
 
             content = content.__esModule ? content.default : content;
@@ -21200,7 +21200,7 @@ module.exports = exported;
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(58);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(64);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, ".tip {\n  box-sizing: border-box;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n  width: 660px;\n  height: 300px;\n  background-color: #fff;\n  text-align: center;\n  padding-left: 30px;\n  padding-right: 30px;\n  color: #000;\n}\n.tip.nonageForbidCharge {\n  height: 150px;\n}\n.tip__table {\n  display: table;\n  width: 100%;\n  height: 100%;\n}\n.tip__cell {\n  display: table-cell;\n  vertical-align: middle;\n}\n.tip__title {\n  font-size: 25px;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n.tip__content {\n  margin-top: 50px;\n  font-size: 20px;\n  text-align: left;\n}\n.tip__close {\n  position: absolute;\n  cursor: pointer;\n  top: 4px;\n  right: -47px;\n  width: 27px;\n  height: 27px;\n  background: url('https://p2.ssl.qhimg.com/t0179abee0d1b9be50a.png') center center no-repeat;\n  background-size: contain;\n}\n.tip__button {\n  width: 150px;\n  height: 40px;\n  line-height: 40px;\n  background-color: #179bd5;\n  text-align: center;\n  color: #fff;\n  font-size: 16px;\n  cursor: pointer;\n  border-radius: 5px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 50px;\n}\n", ""]);
@@ -21298,7 +21298,7 @@ module.exports = _nonIterableRest;
 /* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(57);
+var api = __webpack_require__(63);
             var content = __webpack_require__(428);
 
             content = content.__esModule ? content.default : content;
@@ -21325,7 +21325,7 @@ module.exports = exported;
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(58);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(64);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, ".real-name {\n  width: 420px;\n  height: 346px;\n  border-radius: 5px;\n  overflow: hidden;\n  background-color: #fff;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  margin: auto;\n}\n.real-name h4 {\n  position: relative;\n  background-color: #eee;\n  font-weight: 100;\n  padding: 10px;\n  margin: 0;\n  color: #333;\n  font-size: 13px;\n}\n.real-name__close {\n  display: inline-block;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  right: 10px;\n  margin: auto;\n  width: 13px;\n  height: 13px;\n  background: url(\"https://p2.ssl.qhimg.com/t01317462acf5b893a5.png\") center center no-repeat;\n  background-size: contain;\n  cursor: pointer;\n}\n.real-name__title {\n  width: 360px;\n  height: 29px;\n  padding: 0;\n  margin: 10px auto;\n  border-bottom: 1px solid #e4e4e4;\n  list-style: none;\n}\n.real-name__title li {\n  width: 104px;\n  height: 22px;\n  float: left;\n  margin: 0 125px;\n  padding: 0 0 8px;\n  color: #999;\n  font-size: 16px;\n  line-height: 22px;\n  text-align: center;\n}\n.real-name__main {\n  margin-top: 20px;\n}\n.real-name__item {\n  font-size: 14px;\n  color: #4e4e4c;\n  padding-left: 35px;\n}\n.real-name__item-label {\n  display: inline-block;\n  width: 60px;\n  text-align: right;\n  margin-right: 5px;\n}\n.real-name__item span {\n  display: inline-block;\n  height: 20px;\n  line-height: 20px;\n}\n.real-name__item-input {\n  width: 248px;\n  height: 36px;\n  border: 1px solid #d9d9d9;\n  padding: 4px;\n  border-radius: 3px;\n  line-height: 26px;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);\n  text-decoration: none;\n  outline: none;\n  box-sizing: border-box;\n}\n.real-name__item .icon {\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  position: relative;\n  top: 4px;\n  background-image: none;\n  margin-left: 5px;\n}\n.real-name__item .icon.icon-error {\n  background: url('https://p0.ssl.qhimg.com/t010babd19e5bcd27d7.png') center center no-repeat;\n  background-size: contain;\n}\n.real-name__item .icon.icon-succ {\n  background: url('https://p0.ssl.qhimg.com/t01348ca7b1f4664b79.png') center center no-repeat;\n  background-size: contain;\n}\n.real-name__item .hint {\n  padding-left: 70px;\n  margin: 0;\n  height: 18px;\n  line-height: 18px;\n  color: red;\n  font-size: 14px;\n  margin-bottom: 5px;\n  margin-top: 5px;\n}\n.real-name__submit {\n  display: block;\n  margin: auto;\n  margin-top: 5px;\n  background: url('https://p0.ssl.qhimg.com/t01d87ca5d77cdf29d4.png') center center no-repeat;\n  width: 200px;\n  height: 42px;\n  line-height: 42px;\n  color: #fff;\n  font-size: 18px;\n  text-align: center;\n  text-decoration: none;\n  outline: none;\n  cursor: pointer;\n}\n.real-name__bottom {\n  width: 360px;\n  height: 40px;\n  margin: 15px auto;\n  font-size: 12px;\n  line-height: 20px;\n  padding: 0 0 8px;\n  color: #999;\n  display: block;\n  text-align: left;\n}\n.real-name__bottom span {\n  color: red;\n}\n", ""]);
@@ -21337,7 +21337,7 @@ module.exports = exports;
 /* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(57);
+var api = __webpack_require__(63);
             var content = __webpack_require__(430);
 
             content = content.__esModule ? content.default : content;
@@ -21364,7 +21364,7 @@ module.exports = exported;
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(58);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(64);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, ".lobby-container .tip .tip__title {\n  font-size: 20px;\n}\n.lobby-container .tip .tip__content {\n  font-size: 16px;\n}\n.lobby-container .tip .tip__content p {\n  line-height: 25px;\n}\n", ""]);
@@ -21376,7 +21376,7 @@ module.exports = exports;
 /* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(57);
+var api = __webpack_require__(63);
             var content = __webpack_require__(432);
 
             content = content.__esModule ? content.default : content;
@@ -21403,7 +21403,7 @@ module.exports = exported;
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(58);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(64);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, ".lobby-mini-container .tip {\n  box-sizing: border-box;\n  width: 500px;\n  height: 350px;\n  padding-left: 0;\n  padding-right: 0;\n  z-index: 99999;\n}\n.lobby-mini-container .tip .tip__title {\n  font-size: 18px;\n}\n.lobby-mini-container .tip .tip__content {\n  font-size: 16px;\n}\n.lobby-mini-container .tip .tip__content p {\n  line-height: 25px;\n}\n", ""]);
@@ -21415,51 +21415,12 @@ module.exports = exports;
 /* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(57);
-            var content = __webpack_require__(434);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-var exported = content.locals ? content.locals : {};
-
-
-
-module.exports = exported;
-
-/***/ }),
-/* 434 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(58);
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, "", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-/* 435 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 function _interopDefault(e){return e&&"object"==typeof e&&"default"in e?e.default:e}Object.defineProperty(exports,"__esModule",{value:!0});var React=_interopDefault(__webpack_require__(3));function AppContainer(e){return AppContainer.warnAboutHMRDisabled&&(AppContainer.warnAboutHMRDisabled=!0,console.error("React-Hot-Loader: misconfiguration detected, using production version in non-production environment."),console.error("React-Hot-Loader: Hot Module Replacement is not enabled.")),React.Children.only(e.children)}AppContainer.warnAboutHMRDisabled=!1;var hot=function e(){return e.shouldWrapWithAppContainer?function(e){return function(n){return React.createElement(AppContainer,null,React.createElement(e,n))}}:function(e){return e}};hot.shouldWrapWithAppContainer=!1;var areComponentsEqual=function(e,n){return e===n},setConfig=function(){},cold=function(e){return e},configureComponent=function(){};exports.AppContainer=AppContainer,exports.hot=hot,exports.areComponentsEqual=areComponentsEqual,exports.setConfig=setConfig,exports.cold=cold,exports.configureComponent=configureComponent;
 
 
 /***/ }),
-/* 436 */
+/* 434 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21482,7 +21443,7 @@ var createClass = __webpack_require__(1);
 var createClass_default = /*#__PURE__*/__webpack_require__.n(createClass);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
-var regenerator = __webpack_require__(59);
+var regenerator = __webpack_require__(57);
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/asyncToGenerator.js
@@ -21527,15 +21488,15 @@ var dist = __webpack_require__(172);
 var immutable = __webpack_require__(10);
 var immutable_default = /*#__PURE__*/__webpack_require__.n(immutable);
 
-// CONCATENATED MODULE: ./src/real-name-pc/config/eventConfig.js
+// CONCATENATED MODULE: ./src/sdk/config/h5Platform/eventConfig.js
 
 
 
+/**
+ * @author: liuyang9
+ * @description: 实名认证相关的事件配置
+ */
 var eventConfig_eventConfig = /*#__PURE__*/function () {
-  function eventConfig() {
-    classCallCheck_default()(this, eventConfig);
-  }
-
   createClass_default()(eventConfig, null, [{
     key: "onCloseRealName",
     set: function set(callback) {
@@ -21562,19 +21523,23 @@ var eventConfig_eventConfig = /*#__PURE__*/function () {
     }
   }]);
 
+  function eventConfig() {
+    classCallCheck_default()(this, eventConfig);
+  }
+
   return eventConfig;
 }();
 
-/* harmony default export */ var config_eventConfig = (eventConfig_eventConfig);
-// CONCATENATED MODULE: ./src/real-name-pc/config/paramsConfig.js
+
+// CONCATENATED MODULE: ./src/sdk/config/h5Platform/paramsConfig.js
 
 
 
+/**
+ * @author: liuyang9
+ * @description: 实名认证相关的参数配置
+ */
 var paramsConfig_paramsConfig = /*#__PURE__*/function () {
-  function paramsConfig() {
-    classCallCheck_default()(this, paramsConfig);
-  }
-
   createClass_default()(paramsConfig, null, [{
     key: "appkey",
     set: function set(value) {
@@ -21609,22 +21574,29 @@ var paramsConfig_paramsConfig = /*#__PURE__*/function () {
     }
   }]);
 
+  function paramsConfig() {
+    classCallCheck_default()(this, paramsConfig);
+  }
+
   return paramsConfig;
 }();
 
-/* harmony default export */ var config_paramsConfig = (paramsConfig_paramsConfig);
-// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/popupType.js
+
+// CONCATENATED MODULE: ./src/sdk/config/h5Platform/index.js
+
+
+// CONCATENATED MODULE: ./src/sdk/config/tips/tipType.js
 
 
 
-var popupType_popupType = /*#__PURE__*/function () {
-  function popupType() {
-    classCallCheck_default()(this, popupType);
-  } // 未成年人在禁止充值的时间段内
-
-
-  createClass_default()(popupType, null, [{
+/**
+ * @author: liuyang9
+ * @description: 防沉迷提示信息所属的类型
+ */
+var tipType_tipType = /*#__PURE__*/function () {
+  createClass_default()(tipType, null, [{
     key: "nonageForbidCharge",
+    // 未成年人在禁止充值的时间段内
     get: function get() {
       return 'nonageForbidCharge';
     } // 年龄小于8周岁的提示
@@ -21672,22 +21644,30 @@ var popupType_popupType = /*#__PURE__*/function () {
     }
   }]);
 
-  return popupType;
+  function tipType() {
+    classCallCheck_default()(this, tipType);
+  }
+
+  return tipType;
 }();
 
-/* harmony default export */ var popupConfig_popupType = (popupType_popupType);
-// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/popupEntity.js
+
+// CONCATENATED MODULE: ./src/sdk/config/tips/tipEntity.js
 
 
 
-var popupEntity_popupEntity = /*#__PURE__*/function () {
-  function popupEntity(_ref) {
+/**
+ * @author: liuyang9
+ * @description: 防沉迷提示信息实体
+ */
+var tipEntity_tipEntity = /*#__PURE__*/function () {
+  function tipEntity(_ref) {
     var className = _ref.className,
         title = _ref.title,
         subTitle = _ref.subTitle,
         content = _ref.content;
 
-    classCallCheck_default()(this, popupEntity);
+    classCallCheck_default()(this, tipEntity);
 
     this._className = className;
     this._title = title;
@@ -21695,7 +21675,7 @@ var popupEntity_popupEntity = /*#__PURE__*/function () {
     this._content = content;
   }
 
-  createClass_default()(popupEntity, [{
+  createClass_default()(tipEntity, [{
     key: "className",
     get: function get() {
       return this._className;
@@ -21717,90 +21697,99 @@ var popupEntity_popupEntity = /*#__PURE__*/function () {
     }
   }]);
 
-  return popupEntity;
+  return tipEntity;
 }();
 
-/* harmony default export */ var popupConfig_popupEntity = (popupEntity_popupEntity);
-// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/popupConfig.js
 
+// CONCATENATED MODULE: ./src/sdk/config/tips/tips.js
+
+
+/**
+ * @author: liuyang9
+ * @description: 防沉迷提示信息集合
+ */
 
  // 通知名称
 
 var NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
 
-var popupConfig_popupConfig = function popupConfig() {
-  classCallCheck_default()(this, popupConfig);
+var tips_tips = function tips() {
+  classCallCheck_default()(this, tips);
 }; // 未成年人在禁止充值的时间段内
 
 
-popupConfig_popupConfig[popupConfig_popupType.nonageForbidCharge] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.nonageForbidCharge,
+
+tips_tips[tipType_tipType.nonageForbidCharge] = new tipEntity_tipEntity({
+  className: tipType_tipType.nonageForbidCharge,
   content: '根据相关部门对于未成年用户的监管要求，该时段暂停相关游戏和充值服务。'
 }); // 年龄小于8周岁的提示
 
-popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.ageLessThanEight,
+tips_tips[tipType_tipType.ageLessThanEight] = new tipEntity_tipEntity({
+  className: tipType_tipType.ageLessThanEight,
   title: '根据相关部门对于未成年用户监管要求',
   subTitle: '该帐号不能充值游戏',
   content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u7F51\u7EDC\u6E38\u620F\u4F01\u4E1A\u4E0D\u5F97\u4E3A\u672A\u6EE18\u5468\u5C81\u4EE5\u4E0B\u7528\u6237\u63D0\u4F9B\u6E38\u620F\u4ED8\u8D39\u670D\u52A1\u3002")
 }); // 8-16周岁充值金额达到上限的提示
 
-popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.ageLessThanSixteen,
+tips_tips[tipType_tipType.ageLessThanSixteen] = new tipEntity_tipEntity({
+  className: tipType_tipType.ageLessThanSixteen,
   title: '该游戏本月累计充值金额已达到上限',
   subTitle: '每个游戏每月累计充值不能超过200元',
   content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
 }); // 8-16周岁可充值，但充值金额达到上限的提示
 
-popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.ageLessThanSixteenCharge,
+tips_tips[tipType_tipType.ageLessThanSixteenCharge] = new tipEntity_tipEntity({
+  className: tipType_tipType.ageLessThanSixteenCharge,
   title: '本次充值金额超过单笔上限',
   subTitle: '请重新选择充值金额',
   content: "\u6839\u636E".concat(NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
 }); // 16-18周岁充值金额达到上限的提示
 
-popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.ageLessThanEighteen,
+tips_tips[tipType_tipType.ageLessThanEighteen] = new tipEntity_tipEntity({
+  className: tipType_tipType.ageLessThanEighteen,
   title: '该游戏本月累计充值金额已达到上限',
   subTitle: '每个游戏每月累计充值不能超过400元',
   content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
 }); // 16-18周岁可充值，但充值金额达到上限的提示
 
-popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.ageLessThanEighteenCharge,
+tips_tips[tipType_tipType.ageLessThanEighteenCharge] = new tipEntity_tipEntity({
+  className: tipType_tipType.ageLessThanEighteenCharge,
   title: '本次充值金额超过单笔上限',
   subTitle: '请重新选择充值金额',
   content: "\u6839\u636E".concat(NoticeName, "\uFF0C16~18\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7100\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6B3E\u6E38\u620F\u6BCF\u6708\u7D2F\u8BA1\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC7400\u5143\u4EBA\u6C11\u5E01\u3002")
 }); // 登录后时长已达到上限的提示
 
-popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenLogin] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.gameTimeLimitWhenLogin,
+tips_tips[tipType_tipType.gameTimeLimitWhenLogin] = new tipEntity_tipEntity({
+  className: tipType_tipType.gameTimeLimitWhenLogin,
   title: '您今日在该游戏时长已经达到上限',
   content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
 }); // 游戏中时长已达到上限的提示
 
-popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenPlaying] = new popupConfig_popupEntity({
-  className: popupConfig_popupType.gameTimeLimitWhenPlaying,
+tips_tips[tipType_tipType.gameTimeLimitWhenPlaying] = new tipEntity_tipEntity({
+  className: tipType_tipType.gameTimeLimitWhenPlaying,
   title: '您今日在该游戏时长已达到上限',
   subTitle: '30秒后将返回登录页',
   content: "\u6839\u636E".concat(NoticeName, "\uFF0C\u672A\u6210\u5E74\u7528\u6237\u6CD5\u5B9A\u8282\u5047\u65E5\u6BCF\u65E5\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC73\u5C0F\u65F6\uFF0C\u5176\u5B83\u65F6\u95F4\u6BCF\u65E5\u4E0D\u5F97\u8D85\u8FC71.5\u5C0F\u65F6\u3002")
 });
-/* harmony default export */ var config_popupConfig_popupConfig = (popupConfig_popupConfig);
-// CONCATENATED MODULE: ./src/real-name-pc/config/popupConfig/index.js
+// CONCATENATED MODULE: ./src/sdk/config/tips/index.js
+/**
+ * @author: liuyang9
+ * @description: 防沉迷提示信息的相关配置
+ */
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/config/features.js
+// CONCATENATED MODULE: ./src/sdk/config/common/features.js
 
 
 
+/**
+ * @author: liuyang9
+ * @description: sdk提供的feature
+ */
 var features_features = /*#__PURE__*/function () {
-  function features() {
-    classCallCheck_default()(this, features);
-  } // h5联运平台
-
-
   createClass_default()(features, null, [{
     key: "h5Platform",
+    // h5联运平台
     get: function get() {
       return 'h5Platform';
     } // 大厅的支付
@@ -21818,22 +21807,26 @@ var features_features = /*#__PURE__*/function () {
     }
   }]);
 
+  function features() {
+    classCallCheck_default()(this, features);
+  }
+
   return features;
 }();
 
-/* harmony default export */ var config_features = (features_features);
-// CONCATENATED MODULE: ./src/real-name-pc/config/ids.js
+
+// CONCATENATED MODULE: ./src/sdk/config/common/ids.js
 
 
 
+/**
+ * @author: liuyang9
+ * @description: 公用的一些id
+ */
 var ids_ids = /*#__PURE__*/function () {
-  function ids() {
-    classCallCheck_default()(this, ids);
-  } // sdk的id
-
-
   createClass_default()(ids, null, [{
     key: "sdkId",
+    // sdk的id
     get: function get() {
       return 'real-name-pc';
     } // sdk遮罩层id
@@ -21845,13 +21838,18 @@ var ids_ids = /*#__PURE__*/function () {
     }
   }]);
 
+  function ids() {
+    classCallCheck_default()(this, ids);
+  }
+
   return ids;
 }();
 
-/* harmony default export */ var config_ids = (ids_ids);
-// CONCATENATED MODULE: ./src/real-name-pc/config/index.js
+
+// CONCATENATED MODULE: ./src/sdk/config/common/index.js
 
 
+// CONCATENATED MODULE: ./src/sdk/config/index.js
 
 
 
@@ -21861,7 +21859,7 @@ var ids_ids = /*#__PURE__*/function () {
 var initialState_initialState = immutable_default.a.fromJS({
   global: {
     // 应用的场景
-    feature: config_features.h5Platform
+    feature: features_features.h5Platform
   },
   // 大厅相关提示信息
   lobby: {
@@ -22348,7 +22346,7 @@ var Modal_Modal = /*#__PURE__*/function (_React$Component) {
     classCallCheck_default()(this, Modal);
 
     _this = _super.call(this, props);
-    _this.modalRoot = document.getElementById(config_ids.sdkModalId);
+    _this.modalRoot = document.getElementById(ids_ids.sdkModalId);
     var maskClassName = props.noMask ? 'modal-mask no-mask' : 'modal-mask';
     _this.mask = document.createElement('div');
 
@@ -22393,7 +22391,7 @@ Modal_Modal.defaultProps = {
 };
 /* harmony default export */ var src_components_Modal = (Modal_Modal);
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(60);
+var classnames = __webpack_require__(58);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./src/components/Tip/index.less
@@ -23886,11 +23884,13 @@ var LobbyMiniContainer_mapStateToProps = function mapStateToProps(state) {
 
 
 
-// EXTERNAL MODULE: ./src/views/Home/index.less
-var views_Home = __webpack_require__(433);
+// CONCATENATED MODULE: ./src/sdk/view/app/Home.js
 
-// CONCATENATED MODULE: ./src/views/Home/index.js
 
+/**
+ * @author: liuyang9
+ * @description: sdk的入口页
+ */
 
 
 
@@ -23920,7 +23920,7 @@ var Home_Home = function Home(_ref) {
 var Home_getFeatureComponent = function getFeatureComponent(feature) {
   var _featureMap;
 
-  var featureMap = (_featureMap = {}, defineProperty_default()(_featureMap, config_features.lobby, /*#__PURE__*/react_default.a.createElement(src_containers_LobbyContainer, null)), defineProperty_default()(_featureMap, config_features.lobbyMini, /*#__PURE__*/react_default.a.createElement(src_containers_LobbyMiniContainer, null)), _featureMap);
+  var featureMap = (_featureMap = {}, defineProperty_default()(_featureMap, features_features.lobby, /*#__PURE__*/react_default.a.createElement(src_containers_LobbyContainer, null)), defineProperty_default()(_featureMap, features_features.lobbyMini, /*#__PURE__*/react_default.a.createElement(src_containers_LobbyMiniContainer, null)), _featureMap);
   return featureMap[feature] ? featureMap[feature] : null;
 };
 
@@ -23943,20 +23943,15 @@ var Home_mapDispatchToProps = function mapDispatchToProps(dispatch) {
 Home_Home.defaultProps = {
   noMask: false
 };
-/* harmony default export */ var src_views_Home = (Object(lib["connect"])(Home_mapStateToProps, Home_mapDispatchToProps)(Home_Home));
-// CONCATENATED MODULE: ./src/views/index.js
-
-// CONCATENATED MODULE: ./src/real-name-pc/app.js
+/* harmony default export */ var app_Home = (Object(root["hot"])(Object(lib["connect"])(Home_mapStateToProps, Home_mapDispatchToProps)(Home_Home)));
+// CONCATENATED MODULE: ./src/sdk/view/app/index.js
 
 
 
-
-var app_App = function App() {
-  return /*#__PURE__*/react_default.a.createElement(src_views_Home, null);
-};
-
-/* harmony default export */ var app = (Object(root["hot"])(app_App));
-// CONCATENATED MODULE: ./src/real-name-pc/view/appView.js
+/**
+ * @author: liuyang9
+ * @description: 渲染sdk视图 
+ */
 
 
 
@@ -23964,15 +23959,9 @@ var app_App = function App() {
 
 
 
+var app_storeInstance = common_store.Instance;
 
-
-var appView_storeInstance = common_store.Instance;
-
-var appView_appView = /*#__PURE__*/function () {
-  function appView() {
-    classCallCheck_default()(this, appView);
-  }
-
+var app_appView = /*#__PURE__*/function () {
   createClass_default()(appView, null, [{
     key: "renderApp",
     value: function (_renderApp) {
@@ -23987,41 +23976,299 @@ var appView_appView = /*#__PURE__*/function () {
       return renderApp;
     }(function () {
       Object(react_dom["render"])( /*#__PURE__*/react_default.a.createElement(react_hot_loader["AppContainer"], null, /*#__PURE__*/react_default.a.createElement(lib["Provider"], {
-        store: appView_storeInstance
-      }, /*#__PURE__*/react_default.a.createElement(app, null))), document.getElementById(config_ids.sdkId));
+        store: app_storeInstance
+      }, /*#__PURE__*/react_default.a.createElement(app_Home, null))), document.getElementById(ids_ids.sdkId));
 
       if (false) {}
     })
   }]);
 
+  function appView() {
+    classCallCheck_default()(this, appView);
+  }
+
   return appView;
 }();
 
-/* harmony default export */ var view_appView = (appView_appView);
-// CONCATENATED MODULE: ./src/real-name-pc/view/realNameView.js
+
+// CONCATENATED MODULE: ./src/sdk/view/h5Platform/popupView.js
 
 
 
 /**
+ * @author: liuyang9
+ * @description: 弹窗提示视图
+ */
+
+
+var storeHelperInstance = utils_storeHelper.Instance;
+
+var popupView_setPopupData = function setPopupData(data) {
+  return storeHelperInstance.setPopupData(data);
+};
+
+var popupView_popupView = /*#__PURE__*/function () {
+  createClass_default()(popupView, null, [{
+    key: "Instance",
+    get: function get() {
+      if (!this._instance) {
+        this._instance = new popupView();
+      }
+
+      return this._instance;
+    }
+  }]);
+
+  function popupView() {
+    classCallCheck_default()(this, popupView);
+  } // 关闭弹窗
+
+
+  createClass_default()(popupView, [{
+    key: "closePopup",
+    value: function closePopup() {
+      popupView_setPopupData({
+        show: false
+      });
+    } // 未成年人在禁止充值时间段内，且未开启年龄段限制
+
+  }, {
+    key: "showNonage",
+    value: function showNonage() {
+      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        canClose: true
+      },
+          canClose = _ref.canClose;
+
+      var _tips$tipType$nonageF = tips_tips[tipType_tipType.nonageForbidCharge],
+          className = _tips$tipType$nonageF.className,
+          content = _tips$tipType$nonageF.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        content: content,
+        canClose: canClose
+      });
+    } // 年龄小于8周岁的提示
+
+  }, {
+    key: "showEight",
+    value: function showEight() {
+      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        canClose: true
+      },
+          canClose = _ref2.canClose;
+
+      var _tips$tipType$ageLess = tips_tips[tipType_tipType.ageLessThanEight],
+          className = _tips$tipType$ageLess.className,
+          title = _tips$tipType$ageLess.title,
+          subTitle = _tips$tipType$ageLess.subTitle,
+          content = _tips$tipType$ageLess.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        title: title,
+        subTitle: subTitle,
+        content: content,
+        canClose: canClose
+      });
+    } // 8~16周岁不可充值，充值已达到上限的提示
+
+  }, {
+    key: "showSixteen",
+    value: function showSixteen() {
+      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        canClose: true
+      },
+          canClose = _ref3.canClose;
+
+      var _tips$tipType$ageLess2 = tips_tips[tipType_tipType.ageLessThanSixteen],
+          className = _tips$tipType$ageLess2.className,
+          title = _tips$tipType$ageLess2.title,
+          subTitle = _tips$tipType$ageLess2.subTitle,
+          content = _tips$tipType$ageLess2.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        title: title,
+        subTitle: subTitle,
+        content: content,
+        canClose: canClose
+      });
+    } // 8~16周岁可充值，但充值金额达到上限的提示
+
+  }, {
+    key: "showSixteenCharge",
+    value: function showSixteenCharge() {
+      var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        canClose: true
+      },
+          canClose = _ref4.canClose;
+
+      var _tips$tipType$ageLess3 = tips_tips[tipType_tipType.ageLessThanSixteenCharge],
+          className = _tips$tipType$ageLess3.className,
+          title = _tips$tipType$ageLess3.title,
+          subTitle = _tips$tipType$ageLess3.subTitle,
+          content = _tips$tipType$ageLess3.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        title: title,
+        subTitle: subTitle,
+        content: content,
+        canClose: canClose
+      });
+    } // 16~18周岁不可充值，充值已达到上限的提示
+
+  }, {
+    key: "showEighteen",
+    value: function showEighteen() {
+      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        canClose: true
+      },
+          canClose = _ref5.canClose;
+
+      var _tips$tipType$ageLess4 = tips_tips[tipType_tipType.ageLessThanEighteen],
+          className = _tips$tipType$ageLess4.className,
+          title = _tips$tipType$ageLess4.title,
+          subTitle = _tips$tipType$ageLess4.subTitle,
+          content = _tips$tipType$ageLess4.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        title: title,
+        subTitle: subTitle,
+        content: content,
+        canClose: canClose
+      });
+    } // 16~18周岁可充值，但充值金额已达到上限的提示
+
+  }, {
+    key: "showEighteenCharge",
+    value: function showEighteenCharge() {
+      var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        canClose: true
+      },
+          canClose = _ref6.canClose;
+
+      var _tips$tipType$ageLess5 = tips_tips[tipType_tipType.ageLessThanEighteenCharge],
+          className = _tips$tipType$ageLess5.className,
+          title = _tips$tipType$ageLess5.title,
+          subTitle = _tips$tipType$ageLess5.subTitle,
+          content = _tips$tipType$ageLess5.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        title: title,
+        subTitle: subTitle,
+        content: content,
+        canClose: canClose
+      });
+    } // 登录后游戏时长已达到上限时的提示
+
+  }, {
+    key: "showTimeLimitAfterLogin",
+    value: function showTimeLimitAfterLogin() {
+      var _tips$tipType$gameTim = tips_tips[tipType_tipType.gameTimeLimitWhenLogin],
+          title = _tips$tipType$gameTim.title,
+          content = _tips$tipType$gameTim.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        title: title,
+        content: content,
+        canClose: false,
+        noMask: true
+      });
+    } // 游戏中时长已达到上限时的提示
+
+  }, {
+    key: "showTimeLimitWhenPlaying",
+    value: function showTimeLimitWhenPlaying() {
+      var _tips$tipType$gameTim2 = tips_tips[tipType_tipType.gameTimeLimitWhenPlaying],
+          title = _tips$tipType$gameTim2.title,
+          subTitle = _tips$tipType$gameTim2.subTitle,
+          content = _tips$tipType$gameTim2.content;
+      popupView_setPopupData({
+        show: true,
+        className: className,
+        title: title,
+        subTitle: subTitle,
+        content: content,
+        canClose: false,
+        noMask: true
+      });
+    }
+    /**
+     * 根据check接口返回的状态码和年龄，来弹相应的弹窗提示
+     * @param {*} status 
+     * @param {*} ageLower 
+     */
+
+  }, {
+    key: "showTipByStatus",
+    value: function showTipByStatus(status, ageLower) {
+      var popupFuncMap = {
+        1: null,
+        2: {
+          0: this.showEight,
+          8: this.showSixteenCharge,
+          16: this.showEighteenCharge
+        },
+        3: {
+          0: this.showEight,
+          8: this.showSixteen,
+          16: this.showEighteen
+        }
+      };
+      var popupFunc = popupFuncMap[status][ageLower];
+
+      if (popupFunc) {
+        popupFunc();
+      }
+    }
+  }]);
+
+  return popupView;
+}();
+
+
+// CONCATENATED MODULE: ./src/sdk/view/h5Platform/realNameView.js
+
+
+
+/**
+ * @author: liuyang9
  * @description: 实名认证视图 
  */
 
-var storeHelperInstance = utils_storeHelper.Instance;
+var realNameView_storeHelperInstance = utils_storeHelper.Instance;
 var realNameView_logInstance = utils_logHelper.Instance;
 var paramsInstance = utils_paramsHelper.Instance;
 
 var realNameView_updateRealNameData = function updateRealNameData(data) {
-  return storeHelperInstance.updateRealNameData(data);
+  return realNameView_storeHelperInstance.updateRealNameData(data);
 };
 
 var realNameView_realNameView = /*#__PURE__*/function () {
+  createClass_default()(realNameView, null, [{
+    key: "Instance",
+    get: function get() {
+      if (!this._instance) {
+        this._instance = new realNameView();
+      }
+
+      return this._instance;
+    }
+  }]);
+
   function realNameView() {
     classCallCheck_default()(this, realNameView);
-  }
+  } // 关闭实名
+
 
   createClass_default()(realNameView, [{
     key: "closeRealName",
-    // 关闭实名
     value: function closeRealName() {
       realNameView_logInstance.closeRealName();
       realNameView_updateRealNameData({
@@ -24076,296 +24323,63 @@ var realNameView_realNameView = /*#__PURE__*/function () {
         onSubmitSuccess(result);
       };
 
-      storeHelperInstance.subscribeCloseRealName(onClose);
-      storeHelperInstance.subscribeSubmitRealName({
+      realNameView_storeHelperInstance.subscribeCloseRealName(onClose);
+      realNameView_storeHelperInstance.subscribeSubmitRealName({
         onSubmitError: onSubmitError,
         onSubmitSuccess: handleSubmitSuccess
       });
-    }
-  }], [{
-    key: "Instance",
-    get: function get() {
-      if (!this._instance) {
-        this._instance = new realNameView();
-      }
-
-      return this._instance;
     }
   }]);
 
   return realNameView;
 }();
 
-/* harmony default export */ var view_realNameView = (realNameView_realNameView);
-// CONCATENATED MODULE: ./src/real-name-pc/view/popupView.js
+
+// CONCATENATED MODULE: ./src/sdk/view/h5Platform/index.js
+
+
+// CONCATENATED MODULE: ./src/sdk/view/lobby/index.js
 
 
 
 /**
- * @description: 弹窗提示视图
+ * @author: liuyang9
+ * @description: 大厅支付的提示视图
  */
 
 
-var popupView_storeHelperInstance = utils_storeHelper.Instance;
+var lobby_storeHelperInstance = utils_storeHelper.Instance; // 通知名称
 
-var popupView_setPopupData = function setPopupData(data) {
-  return popupView_storeHelperInstance.setPopupData(data);
+var lobby_NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
+
+var lobby_setLobbyData = function setLobbyData(data) {
+  return lobby_storeHelperInstance.setLobbyData(data);
 };
 
-var popupView_popupView = /*#__PURE__*/function () {
-  function popupView() {
-    classCallCheck_default()(this, popupView);
-  }
-
-  createClass_default()(popupView, [{
-    key: "closePopup",
-    // 关闭弹窗
-    value: function closePopup() {
-      popupView_setPopupData({
-        show: false
-      });
-    } // 未成年人在禁止充值时间段内，且未开启年龄段限制
-
-  }, {
-    key: "showNonage",
-    value: function showNonage() {
-      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref.canClose;
-
-      var _popupConfig$popupTyp = config_popupConfig_popupConfig[popupConfig_popupType.nonageForbidCharge],
-          className = _popupConfig$popupTyp.className,
-          content = _popupConfig$popupTyp.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        content: content,
-        canClose: canClose
-      });
-    } // 年龄小于8周岁的提示
-
-  }, {
-    key: "showEight",
-    value: function showEight() {
-      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref2.canClose;
-
-      var _popupConfig$popupTyp2 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight],
-          className = _popupConfig$popupTyp2.className,
-          title = _popupConfig$popupTyp2.title,
-          subTitle = _popupConfig$popupTyp2.subTitle,
-          content = _popupConfig$popupTyp2.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        title: title,
-        subTitle: subTitle,
-        content: content,
-        canClose: canClose
-      });
-    } // 8~16周岁不可充值，充值已达到上限的提示
-
-  }, {
-    key: "showSixteen",
-    value: function showSixteen() {
-      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref3.canClose;
-
-      var _popupConfig$popupTyp3 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen],
-          className = _popupConfig$popupTyp3.className,
-          title = _popupConfig$popupTyp3.title,
-          subTitle = _popupConfig$popupTyp3.subTitle,
-          content = _popupConfig$popupTyp3.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        title: title,
-        subTitle: subTitle,
-        content: content,
-        canClose: canClose
-      });
-    } // 8~16周岁可充值，但充值金额达到上限的提示
-
-  }, {
-    key: "showSixteenCharge",
-    value: function showSixteenCharge() {
-      var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref4.canClose;
-
-      var _popupConfig$popupTyp4 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge],
-          className = _popupConfig$popupTyp4.className,
-          title = _popupConfig$popupTyp4.title,
-          subTitle = _popupConfig$popupTyp4.subTitle,
-          content = _popupConfig$popupTyp4.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        title: title,
-        subTitle: subTitle,
-        content: content,
-        canClose: canClose
-      });
-    } // 16~18周岁不可充值，充值已达到上限的提示
-
-  }, {
-    key: "showEighteen",
-    value: function showEighteen() {
-      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref5.canClose;
-
-      var _popupConfig$popupTyp5 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen],
-          className = _popupConfig$popupTyp5.className,
-          title = _popupConfig$popupTyp5.title,
-          subTitle = _popupConfig$popupTyp5.subTitle,
-          content = _popupConfig$popupTyp5.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        title: title,
-        subTitle: subTitle,
-        content: content,
-        canClose: canClose
-      });
-    } // 16~18周岁可充值，但充值金额已达到上限的提示
-
-  }, {
-    key: "showEighteenCharge",
-    value: function showEighteenCharge() {
-      var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        canClose: true
-      },
-          canClose = _ref6.canClose;
-
-      var _popupConfig$popupTyp6 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge],
-          className = _popupConfig$popupTyp6.className,
-          title = _popupConfig$popupTyp6.title,
-          subTitle = _popupConfig$popupTyp6.subTitle,
-          content = _popupConfig$popupTyp6.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        title: title,
-        subTitle: subTitle,
-        content: content,
-        canClose: canClose
-      });
-    } // 登录后游戏时长已达到上限时的提示
-
-  }, {
-    key: "showTimeLimitAfterLogin",
-    value: function showTimeLimitAfterLogin() {
-      var _popupConfig$popupTyp7 = config_popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenLogin],
-          title = _popupConfig$popupTyp7.title,
-          content = _popupConfig$popupTyp7.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        title: title,
-        content: content,
-        canClose: false,
-        noMask: true
-      });
-    } // 游戏中时长已达到上限时的提示
-
-  }, {
-    key: "showTimeLimitWhenPlaying",
-    value: function showTimeLimitWhenPlaying() {
-      var _popupConfig$popupTyp8 = config_popupConfig_popupConfig[popupConfig_popupType.gameTimeLimitWhenPlaying],
-          title = _popupConfig$popupTyp8.title,
-          subTitle = _popupConfig$popupTyp8.subTitle,
-          content = _popupConfig$popupTyp8.content;
-      popupView_setPopupData({
-        show: true,
-        className: className,
-        title: title,
-        subTitle: subTitle,
-        content: content,
-        canClose: false,
-        noMask: true
-      });
-    }
-    /**
-     * 根据check接口返回的状态码和年龄，来弹相应的弹窗提示
-     * @param {*} status 
-     * @param {*} ageLower 
-     */
-
-  }, {
-    key: "showTipByStatus",
-    value: function showTipByStatus(status, ageLower) {
-      var popupFuncMap = {
-        1: null,
-        2: {
-          0: this.showEight,
-          8: this.showSixteenCharge,
-          16: this.showEighteenCharge
-        },
-        3: {
-          0: this.showEight,
-          8: this.showSixteen,
-          16: this.showEighteen
-        }
-      };
-      var popupFunc = popupFuncMap[status][ageLower];
-
-      if (popupFunc) {
-        popupFunc();
-      }
-    }
-  }], [{
+var lobby_lobbyView = /*#__PURE__*/function () {
+  createClass_default()(lobbyView, null, [{
     key: "Instance",
     get: function get() {
       if (!this._instance) {
-        this._instance = new popupView();
+        this._instance = new lobbyView();
       }
 
       return this._instance;
     }
   }]);
 
-  return popupView;
-}();
-
-/* harmony default export */ var view_popupView = (popupView_popupView);
-// CONCATENATED MODULE: ./src/real-name-pc/view/lobbyView.js
-
-
-
-/**
- * @description: 大厅支付的提示视图
- */
-
-
-var lobbyView_storeHelperInstance = utils_storeHelper.Instance; // 通知名称
-
-var lobbyView_NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
-
-var lobbyView_setLobbyData = function setLobbyData(data) {
-  return lobbyView_storeHelperInstance.setLobbyData(data);
-};
-
-var lobbyView_lobbyView = /*#__PURE__*/function () {
   function lobbyView() {
     classCallCheck_default()(this, lobbyView);
-  }
+  } // 未成年人在禁止充值时间段内，且未开启年龄段限制
+
 
   createClass_default()(lobbyView, [{
     key: "showNonage",
-    // 未成年人在禁止充值时间段内，且未开启年龄段限制
     value: function showNonage() {
-      var _popupConfig$popupTyp = config_popupConfig_popupConfig[popupConfig_popupType.nonageForbidCharge],
-          className = _popupConfig$popupTyp.className,
-          content = _popupConfig$popupTyp.content;
-      lobbyView_setLobbyData({
+      var _tips$tipType$nonageF = tips_tips[tipType_tipType.nonageForbidCharge],
+          className = _tips$tipType$nonageF.className,
+          content = _tips$tipType$nonageF.content;
+      lobby_setLobbyData({
         show: true,
         className: className,
         content: content
@@ -24375,13 +24389,13 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showEight",
     value: function showEight() {
-      var _popupConfig$popupTyp2 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight],
-          className = _popupConfig$popupTyp2.className,
-          title = _popupConfig$popupTyp2.title,
-          subTitle = _popupConfig$popupTyp2.subTitle,
-          content = _popupConfig$popupTyp2.content;
+      var _tips$tipType$ageLess = tips_tips[tipType_tipType.ageLessThanEight],
+          className = _tips$tipType$ageLess.className,
+          title = _tips$tipType$ageLess.title,
+          subTitle = _tips$tipType$ageLess.subTitle,
+          content = _tips$tipType$ageLess.content;
       var newTitle = "".concat(title, "\uFF0C").concat(subTitle);
-      lobbyView_setLobbyData({
+      lobby_setLobbyData({
         show: true,
         className: className,
         title: newTitle,
@@ -24392,30 +24406,30 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showSixteen",
     value: function showSixteen() {
-      var _popupConfig$popupTyp3 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen],
-          className = _popupConfig$popupTyp3.className,
-          title = _popupConfig$popupTyp3.title,
-          subTitle = _popupConfig$popupTyp3.subTitle,
-          content = _popupConfig$popupTyp3.content;
-      lobbyView_setLobbyData({
+      var _tips$tipType$ageLess2 = tips_tips[tipType_tipType.ageLessThanSixteen],
+          className = _tips$tipType$ageLess2.className,
+          title = _tips$tipType$ageLess2.title,
+          subTitle = _tips$tipType$ageLess2.subTitle,
+          content = _tips$tipType$ageLess2.content;
+      lobby_setLobbyData({
         show: true,
         className: className,
         title: '该月累计充值金额已达到上限，无法充值',
         subTitle: '每月累计充值不能超过200元',
-        content: "\u6839\u636E".concat(lobbyView_NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6708\u5145\u503C\u91D1\u989D\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
+        content: "\u6839\u636E".concat(lobby_NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6708\u5145\u503C\u91D1\u989D\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002")
       });
     } // 8~16周岁可充值，但充值金额达到上限的提示
 
   }, {
     key: "showSixteenCharge",
     value: function showSixteenCharge() {
-      var _popupConfig$popupTyp4 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge],
-          className = _popupConfig$popupTyp4.className,
-          title = _popupConfig$popupTyp4.title,
-          subTitle = _popupConfig$popupTyp4.subTitle,
-          content = _popupConfig$popupTyp4.content;
+      var _tips$tipType$ageLess3 = tips_tips[tipType_tipType.ageLessThanSixteenCharge],
+          className = _tips$tipType$ageLess3.className,
+          title = _tips$tipType$ageLess3.title,
+          subTitle = _tips$tipType$ageLess3.subTitle,
+          content = _tips$tipType$ageLess3.content;
       var newTitle = "".concat(title, "\uFF0C").concat(subTitle);
-      lobbyView_setLobbyData({
+      lobby_setLobbyData({
         show: true,
         className: className,
         title: newTitle,
@@ -24426,12 +24440,12 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showEighteen",
     value: function showEighteen() {
-      var _popupConfig$popupTyp5 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen],
-          className = _popupConfig$popupTyp5.className,
-          title = _popupConfig$popupTyp5.title,
-          subTitle = _popupConfig$popupTyp5.subTitle,
-          content = _popupConfig$popupTyp5.content;
-      lobbyView_setLobbyData({
+      var _tips$tipType$ageLess4 = tips_tips[tipType_tipType.ageLessThanEighteen],
+          className = _tips$tipType$ageLess4.className,
+          title = _tips$tipType$ageLess4.title,
+          subTitle = _tips$tipType$ageLess4.subTitle,
+          content = _tips$tipType$ageLess4.content;
+      lobby_setLobbyData({
         show: true,
         className: className,
         title: '该月累计充值金额已达到上限，无法充值',
@@ -24443,12 +24457,12 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showEighteenCharge",
     value: function showEighteenCharge() {
-      var _popupConfig$popupTyp6 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge],
-          className = _popupConfig$popupTyp6.className,
-          title = _popupConfig$popupTyp6.title,
-          subTitle = _popupConfig$popupTyp6.subTitle,
-          content = _popupConfig$popupTyp6.content;
-      lobbyView_setLobbyData({
+      var _tips$tipType$ageLess5 = tips_tips[tipType_tipType.ageLessThanEighteenCharge],
+          className = _tips$tipType$ageLess5.className,
+          title = _tips$tipType$ageLess5.title,
+          subTitle = _tips$tipType$ageLess5.subTitle,
+          content = _tips$tipType$ageLess5.content;
+      lobby_setLobbyData({
         show: true,
         className: className,
         title: "".concat(title, "\uFF0C").concat(subTitle),
@@ -24483,7 +24497,33 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
         popupFunc();
       }
     }
-  }], [{
+  }]);
+
+  return lobbyView;
+}();
+
+
+// CONCATENATED MODULE: ./src/sdk/view/lobbyMini/index.js
+
+
+
+/**
+ * @author: liuyang9
+ * @description: 大厅mini付的提示视图
+ */
+
+
+var lobbyMini_storeHelperInstance = utils_storeHelper.Instance;
+
+var lobbyMini_setLobbyMiniData = function setLobbyMiniData(data) {
+  return lobbyMini_storeHelperInstance.setLobbyMiniData(data);
+}; // 通知名称
+
+
+var lobbyMini_NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
+
+var lobbyMini_lobbyView = /*#__PURE__*/function () {
+  createClass_default()(lobbyView, null, [{
     key: "Instance",
     get: function get() {
       if (!this._instance) {
@@ -24494,41 +24534,18 @@ var lobbyView_lobbyView = /*#__PURE__*/function () {
     }
   }]);
 
-  return lobbyView;
-}();
-
-/* harmony default export */ var view_lobbyView = (lobbyView_lobbyView);
-// CONCATENATED MODULE: ./src/real-name-pc/view/lobbyMiniView.js
-
-
-
-/**
- * @description: 大厅的提示视图
- */
-
-
-var lobbyMiniView_storeHelperInstance = utils_storeHelper.Instance;
-
-var lobbyMiniView_setLobbyMiniData = function setLobbyMiniData(data) {
-  return lobbyMiniView_storeHelperInstance.setLobbyMiniData(data);
-}; // 通知名称
-
-
-var lobbyMiniView_NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
-
-var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
   function lobbyView() {
     classCallCheck_default()(this, lobbyView);
-  }
+  } // 未成年人在禁止充值时间段内，且未开启年龄段限制
+
 
   createClass_default()(lobbyView, [{
     key: "showNonage",
-    // 未成年人在禁止充值时间段内，且未开启年龄段限制
     value: function showNonage() {
-      var _popupConfig$popupTyp = config_popupConfig_popupConfig[popupConfig_popupType.nonageForbidCharge],
-          className = _popupConfig$popupTyp.className,
-          content = _popupConfig$popupTyp.content;
-      lobbyMiniView_setLobbyMiniData({
+      var _tips$tipType$nonageF = tips_tips[tipType_tipType.nonageForbidCharge],
+          className = _tips$tipType$nonageF.className,
+          content = _tips$tipType$nonageF.content;
+      lobbyMini_setLobbyMiniData({
         show: true,
         className: className,
         content: content
@@ -24538,13 +24555,13 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showEight",
     value: function showEight(callback) {
-      var _popupConfig$popupTyp2 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEight],
-          className = _popupConfig$popupTyp2.className,
-          title = _popupConfig$popupTyp2.title,
-          subTitle = _popupConfig$popupTyp2.subTitle,
-          content = _popupConfig$popupTyp2.content;
+      var _tips$tipType$ageLess = tips_tips[tipType_tipType.ageLessThanEight],
+          className = _tips$tipType$ageLess.className,
+          title = _tips$tipType$ageLess.title,
+          subTitle = _tips$tipType$ageLess.subTitle,
+          content = _tips$tipType$ageLess.content;
       var newTitle = "".concat(title, "\uFF0C").concat(subTitle);
-      lobbyMiniView_setLobbyMiniData({
+      lobbyMini_setLobbyMiniData({
         show: true,
         className: className,
         title: newTitle,
@@ -24556,17 +24573,17 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showSixteen",
     value: function showSixteen(callback) {
-      var _popupConfig$popupTyp3 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteen],
-          className = _popupConfig$popupTyp3.className,
-          title = _popupConfig$popupTyp3.title,
-          subTitle = _popupConfig$popupTyp3.subTitle,
-          content = _popupConfig$popupTyp3.content;
-      lobbyMiniView_setLobbyMiniData({
+      var _tips$tipType$ageLess2 = tips_tips[tipType_tipType.ageLessThanSixteen],
+          className = _tips$tipType$ageLess2.className,
+          title = _tips$tipType$ageLess2.title,
+          subTitle = _tips$tipType$ageLess2.subTitle,
+          content = _tips$tipType$ageLess2.content;
+      lobbyMini_setLobbyMiniData({
         show: true,
         className: className,
         title: '该月累计充值金额已达到上限，无法充值',
         subTitle: '每月累计充值不能超过200元',
-        content: "\u6839\u636E".concat(lobbyMiniView_NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6708\u5145\u503C\u91D1\u989D\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002"),
+        content: "\u6839\u636E".concat(lobbyMini_NoticeName, "\uFF0C8~16\u5468\u5C81\u7528\u6237\u5355\u6B21\u5145\u503C\u91D1\u989D\u4E0D\u5F97\u8D85\u8FC750\u5143\u4EBA\u6C11\u5E01\uFF0C\u6BCF\u6708\u5145\u503C\u91D1\u989D\u7D2F\u8BA1\u4E0D\u5F97\u8D85\u8FC7200\u5143\u4EBA\u6C11\u5E01\u3002"),
         onClickOk: callback
       });
     } // 8~16周岁可充值，但充值金额达到上限的提示
@@ -24574,13 +24591,13 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showSixteenCharge",
     value: function showSixteenCharge(callback) {
-      var _popupConfig$popupTyp4 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanSixteenCharge],
-          className = _popupConfig$popupTyp4.className,
-          title = _popupConfig$popupTyp4.title,
-          subTitle = _popupConfig$popupTyp4.subTitle,
-          content = _popupConfig$popupTyp4.content;
+      var _tips$tipType$ageLess3 = tips_tips[tipType_tipType.ageLessThanSixteenCharge],
+          className = _tips$tipType$ageLess3.className,
+          title = _tips$tipType$ageLess3.title,
+          subTitle = _tips$tipType$ageLess3.subTitle,
+          content = _tips$tipType$ageLess3.content;
       var newTitle = "".concat(title, "\uFF0C").concat(subTitle);
-      lobbyMiniView_setLobbyMiniData({
+      lobbyMini_setLobbyMiniData({
         show: true,
         className: className,
         title: newTitle,
@@ -24592,12 +24609,12 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showEighteen",
     value: function showEighteen(callback) {
-      var _popupConfig$popupTyp5 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteen],
-          className = _popupConfig$popupTyp5.className,
-          title = _popupConfig$popupTyp5.title,
-          subTitle = _popupConfig$popupTyp5.subTitle,
-          content = _popupConfig$popupTyp5.content;
-      lobbyMiniView_setLobbyMiniData({
+      var _tips$tipType$ageLess4 = tips_tips[tipType_tipType.ageLessThanEighteen],
+          className = _tips$tipType$ageLess4.className,
+          title = _tips$tipType$ageLess4.title,
+          subTitle = _tips$tipType$ageLess4.subTitle,
+          content = _tips$tipType$ageLess4.content;
+      lobbyMini_setLobbyMiniData({
         show: true,
         className: className,
         title: '该月累计充值金额已达到上限，无法充值',
@@ -24610,12 +24627,12 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
   }, {
     key: "showEighteenCharge",
     value: function showEighteenCharge(callback) {
-      var _popupConfig$popupTyp6 = config_popupConfig_popupConfig[popupConfig_popupType.ageLessThanEighteenCharge],
-          className = _popupConfig$popupTyp6.className,
-          title = _popupConfig$popupTyp6.title,
-          subTitle = _popupConfig$popupTyp6.subTitle,
-          content = _popupConfig$popupTyp6.content;
-      lobbyMiniView_setLobbyMiniData({
+      var _tips$tipType$ageLess5 = tips_tips[tipType_tipType.ageLessThanEighteenCharge],
+          className = _tips$tipType$ageLess5.className,
+          title = _tips$tipType$ageLess5.title,
+          subTitle = _tips$tipType$ageLess5.subTitle,
+          content = _tips$tipType$ageLess5.content;
+      lobbyMini_setLobbyMiniData({
         show: true,
         className: className,
         title: "".concat(title, "\uFF0C").concat(subTitle),
@@ -24654,23 +24671,13 @@ var lobbyMiniView_lobbyView = /*#__PURE__*/function () {
         popupFunc(onClickOk);
       }
     }
-  }], [{
-    key: "Instance",
-    get: function get() {
-      if (!this._instance) {
-        this._instance = new lobbyView();
-      }
-
-      return this._instance;
-    }
   }]);
 
   return lobbyView;
 }();
 
-/* harmony default export */ var lobbyMiniView = (lobbyMiniView_lobbyView);
-// CONCATENATED MODULE: ./src/real-name-pc/view/index.js
 
+// CONCATENATED MODULE: ./src/sdk/view/index.js
 
 
 
@@ -24817,35 +24824,36 @@ var fetchMgFcm_fetchMgFcm = function fetchMgFcm(_ref) {
 
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/data/realNameData.js
+// CONCATENATED MODULE: ./src/sdk/data/h5Platform/index.js
 
 
 
+/**
+ * @author: liuyang9
+ * @description: h5联运平台防沉迷的数据层
+ */
 
-var realNameData_paramsInstance = utils_paramsHelper.Instance;
+
+var h5Platform_paramsInstance = utils_paramsHelper.Instance;
 var modelDataInstance = utils_modelData.Instance;
-var realNameData_logInstance = utils_logHelper.Instance;
+var h5Platform_logInstance = utils_logHelper.Instance;
 
-var realNameData_realNameData = /*#__PURE__*/function () {
-  function realNameData() {
-    classCallCheck_default()(this, realNameData);
-  }
-  /**
-   * 获取实名信息
-   * @param {*} param0 
-   */
+var h5Platform_h5PlatformData = /*#__PURE__*/function () {
+  createClass_default()(h5PlatformData, null, [{
+    key: "fetchRealName",
 
-
-  createClass_default()(realNameData, null, [{
-    key: "fetch",
-    value: function fetch(_ref) {
+    /**
+     * 获取实名信息
+     * @param {*} param0 
+     */
+    value: function fetchRealName(_ref) {
       var appkey = _ref.appkey,
           qids = _ref.qids,
           platform = _ref.platform,
           idcard_check_type = _ref.idcard_check_type;
       return new Promise(function (resolve, reject) {
         // 验证参数是否合法
-        var pass = realNameData_paramsInstance.validateKeys({
+        var pass = h5Platform_paramsInstance.validateKeys({
           appkey: appkey,
           qids: qids,
           platform: platform,
@@ -24877,7 +24885,7 @@ var realNameData_realNameData = /*#__PURE__*/function () {
       var amount = _ref2.amount,
           gkey = _ref2.gkey;
       return new Promise(function (resolve, reject) {
-        var pass = realNameData_paramsInstance.validateKeys({
+        var pass = h5Platform_paramsInstance.validateKeys({
           amount: amount,
           gkey: gkey
         });
@@ -24907,44 +24915,45 @@ var realNameData_realNameData = /*#__PURE__*/function () {
         modelDataInstance.setRealNameData(res.open_check_auth);
         modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
       } catch (error) {
-        realNameData_logInstance.error('存储金额验证结果信息时出现异常', error);
+        h5Platform_logInstance.error('存储金额验证结果信息时出现异常', error);
       }
     }
   }]);
 
-  return realNameData;
+  function h5PlatformData() {
+    classCallCheck_default()(this, h5PlatformData);
+  }
+
+  return h5PlatformData;
 }();
 
-/* harmony default export */ var data_realNameData = (realNameData_realNameData);
-// CONCATENATED MODULE: ./src/real-name-pc/data/lobbyMiniData.js
+
+// CONCATENATED MODULE: ./src/sdk/data/lobbyMini/index.js
 
 
 
 /**
- * @description: 大厅mini付需要的相关数据
+ * @author: liuyang9
+ * @description: 大厅mini付防沉迷的数据层
  */
 
 
-var lobbyMiniData_paramsInstance = utils_paramsHelper.Instance;
+var lobbyMini_paramsInstance = utils_paramsHelper.Instance;
 
-var lobbyMiniData_lobbyMiniData = /*#__PURE__*/function () {
-  function lobbyMiniData() {
-    classCallCheck_default()(this, lobbyMiniData);
-  }
-  /**
-   * 验证是否允许充值
-   * @param {*} param0 
-   */
-
-
+var lobbyMini_lobbyMiniData = /*#__PURE__*/function () {
   createClass_default()(lobbyMiniData, null, [{
     key: "checkCharge",
+
+    /**
+     * 验证是否允许充值
+     * @param {*} param0 
+     */
     value: function checkCharge(_ref) {
       var gkey = _ref.gkey,
           exts = _ref.exts;
       return new Promise(function (resolve, reject) {
         // 验证参数是否合法
-        var pass = lobbyMiniData_paramsInstance.validateKeys({
+        var pass = lobbyMini_paramsInstance.validateKeys({
           gkey: gkey,
           exts: exts
         });
@@ -24966,31 +24975,32 @@ var lobbyMiniData_lobbyMiniData = /*#__PURE__*/function () {
     }
   }]);
 
+  function lobbyMiniData() {
+    classCallCheck_default()(this, lobbyMiniData);
+  }
+
   return lobbyMiniData;
 }();
 
-/* harmony default export */ var data_lobbyMiniData = (lobbyMiniData_lobbyMiniData);
-// CONCATENATED MODULE: ./src/real-name-pc/data/index.js
+
+// CONCATENATED MODULE: ./src/sdk/data/index.js
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/handler/unRealNameHandler.js
+// CONCATENATED MODULE: ./src/sdk/handler/h5Platform/unRealNameHandler.js
 
 
 
 /**
+ * @author: liuyang9
  * @description: 实名状态为未实名时的处理器
  */
 
 
 
-var realNameViewInstance = view_realNameView.Instance;
+var realNameViewInstance = realNameView_realNameView.Instance;
 var unRealNameHandler_logInstance = utils_logHelper.Instance;
 
 var unRealNameHandler_unRealNameHandler = /*#__PURE__*/function () {
-  function unRealNameHandler() {
-    classCallCheck_default()(this, unRealNameHandler);
-  }
-
   createClass_default()(unRealNameHandler, null, [{
     key: "exec",
     value: function exec() {
@@ -25000,13 +25010,13 @@ var unRealNameHandler_unRealNameHandler = /*#__PURE__*/function () {
           canClose = _ref.canClose;
 
       unRealNameHandler_logInstance.log('未实名');
-      var appkey = config_paramsConfig.appkey;
-      var qid = config_paramsConfig.qid;
-      var platform = config_paramsConfig.platform;
-      var idcard_check_type = config_paramsConfig.idcard_check_type;
-      var onClose = config_eventConfig.onCloseRealName;
-      var onSubmitSuccess = config_eventConfig.onSubmitSuccess;
-      var onSubmitError = config_eventConfig.onSubmitError;
+      var appkey = paramsConfig_paramsConfig.appkey;
+      var qid = paramsConfig_paramsConfig.qid;
+      var platform = paramsConfig_paramsConfig.platform;
+      var idcard_check_type = paramsConfig_paramsConfig.idcard_check_type;
+      var onClose = eventConfig_eventConfig.onCloseRealName;
+      var onSubmitSuccess = eventConfig_eventConfig.onSubmitSuccess;
+      var onSubmitError = eventConfig_eventConfig.onSubmitError;
       realNameViewInstance.showRealName({
         appkey: appkey,
         qid: qid,
@@ -25020,28 +25030,29 @@ var unRealNameHandler_unRealNameHandler = /*#__PURE__*/function () {
     }
   }]);
 
+  function unRealNameHandler() {
+    classCallCheck_default()(this, unRealNameHandler);
+  }
+
   return unRealNameHandler;
 }();
 
-/* harmony default export */ var handler_unRealNameHandler = (unRealNameHandler_unRealNameHandler);
-// CONCATENATED MODULE: ./src/real-name-pc/handler/nonageHandler.js
+
+// CONCATENATED MODULE: ./src/sdk/handler/h5Platform/nonageHandler.js
 
 
 
 /**
+ * @author: liuyang9
  * @description: 实名状态为未成年时的处理器
  */
 
 
 var nonageHandler_logInstance = utils_logHelper.Instance;
 var nonageHandler_modelDataInstance = utils_modelData.Instance;
-var popupViewInstance = view_popupView.Instance;
+var popupViewInstance = popupView_popupView.Instance;
 
 var nonageHandler_nonageHandler = /*#__PURE__*/function () {
-  function nonageHandler() {
-    classCallCheck_default()(this, nonageHandler);
-  }
-
   createClass_default()(nonageHandler, null, [{
     key: "exec",
     value: function exec() {
@@ -25072,25 +25083,26 @@ var nonageHandler_nonageHandler = /*#__PURE__*/function () {
     }
   }]);
 
+  function nonageHandler() {
+    classCallCheck_default()(this, nonageHandler);
+  }
+
   return nonageHandler;
 }();
 
-/* harmony default export */ var handler_nonageHandler = (nonageHandler_nonageHandler);
-// CONCATENATED MODULE: ./src/real-name-pc/handler/adultHandler.js
+
+// CONCATENATED MODULE: ./src/sdk/handler/h5Platform/adultHandler.js
 
 
 
 /**
+ * @author: liuyang9
  * @description: 实名状态为已成年时的处理器
  */
 
 var adultHandler_logInstance = utils_logHelper.Instance;
 
 var adultHandler_adultHandler = /*#__PURE__*/function () {
-  function adultHandler() {
-    classCallCheck_default()(this, adultHandler);
-  }
-
   createClass_default()(adultHandler, null, [{
     key: "exec",
     value: function exec() {
@@ -25098,65 +25110,71 @@ var adultHandler_adultHandler = /*#__PURE__*/function () {
     }
   }]);
 
+  function adultHandler() {
+    classCallCheck_default()(this, adultHandler);
+  }
+
   return adultHandler;
 }();
 
-/* harmony default export */ var handler_adultHandler = (adultHandler_adultHandler);
-// CONCATENATED MODULE: ./src/real-name-pc/handler/statusHandler.js
+
+// CONCATENATED MODULE: ./src/sdk/handler/h5Platform/index.js
 
 
 
 /**
+ * @author: liuyang9
  * @description: 根据用户的实名状态，返回相应的处理器
  */
 
 
 
 
-var statusHandler_modelDataInstance = utils_modelData.Instance;
-var statusHandler_logInstance = utils_logHelper.Instance;
+var h5Platform_modelDataInstance = utils_modelData.Instance;
+var handler_h5Platform_logInstance = utils_logHelper.Instance;
 
-var statusHandler_statusHandler = /*#__PURE__*/function () {
-  function statusHandler() {
-    classCallCheck_default()(this, statusHandler);
-  }
-  /**
-   * 根据用户的实名状态，获取相应的处理器
-   */
-
-
-  createClass_default()(statusHandler, null, [{
+var h5Platform_h5PlatformHandler = /*#__PURE__*/function () {
+  createClass_default()(h5PlatformHandler, null, [{
     key: "getHandler",
+
+    /**
+     * 根据用户的实名状态，获取相应的处理器
+     */
     value: function getHandler() {
-      var status = statusHandler_modelDataInstance.getRealNameStatus();
+      var status = h5Platform_modelDataInstance.getRealNameStatus();
 
       if (['0', '1', '2'].indexOf(status) === -1) {
-        statusHandler_logInstance.error('用户的实名状态参数异常');
+        handler_h5Platform_logInstance.error('用户的实名状态参数异常');
         return null;
       }
 
-      if (!statusHandler_modelDataInstance.needCheckRealName()) {
+      if (!h5Platform_modelDataInstance.needCheckRealName()) {
         return null;
       }
 
       var statusMap = {
-        '0': handler_unRealNameHandler,
-        '1': handler_nonageHandler,
-        '2': handler_adultHandler
+        '0': unRealNameHandler_unRealNameHandler,
+        '1': nonageHandler_nonageHandler,
+        '2': adultHandler_adultHandler
       };
       return statusMap[status];
     }
   }]);
 
-  return statusHandler;
+  function h5PlatformHandler() {
+    classCallCheck_default()(this, h5PlatformHandler);
+  }
+
+  return h5PlatformHandler;
 }();
 
-/* harmony default export */ var handler_statusHandler = (statusHandler_statusHandler);
-// CONCATENATED MODULE: ./src/real-name-pc/handler/lobbyMini/allowChargeHandler.js
+
+// CONCATENATED MODULE: ./src/sdk/handler/lobbyMini/allowChargeHandler.js
 
 
 
 /**
+ * @author: liuyang9
  * @description: 允许充值的处理器
  */
 
@@ -25177,17 +25195,18 @@ var allowChargeHandler_allowChargeHandler = /*#__PURE__*/function () {
   return allowChargeHandler;
 }();
 
-/* harmony default export */ var lobbyMini_allowChargeHandler = (allowChargeHandler_allowChargeHandler);
-// CONCATENATED MODULE: ./src/real-name-pc/handler/lobbyMini/forbidChargeHandler.js
+
+// CONCATENATED MODULE: ./src/sdk/handler/lobbyMini/forbidChargeHandler.js
 
 
 
 /**
+ * @author: liuyang9
  * @description: 禁止充值的处理器
  */
 
 
-var lobbyMiniViewInstance = lobbyMiniView.Instance;
+var lobbyMiniViewInstance = lobbyMini_lobbyView.Instance;
 var forbidChargeHandler_logInstance = utils_logHelper.Instance;
 
 var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
@@ -25216,12 +25235,13 @@ var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
   return forbidChargeHandler;
 }();
 
-/* harmony default export */ var lobbyMini_forbidChargeHandler = (forbidChargeHandler_forbidChargeHandler);
-// CONCATENATED MODULE: ./src/real-name-pc/handler/lobbyMini/index.js
+
+// CONCATENATED MODULE: ./src/sdk/handler/lobbyMini/index.js
 
 
 
 /**
+ * @author: liuyang9
  * @description: 根据充值状态，返回相应的处理器
  */
 
@@ -25230,16 +25250,12 @@ var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
 var lobbyMini_logInstance = utils_logHelper.Instance;
 
 var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
-  function lobbyMiniHandler() {
-    classCallCheck_default()(this, lobbyMiniHandler);
-  }
-  /**
-   * 根据充值状态，获取相应的处理器
-   */
-
-
   createClass_default()(lobbyMiniHandler, null, [{
     key: "getHandler",
+
+    /**
+     * 根据充值状态，获取相应的处理器
+     */
     value: function getHandler(_ref) {
       var status = _ref.status,
           age = _ref.age;
@@ -25250,36 +25266,41 @@ var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
       }
 
       if (status === 1) {
-        return new lobbyMini_allowChargeHandler();
+        return new allowChargeHandler_allowChargeHandler();
       }
 
-      return new lobbyMini_forbidChargeHandler({
+      return new forbidChargeHandler_forbidChargeHandler({
         status: status,
         age: age
       });
     }
   }]);
 
+  function lobbyMiniHandler() {
+    classCallCheck_default()(this, lobbyMiniHandler);
+  }
+
   return lobbyMiniHandler;
 }();
 
-/* harmony default export */ var handler_lobbyMini = (lobbyMini_lobbyMiniHandler);
-// CONCATENATED MODULE: ./src/real-name-pc/handler/index.js
+
+// CONCATENATED MODULE: ./src/sdk/handler/index.js
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/features/domHelper.js
+// CONCATENATED MODULE: ./src/sdk/features/domHelper.js
 
 
+
+/**
+ * @author: liuyang9
+ * @description: 创建sdk相关容器的dom操作
+ */
 
 
 var domHelper_domHelper = /*#__PURE__*/function () {
-  function domHelper() {
-    classCallCheck_default()(this, domHelper);
-  } // 获取容器元素
-
-
   createClass_default()(domHelper, null, [{
     key: "getContainerElement",
+    // 获取容器元素
     value: function getContainerElement(containerId) {
       var result;
 
@@ -25301,13 +25322,13 @@ var domHelper_domHelper = /*#__PURE__*/function () {
   }, {
     key: "createSdkElement",
     value: function createSdkElement() {
-      return this.createElement(config_ids.sdkId);
+      return this.createElement(ids_ids.sdkId);
     } // 创建sdk-modal元素
 
   }, {
     key: "createSdkModalElement",
     value: function createSdkModalElement() {
-      return this.createElement(config_ids.sdkModalId);
+      return this.createElement(ids_ids.sdkModalId);
     }
     /**
      * 初始化sdk元素
@@ -25335,11 +25356,15 @@ var domHelper_domHelper = /*#__PURE__*/function () {
     }
   }]);
 
+  function domHelper() {
+    classCallCheck_default()(this, domHelper);
+  }
+
   return domHelper;
 }();
 
-/* harmony default export */ var features_domHelper = (domHelper_domHelper);
-// CONCATENATED MODULE: ./src/real-name-pc/features/realName.js
+
+// CONCATENATED MODULE: ./src/sdk/features/h5Platform/index.js
 
 
 
@@ -25347,7 +25372,7 @@ var domHelper_domHelper = /*#__PURE__*/function () {
 
 /**
  * author: liuyang9
- * description: PC端实名认证
+ * description: h5联运平台的防沉迷
  */
 
 
@@ -25355,19 +25380,19 @@ var domHelper_domHelper = /*#__PURE__*/function () {
 
 
 
-var realName_realNameViewInstance = view_realNameView.Instance;
-var realName_popupViewInstance = view_popupView.Instance;
-var realName_paramsInstance = utils_paramsHelper.Instance;
-var realName_storeHelperInstance = utils_storeHelper.Instance;
+var h5Platform_realNameViewInstance = realNameView_realNameView.Instance;
+var h5Platform_popupViewInstance = popupView_popupView.Instance;
+var features_h5Platform_paramsInstance = utils_paramsHelper.Instance;
+var h5Platform_storeHelperInstance = utils_storeHelper.Instance;
 
-var realName_realName = /*#__PURE__*/function () {
-  createClass_default()(realName, null, [{
+var h5Platform_h5Platform = /*#__PURE__*/function () {
+  createClass_default()(h5Platform, null, [{
     key: "Instance",
     value: function Instance(_ref) {
       var containerId = _ref.containerId;
 
       if (!this._instance) {
-        this._instance = new realName({
+        this._instance = new h5Platform({
           containerId: containerId
         });
       }
@@ -25376,26 +25401,26 @@ var realName_realName = /*#__PURE__*/function () {
     }
   }]);
 
-  function realName(_ref2) {
+  function h5Platform(_ref2) {
     var containerId = _ref2.containerId;
 
-    classCallCheck_default()(this, realName);
+    classCallCheck_default()(this, h5Platform);
 
     this.init({
       containerId: containerId
     });
   }
 
-  createClass_default()(realName, [{
+  createClass_default()(h5Platform, [{
     key: "init",
     value: function init(_ref3) {
       var containerId = _ref3.containerId;
-      realName_storeHelperInstance.updateGlobalData({
-        feature: config_features.h5Platform
+      h5Platform_storeHelperInstance.updateGlobalData({
+        feature: features_features.h5Platform
       });
-      features_domHelper.initSdkElement(containerId);
-      features_domHelper.initSdkModalElement(containerId);
-      view_appView.renderApp();
+      domHelper_domHelper.initSdkElement(containerId);
+      domHelper_domHelper.initSdkModalElement(containerId);
+      app_appView.renderApp();
     } // 配置一些参数和事件
 
   }, {
@@ -25409,7 +25434,7 @@ var realName_realName = /*#__PURE__*/function () {
           onSubmitSuccess = _ref4.onSubmitSuccess,
           onSubmitError = _ref4.onSubmitError;
       // 验证参数是否合法
-      var pass = realName_paramsInstance.validateRealNameParams({
+      var pass = features_h5Platform_paramsInstance.validateRealNameParams({
         appkey: appkey,
         qid: qid,
         platform: platform,
@@ -25421,14 +25446,14 @@ var realName_realName = /*#__PURE__*/function () {
       } // 参数配置
 
 
-      config_paramsConfig.appkey = appkey;
-      config_paramsConfig.qid = qid;
-      config_paramsConfig.platform = platform;
-      config_paramsConfig.idcard_check_type = idcard_check_type; // 事件配置
+      paramsConfig_paramsConfig.appkey = appkey;
+      paramsConfig_paramsConfig.qid = qid;
+      paramsConfig_paramsConfig.platform = platform;
+      paramsConfig_paramsConfig.idcard_check_type = idcard_check_type; // 事件配置
 
-      config_eventConfig.onCloseRealName = onCloseRealName;
-      config_eventConfig.onSubmitSuccess = onSubmitSuccess;
-      config_eventConfig.onSubmitError = onSubmitError;
+      eventConfig_eventConfig.onCloseRealName = onCloseRealName;
+      eventConfig_eventConfig.onSubmitSuccess = onSubmitSuccess;
+      eventConfig_eventConfig.onSubmitError = onSubmitError;
     } // 未成年人在禁止充值时间段内，且未开启年龄段限制
 
   }, {
@@ -25439,7 +25464,7 @@ var realName_realName = /*#__PURE__*/function () {
       },
           canClose = _ref5.canClose;
 
-      realName_popupViewInstance.showNonage({
+      h5Platform_popupViewInstance.showNonage({
         canClose: canClose
       });
     } // 年龄小于8周岁的提示
@@ -25452,7 +25477,7 @@ var realName_realName = /*#__PURE__*/function () {
       },
           canClose = _ref6.canClose;
 
-      realName_popupViewInstance.showEight({
+      h5Platform_popupViewInstance.showEight({
         canClose: canClose
       });
     } // 8~16周岁不可充值，充值已达到上限的提示
@@ -25465,7 +25490,7 @@ var realName_realName = /*#__PURE__*/function () {
       },
           canClose = _ref7.canClose;
 
-      realName_popupViewInstance.showSixteen({
+      h5Platform_popupViewInstance.showSixteen({
         canClose: canClose
       });
     } // 8~16周岁可充值，但充值金额达到上限的提示
@@ -25478,7 +25503,7 @@ var realName_realName = /*#__PURE__*/function () {
       },
           canClose = _ref8.canClose;
 
-      realName_popupViewInstance.showSixteenCharge({
+      h5Platform_popupViewInstance.showSixteenCharge({
         canClose: canClose
       });
     } // 16~18周岁不可充值，充值已达到上限的提示
@@ -25491,7 +25516,7 @@ var realName_realName = /*#__PURE__*/function () {
       },
           canClose = _ref9.canClose;
 
-      realName_popupViewInstance.showEighteen({
+      h5Platform_popupViewInstance.showEighteen({
         canClose: canClose
       });
     } // 16~18周岁可充值，但充值金额已达到上限的提示
@@ -25504,7 +25529,7 @@ var realName_realName = /*#__PURE__*/function () {
       },
           canClose = _ref10.canClose;
 
-      realName_popupViewInstance.showEighteenCharge({
+      h5Platform_popupViewInstance.showEighteenCharge({
         canClose: canClose
       });
     } // 登录后游戏时长已达到上限时的提示
@@ -25512,19 +25537,19 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "showTimeLimitAfterLogin",
     value: function showTimeLimitAfterLogin() {
-      realName_popupViewInstance.showTimeLimitAfterLogin();
+      h5Platform_popupViewInstance.showTimeLimitAfterLogin();
     } // 游戏中时长已达到上限时的提示
 
   }, {
     key: "showTimeLimitWhenPlaying",
     value: function showTimeLimitWhenPlaying() {
-      realName_popupViewInstance.showTimeLimitWhenPlaying();
+      h5Platform_popupViewInstance.showTimeLimitWhenPlaying();
     } // 关闭弹窗
 
   }, {
     key: "close",
     value: function close() {
-      realName_popupViewInstance.closePopup();
+      h5Platform_popupViewInstance.closePopup();
     }
     /**
      * 显示实名认证
@@ -25535,14 +25560,14 @@ var realName_realName = /*#__PURE__*/function () {
     key: "showRealName",
     value: function showRealName(_ref11) {
       var canClose = _ref11.canClose;
-      var appkey = config_paramsConfig.appkey;
-      var qid = config_paramsConfig.qid;
-      var platform = config_paramsConfig.platform;
-      var idcard_check_type = config_paramsConfig.idcard_check_type;
-      var onClose = config_eventConfig.onCloseRealName;
-      var onSubmitSuccess = config_eventConfig.onSubmitSuccess;
-      var onSubmitError = config_eventConfig.onSubmitError;
-      realName_realNameViewInstance.showRealName({
+      var appkey = paramsConfig_paramsConfig.appkey;
+      var qid = paramsConfig_paramsConfig.qid;
+      var platform = paramsConfig_paramsConfig.platform;
+      var idcard_check_type = paramsConfig_paramsConfig.idcard_check_type;
+      var onClose = eventConfig_eventConfig.onCloseRealName;
+      var onSubmitSuccess = eventConfig_eventConfig.onSubmitSuccess;
+      var onSubmitError = eventConfig_eventConfig.onSubmitError;
+      h5Platform_realNameViewInstance.showRealName({
         appkey: appkey,
         qid: qid,
         platform: platform,
@@ -25557,7 +25582,7 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "closeRealName",
     value: function closeRealName() {
-      realName_realNameViewInstance.closeRealName();
+      h5Platform_realNameViewInstance.closeRealName();
     }
     /**
      * 获取实名信息
@@ -25566,11 +25591,11 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "fetchRealName",
     value: function fetchRealName() {
-      var appkey = config_paramsConfig.appkey;
-      var qids = config_paramsConfig.qid;
-      var platform = config_paramsConfig.platform;
-      var idcard_check_type = config_paramsConfig.idcard_check_type;
-      return data_realNameData.fetch({
+      var appkey = paramsConfig_paramsConfig.appkey;
+      var qids = paramsConfig_paramsConfig.qid;
+      var platform = paramsConfig_paramsConfig.platform;
+      var idcard_check_type = paramsConfig_paramsConfig.idcard_check_type;
+      return h5Platform_h5PlatformData.fetchRealName({
         appkey: appkey,
         qids: qids,
         platform: platform,
@@ -25595,7 +25620,7 @@ var realName_realName = /*#__PURE__*/function () {
               switch (_context.prev = _context.next) {
                 case 0:
                   _context.next = 2;
-                  return data_realNameData.checkAmount({
+                  return h5Platform_h5PlatformData.checkAmount({
                     amount: amount,
                     gkey: gkey
                   })["catch"](function (err) {
@@ -25613,7 +25638,7 @@ var realName_realName = /*#__PURE__*/function () {
                   return _context.abrupt("return");
 
                 case 5:
-                  handler = handler_statusHandler.getHandler();
+                  handler = h5Platform_h5PlatformHandler.getHandler();
                   resolve({
                     checkResult: res,
                     handler: handler
@@ -25634,24 +25659,24 @@ var realName_realName = /*#__PURE__*/function () {
     }
   }]);
 
-  return realName;
+  return h5Platform;
 }();
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/features/lobby.js
+// CONCATENATED MODULE: ./src/sdk/features/lobby/index.js
 
 
 
 /**
  * author: liuyang9
- * description: 大厅支付的相关提示
+ * description: 大厅支付的防沉迷
  */
 
 
 
 
-var lobbyViewInstance = view_lobbyView.Instance;
-var lobby_storeHelperInstance = utils_storeHelper.Instance;
+var lobbyViewInstance = lobby_lobbyView.Instance;
+var features_lobby_storeHelperInstance = utils_storeHelper.Instance;
 
 var lobby_lobby = /*#__PURE__*/function () {
   createClass_default()(lobby, null, [{
@@ -25683,11 +25708,11 @@ var lobby_lobby = /*#__PURE__*/function () {
     key: "init",
     value: function init(_ref3) {
       var containerId = _ref3.containerId;
-      lobby_storeHelperInstance.updateGlobalData({
-        feature: config_features.lobby
+      features_lobby_storeHelperInstance.updateGlobalData({
+        feature: features_features.lobby
       });
-      features_domHelper.initSdkElement(containerId);
-      view_appView.renderApp();
+      domHelper_domHelper.initSdkElement(containerId);
+      app_appView.renderApp();
     } // 年龄小于8周岁的提示
 
   }, {
@@ -25725,7 +25750,7 @@ var lobby_lobby = /*#__PURE__*/function () {
 }();
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/features/lobbyMini.js
+// CONCATENATED MODULE: ./src/sdk/features/lobbyMini/index.js
 
 
 
@@ -25733,7 +25758,7 @@ var lobby_lobby = /*#__PURE__*/function () {
 
 /**
  * author: liuyang9
- * description: 大厅mini付的相关提示
+ * description: 大厅mini付的防沉迷
  */
 
 
@@ -25741,8 +25766,8 @@ var lobby_lobby = /*#__PURE__*/function () {
 
 
 
-var lobbyMini_lobbyMiniViewInstance = lobbyMiniView.Instance;
-var lobbyMini_storeHelperInstance = utils_storeHelper.Instance;
+var lobbyMini_lobbyMiniViewInstance = lobbyMini_lobbyView.Instance;
+var features_lobbyMini_storeHelperInstance = utils_storeHelper.Instance;
 
 var lobbyMini_lobbyMini = /*#__PURE__*/function () {
   createClass_default()(lobbyMini, null, [{
@@ -25774,11 +25799,11 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
     key: "init",
     value: function init(_ref3) {
       var containerId = _ref3.containerId;
-      lobbyMini_storeHelperInstance.updateGlobalData({
-        feature: config_features.lobbyMini
+      features_lobbyMini_storeHelperInstance.updateGlobalData({
+        feature: features_features.lobbyMini
       });
-      features_domHelper.initSdkElement(containerId);
-      view_appView.renderApp();
+      domHelper_domHelper.initSdkElement(containerId);
+      app_appView.renderApp();
     } // 年龄小于8周岁的提示
 
   }, {
@@ -25824,7 +25849,7 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
               switch (_context.prev = _context.next) {
                 case 0:
                   _context.next = 2;
-                  return data_lobbyMiniData.checkCharge({
+                  return lobbyMini_lobbyMiniData.checkCharge({
                     gkey: gkey,
                     exts: exts
                   })["catch"](function (err) {
@@ -25842,7 +25867,7 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
                   return _context.abrupt("return");
 
                 case 5:
-                  handler = handler_lobbyMini.getHandler({
+                  handler = lobbyMini_lobbyMiniHandler.getHandler({
                     status: res.charge_status,
                     age: res.age
                   });
@@ -25870,36 +25895,41 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
 }();
 
 
-// CONCATENATED MODULE: ./src/real-name-pc/features/index.js
+// CONCATENATED MODULE: ./src/sdk/features/index.js
+
+
+
+
+/**
+ * @author: liuyang9
+ * @description: 获取feature对应的类
+ */
 
 
 
 
 
-
-
-
-var real_name_pc_features_features = /*#__PURE__*/function () {
-  function features() {
-    classCallCheck_default()(this, features);
-  } // 根据feature名称获取相应的class
-
-
+var sdk_features_features = /*#__PURE__*/function () {
   createClass_default()(features, null, [{
     key: "getFeatureClass",
+    // 根据feature名称获取相应的class
     value: function getFeatureClass(feature) {
       var _featuresMap;
 
-      var featuresMap = (_featuresMap = {}, defineProperty_default()(_featuresMap, config_features.h5Platform, realName_realName), defineProperty_default()(_featuresMap, config_features.lobby, lobby_lobby), defineProperty_default()(_featuresMap, config_features.lobbyMini, lobbyMini_lobbyMini), _featuresMap);
-      return featuresMap[feature] ? featuresMap[feature] : realName_realName;
+      var featuresMap = (_featuresMap = {}, defineProperty_default()(_featuresMap, features_features.h5Platform, h5Platform_h5Platform), defineProperty_default()(_featuresMap, features_features.lobby, lobby_lobby), defineProperty_default()(_featuresMap, features_features.lobbyMini, lobbyMini_lobbyMini), _featuresMap);
+      return featuresMap[feature] ? featuresMap[feature] : h5Platform_h5Platform;
     }
   }]);
+
+  function features() {
+    classCallCheck_default()(this, features);
+  }
 
   return features;
 }();
 
-/* harmony default export */ var real_name_pc_features = (real_name_pc_features_features);
-// CONCATENATED MODULE: ./src/real-name-pc/index.js
+
+// CONCATENATED MODULE: ./src/sdk/index.js
 
 
 
@@ -25909,11 +25939,7 @@ var real_name_pc_features_features = /*#__PURE__*/function () {
  */
 
 
-var real_name_pc_RealNamePc = /*#__PURE__*/function () {
-  function RealNamePc() {
-    classCallCheck_default()(this, RealNamePc);
-  }
-
+var sdk_RealNamePc = /*#__PURE__*/function () {
   createClass_default()(RealNamePc, null, [{
     key: "Instance",
     value: function Instance(_ref) {
@@ -25921,7 +25947,7 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
           containerId = _ref.containerId;
 
       if (!this._instance) {
-        var featureClass = real_name_pc_features.getFeatureClass(feature);
+        var featureClass = sdk_features_features.getFeatureClass(feature);
         this._instance = new featureClass({
           containerId: containerId
         });
@@ -25930,6 +25956,10 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
       return this._instance;
     }
   }]);
+
+  function RealNamePc() {
+    classCallCheck_default()(this, RealNamePc);
+  }
 
   return RealNamePc;
 }();
@@ -25948,18 +25978,48 @@ var real_name_pc_RealNamePc = /*#__PURE__*/function () {
 
 
 var src_RealNamePcSdk = /*#__PURE__*/function () {
+  createClass_default()(RealNamePcSdk, null, [{
+    key: "Instance",
+    // 获取单例
+    value: function Instance() {
+      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        feature: features_features.h5Platform,
+        containerId: null
+      },
+          feature = _ref.feature,
+          containerId = _ref.containerId;
+
+      if (!this._instance) {
+        this._instance = sdk_RealNamePc.Instance({
+          feature: feature,
+          containerId: containerId
+        });
+      }
+
+      return this._instance;
+    } // 获取所有的feature
+
+  }, {
+    key: "Features",
+    get: function get() {
+      var _ref2;
+
+      return _ref2 = {}, defineProperty_default()(_ref2, features_features.h5Platform, features_features.h5Platform), defineProperty_default()(_ref2, features_features.lobby, features_features.lobby), defineProperty_default()(_ref2, features_features.lobbyMini, features_features.lobbyMini), _ref2;
+    }
+  }]);
+
   function RealNamePcSdk() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      feature: config_features.h5Platform,
+    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      feature: features_features.h5Platform,
       containerId: null
     },
-        feature = _ref.feature,
-        containerId = _ref.containerId;
+        feature = _ref3.feature,
+        containerId = _ref3.containerId;
 
     classCallCheck_default()(this, RealNamePcSdk);
 
     if (!RealNamePcSdk._instance) {
-      RealNamePcSdk._instance = real_name_pc_RealNamePc.Instance({
+      RealNamePcSdk._instance = sdk_RealNamePc.Instance({
         feature: feature,
         containerId: containerId
       });
@@ -25967,38 +26027,6 @@ var src_RealNamePcSdk = /*#__PURE__*/function () {
 
     return RealNamePcSdk._instance;
   }
-  /**
-   * 获取单例
-   */
-
-
-  createClass_default()(RealNamePcSdk, null, [{
-    key: "Instance",
-    value: function Instance() {
-      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        feature: config_features.h5Platform,
-        containerId: null
-      },
-          feature = _ref2.feature,
-          containerId = _ref2.containerId;
-
-      if (!this._instance) {
-        this._instance = real_name_pc_RealNamePc.Instance({
-          feature: feature,
-          containerId: containerId
-        });
-      }
-
-      return this._instance;
-    }
-  }, {
-    key: "Features",
-    get: function get() {
-      var _ref3;
-
-      return _ref3 = {}, defineProperty_default()(_ref3, config_features.h5Platform, config_features.h5Platform), defineProperty_default()(_ref3, config_features.lobby, config_features.lobby), defineProperty_default()(_ref3, config_features.lobbyMini, config_features.lobbyMini), _ref3;
-    }
-  }]);
 
   return RealNamePcSdk;
 }();

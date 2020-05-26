@@ -1,4 +1,5 @@
 /**
+ * @author: liuyang9
  * @description: 禁止充值的处理器
  */
 
@@ -6,10 +7,9 @@ import { logHelper } from 'utils';
 import { lobbyMiniView } from 'sdk/view';
 
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
-
 const logInstance = logHelper.Instance;
 
-class forbidChargeHandler {
+export default class forbidChargeHandler {
   constructor({ status, age }) {
     this._status = status;
     this._age = age;
@@ -24,5 +24,3 @@ class forbidChargeHandler {
     });
   }
 }
-
-export default forbidChargeHandler;

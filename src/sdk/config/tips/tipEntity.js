@@ -1,9 +1,9 @@
 /**
  * @author: liuyang9
- * @description: 提示信息实体
+ * @description: 防沉迷提示信息实体
  */
 
-class tipEntity {
+export default class tipEntity {
   constructor({ className, title, subTitle, content }) {
     this._className = className;
     this._title = title;
@@ -27,5 +27,3 @@ class tipEntity {
     return this._content;
   }
 }
-
-export default tipEntity;

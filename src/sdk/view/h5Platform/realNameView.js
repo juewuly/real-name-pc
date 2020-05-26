@@ -1,4 +1,5 @@
 /**
+ * @author: liuyang9
  * @description: 实名认证视图 
  */
 
@@ -15,18 +16,15 @@ const paramsInstance = paramsHelper.Instance;
 
 const updateRealNameData = data => storeHelperInstance.updateRealNameData(data);
 
-class realNameView {
-  constructor() {
-
-  }
-
+export default class realNameView {
   static get Instance() {
     if (!this._instance) {
       this._instance = new realNameView();
     }
-
     return this._instance;
   }
+
+  constructor() { }
 
   // 关闭实名
   closeRealName() {
@@ -69,7 +67,4 @@ class realNameView {
       onSubmitSuccess: handleSubmitSuccess
     });
   }
-
 }
-
-export default realNameView;

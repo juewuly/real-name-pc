@@ -1,6 +1,8 @@
 /**
+ * @author: liuyang9
  * @description: 实名状态为未成年时的处理器
  */
+
 
 import { modelData, logHelper } from 'utils';
 import { popupView } from 'sdk/view';
@@ -9,11 +11,7 @@ const logInstance = logHelper.Instance;
 const modelDataInstance = modelData.Instance;
 const popupViewInstance = popupView.Instance;
 
-class nonageHandler {
-  constructor() {
-
-  }
-
+export default class nonageHandler {
   static exec() {
     logInstance.log('已实名，未成年');
 
@@ -38,6 +36,6 @@ class nonageHandler {
       popupViewInstance.showNonage();
     }
   }
-}
 
-export default nonageHandler;
+  constructor() { }
+}

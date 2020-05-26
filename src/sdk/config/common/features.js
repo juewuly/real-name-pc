@@ -4,8 +4,6 @@
  */
 
 export default class features {
-  constructor() { }
-
   // h5联运平台
   static get h5Platform() {
     return 'h5Platform';
@@ -20,4 +18,6 @@ export default class features {
   static get lobbyMini() {
     return 'lobbyMini';
   }
+
+  constructor() { }
 }

@@ -1,11 +1,12 @@
 /**
+ * @author: liuyang9
  * @description: 根据用户的实名状态，返回相应的处理器
  */
+
 
 import unRealNameHandler from './unRealNameHandler';
 import nonageHandler from './nonageHandler';
 import adultHandler from './adultHandler';
-
 
 import { 
   modelData,
@@ -15,12 +16,7 @@ import {
 const modelDataInstance = modelData.Instance;
 const logInstance = logHelper.Instance;
 
-
 export default class h5PlatformHandler {
-  constructor() {
-
-  }
-
   /**
    * 根据用户的实名状态，获取相应的处理器
    */
@@ -44,4 +40,6 @@ export default class h5PlatformHandler {
 
     return statusMap[status];
   }
+
+  constructor() { }
 }

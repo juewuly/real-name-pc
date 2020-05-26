@@ -1,3 +1,9 @@
+/**
+ * @author: liuyang9
+ * @description: sdk的入口页
+ */
+
+
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

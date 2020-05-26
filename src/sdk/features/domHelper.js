@@ -1,8 +1,12 @@
+/**
+ * @author: liuyang9
+ * @description: 创建sdk相关容器的dom操作
+ */
+
+
 import { ids } from 'sdk/config';
 
-class domHelper {
-  constructor() {}
-
+export default class domHelper {
   // 获取容器元素
   static getContainerElement(containerId) {
     let result;
@@ -49,6 +53,6 @@ class domHelper {
     const containerEle = this.getContainerElement(containerId);
     containerEle.appendChild(sdkModalEle);
   }
-}
 
-export default domHelper;
+  constructor() { }
+}

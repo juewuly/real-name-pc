@@ -1,3 +1,9 @@
+/**
+ * @author: liuyang9
+ * @description: 渲染sdk视图 
+ */
+
+
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -8,11 +14,7 @@ import App from './Home';
 
 const storeInstance = store.Instance;
 
-class appView {
-  constructor() {
-
-  }
-
+export default class appView {
   static renderApp() {
     render(
       <AppContainer>
@@ -30,6 +32,6 @@ class appView {
       });
     }
   }
-}
 
-export default appView;
+  constructor() { }
+}

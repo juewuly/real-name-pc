@@ -1,4 +1,5 @@
 /**
+ * @author: liuyang9
  * @description: 弹窗提示视图
  */
 
@@ -9,18 +10,15 @@ const storeHelperInstance = storeHelper.Instance;
 
 const setPopupData = data => storeHelperInstance.setPopupData(data);
 
-class popupView {
-  constructor() {
-
-  }
-
+export default class popupView {
   static get Instance() {
     if (!this._instance) {
       this._instance = new popupView();
     }
-
     return this._instance;
   }
+
+  constructor() { }
 
   // 关闭弹窗
   closePopup() {
@@ -156,5 +154,3 @@ class popupView {
     }
   }
 }
-
-export default popupView;

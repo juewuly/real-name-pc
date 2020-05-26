@@ -4,8 +4,6 @@
  */
 
 export default class eventConfig {
-  constructor() { }
-
   static set onCloseRealName(callback) {
     this._onCloseRealName = callback;
   }
@@ -29,4 +27,6 @@ export default class eventConfig {
   static get onSubmitError() {
     return this._onSubmitError;
   }
+
+  constructor() { }
 }
