@@ -2,7 +2,7 @@
  * @description: 弹窗提示视图
  */
 
-import { tips, tipType } from 'src/real-name-pc/config';
+import { tips, tipType } from 'sdk/config';
 import { storeHelper } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;

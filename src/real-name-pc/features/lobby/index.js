@@ -4,10 +4,10 @@
  */
 
 
-import { appView, lobbyView } from '../view';
+import { appView, lobbyView } from 'sdk/view';
+import { features } from 'sdk/config';
 import { storeHelper } from 'utils';
-import { features } from '../config';
-import domHelper from './domHelper';
+import domHelper from '../domHelper';
 
 const lobbyViewInstance = lobbyView.Instance;
 const storeHelperInstance = storeHelper.Instance;

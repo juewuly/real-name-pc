@@ -1,4 +1,4 @@
-import { ids } from '../config';
+import { ids } from 'sdk/config';
 
 class domHelper {
   constructor() {}

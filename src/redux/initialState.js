@@ -1,5 +1,5 @@
 import I from 'immutable';
-import { features } from '../real-name-pc/config';
+import { features } from 'sdk/config';
 
 const initialState = I.fromJS({
   global: {

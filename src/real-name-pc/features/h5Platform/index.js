@@ -4,11 +4,11 @@
  */
 
 
-import { appView, realNameView, popupView } from '../view';
-import { realNameData } from '../data';
-import { paramsConfig, eventConfig, ids, features } from '../config';
-import { statusHandler } from '../handler';
-import domHelper from './domHelper';
+import { appView, realNameView, popupView } from 'sdk/view';
+import { realNameData } from 'sdk/data';
+import { paramsConfig, eventConfig, features } from 'sdk/config';
+import { statusHandler } from 'sdk/handler';
+import domHelper from '../domHelper';
 
 import { 
   paramsHelper,

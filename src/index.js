@@ -3,8 +3,8 @@
  * description: 实名认证PC端sdk
  */
 
-import RealNamePc from './real-name-pc';
-import { features } from './real-name-pc/config';
+import RealNamePc from 'sdk';
+import { features } from 'sdk/config';
 
 export default class RealNamePcSdk {
   constructor({ feature, containerId } = { feature: features.h5Platform, containerId: null }) {

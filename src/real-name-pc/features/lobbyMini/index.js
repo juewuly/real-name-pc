@@ -4,13 +4,12 @@
  */
 
 
-import { appView, lobbyMiniView } from '../view';
-import { lobbyMiniData } from '../data';
-import { lobbyMiniHandler } from '../handler';
-import { ids, features } from '../config';
-import domHelper from './domHelper';
-
+import { appView, lobbyMiniView } from 'sdk/view';
+import { lobbyMiniData } from 'sdk/data';
+import { lobbyMiniHandler } from 'sdk/handler';
+import { features } from 'sdk/config';
 import { storeHelper } from 'utils';
+import domHelper from '../domHelper';
 
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
 const storeHelperInstance = storeHelper.Instance;

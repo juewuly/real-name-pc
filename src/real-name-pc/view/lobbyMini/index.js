@@ -1,8 +1,8 @@
 /**
- * @description: 大厅的提示视图
+ * @description: 大厅mini付的提示视图
  */
 
-import { tips, tipType } from 'src/real-name-pc/config';
+import { tips, tipType } from 'sdk/config';
 import { storeHelper } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;

@@ -95,11 +95,11 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      components: path.resolve(__dirname, './src/components'),
-      request: path.resolve(__dirname, './src/request'),
       src: path.resolve(__dirname, './src'),
       utils: path.resolve(__dirname, './src/utils'),
-      views: path.resolve(__dirname, './src/views'),
+      sdk: path.resolve(__dirname, './src/real-name-pc'),
+      components: path.resolve(__dirname, './src/components'),
+      request: path.resolve(__dirname, './src/request'),
     },
     mainFields: ['main'],
     // 在模块中添加 src, 当导入文件时，可以将 src 作为相关路径

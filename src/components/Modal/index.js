@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { ids } from 'src/real-name-pc/config';
+import { ids } from 'sdk/config';
 
 import './index.less';
 

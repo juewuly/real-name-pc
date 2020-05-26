@@ -3,7 +3,7 @@
  */
 
 import { logHelper } from 'utils';
-import { lobbyMiniView } from 'src/real-name-pc/view';
+import { lobbyMiniView } from 'sdk/view';
 
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
 

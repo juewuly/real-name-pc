@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import store from 'src/common/store';
+import { ids } from 'sdk/config';
 import App from './Home';
-import { ids } from 'src/real-name-pc/config';
 
 const storeInstance = store.Instance;
 

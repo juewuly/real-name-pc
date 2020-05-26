@@ -12,7 +12,7 @@ import {
   LobbyMiniContainer
 } from 'src/containers';
 
-import { features } from 'src/real-name-pc/config';
+import { features } from 'sdk/config';
 
 const Home = ({ feature, showRealName, showPopup }) => {
   const FeatureComponent = getFeatureComponent(feature);

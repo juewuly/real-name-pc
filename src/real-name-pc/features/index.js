@@ -1,7 +1,7 @@
-import h5Platform from './realName';
+import h5Platform from './h5Platform';
 import lobby from './lobby';
 import lobbyMini from './lobbyMini';
-import { features as featuresEnum } from '../config';
+import { features as featuresEnum } from 'sdk/config';
 
 class features {
   constructor() {}
