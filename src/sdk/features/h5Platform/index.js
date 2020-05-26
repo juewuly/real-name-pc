@@ -5,9 +5,9 @@
 
 
 import { appView, realNameView, popupView } from 'sdk/view';
-import { realNameData } from 'sdk/data';
+import { h5PlatformData } from 'sdk/data';
 import { paramsConfig, eventConfig, features } from 'sdk/config';
-import { statusHandler } from 'sdk/handler';
+import { h5PlatformHandler } from 'sdk/handler';
 import domHelper from '../domHelper';
 
 import { 
@@ -153,7 +153,7 @@ export default class realName {
     const qids = paramsConfig.qid;
     const platform = paramsConfig.platform;
     const idcard_check_type = paramsConfig.idcard_check_type;
-    return realNameData.fetch({ appkey, qids, platform, idcard_check_type });
+    return h5PlatformData.fetchRealName({ appkey, qids, platform, idcard_check_type });
   }
 
   /**
@@ -162,12 +162,12 @@ export default class realName {
    */
   checkAmount({ amount, gkey }) {
     return new Promise(async (resolve, reject) => {
-      const res = await realNameData.checkAmount({ amount, gkey }).catch(err => reject(err));
+      const res = await h5PlatformData.checkAmount({ amount, gkey }).catch(err => reject(err));
       if (!res) {
         return;
       }
       
-      const handler = statusHandler.getHandler()
+      const handler = h5PlatformHandler.getHandler()
       resolve({
         checkResult: res,
         handler

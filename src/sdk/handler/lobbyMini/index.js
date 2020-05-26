@@ -4,16 +4,11 @@
 
 import allowChargeHandler from './allowChargeHandler';
 import forbidChargeHandler from './forbidChargeHandler';
-
-
-import { 
-  logHelper
-} from 'utils';
+import { logHelper } from 'utils';
 
 const logInstance = logHelper.Instance;
 
-
-class lobbyMiniHandler {
+export default class lobbyMiniHandler {
   constructor() {
 
   }
@@ -35,5 +30,3 @@ class lobbyMiniHandler {
     return new forbidChargeHandler({ status, age });
   }
 }
-
-export default lobbyMiniHandler;

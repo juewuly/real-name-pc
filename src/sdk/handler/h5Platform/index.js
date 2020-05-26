@@ -16,7 +16,7 @@ const modelDataInstance = modelData.Instance;
 const logInstance = logHelper.Instance;
 
 
-class statusHandler {
+export default class h5PlatformHandler {
   constructor() {
 
   }
@@ -45,5 +45,3 @@ class statusHandler {
     return statusMap[status];
   }
 }
-
-export default statusHandler;

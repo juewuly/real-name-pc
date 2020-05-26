@@ -5,7 +5,7 @@ const paramsInstance = paramsHelper.Instance;
 const modelDataInstance = modelData.Instance;
 const logInstance = logHelper.Instance;
 
-class realNameData {
+export default  class h5PlatformData {
   constructor() {
 
   }
@@ -14,7 +14,7 @@ class realNameData {
    * 获取实名信息
    * @param {*} param0 
    */
-  static fetch({
+  static fetchRealName({
     appkey, 
     qids, 
     platform, 
@@ -66,5 +66,3 @@ class realNameData {
     }
   }
 }
-
-export default realNameData;

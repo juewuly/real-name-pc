@@ -3,7 +3,7 @@
  */
 
 import { modelData, logHelper } from 'utils';
-import { popupView } from '../view';
+import { popupView } from 'sdk/view';
 
 const logInstance = logHelper.Instance;
 const modelDataInstance = modelData.Instance;
