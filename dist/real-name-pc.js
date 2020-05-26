@@ -145,30 +145,6 @@ module.exports = $export;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (true) {
-  module.exports = __webpack_require__(363);
-} else {}
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 function _defineProperties(target, props) {
@@ -188,6 +164,30 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (true) {
+  module.exports = __webpack_require__(363);
+} else {}
+
 
 /***/ }),
 /* 4 */
@@ -8302,7 +8302,7 @@ var _interopRequireDefault = __webpack_require__(25);
 exports.__esModule = true;
 exports["default"] = exports.ReactReduxContext = void 0;
 
-var _react = _interopRequireDefault(__webpack_require__(1));
+var _react = _interopRequireDefault(__webpack_require__(3));
 
 var ReactReduxContext =
 /*#__PURE__*/
@@ -12662,7 +12662,7 @@ var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(
 
 var _hoistNonReactStatics = _interopRequireDefault(__webpack_require__(370));
 
-var _react = _interopRequireWildcard(__webpack_require__(1));
+var _react = _interopRequireWildcard(__webpack_require__(3));
 
 var _reactIs = __webpack_require__(151);
 
@@ -13036,7 +13036,7 @@ if (true) {
 exports.__esModule = true;
 exports.useIsomorphicLayoutEffect = void 0;
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 // React currently throws a warning when using useLayoutEffect on the server.
 // To get around it, we can conditionally useEffect on the server (no-op) and
@@ -13237,7 +13237,7 @@ exports.__esModule = true;
 exports.createStoreHook = createStoreHook;
 exports.useStore = void 0;
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 var _Context = __webpack_require__(48);
 
@@ -13296,7 +13296,7 @@ exports.useStore = useStore;
 exports.__esModule = true;
 exports.useReduxContext = useReduxContext;
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 var _Context = __webpack_require__(48);
 
@@ -18314,7 +18314,7 @@ exports.useLayoutEffect=function(a,b){return Z().useLayoutEffect(a,b)};exports.u
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),n=__webpack_require__(146),r=__webpack_require__(365);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
+var aa=__webpack_require__(3),n=__webpack_require__(146),r=__webpack_require__(365);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
 function ba(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}var da=!1,ea=null,fa=!1,ha=null,ia={onError:function(a){da=!0;ea=a}};function ja(a,b,c,d,e,f,g,h,k){da=!1;ea=null;ba.apply(ia,arguments)}function ka(a,b,c,d,e,f,g,h,k){ja.apply(this,arguments);if(da){if(da){var l=ea;da=!1;ea=null}else throw Error(u(198));fa||(fa=!0,ha=l)}}var la=null,ma=null,na=null;
 function oa(a,b,c){var d=a.type||"unknown-event";a.currentTarget=na(c);ka(d,b,void 0,a);a.currentTarget=null}var pa=null,qa={};
 function ra(){if(pa)for(var a in qa){var b=qa[a],c=pa.indexOf(a);if(!(-1<c))throw Error(u(96,a));if(!sa[c]){if(!b.extractEvents)throw Error(u(97,a));sa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;if(ta.hasOwnProperty(h))throw Error(u(99,h));ta[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ua(k[e],g,h);e=!0}else f.registrationName?(ua(f.registrationName,g,h),e=!0):e=!1;if(!e)throw Error(u(98,d,a));}}}}
@@ -18650,7 +18650,7 @@ var _interopRequireWildcard = __webpack_require__(147);
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _react = _interopRequireWildcard(__webpack_require__(1));
+var _react = _interopRequireWildcard(__webpack_require__(3));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(49));
 
@@ -19517,7 +19517,7 @@ exports.__esModule = true;
 exports.createSelectorHook = createSelectorHook;
 exports.useSelector = void 0;
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 var _useReduxContext2 = __webpack_require__(158);
 
@@ -21455,7 +21455,7 @@ module.exports = exports;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-function _interopDefault(e){return e&&"object"==typeof e&&"default"in e?e.default:e}Object.defineProperty(exports,"__esModule",{value:!0});var React=_interopDefault(__webpack_require__(1));function AppContainer(e){return AppContainer.warnAboutHMRDisabled&&(AppContainer.warnAboutHMRDisabled=!0,console.error("React-Hot-Loader: misconfiguration detected, using production version in non-production environment."),console.error("React-Hot-Loader: Hot Module Replacement is not enabled.")),React.Children.only(e.children)}AppContainer.warnAboutHMRDisabled=!1;var hot=function e(){return e.shouldWrapWithAppContainer?function(e){return function(n){return React.createElement(AppContainer,null,React.createElement(e,n))}}:function(e){return e}};hot.shouldWrapWithAppContainer=!1;var areComponentsEqual=function(e,n){return e===n},setConfig=function(){},cold=function(e){return e},configureComponent=function(){};exports.AppContainer=AppContainer,exports.hot=hot,exports.areComponentsEqual=areComponentsEqual,exports.setConfig=setConfig,exports.cold=cold,exports.configureComponent=configureComponent;
+function _interopDefault(e){return e&&"object"==typeof e&&"default"in e?e.default:e}Object.defineProperty(exports,"__esModule",{value:!0});var React=_interopDefault(__webpack_require__(3));function AppContainer(e){return AppContainer.warnAboutHMRDisabled&&(AppContainer.warnAboutHMRDisabled=!0,console.error("React-Hot-Loader: misconfiguration detected, using production version in non-production environment."),console.error("React-Hot-Loader: Hot Module Replacement is not enabled.")),React.Children.only(e.children)}AppContainer.warnAboutHMRDisabled=!1;var hot=function e(){return e.shouldWrapWithAppContainer?function(e){return function(n){return React.createElement(AppContainer,null,React.createElement(e,n))}}:function(e){return e}};hot.shouldWrapWithAppContainer=!1;var areComponentsEqual=function(e,n){return e===n},setConfig=function(){},cold=function(e){return e},configureComponent=function(){};exports.AppContainer=AppContainer,exports.hot=hot,exports.areComponentsEqual=areComponentsEqual,exports.setConfig=setConfig,exports.cold=cold,exports.configureComponent=configureComponent;
 
 
 /***/ }),
@@ -21478,7 +21478,7 @@ var classCallCheck = __webpack_require__(2);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/createClass.js
-var createClass = __webpack_require__(3);
+var createClass = __webpack_require__(1);
 var createClass_default = /*#__PURE__*/__webpack_require__.n(createClass);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
@@ -21490,7 +21490,7 @@ var asyncToGenerator = __webpack_require__(78);
 var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerator);
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(1);
+var react = __webpack_require__(3);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
@@ -21836,10 +21836,10 @@ var ids_ids = /*#__PURE__*/function () {
     key: "sdkId",
     get: function get() {
       return 'real-name-pc';
-    } // 遮罩层id
+    } // sdk遮罩层id
 
   }, {
-    key: "modalId",
+    key: "sdkModalId",
     get: function get() {
       return 'real-name-pc-modal';
     }
@@ -22336,6 +22336,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+
 var Modal_Modal = /*#__PURE__*/function (_React$Component) {
   inherits_default()(Modal, _React$Component);
 
@@ -22347,7 +22348,7 @@ var Modal_Modal = /*#__PURE__*/function (_React$Component) {
     classCallCheck_default()(this, Modal);
 
     _this = _super.call(this, props);
-    _this.modalRoot = document.getElementById('real-name-pc-modal');
+    _this.modalRoot = document.getElementById(config_ids.sdkModalId);
     var maskClassName = props.noMask ? 'modal-mask no-mask' : 'modal-mask';
     _this.mask = document.createElement('div');
 
@@ -25266,6 +25267,78 @@ var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
 // CONCATENATED MODULE: ./src/real-name-pc/handler/index.js
 
 
+// CONCATENATED MODULE: ./src/real-name-pc/features/domHelper.js
+
+
+
+
+var domHelper_domHelper = /*#__PURE__*/function () {
+  function domHelper() {
+    classCallCheck_default()(this, domHelper);
+  } // 获取容器元素
+
+
+  createClass_default()(domHelper, null, [{
+    key: "getContainerElement",
+    value: function getContainerElement(containerId) {
+      var result;
+
+      if (containerId) {
+        result = document.getElementById(containerId);
+      }
+
+      return result ? result : document.getElementsByTagName('body')[0];
+    } // 创建一个元素
+
+  }, {
+    key: "createElement",
+    value: function createElement(id) {
+      var result = document.createElement('div');
+      result.setAttribute('id', id);
+      return result;
+    } // 创建sdk元素
+
+  }, {
+    key: "createSdkElement",
+    value: function createSdkElement() {
+      return this.createElement(config_ids.sdkId);
+    } // 创建sdk-modal元素
+
+  }, {
+    key: "createSdkModalElement",
+    value: function createSdkModalElement() {
+      return this.createElement(config_ids.sdkModalId);
+    }
+    /**
+     * 初始化sdk元素
+     * @param {*} containerId 容器id
+     */
+
+  }, {
+    key: "initSdkElement",
+    value: function initSdkElement(containerId) {
+      var sdkEle = this.createSdkElement();
+      var containerEle = this.getContainerElement(containerId);
+      containerEle.appendChild(sdkEle);
+    }
+    /**
+     * 初始化sdk-modal元素
+     * @param {*} containerId 容器id
+     */
+
+  }, {
+    key: "initSdkModalElement",
+    value: function initSdkModalElement(containerId) {
+      var sdkModalEle = this.createSdkModalElement();
+      var containerEle = this.getContainerElement(containerId);
+      containerEle.appendChild(sdkModalEle);
+    }
+  }]);
+
+  return domHelper;
+}();
+
+/* harmony default export */ var features_domHelper = (domHelper_domHelper);
 // CONCATENATED MODULE: ./src/real-name-pc/features/realName.js
 
 
@@ -25281,14 +25354,30 @@ var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
 
 
 
+
 var realName_realNameViewInstance = view_realNameView.Instance;
 var realName_popupViewInstance = view_popupView.Instance;
 var realName_paramsInstance = utils_paramsHelper.Instance;
 var realName_storeHelperInstance = utils_storeHelper.Instance;
 
 var realName_realName = /*#__PURE__*/function () {
-  function realName(_ref) {
-    var containerId = _ref.containerId;
+  createClass_default()(realName, null, [{
+    key: "Instance",
+    value: function Instance(_ref) {
+      var containerId = _ref.containerId;
+
+      if (!this._instance) {
+        this._instance = new realName({
+          containerId: containerId
+        });
+      }
+
+      return this._instance;
+    }
+  }]);
+
+  function realName(_ref2) {
+    var containerId = _ref2.containerId;
 
     classCallCheck_default()(this, realName);
 
@@ -25299,42 +25388,26 @@ var realName_realName = /*#__PURE__*/function () {
 
   createClass_default()(realName, [{
     key: "init",
-    value: function init(_ref2) {
-      var containerId = _ref2.containerId;
-      var containerEle = this.getContainerElement(containerId);
+    value: function init(_ref3) {
+      var containerId = _ref3.containerId;
       realName_storeHelperInstance.updateGlobalData({
         feature: config_features.h5Platform
-      }); // 显示容器
-
-      this.root = document.createElement('div');
-      this.root.setAttribute('id', config_ids.sdkId); // 背景蒙层
-
-      this.modalRoot = document.createElement('div');
-      this.modalRoot.setAttribute('id', config_ids.modalId);
-      containerEle.appendChild(this.root);
-      containerEle.appendChild(this.modalRoot);
+      });
+      features_domHelper.initSdkElement(containerId);
+      features_domHelper.initSdkModalElement(containerId);
       view_appView.renderApp();
-    }
-  }, {
-    key: "getContainerElement",
-    value: function getContainerElement(containerId) {
-      if (containerId) {
-        return document.getElementById(containerId);
-      }
-
-      return document.getElementsByTagName('body')[0];
     } // 配置一些参数和事件
 
   }, {
     key: "config",
-    value: function config(_ref3) {
-      var appkey = _ref3.appkey,
-          qid = _ref3.qid,
-          platform = _ref3.platform,
-          idcard_check_type = _ref3.idcard_check_type,
-          onCloseRealName = _ref3.onCloseRealName,
-          onSubmitSuccess = _ref3.onSubmitSuccess,
-          onSubmitError = _ref3.onSubmitError;
+    value: function config(_ref4) {
+      var appkey = _ref4.appkey,
+          qid = _ref4.qid,
+          platform = _ref4.platform,
+          idcard_check_type = _ref4.idcard_check_type,
+          onCloseRealName = _ref4.onCloseRealName,
+          onSubmitSuccess = _ref4.onSubmitSuccess,
+          onSubmitError = _ref4.onSubmitError;
       // 验证参数是否合法
       var pass = realName_paramsInstance.validateRealNameParams({
         appkey: appkey,
@@ -25361,10 +25434,10 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "showNonage",
     value: function showNonage() {
-      var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          canClose = _ref4.canClose;
+          canClose = _ref5.canClose;
 
       realName_popupViewInstance.showNonage({
         canClose: canClose
@@ -25374,10 +25447,10 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "showEight",
     value: function showEight() {
-      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          canClose = _ref5.canClose;
+          canClose = _ref6.canClose;
 
       realName_popupViewInstance.showEight({
         canClose: canClose
@@ -25387,10 +25460,10 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "showSixteen",
     value: function showSixteen() {
-      var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          canClose = _ref6.canClose;
+          canClose = _ref7.canClose;
 
       realName_popupViewInstance.showSixteen({
         canClose: canClose
@@ -25400,10 +25473,10 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "showSixteenCharge",
     value: function showSixteenCharge() {
-      var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          canClose = _ref7.canClose;
+          canClose = _ref8.canClose;
 
       realName_popupViewInstance.showSixteenCharge({
         canClose: canClose
@@ -25413,10 +25486,10 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "showEighteen",
     value: function showEighteen() {
-      var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      var _ref9 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          canClose = _ref8.canClose;
+          canClose = _ref9.canClose;
 
       realName_popupViewInstance.showEighteen({
         canClose: canClose
@@ -25426,10 +25499,10 @@ var realName_realName = /*#__PURE__*/function () {
   }, {
     key: "showEighteenCharge",
     value: function showEighteenCharge() {
-      var _ref9 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      var _ref10 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         canClose: true
       },
-          canClose = _ref9.canClose;
+          canClose = _ref10.canClose;
 
       realName_popupViewInstance.showEighteenCharge({
         canClose: canClose
@@ -25460,8 +25533,8 @@ var realName_realName = /*#__PURE__*/function () {
 
   }, {
     key: "showRealName",
-    value: function showRealName(_ref10) {
-      var canClose = _ref10.canClose;
+    value: function showRealName(_ref11) {
+      var canClose = _ref11.canClose;
       var appkey = config_paramsConfig.appkey;
       var qid = config_paramsConfig.qid;
       var platform = config_paramsConfig.platform;
@@ -25511,11 +25584,11 @@ var realName_realName = /*#__PURE__*/function () {
 
   }, {
     key: "checkAmount",
-    value: function checkAmount(_ref11) {
-      var amount = _ref11.amount,
-          gkey = _ref11.gkey;
+    value: function checkAmount(_ref12) {
+      var amount = _ref12.amount,
+          gkey = _ref12.gkey;
       return new Promise( /*#__PURE__*/function () {
-        var _ref12 = asyncToGenerator_default()( /*#__PURE__*/regenerator_default.a.mark(function _callee(resolve, reject) {
+        var _ref13 = asyncToGenerator_default()( /*#__PURE__*/regenerator_default.a.mark(function _callee(resolve, reject) {
           var res, handler;
           return regenerator_default.a.wrap(function _callee$(_context) {
             while (1) {
@@ -25555,22 +25628,9 @@ var realName_realName = /*#__PURE__*/function () {
         }));
 
         return function (_x, _x2) {
-          return _ref12.apply(this, arguments);
+          return _ref13.apply(this, arguments);
         };
       }());
-    }
-  }], [{
-    key: "Instance",
-    value: function Instance(_ref13) {
-      var containerId = _ref13.containerId;
-
-      if (!this._instance) {
-        this._instance = new realName({
-          containerId: containerId
-        });
-      }
-
-      return this._instance;
     }
   }]);
 
@@ -25584,8 +25644,9 @@ var realName_realName = /*#__PURE__*/function () {
 
 /**
  * author: liuyang9
- * description: 大厅的相关提示
+ * description: 大厅支付的相关提示
  */
+
 
 
 
@@ -25593,8 +25654,23 @@ var lobbyViewInstance = view_lobbyView.Instance;
 var lobby_storeHelperInstance = utils_storeHelper.Instance;
 
 var lobby_lobby = /*#__PURE__*/function () {
-  function lobby(_ref) {
-    var containerId = _ref.containerId;
+  createClass_default()(lobby, null, [{
+    key: "Instance",
+    value: function Instance(_ref) {
+      var containerId = _ref.containerId;
+
+      if (!this._instance) {
+        this._instance = new lobby({
+          containerId: containerId
+        });
+      }
+
+      return this._instance;
+    }
+  }]);
+
+  function lobby(_ref2) {
+    var containerId = _ref2.containerId;
 
     classCallCheck_default()(this, lobby);
 
@@ -25605,26 +25681,13 @@ var lobby_lobby = /*#__PURE__*/function () {
 
   createClass_default()(lobby, [{
     key: "init",
-    value: function init(_ref2) {
-      var containerId = _ref2.containerId;
-      var containerEle = this.getContainerElement(containerId);
+    value: function init(_ref3) {
+      var containerId = _ref3.containerId;
       lobby_storeHelperInstance.updateGlobalData({
         feature: config_features.lobby
-      }); // 显示容器
-
-      this.root = document.createElement('div');
-      this.root.setAttribute('id', config_ids.sdkId);
-      containerEle.appendChild(this.root);
+      });
+      features_domHelper.initSdkElement(containerId);
       view_appView.renderApp();
-    }
-  }, {
-    key: "getContainerElement",
-    value: function getContainerElement(containerId) {
-      if (containerId) {
-        return document.getElementById(containerId);
-      }
-
-      return document.getElementsByTagName('body')[0];
     } // 年龄小于8周岁的提示
 
   }, {
@@ -25656,19 +25719,6 @@ var lobby_lobby = /*#__PURE__*/function () {
     value: function showEighteenCharge() {
       lobbyViewInstance.showEighteenCharge();
     }
-  }], [{
-    key: "Instance",
-    value: function Instance(_ref3) {
-      var containerId = _ref3.containerId;
-
-      if (!this._instance) {
-        this._instance = new lobby({
-          containerId: containerId
-        });
-      }
-
-      return this._instance;
-    }
   }]);
 
   return lobby;
@@ -25690,12 +25740,28 @@ var lobby_lobby = /*#__PURE__*/function () {
 
 
 
+
 var lobbyMini_lobbyMiniViewInstance = lobbyMiniView.Instance;
 var lobbyMini_storeHelperInstance = utils_storeHelper.Instance;
 
 var lobbyMini_lobbyMini = /*#__PURE__*/function () {
-  function lobbyMini(_ref) {
-    var containerId = _ref.containerId;
+  createClass_default()(lobbyMini, null, [{
+    key: "Instance",
+    value: function Instance(_ref) {
+      var containerId = _ref.containerId;
+
+      if (!this._instance) {
+        this._instance = new lobbyMini({
+          containerId: containerId
+        });
+      }
+
+      return this._instance;
+    }
+  }]);
+
+  function lobbyMini(_ref2) {
+    var containerId = _ref2.containerId;
 
     classCallCheck_default()(this, lobbyMini);
 
@@ -25706,26 +25772,13 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
 
   createClass_default()(lobbyMini, [{
     key: "init",
-    value: function init(_ref2) {
-      var containerId = _ref2.containerId;
-      var containerEle = this.getContainerElement(containerId);
+    value: function init(_ref3) {
+      var containerId = _ref3.containerId;
       lobbyMini_storeHelperInstance.updateGlobalData({
         feature: config_features.lobbyMini
-      }); // 显示容器
-
-      this.root = document.createElement('div');
-      this.root.setAttribute('id', config_ids.sdkId);
-      containerEle.appendChild(this.root);
+      });
+      features_domHelper.initSdkElement(containerId);
       view_appView.renderApp();
-    }
-  }, {
-    key: "getContainerElement",
-    value: function getContainerElement(containerId) {
-      if (containerId) {
-        return document.getElementById(containerId);
-      }
-
-      return document.getElementsByTagName('body')[0];
     } // 年龄小于8周岁的提示
 
   }, {
@@ -25760,11 +25813,11 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
 
   }, {
     key: "checkCharge",
-    value: function checkCharge(_ref3) {
-      var gkey = _ref3.gkey,
-          exts = _ref3.exts;
+    value: function checkCharge(_ref4) {
+      var gkey = _ref4.gkey,
+          exts = _ref4.exts;
       return new Promise( /*#__PURE__*/function () {
-        var _ref4 = asyncToGenerator_default()( /*#__PURE__*/regenerator_default.a.mark(function _callee(resolve, reject) {
+        var _ref5 = asyncToGenerator_default()( /*#__PURE__*/regenerator_default.a.mark(function _callee(resolve, reject) {
           var res, handler;
           return regenerator_default.a.wrap(function _callee$(_context) {
             while (1) {
@@ -25807,22 +25860,9 @@ var lobbyMini_lobbyMini = /*#__PURE__*/function () {
         }));
 
         return function (_x, _x2) {
-          return _ref4.apply(this, arguments);
+          return _ref5.apply(this, arguments);
         };
       }());
-    }
-  }], [{
-    key: "Instance",
-    value: function Instance(_ref5) {
-      var containerId = _ref5.containerId;
-
-      if (!this._instance) {
-        this._instance = new lobbyMini({
-          containerId: containerId
-        });
-      }
-
-      return this._instance;
     }
   }]);
 

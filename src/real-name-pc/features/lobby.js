@@ -1,12 +1,12 @@
 /**
  * author: liuyang9
- * description: 大厅的相关提示
+ * description: 大厅支付的相关提示
  */
 
 
 import { appView, lobbyView } from '../view';
 import { storeHelper } from 'utils';
-import { ids, features } from '../config';
+import { features } from '../config';
 import domHelper from './domHelper';
 
 const lobbyViewInstance = lobbyView.Instance;

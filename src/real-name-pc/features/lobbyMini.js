@@ -16,16 +16,16 @@ const lobbyMiniViewInstance = lobbyMiniView.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
 export default class lobbyMini {
-  constructor({ containerId }) {
-    this.init({ containerId });
-  }
-
   static Instance({ containerId }) {
     if(!this._instance) {
       this._instance = new lobbyMini({ containerId });
     }
 
     return this._instance;
+  }
+
+  constructor({ containerId }) {
+    this.init({ containerId });
   }
 
   init({ containerId }) {

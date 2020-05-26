@@ -21,16 +21,16 @@ const paramsInstance = paramsHelper.Instance;
 const storeHelperInstance = storeHelper.Instance;
 
 export default class realName {
-  constructor({ containerId }) {
-    this.init({ containerId });
-  }
-
   static Instance({ containerId }) {
     if(!this._instance) {
       this._instance = new realName({ containerId });
     }
 
     return this._instance;
+  }
+
+  constructor({ containerId }) {
+    this.init({ containerId });
   }
 
   init({ containerId }) {
