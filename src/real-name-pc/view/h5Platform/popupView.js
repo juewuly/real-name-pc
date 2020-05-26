@@ -1,110 +1,141 @@
 /**
- * @description: 大厅的提示视图
+ * @description: 弹窗提示视图
  */
 
-import { popupConfig, popupType } from '../config';
+import { popupConfig, popupType } from 'src/real-name-pc/config';
 import { storeHelper } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;
 
-const setLobbyMiniData = data => storeHelperInstance.setLobbyMiniData(data);
-// 通知名称
-const NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
+const setPopupData = data => storeHelperInstance.setPopupData(data);
 
-class lobbyView {
+class popupView {
   constructor() {
 
   }
 
   static get Instance() {
     if (!this._instance) {
-      this._instance = new lobbyView();
+      this._instance = new popupView();
     }
 
     return this._instance;
   }
 
+  // 关闭弹窗
+  closePopup() {
+    setPopupData({ show: false });
+  }
+
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
-  showNonage() {
+  showNonage({ canClose } = { canClose: true }) {
     const { className, content } = popupConfig[popupType.nonageForbidCharge];
-    setLobbyMiniData({
+    setPopupData({
       show: true,
       className,
-      content
+      content,
+      canClose
     });
   }
 
   // 年龄小于8周岁的提示
-  showEight(callback) {
+  showEight({ canClose } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEight];
-    const newTitle = `${title}，${subTitle}`;
-
-    setLobbyMiniData({
+    setPopupData({
       show: true,
       className,
-      title: newTitle,
+      title,
+      subTitle,
       content,
-      onClickOk: callback
+      canClose
     });
   }
 
   // 8~16周岁不可充值，充值已达到上限的提示
-  showSixteen(callback) {
+  showSixteen({ canClose } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteen];
-    setLobbyMiniData({
+    setPopupData({
       show: true,
       className,
-      title: '该月累计充值金额已达到上限，无法充值',
-      subTitle: '每月累计充值不能超过200元',
-      content: `根据${NoticeName}，8~16周岁用户单次充值金额不得超过50元人民币，每月充值金额累计不得超过200元人民币。`,
-      onClickOk: callback
+      title,
+      subTitle,
+      content,
+      canClose
     });
   }
 
   // 8~16周岁可充值，但充值金额达到上限的提示
-  showSixteenCharge(callback) {
+  showSixteenCharge({ canClose } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteenCharge];
-    const newTitle = `${title}，${subTitle}`;
-    setLobbyMiniData({
+    setPopupData({
       show: true,
       className,
-      title: newTitle,
+      title,
+      subTitle,
       content,
-      onClickOk: callback
+      canClose
     });    
   }
 
   // 16~18周岁不可充值，充值已达到上限的提示
-  showEighteen(callback) {
+  showEighteen({ canClose } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteen];
-    setLobbyMiniData({
+    setPopupData({
       show: true,
       className,
-      title: '该月累计充值金额已达到上限，无法充值',
-      subTitle: '每月累计充值不能超过400元',
+      title,
+      subTitle,
       content,
-      onClickOk: callback
+      canClose
     });
   }
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
-  showEighteenCharge(callback) {
+  showEighteenCharge({ canClose } = { canClose: true }) {
     const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
-    setLobbyMiniData({
+    setPopupData({
       show: true,
       className,
-      title: `${title}，${subTitle}`,
+      title,
+      subTitle,
       content,
-      onClickOk: callback
+      canClose
     });
   }
 
+  // 登录后游戏时长已达到上限时的提示
+  showTimeLimitAfterLogin() {
+    const { title, content } = popupConfig[popupType.gameTimeLimitWhenLogin];
+    setPopupData({
+      show: true,
+      className,
+      title,
+      content,
+      canClose: false,
+      noMask: true
+    });
+  }
+
+  // 游戏中时长已达到上限时的提示
+  showTimeLimitWhenPlaying() {
+    const { title, subTitle, content } = popupConfig[popupType.gameTimeLimitWhenPlaying];
+    setPopupData({
+      show: true,
+      className,
+      title,
+      subTitle,
+      content,
+      canClose: false,
+      noMask: true
+    })
+  }
+
   /**
-   * 根据mg_fcm接口返回的状态码和年龄，来弹相应的弹窗提示
+   * 根据check接口返回的状态码和年龄，来弹相应的弹窗提示
    * @param {*} status 
    * @param {*} ageLower 
    */
-  showTipByStatus({ status, ageLower, onClickOk }) {
+  showTipByStatus(status, ageLower) {
     const popupFuncMap = {
       1: null,
       2: {
@@ -121,9 +152,9 @@ class lobbyView {
 
     const popupFunc = popupFuncMap[status][ageLower];
     if (popupFunc) {
-      popupFunc(onClickOk);
+      popupFunc();
     }
   }
 }
 
-export default lobbyView;
+export default popupView;

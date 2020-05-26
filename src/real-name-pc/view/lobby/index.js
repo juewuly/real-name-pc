@@ -2,7 +2,7 @@
  * @description: 大厅支付的提示视图
  */
 
-import { popupConfig, popupType } from '../config';
+import { popupConfig, popupType } from 'src/real-name-pc/config';
 import { storeHelper } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;
