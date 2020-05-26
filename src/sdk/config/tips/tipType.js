@@ -1,3 +1,8 @@
+/**
+ * @author: liuyang9
+ * @description: 防沉迷提示信息所属的类型
+ */
+
 class tipType {
   constructor() {
 

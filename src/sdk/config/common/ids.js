@@ -1,7 +1,10 @@
-class ids {
-  constructor() {
+/**
+ * @author: liuyang9
+ * @description: 公用的一些id
+ */
 
-  }
+export default class ids {
+  constructor() { }
 
   // sdk的id
   static get sdkId() {
@@ -12,7 +15,4 @@ class ids {
   static get sdkModalId() {
     return 'real-name-pc-modal';
   }
-
 }
-
-export default ids;

@@ -1,3 +1,8 @@
+/**
+ * @author: liuyang9
+ * @description: 提示信息实体
+ */
+
 class tipEntity {
   constructor({ className, title, subTitle, content }) {
     this._className = className;

@@ -1,7 +1,10 @@
-class eventConfig {
-  constructor() {
+/**
+ * @author: liuyang9
+ * @description: 实名认证相关的事件配置
+ */
 
-  }
+export default class eventConfig {
+  constructor() { }
 
   static set onCloseRealName(callback) {
     this._onCloseRealName = callback;
@@ -27,5 +30,3 @@ class eventConfig {
     return this._onSubmitError;
   }
 }
-
-export default eventConfig;

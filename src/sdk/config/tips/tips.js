@@ -1,3 +1,8 @@
+/**
+ * @author: liuyang9
+ * @description: 防沉迷提示信息集合
+ */
+
 import tipType from './tipType';
 import tipEntity from './tipEntity';
 

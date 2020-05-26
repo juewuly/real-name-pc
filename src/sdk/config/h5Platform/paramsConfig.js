@@ -1,7 +1,10 @@
-class paramsConfig {
-  constructor() {
+/**
+ * @author: liuyang9
+ * @description: 实名认证相关的参数配置
+ */
 
-  }
+export default class paramsConfig {
+  constructor() { }
 
   static set appkey(value) {
     this._appkey = value;
@@ -35,5 +38,3 @@ class paramsConfig {
     return this._idcard_check_type;
   }
 }
-
-export default paramsConfig;

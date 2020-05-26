@@ -1,7 +1,10 @@
-class features {
-  constructor() {
+/**
+ * @author: liuyang9
+ * @description: sdk提供的feature
+ */
 
-  }
+export default class features {
+  constructor() { }
 
   // h5联运平台
   static get h5Platform() {
@@ -18,5 +21,3 @@ class features {
     return 'lobbyMini';
   }
 }
-
-export default features;
