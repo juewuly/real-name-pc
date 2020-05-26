@@ -2,7 +2,7 @@
  * @description: 大厅支付的提示视图
  */
 
-import { popupConfig, popupType } from 'src/real-name-pc/config';
+import { tips, tipType } from 'src/real-name-pc/config';
 import { storeHelper } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;
@@ -26,7 +26,7 @@ class lobbyView {
 
   // 未成年人在禁止充值时间段内，且未开启年龄段限制
   showNonage() {
-    const { className, content } = popupConfig[popupType.nonageForbidCharge];
+    const { className, content } = tips[tipType.nonageForbidCharge];
     setLobbyData({
       show: true,
       className,
@@ -36,7 +36,7 @@ class lobbyView {
 
   // 年龄小于8周岁的提示
   showEight() {
-    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEight];
+    const { className, title, subTitle, content } = tips[tipType.ageLessThanEight];
     const newTitle = `${title}，${subTitle}`
     setLobbyData({
       show: true,
@@ -48,7 +48,7 @@ class lobbyView {
 
   // 8~16周岁不可充值，充值已达到上限的提示
   showSixteen() {
-    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteen];
+    const { className, title, subTitle, content } = tips[tipType.ageLessThanSixteen];
     setLobbyData({
       show: true,
       className,
@@ -60,7 +60,7 @@ class lobbyView {
 
   // 8~16周岁可充值，但充值金额达到上限的提示
   showSixteenCharge() {
-    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanSixteenCharge];
+    const { className, title, subTitle, content } = tips[tipType.ageLessThanSixteenCharge];
     const newTitle = `${title}，${subTitle}`
     setLobbyData({
       show: true,
@@ -72,7 +72,7 @@ class lobbyView {
 
   // 16~18周岁不可充值，充值已达到上限的提示
   showEighteen() {
-    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteen];
+    const { className, title, subTitle, content } = tips[tipType.ageLessThanEighteen];
     setLobbyData({
       show: true,
       className,
@@ -84,7 +84,7 @@ class lobbyView {
 
   // 16~18周岁可充值，但充值金额已达到上限的提示
   showEighteenCharge() {
-    const { className, title, subTitle, content } = popupConfig[popupType.ageLessThanEighteenCharge];
+    const { className, title, subTitle, content } = tips[tipType.ageLessThanEighteenCharge];
     setLobbyData({
       show: true,
       className,

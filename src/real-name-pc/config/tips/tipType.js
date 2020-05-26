@@ -1,4 +1,4 @@
-class popupType {
+class tipType {
   constructor() {
 
   }
@@ -44,4 +44,4 @@ class popupType {
   }
 }
 
-export default popupType;
+export default tipType;

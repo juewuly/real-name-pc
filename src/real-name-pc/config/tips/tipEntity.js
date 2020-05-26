@@ -1,4 +1,4 @@
-class popupEntity {
+class tipEntity {
   constructor({ className, title, subTitle, content }) {
     this._className = className;
     this._title = title;
@@ -23,4 +23,4 @@ class popupEntity {
   }
 }
 
-export default popupEntity;
+export default tipEntity;
