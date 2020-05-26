@@ -8,6 +8,7 @@ import { appView, realNameView, popupView } from '../view';
 import { realNameData } from '../data';
 import { paramsConfig, eventConfig, ids, features } from '../config';
 import { statusHandler } from '../handler';
+import domHelper from './domHelper';
 
 import { 
   paramsHelper,
@@ -33,7 +34,7 @@ export default class realName {
   }
 
   init({ containerId }) {
-    const containerEle = this.getContainerElement(containerId);
+    const containerEle = domHelper.getContainerElement(containerId);
     storeHelperInstance.updateGlobalData({ feature: features.h5Platform });
 
     // 显示容器
@@ -47,14 +48,6 @@ export default class realName {
     containerEle.appendChild(this.root);
     containerEle.appendChild(this.modalRoot);
     appView.renderApp();
-  }
-
-  getContainerElement(containerId) {
-    if (containerId) {
-      return document.getElementById(containerId)
-    }
-
-    return document.getElementsByTagName('body')[0];
   }
 
   // 配置一些参数和事件

@@ -8,6 +8,7 @@ import { appView, lobbyMiniView } from '../view';
 import { lobbyMiniData } from '../data';
 import { lobbyMiniHandler } from '../handler';
 import { ids, features } from '../config';
+import domHelper from './domHelper';
 
 import { storeHelper } from 'utils';
 
@@ -28,7 +29,7 @@ export default class lobbyMini {
   }
 
   init({ containerId }) {
-    const containerEle = this.getContainerElement(containerId);
+    const containerEle = domHelper.getContainerElement(containerId);
     storeHelperInstance.updateGlobalData({ feature: features.lobbyMini });
 
     // 显示容器
@@ -36,14 +37,6 @@ export default class lobbyMini {
     this.root.setAttribute('id', ids.sdkId);
     containerEle.appendChild(this.root);
     appView.renderApp();
-  }
-
-  getContainerElement(containerId) {
-    if (containerId) {
-      return document.getElementById(containerId)
-    }
-
-    return document.getElementsByTagName('body')[0];
   }
 
   // 年龄小于8周岁的提示
