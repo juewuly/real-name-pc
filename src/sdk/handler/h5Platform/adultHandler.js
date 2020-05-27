@@ -5,11 +5,9 @@
 
 import { logHelper } from 'utils';
 
-const logInstance = logHelper.Instance;
-
 export default class adultHandler {
   static exec() {
-    logInstance.log('已实名，已成年');
+    logHelper.log('已实名，已成年');
   }
 
   constructor() { }

@@ -9,7 +9,6 @@ import realNameModelData from './realNameModelData';
 
 const paramsInstance = paramsHelper.Instance;
 const realNameModelDataInstance = realNameModelData.Instance;
-const logInstance = logHelper.Instance;
 
 export default class h5PlatformData {
   /**
@@ -64,7 +63,7 @@ export default class h5PlatformData {
       realNameModelDataInstance.setRealNameData(res.open_check_auth);
       realNameModelDataInstance.setFcmPayStatus(res.fcm_pay_status);
     } catch (error) {
-      logInstance.error('存储金额验证结果信息时出现异常', error);
+      logHelper.error('存储金额验证结果信息时出现异常', error);
     }
   }
 

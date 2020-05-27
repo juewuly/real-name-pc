@@ -7,7 +7,6 @@ import { logHelper } from 'utils';
 import { lobbyMiniView } from 'sdk/view';
 
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
-const logInstance = logHelper.Instance;
 
 export default class forbidChargeHandler {
   constructor({ status, age }) {
@@ -16,7 +15,7 @@ export default class forbidChargeHandler {
   }
 
   exec(callBack) {
-    logInstance.log('禁止充值');
+    logHelper.log('禁止充值');
     lobbyMiniViewInstance.showTipByStatus({
       status: this._status,
       ageLower: this._age,

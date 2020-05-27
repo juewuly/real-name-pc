@@ -22950,7 +22950,7 @@ var log_logHelper = /*#__PURE__*/function (_base) {
   return logHelper;
 }(baseLog_baseLog);
 
-
+/* harmony default export */ var log = (log_logHelper.Instance);
 // CONCATENATED MODULE: ./src/utils/storeHelper.js
 
 
@@ -22961,7 +22961,6 @@ var log_logHelper = /*#__PURE__*/function (_base) {
 
 
 
-var logInstance = log_logHelper.Instance;
 var storeInstance = common_store.Instance;
 
 var storeHelper_storeHelper = /*#__PURE__*/function () {
@@ -23006,16 +23005,16 @@ var storeHelper_storeHelper = /*#__PURE__*/function () {
 
         if (windowStatus !== oldWindowStatus) {
           if (typeof onClose === 'function') {
-            logInstance.h5PlatformLog.realNameLog.closeRealName();
+            log.h5PlatformLog.realNameLog.closeRealName();
             onClose();
           }
 
-          logInstance.h5PlatformLog.realNameLog.unsubscribeCloseRealName();
+          log.h5PlatformLog.realNameLog.unsubscribeCloseRealName();
           unsubscribeCloseRealName();
         }
       };
 
-      logInstance.h5PlatformLog.realNameLog.subscribeCloseRealName();
+      log.h5PlatformLog.realNameLog.subscribeCloseRealName();
       var unsubscribeCloseRealName = this.store.subscribe(handleStoreChange);
     }
     /**
@@ -23043,7 +23042,7 @@ var storeHelper_storeHelper = /*#__PURE__*/function () {
         var result = submitResult.toJS();
 
         if (result.error_code !== '0') {
-          logInstance.h5PlatformLog.realNameLog.submitRealNameError(result);
+          log.h5PlatformLog.realNameLog.submitRealNameError(result);
           alert(result.error);
 
           if (typeof onSubmitError === 'function') {
@@ -23059,7 +23058,7 @@ var storeHelper_storeHelper = /*#__PURE__*/function () {
         var ret = result.ret;
 
         if (ret.code !== '999') {
-          logInstance.h5PlatformLog.realNameLog.submitRealNameError(result);
+          log.h5PlatformLog.realNameLog.submitRealNameError(result);
           alert(ret.msg);
 
           if (typeof onSubmitError === 'function') {
@@ -23072,19 +23071,19 @@ var storeHelper_storeHelper = /*#__PURE__*/function () {
           return;
         }
 
-        logInstance.h5PlatformLog.realNameLog.submitRealNameSuccess();
+        log.h5PlatformLog.realNameLog.submitRealNameSuccess();
         alert('实名认证成功！');
 
         if (typeof onSubmitSuccess === 'function') {
           onSubmitSuccess(result);
         }
 
-        logInstance.h5PlatformLog.realNameLog.unsubscribeSubmitRealName();
+        log.h5PlatformLog.realNameLog.unsubscribeSubmitRealName();
         unsubscribeSubmitRealName();
         return;
       };
 
-      logInstance.h5PlatformLog.realNameLog.subscribeSubmitRealName();
+      log.h5PlatformLog.realNameLog.subscribeSubmitRealName();
       var unsubscribeSubmitRealName = this.store.subscribe(handleStoreChange);
     } // 设置popup数据
 
@@ -23173,7 +23172,6 @@ var storeHelper_storeHelper = /*#__PURE__*/function () {
  * @description: 验证相关的参数
  */
 
-var paramsHelper_logInstance = log_logHelper.Instance;
 
 var paramsHelper_paramsHelper = /*#__PURE__*/function () {
   function paramsHelper() {
@@ -23190,13 +23188,13 @@ var paramsHelper_paramsHelper = /*#__PURE__*/function () {
     value: function validateRealNameParams(options) {
       // 参数不能为空
       if (!options) {
-        paramsHelper_logInstance.error('显示实名认证所传的参数中，缺少参数“options”');
+        log.error('显示实名认证所传的参数中，缺少参数“options”');
         return false;
       } // 参数需要为object
 
 
       if (Object.prototype.toString.call(options) !== '[object Object]') {
-        paramsHelper_logInstance.error('显示实名认证所传的参数中，“options”的类型需要为object');
+        log.error('显示实名认证所传的参数中，“options”的类型需要为object');
         return false;
       } // options里的必传参数
 
@@ -23205,13 +23203,13 @@ var paramsHelper_paramsHelper = /*#__PURE__*/function () {
       var paramError = keys.some(function (param) {
         // 验证参数是否已传
         if (typeof options[param] === 'undefined') {
-          paramsHelper_logInstance.error("\u663E\u793A\u5B9E\u540D\u8BA4\u8BC1\u6240\u4F20\u7684\u53C2\u6570\u4E2D\uFF0Coptions\u91CC\u7F3A\u5C11\u53C2\u6570".concat(param));
+          log.error("\u663E\u793A\u5B9E\u540D\u8BA4\u8BC1\u6240\u4F20\u7684\u53C2\u6570\u4E2D\uFF0Coptions\u91CC\u7F3A\u5C11\u53C2\u6570".concat(param));
           return true;
         } // 验证参数是否为空
 
 
         if (param !== 'appkey' && !options[param]) {
-          paramsHelper_logInstance.error("\u663E\u793A\u5B9E\u540D\u8BA4\u8BC1\u6240\u4F20\u7684\u53C2\u6570\u4E2D\uFF0Coptions\u91CC\u7684\u53C2\u6570".concat(param, "\u4E0D\u80FD\u4E3A\u7A7A"));
+          log.error("\u663E\u793A\u5B9E\u540D\u8BA4\u8BC1\u6240\u4F20\u7684\u53C2\u6570\u4E2D\uFF0Coptions\u91CC\u7684\u53C2\u6570".concat(param, "\u4E0D\u80FD\u4E3A\u7A7A"));
           return true;
         }
       });
@@ -23227,7 +23225,7 @@ var paramsHelper_paramsHelper = /*#__PURE__*/function () {
     key: "validateKeys",
     value: function validateKeys(options, keys) {
       if (!this.isObjectAndNotNull(options)) {
-        paramsHelper_logInstance.error('参数类型错误，需要为非空对象');
+        log.error('参数类型错误，需要为非空对象');
         return false;
       }
 
@@ -23238,13 +23236,13 @@ var paramsHelper_paramsHelper = /*#__PURE__*/function () {
       var paramError = keys.some(function (param) {
         // 验证参数是否已传
         if (typeof options[param] === 'undefined') {
-          paramsHelper_logInstance.error("\u7F3A\u5C11\u53C2\u6570".concat(param));
+          log.error("\u7F3A\u5C11\u53C2\u6570".concat(param));
           return true;
         } // 验证参数是否为空
 
 
         if (param !== 'appkey' && !options[param]) {
-          paramsHelper_logInstance.error("\u53C2\u6570".concat(param, "\u4E0D\u80FD\u4E3A\u7A7A"));
+          log.error("\u53C2\u6570".concat(param, "\u4E0D\u80FD\u4E3A\u7A7A"));
           return true;
         }
       });
@@ -24067,7 +24065,6 @@ var popupView_popupView = /*#__PURE__*/function () {
  */
 
 var realNameView_storeHelperInstance = utils_storeHelper.Instance;
-var realNameView_logInstance = log_logHelper.Instance;
 var paramsInstance = utils_paramsHelper.Instance;
 
 var realNameView_updateRealNameData = function updateRealNameData(data) {
@@ -24094,7 +24091,7 @@ var realNameView_realNameView = /*#__PURE__*/function () {
   createClass_default()(realNameView, [{
     key: "closeRealName",
     value: function closeRealName() {
-      realNameView_logInstance.h5PlatformLog.realNameLog.closeRealName();
+      log.h5PlatformLog.realNameLog.closeRealName();
       realNameView_updateRealNameData({
         show: false
       });
@@ -24872,7 +24869,6 @@ var realNameModelData_realNameModelData = /*#__PURE__*/function () {
 
 var h5Platform_paramsInstance = utils_paramsHelper.Instance;
 var realNameModelDataInstance = realNameModelData_realNameModelData.Instance;
-var h5Platform_logInstance = log_logHelper.Instance;
 
 var h5Platform_h5PlatformData = /*#__PURE__*/function () {
   createClass_default()(h5PlatformData, null, [{
@@ -24951,7 +24947,7 @@ var h5Platform_h5PlatformData = /*#__PURE__*/function () {
         realNameModelDataInstance.setRealNameData(res.open_check_auth);
         realNameModelDataInstance.setFcmPayStatus(res.fcm_pay_status);
       } catch (error) {
-        h5Platform_logInstance.error('存储金额验证结果信息时出现异常', error);
+        log.error('存储金额验证结果信息时出现异常', error);
       }
     }
   }]);
@@ -25034,7 +25030,6 @@ var lobbyMini_lobbyMiniData = /*#__PURE__*/function () {
 
 
 var realNameViewInstance = realNameView_realNameView.Instance;
-var unRealNameHandler_logInstance = log_logHelper.Instance;
 
 var unRealNameHandler_unRealNameHandler = /*#__PURE__*/function () {
   createClass_default()(unRealNameHandler, null, [{
@@ -25045,7 +25040,7 @@ var unRealNameHandler_unRealNameHandler = /*#__PURE__*/function () {
       },
           canClose = _ref.canClose;
 
-      unRealNameHandler_logInstance.log('未实名');
+      log.log('未实名');
       var appkey = paramsConfig_paramsConfig.appkey;
       var qid = paramsConfig_paramsConfig.qid;
       var platform = paramsConfig_paramsConfig.platform;
@@ -25085,7 +25080,6 @@ var unRealNameHandler_unRealNameHandler = /*#__PURE__*/function () {
 
 
 
-var nonageHandler_logInstance = log_logHelper.Instance;
 var nonageHandler_realNameModelDataInstance = realNameModelData_realNameModelData.Instance;
 var popupViewInstance = popupView_popupView.Instance;
 
@@ -25093,7 +25087,7 @@ var nonageHandler_nonageHandler = /*#__PURE__*/function () {
   createClass_default()(nonageHandler, null, [{
     key: "exec",
     value: function exec() {
-      nonageHandler_logInstance.log('已实名，未成年');
+      log.log('已实名，未成年');
 
       if (nonageHandler_realNameModelDataInstance.ageLimitIsOpen()) {
         var fcmPayStatus = nonageHandler_realNameModelDataInstance.getFcmPayStatus();
@@ -25101,9 +25095,9 @@ var nonageHandler_nonageHandler = /*#__PURE__*/function () {
             age = fcmPayStatus.age;
 
         if (status === 1) {
-          nonageHandler_logInstance.log('允许充值');
+          log.log('允许充值');
         } else {
-          nonageHandler_logInstance.error("\u7981\u6B62\u5145\u503C: status:".concat(status, ", age: ").concat(age));
+          log.error("\u7981\u6B62\u5145\u503C: status:".concat(status, ", age: ").concat(age));
           popupViewInstance.showTipByStatus(status, age);
         }
 
@@ -25111,9 +25105,9 @@ var nonageHandler_nonageHandler = /*#__PURE__*/function () {
       }
 
       if (nonageHandler_realNameModelDataInstance.canRechargeTime()) {
-        nonageHandler_logInstance.log('在允许充值时间段内');
+        log.log('在允许充值时间段内');
       } else {
-        nonageHandler_logInstance.error('在禁止充值时间段内'); // 在禁止充值时间段内给出提示
+        log.error('在禁止充值时间段内'); // 在禁止充值时间段内给出提示
 
         popupViewInstance.showNonage();
       }
@@ -25137,13 +25131,12 @@ var nonageHandler_nonageHandler = /*#__PURE__*/function () {
  * @description: 实名状态为已成年时的处理器
  */
 
-var adultHandler_logInstance = log_logHelper.Instance;
 
 var adultHandler_adultHandler = /*#__PURE__*/function () {
   createClass_default()(adultHandler, null, [{
     key: "exec",
     value: function exec() {
-      adultHandler_logInstance.log('已实名，已成年');
+      log.log('已实名，已成年');
     }
   }]);
 
@@ -25169,7 +25162,6 @@ var adultHandler_adultHandler = /*#__PURE__*/function () {
 
 
 var h5Platform_realNameModelDataInstance = realNameModelData_realNameModelData.Instance;
-var handler_h5Platform_logInstance = log_logHelper.Instance;
 
 var h5Platform_h5PlatformHandler = /*#__PURE__*/function () {
   createClass_default()(h5PlatformHandler, null, [{
@@ -25182,7 +25174,7 @@ var h5Platform_h5PlatformHandler = /*#__PURE__*/function () {
       var status = h5Platform_realNameModelDataInstance.getRealNameStatus();
 
       if (['0', '1', '2'].indexOf(status) === -1) {
-        handler_h5Platform_logInstance.error('用户的实名状态参数异常');
+        log.error('用户的实名状态参数异常');
         return null;
       }
 
@@ -25216,7 +25208,6 @@ var h5Platform_h5PlatformHandler = /*#__PURE__*/function () {
  * @description: 允许充值的处理器
  */
 
-var allowChargeHandler_logInstance = log_logHelper.Instance;
 
 var allowChargeHandler_allowChargeHandler = /*#__PURE__*/function () {
   function allowChargeHandler() {
@@ -25226,7 +25217,7 @@ var allowChargeHandler_allowChargeHandler = /*#__PURE__*/function () {
   createClass_default()(allowChargeHandler, [{
     key: "exec",
     value: function exec() {
-      allowChargeHandler_logInstance.log('允许充值');
+      log.log('允许充值');
     }
   }]);
 
@@ -25245,7 +25236,6 @@ var allowChargeHandler_allowChargeHandler = /*#__PURE__*/function () {
 
 
 var lobbyMiniViewInstance = lobbyMini_lobbyView.Instance;
-var forbidChargeHandler_logInstance = log_logHelper.Instance;
 
 var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
   function forbidChargeHandler(_ref) {
@@ -25261,7 +25251,7 @@ var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
   createClass_default()(forbidChargeHandler, [{
     key: "exec",
     value: function exec(callBack) {
-      forbidChargeHandler_logInstance.log('禁止充值');
+      log.log('禁止充值');
       lobbyMiniViewInstance.showTipByStatus({
         status: this._status,
         ageLower: this._age,
@@ -25285,7 +25275,6 @@ var forbidChargeHandler_forbidChargeHandler = /*#__PURE__*/function () {
 
 
 
-var lobbyMini_logInstance = log_logHelper.Instance;
 
 var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
   createClass_default()(lobbyMiniHandler, null, [{
@@ -25299,7 +25288,7 @@ var lobbyMini_lobbyMiniHandler = /*#__PURE__*/function () {
           age = _ref.age;
 
       if ([1, 2, 3].indexOf(status) === -1) {
-        lobbyMini_logInstance.error("\u5145\u503C\u72B6\u6001\u53C2\u6570\u5F02\u5E38\uFF0C\u5F53\u524D\u7684\u5145\u503C\u72B6\u6001\u4E3A".concat(status, "\u3002"));
+        log.error("\u5145\u503C\u72B6\u6001\u53C2\u6570\u5F02\u5E38\uFF0C\u5F53\u524D\u7684\u5145\u503C\u72B6\u6001\u4E3A".concat(status, "\u3002"));
         return null;
       }
 

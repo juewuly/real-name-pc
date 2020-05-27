@@ -8,7 +8,7 @@ import base from './baseLog';
 import h5PlatformLog from './h5PlatformLog';
 import { features } from 'sdk/config';
 
-export default class logHelper extends base {
+class logHelper extends base {
   static get Instance() {
     if (!this._instance) {
       this._instance = new logHelper('>> ');
@@ -26,4 +26,6 @@ export default class logHelper extends base {
     return this._h5PlatformLog;
   }
 }
+
+export default logHelper.Instance;
 

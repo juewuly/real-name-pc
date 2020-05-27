@@ -11,7 +11,6 @@ import {
 } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;
-const logInstance = logHelper.Instance;
 const paramsInstance = paramsHelper.Instance;
 
 const updateRealNameData = data => storeHelperInstance.updateRealNameData(data);
@@ -28,7 +27,7 @@ export default class realNameView {
 
   // 关闭实名
   closeRealName() {
-    logInstance.h5PlatformLog.realNameLog.closeRealName();
+    logHelper.h5PlatformLog.realNameLog.closeRealName();
     updateRealNameData({ show: false });
   }
 

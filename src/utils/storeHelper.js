@@ -13,7 +13,6 @@ import {
   SET_LOBBY_MINI_DATA
 } from 'src/redux/constants';
 
-const logInstance = logHelper.Instance;
 const storeInstance = store.Instance;
 
 class storeHelper {
@@ -68,16 +67,16 @@ class storeHelper {
       const windowStatus = this.getRealNameWindowStatus();
       if (windowStatus !== oldWindowStatus) {
         if (typeof onClose === 'function') {
-          logInstance.h5PlatformLog.realNameLog.closeRealName();
+          logHelper.h5PlatformLog.realNameLog.closeRealName();
           onClose();
         }
 
-        logInstance.h5PlatformLog.realNameLog.unsubscribeCloseRealName();
+        logHelper.h5PlatformLog.realNameLog.unsubscribeCloseRealName();
         unsubscribeCloseRealName();
       }
     }
 
-    logInstance.h5PlatformLog.realNameLog.subscribeCloseRealName();
+    logHelper.h5PlatformLog.realNameLog.subscribeCloseRealName();
     const unsubscribeCloseRealName = this.store.subscribe(handleStoreChange);
   }
 
@@ -99,7 +98,7 @@ class storeHelper {
       const result = submitResult.toJS();
 
       if (result.error_code !== '0') {
-        logInstance.h5PlatformLog.realNameLog.submitRealNameError(result);
+        logHelper.h5PlatformLog.realNameLog.submitRealNameError(result);
         alert(result.error);
 
         if (typeof onSubmitError === 'function') {
@@ -113,7 +112,7 @@ class storeHelper {
 
       const { ret } = result;
       if (ret.code !== '999') {
-        logInstance.h5PlatformLog.realNameLog.submitRealNameError(result);
+        logHelper.h5PlatformLog.realNameLog.submitRealNameError(result);
         alert(ret.msg);
 
         if (typeof onSubmitError === 'function') {
@@ -125,19 +124,19 @@ class storeHelper {
         return;
       }
 
-      logInstance.h5PlatformLog.realNameLog.submitRealNameSuccess();
+      logHelper.h5PlatformLog.realNameLog.submitRealNameSuccess();
       alert('实名认证成功！');
 
       if (typeof onSubmitSuccess === 'function') {
         onSubmitSuccess(result);
       }
       
-      logInstance.h5PlatformLog.realNameLog.unsubscribeSubmitRealName();
+      logHelper.h5PlatformLog.realNameLog.unsubscribeSubmitRealName();
       unsubscribeSubmitRealName();
       return;
     }
 
-    logInstance.h5PlatformLog.realNameLog.subscribeSubmitRealName();
+    logHelper.h5PlatformLog.realNameLog.subscribeSubmitRealName();
     const unsubscribeSubmitRealName = this.store.subscribe(handleStoreChange);
   }
 

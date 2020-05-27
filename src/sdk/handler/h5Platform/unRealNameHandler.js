@@ -8,11 +8,10 @@ import { realNameView } from 'sdk/view';
 import { paramsConfig, eventConfig } from 'sdk/config';
 
 const realNameViewInstance = realNameView.Instance;
-const logInstance = logHelper.Instance;
 
 export default class unRealNameHandler {
   static exec({ canClose } = { canClose: false }) {
-    logInstance.log('未实名');
+    logHelper.log('未实名');
     
     const appkey = paramsConfig.appkey;
     const qid = paramsConfig.qid;

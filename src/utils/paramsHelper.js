@@ -4,8 +4,6 @@
 
 import logHelper from './log';
 
-const logInstance = logHelper.Instance;
-
 class paramsHelper {
   constructor() {
 
@@ -26,13 +24,13 @@ class paramsHelper {
   validateRealNameParams(options) {
     // 参数不能为空
     if (!options) {
-      logInstance.error('显示实名认证所传的参数中，缺少参数“options”');
+      logHelper.error('显示实名认证所传的参数中，缺少参数“options”');
       return false;
     }
 
     // 参数需要为object
     if (Object.prototype.toString.call(options) !== '[object Object]') {
-      logInstance.error('显示实名认证所传的参数中，“options”的类型需要为object');
+      logHelper.error('显示实名认证所传的参数中，“options”的类型需要为object');
       return false;
     }
 
@@ -41,13 +39,13 @@ class paramsHelper {
     const paramError = keys.some(param => {
       // 验证参数是否已传
       if (typeof options[param] === 'undefined') {
-        logInstance.error(`显示实名认证所传的参数中，options里缺少参数${param}`);
+        logHelper.error(`显示实名认证所传的参数中，options里缺少参数${param}`);
         return true;
       }
 
       // 验证参数是否为空
       if (param !== 'appkey' && !options[param]) {
-        logInstance.error(`显示实名认证所传的参数中，options里的参数${param}不能为空`);
+        logHelper.error(`显示实名认证所传的参数中，options里的参数${param}不能为空`);
         return true;
       }
     });
@@ -62,7 +60,7 @@ class paramsHelper {
    */
   validateKeys(options, keys) {
     if (!this.isObjectAndNotNull(options)) {
-      logInstance.error('参数类型错误，需要为非空对象');
+      logHelper.error('参数类型错误，需要为非空对象');
       return false;
     }
 
@@ -73,13 +71,13 @@ class paramsHelper {
     const paramError = keys.some(param => {
       // 验证参数是否已传
       if (typeof options[param] === 'undefined') {
-        logInstance.error(`缺少参数${param}`);
+        logHelper.error(`缺少参数${param}`);
         return true;
       }
 
       // 验证参数是否为空
       if (param !== 'appkey' && !options[param]) {
-        logInstance.error(`参数${param}不能为空`);
+        logHelper.error(`参数${param}不能为空`);
         return true;
       }
     });

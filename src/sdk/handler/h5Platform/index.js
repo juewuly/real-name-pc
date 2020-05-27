@@ -12,7 +12,6 @@ import { logHelper } from 'utils';
 import realNameModelData from 'sdk/data/h5Platform/realNameModelData';
 
 const realNameModelDataInstance = realNameModelData.Instance;
-const logInstance = logHelper.Instance;
 
 export default class h5PlatformHandler {
   /**
@@ -22,7 +21,7 @@ export default class h5PlatformHandler {
     const status = realNameModelDataInstance.getRealNameStatus();
 
     if (['0', '1', '2'].indexOf(status) === -1) {
-      logInstance.error('用户的实名状态参数异常');
+      logHelper.error('用户的实名状态参数异常');
       return null;
     }
 

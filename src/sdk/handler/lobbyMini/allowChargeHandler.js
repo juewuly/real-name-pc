@@ -6,12 +6,10 @@
 
 import { logHelper } from 'utils';
 
-const logInstance = logHelper.Instance;
-
 export default class allowChargeHandler {
   constructor() { }
 
   exec() {
-    logInstance.log('允许充值');
+    logHelper.log('允许充值');
   }
 }
