@@ -1,8 +1,16 @@
 /**
+ * @author: liuyang9
  * @description: 处理实名相关的模型数据
  */
 
-class modelData {
+export default class realNameModelData {
+  static get Instance() {
+    if (!this._instance) {
+      this._instance = new realNameModelData();
+    }
+    return this._instance;
+  }
+
   constructor() {
      // 用户qid
     this._qid = null;
@@ -21,14 +29,6 @@ class modelData {
 
     // 后端返回的fcm_pay_status信息
     this._fcmPayStatus = null;
-  }
-
-  static get Instance() {
-    if (!this._instance) {
-      this._instance = new modelData();
-    }
-
-    return this._instance;
   }
 
   /**
@@ -162,7 +162,4 @@ class modelData {
   isAdult() {
     return this._realNameData.status === '2';
   }
-
 }
-
-export default modelData;

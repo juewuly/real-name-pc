@@ -8,12 +8,10 @@ import unRealNameHandler from './unRealNameHandler';
 import nonageHandler from './nonageHandler';
 import adultHandler from './adultHandler';
 
-import { 
-  modelData,
-  logHelper
-} from 'utils';
+import { logHelper } from 'utils';
+import realNameModelData from 'sdk/data/h5Platform/realNameModelData';
 
-const modelDataInstance = modelData.Instance;
+const realNameModelDataInstance = realNameModelData.Instance;
 const logInstance = logHelper.Instance;
 
 export default class h5PlatformHandler {
@@ -21,14 +19,14 @@ export default class h5PlatformHandler {
    * 根据用户的实名状态，获取相应的处理器
    */
   static getHandler() {
-    const status = modelDataInstance.getRealNameStatus();
+    const status = realNameModelDataInstance.getRealNameStatus();
 
     if (['0', '1', '2'].indexOf(status) === -1) {
       logInstance.error('用户的实名状态参数异常');
       return null;
     }
 
-    if (!modelDataInstance.needCheckRealName()) {
+    if (!realNameModelDataInstance.needCheckRealName()) {
       return null;
     }
 

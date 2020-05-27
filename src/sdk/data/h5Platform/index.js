@@ -4,10 +4,11 @@
  */
 
 import { fetchRealName, checkAmount } from 'request';
-import { paramsHelper, modelData, logHelper } from 'utils';
+import { paramsHelper, logHelper } from 'utils';
+import realNameModelData from './realNameModelData';
 
 const paramsInstance = paramsHelper.Instance;
-const modelDataInstance = modelData.Instance;
+const realNameModelDataInstance = realNameModelData.Instance;
 const logInstance = logHelper.Instance;
 
 export default class h5PlatformData {
@@ -60,8 +61,8 @@ export default class h5PlatformData {
   // 存储金额验证结果信息
   static storeCheckAmountResult(res) {
     try {
-      modelDataInstance.setRealNameData(res.open_check_auth);
-      modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
+      realNameModelDataInstance.setRealNameData(res.open_check_auth);
+      realNameModelDataInstance.setFcmPayStatus(res.fcm_pay_status);
     } catch (error) {
       logInstance.error('存储金额验证结果信息时出现异常', error);
     }

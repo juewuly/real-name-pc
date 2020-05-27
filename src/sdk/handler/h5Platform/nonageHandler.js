@@ -4,19 +4,20 @@
  */
 
 
-import { modelData, logHelper } from 'utils';
+import { logHelper } from 'utils';
 import { popupView } from 'sdk/view';
+import realNameModelData from 'sdk/data/h5Platform/realNameModelData';
 
 const logInstance = logHelper.Instance;
-const modelDataInstance = modelData.Instance;
+const realNameModelDataInstance = realNameModelData.Instance;
 const popupViewInstance = popupView.Instance;
 
 export default class nonageHandler {
   static exec() {
     logInstance.log('已实名，未成年');
 
-    if (modelDataInstance.ageLimitIsOpen()) {
-      const fcmPayStatus = modelDataInstance.getFcmPayStatus();
+    if (realNameModelDataInstance.ageLimitIsOpen()) {
+      const fcmPayStatus = realNameModelDataInstance.getFcmPayStatus();
       const { status, age } = fcmPayStatus;
 
       if (status === 1) {
@@ -28,7 +29,7 @@ export default class nonageHandler {
       return;
     }
 
-    if (modelDataInstance.canRechargeTime()) {
+    if (realNameModelDataInstance.canRechargeTime()) {
       logInstance.log('在允许充值时间段内');
     } else {
       logInstance.error('在禁止充值时间段内');

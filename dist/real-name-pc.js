@@ -23285,216 +23285,7 @@ var paramsHelper_paramsHelper = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ var utils_paramsHelper = (paramsHelper_paramsHelper);
-// CONCATENATED MODULE: ./src/utils/modelData.js
-
-
-
-/**
- * @description: 处理实名相关的模型数据
- */
-var modelData_modelData = /*#__PURE__*/function () {
-  function modelData() {
-    classCallCheck_default()(this, modelData);
-
-    // 用户qid
-    this._qid = null; // 游戏的key
-
-    this._gkey = null; // 充值函数
-
-    this._rechargeFun = null; // 实名数据
-
-    this._realNameData = null; // 支付参数
-
-    this._fcmParams = null; // 后端返回的fcm_pay_status信息
-
-    this._fcmPayStatus = null;
-  }
-
-  createClass_default()(modelData, [{
-    key: "setQid",
-
-    /**
-     * 设置qid
-     * @param {*} qid 
-     */
-    value: function setQid(qid) {
-      this._qid = qid;
-    }
-    /**
-     * 读取qid
-     */
-
-  }, {
-    key: "getQid",
-    value: function getQid() {
-      return this._qid;
-    }
-    /**
-     * 设置gkey
-     * @param {*} gkey 游戏的key
-     */
-
-  }, {
-    key: "setGkey",
-    value: function setGkey(gkey) {
-      this._gkey = gkey;
-    }
-    /**
-     * 读取gkey
-     */
-
-  }, {
-    key: "getGkey",
-    value: function getGkey() {
-      return this._gkey;
-    }
-    /**
-     * 设置实名数据
-     * @param {*} realNameData 从服务端获取到的实名信息
-     */
-
-  }, {
-    key: "setRealNameData",
-    value: function setRealNameData(realNameData) {
-      this._realNameData = realNameData;
-    }
-    /**
-     * 是否在未成年人可充值的时间段内
-     */
-
-  }, {
-    key: "canRechargeTime",
-    value: function canRechargeTime() {
-      return this._realNameData.is_forbid_time === '0';
-    }
-    /**
-     * 判断是否需要进行实名认证
-     */
-
-  }, {
-    key: "needCheckRealName",
-    value: function needCheckRealName() {
-      return this._realNameData.auth_type !== '0';
-    }
-    /**
-     * 获取实名状态
-     */
-
-  }, {
-    key: "getRealNameStatus",
-    value: function getRealNameStatus() {
-      return this._realNameData.status;
-    }
-    /**
-     * 是否可以关闭实名认证
-     */
-
-  }, {
-    key: "canCloseRealName",
-    value: function canCloseRealName() {
-      return this._realNameData.auth_type === '2';
-    }
-    /**
-     * 设置充值函数
-     * @param {*} rechargeFun 充值函数
-     */
-
-  }, {
-    key: "setRecharge",
-    value: function setRecharge(rechargeFun) {
-      this._rechargeFun = rechargeFun;
-    }
-    /**
-     * 调用充值
-     */
-
-  }, {
-    key: "dispatchRecharge",
-    value: function dispatchRecharge() {
-      this._rechargeFun();
-    }
-    /**
-     * 获取充值函数
-     */
-
-  }, {
-    key: "getRechargeFun",
-    value: function getRechargeFun() {
-      return this._rechargeFun;
-    }
-    /**
-     * 设置支付防沉迷检验需要的参数
-     * @param {*} params 
-     */
-
-  }, {
-    key: "setFcmParams",
-    value: function setFcmParams(params) {
-      this._fcmParams = params;
-    }
-    /**
-     * 获取支付防沉迷检验需要的参数
-     */
-
-  }, {
-    key: "getFcmParams",
-    value: function getFcmParams() {
-      return this._fcmParams;
-    }
-    /**
-     * 设置后端返回的防沉迷支付信息
-     * @param {*} value 
-     */
-
-  }, {
-    key: "setFcmPayStatus",
-    value: function setFcmPayStatus(value) {
-      this._fcmPayStatus = value;
-    }
-    /**
-     * 获取防沉迷支付的信息
-     */
-
-  }, {
-    key: "getFcmPayStatus",
-    value: function getFcmPayStatus() {
-      return this._fcmPayStatus;
-    }
-    /**
-     * 未成年年龄限制是否开启
-     */
-
-  }, {
-    key: "ageLimitIsOpen",
-    value: function ageLimitIsOpen() {
-      return this._realNameData.auth_type === '3' && this._realNameData.pay_age_ctl === '1';
-    }
-    /**
-     * 是否已成年
-     */
-
-  }, {
-    key: "isAdult",
-    value: function isAdult() {
-      return this._realNameData.status === '2';
-    }
-  }], [{
-    key: "Instance",
-    get: function get() {
-      if (!this._instance) {
-        this._instance = new modelData();
-      }
-
-      return this._instance;
-    }
-  }]);
-
-  return modelData;
-}();
-
-/* harmony default export */ var utils_modelData = (modelData_modelData);
 // CONCATENATED MODULE: ./src/utils/index.js
-
 
 
 
@@ -24857,6 +24648,217 @@ var fetchMgFcm_fetchMgFcm = function fetchMgFcm(_ref) {
 
 
 
+// CONCATENATED MODULE: ./src/sdk/data/h5Platform/realNameModelData.js
+
+
+
+/**
+ * @author: liuyang9
+ * @description: 处理实名相关的模型数据
+ */
+var realNameModelData_realNameModelData = /*#__PURE__*/function () {
+  createClass_default()(realNameModelData, null, [{
+    key: "Instance",
+    get: function get() {
+      if (!this._instance) {
+        this._instance = new realNameModelData();
+      }
+
+      return this._instance;
+    }
+  }]);
+
+  function realNameModelData() {
+    classCallCheck_default()(this, realNameModelData);
+
+    // 用户qid
+    this._qid = null; // 游戏的key
+
+    this._gkey = null; // 充值函数
+
+    this._rechargeFun = null; // 实名数据
+
+    this._realNameData = null; // 支付参数
+
+    this._fcmParams = null; // 后端返回的fcm_pay_status信息
+
+    this._fcmPayStatus = null;
+  }
+  /**
+   * 设置qid
+   * @param {*} qid 
+   */
+
+
+  createClass_default()(realNameModelData, [{
+    key: "setQid",
+    value: function setQid(qid) {
+      this._qid = qid;
+    }
+    /**
+     * 读取qid
+     */
+
+  }, {
+    key: "getQid",
+    value: function getQid() {
+      return this._qid;
+    }
+    /**
+     * 设置gkey
+     * @param {*} gkey 游戏的key
+     */
+
+  }, {
+    key: "setGkey",
+    value: function setGkey(gkey) {
+      this._gkey = gkey;
+    }
+    /**
+     * 读取gkey
+     */
+
+  }, {
+    key: "getGkey",
+    value: function getGkey() {
+      return this._gkey;
+    }
+    /**
+     * 设置实名数据
+     * @param {*} realNameData 从服务端获取到的实名信息
+     */
+
+  }, {
+    key: "setRealNameData",
+    value: function setRealNameData(realNameData) {
+      this._realNameData = realNameData;
+    }
+    /**
+     * 是否在未成年人可充值的时间段内
+     */
+
+  }, {
+    key: "canRechargeTime",
+    value: function canRechargeTime() {
+      return this._realNameData.is_forbid_time === '0';
+    }
+    /**
+     * 判断是否需要进行实名认证
+     */
+
+  }, {
+    key: "needCheckRealName",
+    value: function needCheckRealName() {
+      return this._realNameData.auth_type !== '0';
+    }
+    /**
+     * 获取实名状态
+     */
+
+  }, {
+    key: "getRealNameStatus",
+    value: function getRealNameStatus() {
+      return this._realNameData.status;
+    }
+    /**
+     * 是否可以关闭实名认证
+     */
+
+  }, {
+    key: "canCloseRealName",
+    value: function canCloseRealName() {
+      return this._realNameData.auth_type === '2';
+    }
+    /**
+     * 设置充值函数
+     * @param {*} rechargeFun 充值函数
+     */
+
+  }, {
+    key: "setRecharge",
+    value: function setRecharge(rechargeFun) {
+      this._rechargeFun = rechargeFun;
+    }
+    /**
+     * 调用充值
+     */
+
+  }, {
+    key: "dispatchRecharge",
+    value: function dispatchRecharge() {
+      this._rechargeFun();
+    }
+    /**
+     * 获取充值函数
+     */
+
+  }, {
+    key: "getRechargeFun",
+    value: function getRechargeFun() {
+      return this._rechargeFun;
+    }
+    /**
+     * 设置支付防沉迷检验需要的参数
+     * @param {*} params 
+     */
+
+  }, {
+    key: "setFcmParams",
+    value: function setFcmParams(params) {
+      this._fcmParams = params;
+    }
+    /**
+     * 获取支付防沉迷检验需要的参数
+     */
+
+  }, {
+    key: "getFcmParams",
+    value: function getFcmParams() {
+      return this._fcmParams;
+    }
+    /**
+     * 设置后端返回的防沉迷支付信息
+     * @param {*} value 
+     */
+
+  }, {
+    key: "setFcmPayStatus",
+    value: function setFcmPayStatus(value) {
+      this._fcmPayStatus = value;
+    }
+    /**
+     * 获取防沉迷支付的信息
+     */
+
+  }, {
+    key: "getFcmPayStatus",
+    value: function getFcmPayStatus() {
+      return this._fcmPayStatus;
+    }
+    /**
+     * 未成年年龄限制是否开启
+     */
+
+  }, {
+    key: "ageLimitIsOpen",
+    value: function ageLimitIsOpen() {
+      return this._realNameData.auth_type === '3' && this._realNameData.pay_age_ctl === '1';
+    }
+    /**
+     * 是否已成年
+     */
+
+  }, {
+    key: "isAdult",
+    value: function isAdult() {
+      return this._realNameData.status === '2';
+    }
+  }]);
+
+  return realNameModelData;
+}();
+
+
 // CONCATENATED MODULE: ./src/sdk/data/h5Platform/index.js
 
 
@@ -24867,8 +24869,9 @@ var fetchMgFcm_fetchMgFcm = function fetchMgFcm(_ref) {
  */
 
 
+
 var h5Platform_paramsInstance = utils_paramsHelper.Instance;
-var modelDataInstance = utils_modelData.Instance;
+var realNameModelDataInstance = realNameModelData_realNameModelData.Instance;
 var h5Platform_logInstance = log_logHelper.Instance;
 
 var h5Platform_h5PlatformData = /*#__PURE__*/function () {
@@ -24945,8 +24948,8 @@ var h5Platform_h5PlatformData = /*#__PURE__*/function () {
     key: "storeCheckAmountResult",
     value: function storeCheckAmountResult(res) {
       try {
-        modelDataInstance.setRealNameData(res.open_check_auth);
-        modelDataInstance.setFcmPayStatus(res.fcm_pay_status);
+        realNameModelDataInstance.setRealNameData(res.open_check_auth);
+        realNameModelDataInstance.setFcmPayStatus(res.fcm_pay_status);
       } catch (error) {
         h5Platform_logInstance.error('存储金额验证结果信息时出现异常', error);
       }
@@ -25081,8 +25084,9 @@ var unRealNameHandler_unRealNameHandler = /*#__PURE__*/function () {
  */
 
 
+
 var nonageHandler_logInstance = log_logHelper.Instance;
-var nonageHandler_modelDataInstance = utils_modelData.Instance;
+var nonageHandler_realNameModelDataInstance = realNameModelData_realNameModelData.Instance;
 var popupViewInstance = popupView_popupView.Instance;
 
 var nonageHandler_nonageHandler = /*#__PURE__*/function () {
@@ -25091,8 +25095,8 @@ var nonageHandler_nonageHandler = /*#__PURE__*/function () {
     value: function exec() {
       nonageHandler_logInstance.log('已实名，未成年');
 
-      if (nonageHandler_modelDataInstance.ageLimitIsOpen()) {
-        var fcmPayStatus = nonageHandler_modelDataInstance.getFcmPayStatus();
+      if (nonageHandler_realNameModelDataInstance.ageLimitIsOpen()) {
+        var fcmPayStatus = nonageHandler_realNameModelDataInstance.getFcmPayStatus();
         var status = fcmPayStatus.status,
             age = fcmPayStatus.age;
 
@@ -25106,7 +25110,7 @@ var nonageHandler_nonageHandler = /*#__PURE__*/function () {
         return;
       }
 
-      if (nonageHandler_modelDataInstance.canRechargeTime()) {
+      if (nonageHandler_realNameModelDataInstance.canRechargeTime()) {
         nonageHandler_logInstance.log('在允许充值时间段内');
       } else {
         nonageHandler_logInstance.error('在禁止充值时间段内'); // 在禁止充值时间段内给出提示
@@ -25163,7 +25167,8 @@ var adultHandler_adultHandler = /*#__PURE__*/function () {
 
 
 
-var h5Platform_modelDataInstance = utils_modelData.Instance;
+
+var h5Platform_realNameModelDataInstance = realNameModelData_realNameModelData.Instance;
 var handler_h5Platform_logInstance = log_logHelper.Instance;
 
 var h5Platform_h5PlatformHandler = /*#__PURE__*/function () {
@@ -25174,14 +25179,14 @@ var h5Platform_h5PlatformHandler = /*#__PURE__*/function () {
      * 根据用户的实名状态，获取相应的处理器
      */
     value: function getHandler() {
-      var status = h5Platform_modelDataInstance.getRealNameStatus();
+      var status = h5Platform_realNameModelDataInstance.getRealNameStatus();
 
       if (['0', '1', '2'].indexOf(status) === -1) {
         handler_h5Platform_logInstance.error('用户的实名状态参数异常');
         return null;
       }
 
-      if (!h5Platform_modelDataInstance.needCheckRealName()) {
+      if (!h5Platform_realNameModelDataInstance.needCheckRealName()) {
         return null;
       }
 
