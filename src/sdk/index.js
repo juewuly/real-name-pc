@@ -10,7 +10,7 @@ export default class RealNamePc {
   static Instance({ feature, containerId }) {
     if (!this._instance) {
       const featureClass = features.getFeatureClass(feature);
-      this._instance = new featureClass({ containerId });
+      this._instance = featureClass.Instance({ containerId });
     }
     return this._instance;
   }

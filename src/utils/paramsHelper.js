@@ -2,7 +2,7 @@
  * @description: 验证相关的参数
  */
 
-import logHelper from './logHelper';
+import logHelper from './log';
 
 const logInstance = logHelper.Instance;
 

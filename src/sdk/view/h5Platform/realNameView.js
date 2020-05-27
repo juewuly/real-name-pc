@@ -28,7 +28,7 @@ export default class realNameView {
 
   // 关闭实名
   closeRealName() {
-    logInstance.closeRealName();
+    logInstance.h5PlatformLog.realNameLog.closeRealName();
     updateRealNameData({ show: false });
   }
 
