@@ -4,12 +4,12 @@
  */
 
 import { tips, tipType } from 'sdk/config';
-import { storeHelper } from 'utils';
+import { storeFactory } from 'utils';
+import { features } from 'sdk/config';
 
-const storeHelperInstance = storeHelper.Instance;
-// 通知名称
+const storeHelper = storeFactory.getHelperByFeature(features.lobby);
 const NoticeName = '《关于防止未成年人沉迷网络游戏的通知》';
-const setLobbyData = data => storeHelperInstance.setLobbyData(data);
+const setLobbyData = data => storeHelper.setLobbyData(data);
 
 export default class lobbyView {
   static get Instance() {

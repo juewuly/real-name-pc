@@ -8,11 +8,12 @@ import { appView, lobbyMiniView } from 'sdk/view';
 import { lobbyMiniData } from 'sdk/data';
 import { lobbyMiniHandler } from 'sdk/handler';
 import { features } from 'sdk/config';
-import { storeHelper } from 'utils';
+import { storeFactory } from 'utils';
 import domHelper from '../domHelper';
 
+const feature = features.lobbyMini;
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
-const storeHelperInstance = storeHelper.Instance;
+const storeHelper = storeFactory.getHelperByFeature(feature);
 
 export default class lobbyMini {
   static Instance({ containerId }) {
@@ -28,7 +29,7 @@ export default class lobbyMini {
   }
 
   init({ containerId }) {
-    storeHelperInstance.updateGlobalData({ feature: features.lobbyMini });
+    storeHelper.updateGlobalData({ feature });
     domHelper.initSdkElement(containerId);
     appView.renderApp();
   }

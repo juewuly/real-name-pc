@@ -4,11 +4,11 @@
  */
 
 import { tips, tipType } from 'sdk/config';
-import { storeHelper } from 'utils';
+import { storeFactory } from 'utils';
+import { features } from 'sdk/config';
 
-const storeHelperInstance = storeHelper.Instance;
-
-const setPopupData = data => storeHelperInstance.setPopupData(data);
+const storeHelper = storeFactory.getHelperByFeature(features.h5Platform);
+const setPopupData = data => storeHelper.popup.setPopupData(data);
 
 export default class popupView {
   static get Instance() {

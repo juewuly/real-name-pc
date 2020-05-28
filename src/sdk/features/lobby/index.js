@@ -6,11 +6,12 @@
 
 import { appView, lobbyView } from 'sdk/view';
 import { features } from 'sdk/config';
-import { storeHelper } from 'utils';
+import { storeFactory } from 'utils';
 import domHelper from '../domHelper';
 
+const feature = features.lobby;
 const lobbyViewInstance = lobbyView.Instance;
-const storeHelperInstance = storeHelper.Instance;
+const storeHelper = storeFactory.getHelperByFeature(feature);
 
 export default class lobby {
   static Instance({ containerId }) {
@@ -26,7 +27,7 @@ export default class lobby {
   }
 
   init({ containerId }) {
-    storeHelperInstance.updateGlobalData({ feature: features.lobby });
+    storeHelper.updateGlobalData({ feature });
     domHelper.initSdkElement(containerId)
     appView.renderApp();
   }

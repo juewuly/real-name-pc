@@ -6,17 +6,17 @@
 
 import { features } from 'sdk/config';
 import { 
-  storeHelper, 
+  storeFactory, 
   logFactory,
   paramsFactory
 } from 'utils';
 
 const feature = features.h5Platform;
-const storeHelperInstance = storeHelper.Instance;
+const storeHelper = storeFactory.getHelperByFeature(feature);
 const logHelper = logFactory.getHelperByFeature(feature);
 const paramsHelper = paramsFactory.getHelperByFeature(feature);
 
-const updateRealNameData = data => storeHelperInstance.updateRealNameData(data);
+const updateRealNameData = data => storeHelper.realName.updateRealNameData(data);
 
 export default class realNameView {
   static get Instance() {
@@ -63,8 +63,8 @@ export default class realNameView {
       onSubmitSuccess(result);
     }
 
-    storeHelperInstance.subscribeCloseRealName(onClose);
-    storeHelperInstance.subscribeSubmitRealName({
+    storeHelper.realName.subscribeCloseRealName(onClose);
+    storeHelper.realName.subscribeSubmitRealName({
       onSubmitError,
       onSubmitSuccess: handleSubmitSuccess
     });

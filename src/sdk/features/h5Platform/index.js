@@ -12,13 +12,14 @@ import domHelper from '../domHelper';
 
 import { 
   paramsFactory,
-  storeHelper
+  storeFactory
 } from 'utils';
 
+const feature = features.h5Platform;
 const realNameViewInstance = realNameView.Instance;
 const popupViewInstance = popupView.Instance;
-const storeHelperInstance = storeHelper.Instance;
-const paramsHelper = paramsFactory.getHelperByFeature(features.h5Platform);
+const storeHelper = storeFactory.getHelperByFeature(feature);
+const paramsHelper = paramsFactory.getHelperByFeature(feature);
 
 export default class h5Platform {
   static Instance({ containerId }) {
@@ -34,7 +35,7 @@ export default class h5Platform {
   }
 
   init({ containerId }) {
-    storeHelperInstance.updateGlobalData({ feature: features.h5Platform });
+    storeHelper.updateGlobalData({ feature });
 
     domHelper.initSdkElement(containerId)
     domHelper.initSdkModalElement(containerId);

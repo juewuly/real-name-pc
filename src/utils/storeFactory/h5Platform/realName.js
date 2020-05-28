@@ -1,67 +1,40 @@
 /**
- * @description: 订阅store里的相关数据
+ * @author: liuyang9
+ * @description: 设置实名相关的数据 
  */
 
-import { features } from 'sdk/config';
-import store from 'src/common/store';
-import logFactory from './logFactory';
-import { 
-  UPDATE_POPUP_DATA, 
-  SET_POPUP_DATA,
-  UPDATE_REAL_NAME_DATA,
-  UPDATE_GLOBAL_DATA,
-  SET_LOBBY_DATA,
-  SET_LOBBY_MINI_DATA
-} from 'src/redux/constants';
 
-const storeInstance = store.Instance;
+import base from '../base';
+import { features } from 'sdk/config';
+import logFactory from 'utils/logFactory';
+import { UPDATE_REAL_NAME_DATA } from 'src/redux/constants';
+
 const logHelper = logFactory.getHelperByFeature(features.h5Platform);
 
-class storeHelper {
+export default class realName extends base {
   constructor(store) {
-    // redux里的store
-    this._store = store;
+    super(store);
   }
 
-  static get Instance() {
-    if (!this._instance) {
-      this._instance = new storeHelper(storeInstance);
-    }
-
-    return this._instance;
+  // 更新实名数据
+  updateRealNameData(data) {
+    this.store.dispatch({
+      type: UPDATE_REAL_NAME_DATA,
+      data
+    });
   }
 
-  /**
-   * 获取redux里的store
-   */
-  get store() {
-    return this._store;
-  }
-
-  /**
-   * 获取redux里的state
-   */
-  get state() {
-    return this.store.getState();
-  }
-
-  /**
-   * 获取实名认证窗体的状态（显示或关闭）
-   */
+  // 获取实名认证窗体的状态（显示或关闭）
   getRealNameWindowStatus() {
     return this.state.getIn(['data', 'realName', 'show']);
   }
 
-  /**
-   * 获取实名认证结果
-   */
+  // 获取实名认证结果
   getRealNameSubmitResult() {
     return this.state.getIn(['data', 'realName', 'add', 'result']);
   }
 
-  /**
-   * 订阅关闭实名认证
-   */
+  // 订阅关闭实名认证
   subscribeCloseRealName(onClose) {
     const oldWindowStatus = this.getRealNameWindowStatus();
 
@@ -82,10 +55,7 @@ class storeHelper {
     const unsubscribeCloseRealName = this.store.subscribe(handleStoreChange);
   }
 
-  /**
-   * 订阅提交实名认证
-   * @param {*} param
-   */
+  // 订阅提交实名认证
   subscribeSubmitRealName({ onSubmitSuccess, onSubmitError }) {
     let oldSubmitResult = this.getRealNameSubmitResult();
 
@@ -141,46 +111,4 @@ class storeHelper {
     logHelper.realName.subscribeSubmitRealName();
     const unsubscribeSubmitRealName = this.store.subscribe(handleStoreChange);
   }
-
-  // 设置popup数据
-  setPopupData(data) {
-    this.store.dispatch({
-      type: SET_POPUP_DATA,
-      data
-    });
-  }
-
-  // 更新实名数据
-  updateRealNameData(data) {
-    this.store.dispatch({
-      type: UPDATE_REAL_NAME_DATA,
-      data
-    });
-  }
-
-  // 更新全局数据
-  updateGlobalData(data) {
-    this.store.dispatch({
-      type: UPDATE_GLOBAL_DATA,
-      data
-    });
-  }
-
-  // 设置大厅数据
-  setLobbyData(data) {
-    this.store.dispatch({
-      type: SET_LOBBY_DATA,
-      data
-    });
-  }
-
-  // 设置大厅mini付的数据
-  setLobbyMiniData(data) {
-    this.store.dispatch({
-      type: SET_LOBBY_MINI_DATA,
-      data
-    });
-  }
 }
-
-export default storeHelper;
