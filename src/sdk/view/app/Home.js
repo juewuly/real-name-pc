@@ -8,8 +8,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader/root';
-
 import { updatePopupData } from 'src/redux/actions';
+import { features, statePath } from 'sdk/config';
 
 import {
   PopupContainer,
@@ -18,7 +18,8 @@ import {
   LobbyMiniContainer
 } from 'src/containers';
 
-import { features } from 'sdk/config';
+const rootPath = statePath.getRootPath;
+const featurePath = statePath.getPathByFeature(features.h5Platform);
 
 const Home = ({ feature, showRealName, showPopup }) => {
   const FeatureComponent = getFeatureComponent(feature);
@@ -48,9 +49,9 @@ const getFeatureComponent = feature => {
 }
 
 const mapStateToProps = state => ({
-  feature: state.getIn(['data', 'global', 'feature']),
-  showRealName: state.getIn(['data', 'realName', 'show']),
-  showPopup: state.getIn(['data', 'popup', 'show'])
+  feature: state.getIn([...rootPath, 'global', 'feature']),
+  showRealName: state.getIn([...featurePath, 'realName', 'show']),
+  showPopup: state.getIn([...featurePath, 'popup', 'show'])
 });
 
 const mapDispatchToProps = dispatch => ({

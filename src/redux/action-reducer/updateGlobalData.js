@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import { UPDATE_GLOBAL_DATA } from '../constants';
 
-const KEY = 'global';
+const statePath = ['global'];
 
 export const updateGlobalData = data => dispatch => dispatch({
   type: UPDATE_GLOBAL_DATA,
@@ -11,7 +11,7 @@ export const updateGlobalData = data => dispatch => dispatch({
 export const reducer = (state, action) => {
   switch (action.type) {
   case UPDATE_GLOBAL_DATA:
-    return state.mergeIn([KEY], fromJS(action.data));
+    return state.mergeIn(statePath, fromJS(action.data));
   default:
     return state;
   }

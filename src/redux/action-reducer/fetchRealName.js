@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
 import axios from 'axios';
+import { features } from 'sdk/config';
 
 import {
   FETCH_REAL_NAME_BEGIN,
@@ -7,7 +8,7 @@ import {
   FETCH_REAL_NAME_FAILURE
 } from '../constants';
 
-const INDEX = 'realName';
+const fatherPath = [features.h5Platform, 'realName'];
 
 export const fetchRealName = ({
     appkey, 
@@ -57,14 +58,14 @@ export const fetchRealName = ({
 export const reducer = (state, action) => {
   switch (action.type) {
   case FETCH_REAL_NAME_BEGIN:
-    return state.setIn([INDEX, 'fetch', 'fetching'], true);
+    return state.setIn([...fatherPath, 'fetch', 'fetching'], true);
   case FETCH_REAL_NAME_SUCCESS:
-    return state.set(INDEX, 'fetch', fromJS({
+    return state.set(...fatherPath, 'fetch', fromJS({
       fetching: false,
       data: action.data
     }));
   case FETCH_REAL_NAME_FAILURE:
-    return state.set(INDEX, 'fetch', fromJS({
+    return state.set(...fatherPath, 'fetch', fromJS({
       fetching: false,
       errno: action.errno,
       errmsg: action.errmsg

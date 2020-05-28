@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Modal, Tip } from 'components';
-
+import { features, statePath } from 'sdk/config';
 import { updatePopupData } from 'src/redux/actions';
+
+const featurePath = statePath.getPathByFeature(features.h5Platform);
+featurePath.push('popup');
 
 const PopupContainer = ({ className, show, title, subTitle, subTitle2, content, canClose, noMask, actions }) => {
   const handleClose = () => {
@@ -32,14 +34,14 @@ const PopupContainer = ({ className, show, title, subTitle, subTitle2, content, 
 }
 
 const mapStateToProps = state => ({
-  className: state.getIn(['data', 'popup', 'className']),
-  show: state.getIn(['data', 'popup', 'show']),
-  title: state.getIn(['data', 'popup', 'title']),
-  subTitle: state.getIn(['data', 'popup', 'subTitle']),
-  subTitle2: state.getIn(['data', 'popup', 'subTitle2']),
-  content: state.getIn(['data', 'popup', 'content']),
-  canClose: state.getIn(['data', 'popup', 'canClose']),
-  noMask: state.getIn(['data', 'popup', 'noMask'])
+  className: state.getIn([...featurePath, 'className']),
+  show: state.getIn([...featurePath, 'show']),
+  title: state.getIn([...featurePath, 'title']),
+  subTitle: state.getIn([...featurePath, 'subTitle']),
+  subTitle2: state.getIn([...featurePath, 'subTitle2']),
+  content: state.getIn([...featurePath, 'content']),
+  canClose: state.getIn([...featurePath, 'canClose']),
+  noMask: state.getIn([...featurePath, 'noMask'])
 });
 
 const mapDispatchToProps = dispatch => ({

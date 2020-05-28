@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
 import axios from 'axios';
+import { features } from 'sdk/config';
 
 import {
   ADD_REAL_NAME_BEGIN,
@@ -7,7 +8,7 @@ import {
   ADD_REAL_NAME_FAILURE
 } from '../constants';
 
-const INDEX = 'realName';
+const fatherPath = [features.h5Platform, 'realName'];
 
 export const addRealName = ({
     appkey,
@@ -61,14 +62,14 @@ export const addRealName = ({
 export const reducer = (state, action) => {
   switch (action.type) {
   case ADD_REAL_NAME_BEGIN:
-    return state.setIn([INDEX, 'add', 'posting'], true);
+    return state.setIn([...fatherPath, 'add', 'posting'], true);
   case ADD_REAL_NAME_SUCCESS:
-    return state.setIn([INDEX, 'add'], fromJS({
+    return state.setIn([...fatherPath, 'add'], fromJS({
       posting: false,
       result: action.data
     }));
   case ADD_REAL_NAME_FAILURE:
-    return state.setIn([INDEX, 'add'], fromJS({
+    return state.setIn([...fatherPath, 'add'], fromJS({
       posting: false,
       errno: action.errno,
       errmsg: action.errmsg

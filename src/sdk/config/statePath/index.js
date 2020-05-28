@@ -12,11 +12,19 @@ export default class statePath extends base {
     return this.Instance.getPathByFeature(feature);
   }
 
+  static getRootPath() {
+    return this.Instance.getRootPath();
+  }
+
   constructor() {
     super();
   }
 
   getPathByFeature(feature) {
     return [...this.rootPath, feature];
+  }
+
+  getRootPath() {
+    return this.rootPath;
   }
 }

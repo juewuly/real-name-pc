@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Modal, RealName } from 'components';
+import { features, statePath } from 'sdk/config';
 
 import { 
   updateRealNameData,
   addRealName
 } from 'src/redux/actions';
+
+const featurePath = statePath.getPathByFeature(features.h5Platform);
+featurePath.push('realName');
 
 const Home = ({ show, canClose, options, actions }) => {
   const handleClose = () => {
@@ -43,10 +46,10 @@ const Home = ({ show, canClose, options, actions }) => {
 }
 
 const mapStateToProps = state => ({
-  show: state.getIn(['data', 'realName', 'show']),
-  canClose: state.getIn(['data', 'realName', 'canClose']),
+  show: state.getIn([...featurePath, 'show']),
+  canClose: state.getIn([...featurePath, 'canClose']),
   // 提交实名认证时需要传递的一些参数
-  options: state.getIn(['data', 'realName', 'options'])
+  options: state.getIn([...featurePath, 'options'])
 });
 
 const mapDispatchToProps = dispatch => ({
