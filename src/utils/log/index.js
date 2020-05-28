@@ -4,11 +4,11 @@
  */
 
 
-import base from './baseLog';
+import baseLog from './baseLog';
 import h5PlatformLog from './h5PlatformLog';
 import { features } from 'sdk/config';
 
-class logHelper extends base {
+class logHelper extends baseLog {
   static get Instance() {
     if (!this._instance) {
       this._instance = new logHelper('>> ');

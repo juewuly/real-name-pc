@@ -17,8 +17,8 @@ import {
 
 const realNameViewInstance = realNameView.Instance;
 const popupViewInstance = popupView.Instance;
-const paramsInstance = paramsHelper.Instance;
 const storeHelperInstance = storeHelper.Instance;
+const h5PlatformParamsInstance = paramsHelper.Instance.h5PlatFormParams;
 
 export default class h5Platform {
   static Instance({ containerId }) {
@@ -52,7 +52,7 @@ export default class h5Platform {
     onSubmitError 
   }) {
     // 验证参数是否合法
-    const pass = paramsInstance.validateRealNameParams({ appkey, qid, platform, idcard_check_type });
+    const pass = h5PlatformParamsInstance.validateRealNameParams({ appkey, qid, platform, idcard_check_type });
     if (!pass) {
       return;
     }
