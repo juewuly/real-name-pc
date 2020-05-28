@@ -14,5 +14,10 @@ export default class ids {
     return 'real-name-pc-modal';
   }
 
+  // store的根节点名
+  static get rootNodeOfStore() {
+    return 'data';
+  } 
+
   constructor() { }
 }
