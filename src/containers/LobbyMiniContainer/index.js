@@ -1,10 +1,11 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Tip } from 'components';
+import { features, statePath } from 'sdk/config';
 
 import './index.less';
 
+const featurePath = statePath.getPathByFeature(features.lobbyMini);
 
 const LobbyMiniContainer = ({ className, show, title, subTitle, content, onClickOk }) => {
   if (!show) {
@@ -25,12 +26,12 @@ const LobbyMiniContainer = ({ className, show, title, subTitle, content, onClick
 }
 
 const mapStateToProps = state => ({
-  className: state.getIn(['data', 'lobbyMini', 'className']),
-  show: state.getIn(['data', 'lobbyMini', 'show']),
-  title: state.getIn(['data', 'lobbyMini', 'title']),
-  subTitle: state.getIn(['data', 'lobbyMini', 'subTitle']),
-  content: state.getIn(['data', 'lobbyMini', 'content']),
-  onClickOk: state.getIn(['data', 'lobbyMini', 'onClickOk'])
+  className: state.getIn([...featurePath, 'className']),
+  show: state.getIn([...featurePath, 'show']),
+  title: state.getIn([...featurePath, 'title']),
+  subTitle: state.getIn([...featurePath, 'subTitle']),
+  content: state.getIn([...featurePath, 'content']),
+  onClickOk: state.getIn([...featurePath, 'onClickOk'])
 });
 
 export default connect(mapStateToProps, null)(LobbyMiniContainer);
