@@ -4,8 +4,10 @@
  */
 
 
-import logHelper from 'utils/log';
+import logFactory from 'utils/logFactory';
 import base from '../base';
+
+const logHelper = logFactory.getHelperByFeature
 
 export default class h5Platform extends base {
   static get Instance() {

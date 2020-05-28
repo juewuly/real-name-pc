@@ -4,12 +4,12 @@
  */
 
 
-import baseLog from '../baseLog';
+import base from '../base';
 
-export default class realNameLog extends baseLog {
+export default class realName extends base {
   static Instance(prefix) {
     if (!this._instance) {
-      this._instance = new realNameLog(prefix);
+      this._instance = new realName(prefix);
     }
     return this._instance;
   }

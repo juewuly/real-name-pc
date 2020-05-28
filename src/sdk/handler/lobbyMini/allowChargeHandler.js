@@ -4,7 +4,9 @@
  */
 
 
-import { logHelper } from 'utils';
+import { logFactory } from 'utils';
+
+const logHelper = logFactory.getHelperByFeature();
 
 export default class allowChargeHandler {
   constructor() { }

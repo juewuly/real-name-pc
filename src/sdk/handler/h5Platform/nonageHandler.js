@@ -4,10 +4,11 @@
  */
 
 
-import { logHelper } from 'utils';
+import { logFactory } from 'utils';
 import { popupView } from 'sdk/view';
 import realNameModelData from 'sdk/data/h5Platform/realNameModelData';
 
+const logHelper = logFactory.getHelperByFeature();
 const realNameModelDataInstance = realNameModelData.Instance;
 const popupViewInstance = popupView.Instance;
 

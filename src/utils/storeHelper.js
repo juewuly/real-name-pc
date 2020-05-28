@@ -2,8 +2,9 @@
  * @description: 订阅store里的相关数据
  */
 
+import { features } from 'sdk/config';
 import store from 'src/common/store';
-import logHelper from './log';
+import logFactory from './logFactory';
 import { 
   UPDATE_POPUP_DATA, 
   SET_POPUP_DATA,
@@ -14,6 +15,7 @@ import {
 } from 'src/redux/constants';
 
 const storeInstance = store.Instance;
+const logHelper = logFactory.getHelperByFeature(features.h5Platform);
 
 class storeHelper {
   constructor(store) {
@@ -67,16 +69,16 @@ class storeHelper {
       const windowStatus = this.getRealNameWindowStatus();
       if (windowStatus !== oldWindowStatus) {
         if (typeof onClose === 'function') {
-          logHelper.h5PlatformLog.realNameLog.closeRealName();
+          logHelper.realName.closeRealName();
           onClose();
         }
 
-        logHelper.h5PlatformLog.realNameLog.unsubscribeCloseRealName();
+        logHelper.realName.unsubscribeCloseRealName();
         unsubscribeCloseRealName();
       }
     }
 
-    logHelper.h5PlatformLog.realNameLog.subscribeCloseRealName();
+    logHelper.realName.subscribeCloseRealName();
     const unsubscribeCloseRealName = this.store.subscribe(handleStoreChange);
   }
 
@@ -98,7 +100,7 @@ class storeHelper {
       const result = submitResult.toJS();
 
       if (result.error_code !== '0') {
-        logHelper.h5PlatformLog.realNameLog.submitRealNameError(result);
+        logHelper.realName.submitRealNameError(result);
         alert(result.error);
 
         if (typeof onSubmitError === 'function') {
@@ -112,7 +114,7 @@ class storeHelper {
 
       const { ret } = result;
       if (ret.code !== '999') {
-        logHelper.h5PlatformLog.realNameLog.submitRealNameError(result);
+        logHelper.realName.submitRealNameError(result);
         alert(ret.msg);
 
         if (typeof onSubmitError === 'function') {
@@ -124,19 +126,19 @@ class storeHelper {
         return;
       }
 
-      logHelper.h5PlatformLog.realNameLog.submitRealNameSuccess();
+      logHelper.realName.submitRealNameSuccess();
       alert('实名认证成功！');
 
       if (typeof onSubmitSuccess === 'function') {
         onSubmitSuccess(result);
       }
       
-      logHelper.h5PlatformLog.realNameLog.unsubscribeSubmitRealName();
+      logHelper.realName.unsubscribeSubmitRealName();
       unsubscribeSubmitRealName();
       return;
     }
 
-    logHelper.h5PlatformLog.realNameLog.subscribeSubmitRealName();
+    logHelper.realName.subscribeSubmitRealName();
     const unsubscribeSubmitRealName = this.store.subscribe(handleStoreChange);
   }
 

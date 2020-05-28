@@ -4,7 +4,9 @@
  */
 
 
-import logHelper from 'utils/log';
+import logFactory from 'utils/logFactory';
+
+const logHelper = logFactory.getHelperByFeature();
 
 export default class base {
   constructor() { }

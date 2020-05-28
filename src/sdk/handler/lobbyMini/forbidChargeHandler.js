@@ -3,9 +3,10 @@
  * @description: 禁止充值的处理器
  */
 
-import { logHelper } from 'utils';
+import { logFactory } from 'utils';
 import { lobbyMiniView } from 'sdk/view';
 
+const logHelper = logFactory.getHelperByFeature();
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
 
 export default class forbidChargeHandler {

@@ -4,7 +4,7 @@
  */
 
 
-export default class baseLog {
+export default class base {
   constructor(prefix) {
     this._prefix = prefix;
   }

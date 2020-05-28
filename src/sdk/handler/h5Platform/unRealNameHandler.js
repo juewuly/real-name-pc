@@ -3,10 +3,11 @@
  * @description: 实名状态为未实名时的处理器
  */
 
-import { logHelper } from 'utils';
+import { logFactory } from 'utils';
 import { realNameView } from 'sdk/view';
 import { paramsConfig, eventConfig } from 'sdk/config';
 
+const logHelper = logFactory.getHelperByFeature();
 const realNameViewInstance = realNameView.Instance;
 
 export default class unRealNameHandler {

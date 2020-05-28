@@ -4,11 +4,12 @@
  */
 
 import { fetchRealName, checkAmount } from 'request';
-import { paramsFactory, logHelper } from 'utils';
+import { paramsFactory, logFactory } from 'utils';
 import realNameModelData from './realNameModelData';
 
 const realNameModelDataInstance = realNameModelData.Instance;
 const paramsHelper = paramsFactory.getHelperByFeature();
+const logHelper = logFactory.getHelperByFeature();
 
 export default class h5PlatformData {
   /**
