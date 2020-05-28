@@ -4,14 +4,15 @@
  */
 
 
+import { features } from 'sdk/config';
 import { 
   storeHelper, 
   logHelper,
-  paramsHelper
+  paramsFactory
 } from 'utils';
 
 const storeHelperInstance = storeHelper.Instance;
-const h5PlatFormParamsInstance = paramsHelper.Instance.h5PlatFormParams;
+const paramsHelper = paramsFactory.getHelperByFeature(features.h5Platform);
 
 const updateRealNameData = data => storeHelperInstance.updateRealNameData(data);
 
@@ -37,7 +38,7 @@ export default class realNameView {
    */
   showRealName({ appkey, qid, platform, idcard_check_type, canClose, onClose, onSubmitSuccess, onSubmitError }) {
     // 验证参数是否合法
-    const pass = h5PlatFormParamsInstance.validateRealNameParams({ appkey, qid, platform, idcard_check_type });
+    const pass = paramsHelper.validateRealNameParams({ appkey, qid, platform, idcard_check_type });
     if (!pass) {
       return;
     }

@@ -4,9 +4,9 @@
  */
 
 import { fetchMgFcm } from 'request';
-import { paramsHelper } from 'utils';
+import { paramsFactory } from 'utils';
 
-const baseParamshelperInstance = paramsHelper.Instance.baseParams;
+const paramsHelper = paramsFactory.getHelperByFeature();
 
 export default class lobbyMiniData {
   /**
@@ -19,7 +19,7 @@ export default class lobbyMiniData {
   }) {
     return new Promise((resolve, reject) => {
       // 验证参数是否合法
-      const pass = baseParamshelperInstance.keysNotNull({ gkey, exts });
+      const pass = paramsHelper.keysNotNull({ gkey, exts });
       if (!pass) {
         reject('访问mg_fcm api时，参数异常');
         return;

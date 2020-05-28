@@ -4,11 +4,11 @@
  */
 
 import { fetchRealName, checkAmount } from 'request';
-import { paramsHelper, logHelper } from 'utils';
+import { paramsFactory, logHelper } from 'utils';
 import realNameModelData from './realNameModelData';
 
 const realNameModelDataInstance = realNameModelData.Instance;
-const baseParamsHelperInstance = paramsHelper.Instance.baseParams;
+const paramsHelper = paramsFactory.getHelperByFeature();
 
 export default class h5PlatformData {
   /**
@@ -23,7 +23,7 @@ export default class h5PlatformData {
   }) {
     return new Promise((resolve, reject) => {
       // 验证参数是否合法
-      const pass = baseParamsHelperInstance.haveAllKeys({ 
+      const pass = paramsHelper.haveAllKeys({ 
         appkey, 
         qids, 
         platform, 
@@ -42,7 +42,7 @@ export default class h5PlatformData {
 
   static checkAmount({ amount, gkey }) {
     return new Promise((resolve, reject) => {
-      const pass = baseParamsHelperInstance.keysNotNull({ amount, gkey });
+      const pass = paramsHelper.keysNotNull({ amount, gkey });
       if (!pass) {
         reject('访问金额检查api时，参数异常');
         return;
