@@ -5,8 +5,9 @@
 
 import { logFactory } from 'utils';
 import { lobbyMiniView } from 'sdk/view';
+import { features } from 'sdk/config';
 
-const logHelper = logFactory.getHelperByFeature();
+const logHelper = logFactory.getHelperByFeature(features.lobbyMini);
 const lobbyMiniViewInstance = lobbyMiniView.Instance;
 
 export default class forbidChargeHandler {

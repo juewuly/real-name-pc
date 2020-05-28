@@ -11,9 +11,10 @@ import {
   paramsFactory
 } from 'utils';
 
+const feature = features.h5Platform;
 const storeHelperInstance = storeHelper.Instance;
-const logHelper = logFactory.getHelperByFeature();
-const paramsHelper = paramsFactory.getHelperByFeature(features.h5Platform);
+const logHelper = logFactory.getHelperByFeature(feature);
+const paramsHelper = paramsFactory.getHelperByFeature(feature);
 
 const updateRealNameData = data => storeHelperInstance.updateRealNameData(data);
 

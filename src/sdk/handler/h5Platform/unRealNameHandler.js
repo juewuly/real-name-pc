@@ -5,9 +5,10 @@
 
 import { logFactory } from 'utils';
 import { realNameView } from 'sdk/view';
+import { features } from 'sdk/config';
 import { paramsConfig, eventConfig } from 'sdk/config';
 
-const logHelper = logFactory.getHelperByFeature();
+const logHelper = logFactory.getHelperByFeature(features.h5Platform);
 const realNameViewInstance = realNameView.Instance;
 
 export default class unRealNameHandler {

@@ -4,8 +4,9 @@
  */
 
 import { logFactory } from 'utils';
+import { features } from 'sdk/config';
 
-const logHelper = logFactory.getHelperByFeature();
+const logHelper = logFactory.getHelperByFeature(features.h5Platform);
 
 export default class adultHandler {
   static exec() {

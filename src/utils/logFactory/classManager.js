@@ -7,6 +7,8 @@
 import base from './base';
 import { features } from 'sdk/config';
 import h5PlatForm from './h5Platform';
+import lobby from './lobby';
+import lobbyMini from './lobbyMini';
 
 export default class classManager {
   static get Instance() {
@@ -22,7 +24,9 @@ export default class classManager {
    */
   getClassByFeature(feature) {
     const featureMap = {
-      [features.h5Platform]: h5PlatForm
+      [features.h5Platform]: h5PlatForm,
+      [features.lobby]: lobby,
+      [features.lobbyMini]: lobbyMini
     }
     const result = featureMap[feature];
     return result ? result : base;

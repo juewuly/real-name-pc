@@ -5,8 +5,9 @@
 
 
 import { logFactory } from 'utils';
+import { features } from 'sdk/config';
 
-const logHelper = logFactory.getHelperByFeature();
+const logHelper = logFactory.getHelperByFeature(features.lobbyMini);
 
 export default class allowChargeHandler {
   constructor() { }

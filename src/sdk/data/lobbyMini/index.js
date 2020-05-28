@@ -5,8 +5,9 @@
 
 import { fetchMgFcm } from 'request';
 import { paramsFactory } from 'utils';
+import { features } from 'sdk/config';
 
-const paramsHelper = paramsFactory.getHelperByFeature();
+const paramsHelper = paramsFactory.getHelperByFeature(features.lobbyMini);
 
 export default class lobbyMiniData {
   /**

@@ -7,11 +7,11 @@
 import unRealNameHandler from './unRealNameHandler';
 import nonageHandler from './nonageHandler';
 import adultHandler from './adultHandler';
-
 import { logFactory } from 'utils';
+import { features } from 'sdk/config';
 import realNameModelData from 'sdk/data/h5Platform/realNameModelData';
 
-const logHelper = logFactory.getHelperByFeature();
+const logHelper = logFactory.getHelperByFeature(features.h5Platform);
 const realNameModelDataInstance = realNameModelData.Instance;
 
 export default class h5PlatformHandler {
