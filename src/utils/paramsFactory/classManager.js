@@ -1,11 +1,17 @@
+/**
+ * @author: liuyang9
+ * @description: 类管理器
+ */
+
+
 import base from './base';
 import { features } from 'sdk/config';
 import h5PlatFormParams from './h5Platform';
 
-export default class helper {
+export default class classManager {
   static get Instance() {
     if (!this._instance) {
-      this._instance = new helper();
+      this._instance = new classManager();
     }
     return this._instance;
   }
