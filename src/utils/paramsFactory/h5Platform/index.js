@@ -1,10 +1,16 @@
-import logHelper from 'utils/log';
-import baseParams from '../baseParams';
+/**
+ * @author: liuyang9
+ * @description: 处理h5联运平台的相关参数校验
+ */
 
-export default class h5PlatformParams extends baseParams {
+
+import logHelper from 'utils/log';
+import base from '../base';
+
+export default class h5Platform extends base {
   static get Instance() {
     if (!this._instance) {
-      this._instance = new h5PlatformParams();
+      this._instance = new h5Platform();
     }
     return this._instance;
   }

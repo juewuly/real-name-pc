@@ -1,6 +1,12 @@
+/**
+ * @author: liuyang9
+ * @description: 处理参数的基类
+ */
+
+
 import logHelper from 'utils/log';
 
-export default class baseParams {
+export default class base {
   constructor() { }
 
   /**

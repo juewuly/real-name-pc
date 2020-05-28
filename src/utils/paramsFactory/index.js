@@ -1,15 +1,14 @@
+/**
+ * @author: liuyang9
+ * @description: 参数工厂，获取处理参数的助手
+ */
+
+
 import { features } from 'sdk/config';
-import baseParams from './baseParams';
-import h5PlatFormParams from './h5PlatformParams';
+import baseParams from './base';
+import h5PlatFormParams from './h5Platform';
 
 export default class paramsFactory {
-  static get Instance() {
-    if (!this._instance) {
-      this._instance = new paramsFactory();
-    }
-    return this._instance;
-  }
-
   /**
    * 通过feature获取助手类
    * @param {*} feature feature名称
