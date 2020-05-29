@@ -24404,7 +24404,7 @@ var LobbyMiniContainer_mapStateToProps = function mapStateToProps(state) {
 
 
 
-var rootPath = statePath_statePath.getRootPath;
+var rootPath = statePath_statePath.getRootPath();
 var Home_featurePath = statePath_statePath.getPathByFeature(features_features.h5Platform);
 
 var Home_Home = function Home(_ref) {

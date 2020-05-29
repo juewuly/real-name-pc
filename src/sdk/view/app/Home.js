@@ -18,7 +18,7 @@ import {
   LobbyMiniContainer
 } from 'src/containers';
 
-const rootPath = statePath.getRootPath;
+const rootPath = statePath.getRootPath();
 const featurePath = statePath.getPathByFeature(features.h5Platform);
 
 const Home = ({ feature, showRealName, showPopup }) => {
