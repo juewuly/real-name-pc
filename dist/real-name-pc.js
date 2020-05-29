@@ -21534,6 +21534,10 @@ var history_history = Object(node_modules_history["createBrowserHistory"])();
 // EXTERNAL MODULE: ./node_modules/redux-immutable/dist/index.js
 var dist = __webpack_require__(177);
 
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/toConsumableArray.js
+var toConsumableArray = __webpack_require__(5);
+var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
+
 // EXTERNAL MODULE: ./node_modules/immutable/dist/immutable.js
 var immutable = __webpack_require__(15);
 var immutable_default = /*#__PURE__*/__webpack_require__.n(immutable);
@@ -21905,10 +21909,6 @@ var ids_ids = /*#__PURE__*/function () {
 // CONCATENATED MODULE: ./src/sdk/config/common/index.js
 
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/toConsumableArray.js
-var toConsumableArray = __webpack_require__(5);
-var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
-
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/inherits.js
 var inherits = __webpack_require__(11);
 var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
@@ -21944,7 +21944,7 @@ var base_base = /*#__PURE__*/function () {
 }();
 
 
-// CONCATENATED MODULE: ./src/sdk/config/statePath/index.js
+// CONCATENATED MODULE: ./src/sdk/config/statePath/statePath.js
 
 
 
@@ -21962,27 +21962,6 @@ var statePath_statePath = /*#__PURE__*/function (_base) {
   inherits_default()(statePath, _base);
 
   var _super = _createSuper(statePath);
-
-  createClass_default()(statePath, null, [{
-    key: "getPathByFeature",
-    value: function getPathByFeature(feature) {
-      return this.Instance.getPathByFeature(feature);
-    }
-  }, {
-    key: "getRootPath",
-    value: function getRootPath() {
-      return this.Instance.getRootPath();
-    }
-  }, {
-    key: "Instance",
-    get: function get() {
-      if (!this._instance) {
-        this._instance = new statePath();
-      }
-
-      return this._instance;
-    }
-  }]);
 
   function statePath() {
     classCallCheck_default()(this, statePath);
@@ -22004,6 +21983,41 @@ var statePath_statePath = /*#__PURE__*/function (_base) {
 
   return statePath;
 }(base_base);
+
+
+// CONCATENATED MODULE: ./src/sdk/config/statePath/index.js
+
+
+
+
+var statePath_proxy = /*#__PURE__*/function () {
+  function proxy() {
+    classCallCheck_default()(this, proxy);
+  }
+
+  createClass_default()(proxy, null, [{
+    key: "getPathByFeature",
+    value: function getPathByFeature(feature) {
+      return this.Instance.getPathByFeature(feature);
+    }
+  }, {
+    key: "getRootPath",
+    value: function getRootPath() {
+      return this.Instance.getRootPath();
+    }
+  }, {
+    key: "Instance",
+    get: function get() {
+      if (!this._instance) {
+        this._instance = new statePath_statePath();
+      }
+
+      return this._instance;
+    }
+  }]);
+
+  return proxy;
+}();
 
 
 // CONCATENATED MODULE: ./src/sdk/config/index.js
@@ -22064,18 +22078,28 @@ var initialState_initialState = immutable_default.a.fromJS((_I$fromJS = {
   onClickOk: function onClickOk() {}
 }), _I$fromJS));
 /* harmony default export */ var redux_initialState = (initialState_initialState);
-// CONCATENATED MODULE: ./src/redux/constants.js
+// CONCATENATED MODULE: ./src/redux/constants/common/index.js
+/**
+ * @author: liuyang9
+ * @description: 公用的action
+ */
 // 更新全局数据
-var UPDATE_GLOBAL_DATA = 'UPDATE_GLOBAL_DATA'; // 更新弹窗数据
-
+var UPDATE_GLOBAL_DATA = 'UPDATE_GLOBAL_DATA';
+// CONCATENATED MODULE: ./src/redux/constants/h5Platform/popup.js
+/**
+ * @author: liuyang9
+ * @description: 弹窗用到的action
+ */
+// 更新弹窗数据
 var UPDATE_POPUP_DATA = 'UPDATE_POPUP_DATA'; // 设置弹窗数据
 
-var SET_POPUP_DATA = 'SET_POPUP_DATA'; // 设置大厅数据
-
-var SET_LOBBY_DATA = 'SET_LOBBY_DATA'; // 设置大厅mini支付数据
-
-var SET_LOBBY_MINI_DATA = 'SET_LOBBY_MINI_DATA'; // 更新实名数据
-
+var SET_POPUP_DATA = 'SET_POPUP_DATA';
+// CONCATENATED MODULE: ./src/redux/constants/h5Platform/realName.js
+/**
+ * @author: liuyang9
+ * @description: 实名认证相关action
+ */
+// 更新实名数据
 var UPDATE_REAL_NAME_DATA = 'UPDATE_REAL_NAME_DATA'; // 获取实名信息
 
 var FETCH_REAL_NAME_BEGIN = 'FETCH_REAL_NAME_BEGIN';
@@ -22085,7 +22109,37 @@ var FETCH_REAL_NAME_FAILURE = 'FETCH_REAL_NAME_FAILURE'; // 添加实名认证�
 var ADD_REAL_NAME_BEGIN = 'ADD_REAL_NAME_BEGIN';
 var ADD_REAL_NAME_SUCCESS = 'ADD_REAL_NAME_SUCCESS';
 var ADD_REAL_NAME_FAILURE = 'ADD_REAL_NAME_FAILURE';
-// CONCATENATED MODULE: ./src/redux/action-reducer/updateGlobalData.js
+// CONCATENATED MODULE: ./src/redux/constants/h5Platform/index.js
+/**
+ * @author: liuyang9
+ * @description: h5联运平台用到的action
+ */
+
+
+// CONCATENATED MODULE: ./src/redux/constants/lobby/index.js
+/**
+ * @author: liuyang9
+ * @description: 大厅支付相关action
+ */
+// 设置大厅数据
+var SET_LOBBY_DATA = 'SET_LOBBY_DATA';
+// CONCATENATED MODULE: ./src/redux/constants/lobbyMini/index.js
+/**
+ * @author: liuyang9
+ * @description: 大厅mini付相关action 
+ */
+// 设置大厅mini支付数据
+var SET_LOBBY_MINI_DATA = 'SET_LOBBY_MINI_DATA';
+// CONCATENATED MODULE: ./src/redux/constants/index.js
+/**
+ * @author: liuyang9
+ * @description: 所有的action常量
+ */
+
+
+
+
+// CONCATENATED MODULE: ./src/redux/action-reducer/common/updateGlobalData.js
 
 
 var updateGlobalData_statePath = ['global'];
@@ -22106,7 +22160,10 @@ var updateGlobalData_reducer = function reducer(state, action) {
       return state;
   }
 };
-// CONCATENATED MODULE: ./src/redux/action-reducer/updatePopupData.js
+// CONCATENATED MODULE: ./src/redux/reducer/common/index.js
+
+/* harmony default export */ var common = ([updateGlobalData_reducer]);
+// CONCATENATED MODULE: ./src/redux/action-reducer/h5Platform/updatePopupData.js
 
 
 
@@ -22128,7 +22185,7 @@ var updatePopupData_reducer = function reducer(state, action) {
       return state;
   }
 };
-// CONCATENATED MODULE: ./src/redux/action-reducer/setPopupData.js
+// CONCATENATED MODULE: ./src/redux/action-reducer/h5Platform/setPopupData.js
 
 
 
@@ -22150,51 +22207,7 @@ var setPopupData_reducer = function reducer(state, action) {
       return state;
   }
 };
-// CONCATENATED MODULE: ./src/redux/action-reducer/setLobbyData.js
-
-
-
-var setLobbyData_statePath = [features_features.lobby];
-var setLobbyData_setLobbyData = function setLobbyData(data) {
-  return function (dispatch) {
-    return dispatch({
-      type: SET_LOBBY_DATA,
-      data: data
-    });
-  };
-};
-var setLobbyData_reducer = function reducer(state, action) {
-  switch (action.type) {
-    case SET_LOBBY_DATA:
-      return state.setIn(setLobbyData_statePath, Object(immutable["fromJS"])(action.data));
-
-    default:
-      return state;
-  }
-};
-// CONCATENATED MODULE: ./src/redux/action-reducer/setLobbyMiniData.js
-
-
-
-var setLobbyMiniData_statePath = [features_features.lobbyMini];
-var setLobbyMiniData_setLobbyMiniData = function setLobbyMiniData(data) {
-  return function (dispatch) {
-    return dispatch({
-      type: SET_LOBBY_MINI_DATA,
-      data: data
-    });
-  };
-};
-var setLobbyMiniData_reducer = function reducer(state, action) {
-  switch (action.type) {
-    case SET_LOBBY_MINI_DATA:
-      return state.setIn(setLobbyMiniData_statePath, Object(immutable["fromJS"])(action.data));
-
-    default:
-      return state;
-  }
-};
-// CONCATENATED MODULE: ./src/redux/action-reducer/updateRealNameData.js
+// CONCATENATED MODULE: ./src/redux/action-reducer/h5Platform/updateRealNameData.js
 
 
 
@@ -22220,7 +22233,7 @@ var updateRealNameData_reducer = function reducer(state, action) {
 var axios = __webpack_require__(27);
 var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
-// CONCATENATED MODULE: ./src/redux/action-reducer/fetchRealName.js
+// CONCATENATED MODULE: ./src/redux/action-reducer/h5Platform/fetchRealName.js
 
 
 
@@ -22291,7 +22304,7 @@ var fetchRealName_reducer = function reducer(state, action) {
       return state;
   }
 };
-// CONCATENATED MODULE: ./src/redux/action-reducer/addRealName.js
+// CONCATENATED MODULE: ./src/redux/action-reducer/h5Platform/addRealName.js
 
 
 
@@ -22366,17 +22379,71 @@ var addRealName_reducer = function reducer(state, action) {
       return state;
   }
 };
-// CONCATENATED MODULE: ./src/redux/reducer.js
+// CONCATENATED MODULE: ./src/redux/reducer/h5Platform/index.js
+
+
+
+
+
+/* harmony default export */ var reducer_h5Platform = ([updatePopupData_reducer, setPopupData_reducer, updateRealNameData_reducer, fetchRealName_reducer, addRealName_reducer]);
+// CONCATENATED MODULE: ./src/redux/action-reducer/lobby/setLobbyData.js
+
+
+
+var setLobbyData_statePath = [features_features.lobby];
+var setLobbyData_setLobbyData = function setLobbyData(data) {
+  return function (dispatch) {
+    return dispatch({
+      type: SET_LOBBY_DATA,
+      data: data
+    });
+  };
+};
+var setLobbyData_reducer = function reducer(state, action) {
+  switch (action.type) {
+    case SET_LOBBY_DATA:
+      return state.setIn(setLobbyData_statePath, Object(immutable["fromJS"])(action.data));
+
+    default:
+      return state;
+  }
+};
+// CONCATENATED MODULE: ./src/redux/reducer/lobby/index.js
+
+/* harmony default export */ var reducer_lobby = ([setLobbyData_reducer]);
+// CONCATENATED MODULE: ./src/redux/action-reducer/lobbyMini/setLobbyMiniData.js
+
+
+
+var setLobbyMiniData_statePath = [features_features.lobbyMini];
+var setLobbyMiniData_setLobbyMiniData = function setLobbyMiniData(data) {
+  return function (dispatch) {
+    return dispatch({
+      type: SET_LOBBY_MINI_DATA,
+      data: data
+    });
+  };
+};
+var setLobbyMiniData_reducer = function reducer(state, action) {
+  switch (action.type) {
+    case SET_LOBBY_MINI_DATA:
+      return state.setIn(setLobbyMiniData_statePath, Object(immutable["fromJS"])(action.data));
+
+    default:
+      return state;
+  }
+};
+// CONCATENATED MODULE: ./src/redux/reducer/lobbyMini/index.js
+
+/* harmony default export */ var reducer_lobbyMini = ([setLobbyMiniData_reducer]);
+// CONCATENATED MODULE: ./src/redux/reducer/index.js
 
 
 
 
 
 
-
-
-
-var allReducers = [updateGlobalData_reducer, updatePopupData_reducer, setPopupData_reducer, setLobbyData_reducer, setLobbyMiniData_reducer, updateRealNameData_reducer, fetchRealName_reducer, addRealName_reducer];
+var allReducers = [].concat(toConsumableArray_default()(common), toConsumableArray_default()(reducer_h5Platform), toConsumableArray_default()(reducer_lobby), toConsumableArray_default()(reducer_lobbyMini));
 function reducer_reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : redux_initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -24162,7 +24229,7 @@ var RealName_RealName = function RealName(_ref) {
 
 
 
-var featurePath = statePath_statePath.getPathByFeature(features_features.h5Platform);
+var featurePath = statePath_proxy.getPathByFeature(features_features.h5Platform);
 featurePath.push('popup');
 
 var PopupContainer_PopupContainer = function PopupContainer(_ref) {
@@ -24232,7 +24299,7 @@ PopupContainer_PopupContainer.defaultProps = {
 
 
 
-var RealNameContainer_featurePath = statePath_statePath.getPathByFeature(features_features.h5Platform);
+var RealNameContainer_featurePath = statePath_proxy.getPathByFeature(features_features.h5Platform);
 RealNameContainer_featurePath.push('realName');
 
 var RealNameContainer_Home = function Home(_ref) {
@@ -24302,7 +24369,7 @@ var containers_LobbyContainer = __webpack_require__(433);
 
 
 
-var LobbyContainer_featurePath = statePath_statePath.getPathByFeature(features_features.lobby);
+var LobbyContainer_featurePath = statePath_proxy.getPathByFeature(features_features.lobby);
 
 var LobbyContainer_LobbyContainer = function LobbyContainer(_ref) {
   var className = _ref.className,
@@ -24346,7 +24413,7 @@ var containers_LobbyMiniContainer = __webpack_require__(435);
 
 
 
-var LobbyMiniContainer_featurePath = statePath_statePath.getPathByFeature(features_features.lobbyMini);
+var LobbyMiniContainer_featurePath = statePath_proxy.getPathByFeature(features_features.lobbyMini);
 
 var LobbyMiniContainer_LobbyMiniContainer = function LobbyMiniContainer(_ref) {
   var className = _ref.className,
@@ -24404,8 +24471,8 @@ var LobbyMiniContainer_mapStateToProps = function mapStateToProps(state) {
 
 
 
-var rootPath = statePath_statePath.getRootPath();
-var Home_featurePath = statePath_statePath.getPathByFeature(features_features.h5Platform);
+var rootPath = statePath_proxy.getRootPath();
+var Home_featurePath = statePath_proxy.getPathByFeature(features_features.h5Platform);
 
 var Home_Home = function Home(_ref) {
   var feature = _ref.feature,

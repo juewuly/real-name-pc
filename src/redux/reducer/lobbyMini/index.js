@@ -1,3 +1,3 @@
-import { reducer as setLobbyMiniData } from './action-reducer/lobbyMini/setLobbyMiniData';
+import { reducer as setLobbyMiniData } from 'src/redux/action-reducer/lobbyMini/setLobbyMiniData';
 
 export default [setLobbyMiniData];
