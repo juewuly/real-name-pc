@@ -1,6 +1,6 @@
-import base from './base';
+import statePath from './statePath';
 
-export default class statePath extends base {
+export default class proxy {
   static get Instance() {
     if (!this._instance) {
       this._instance = new statePath();
@@ -14,17 +14,5 @@ export default class statePath extends base {
 
   static getRootPath() {
     return this.Instance.getRootPath();
-  }
-
-  constructor() {
-    super();
-  }
-
-  getPathByFeature(feature) {
-    return [...this.rootPath, feature];
-  }
-
-  getRootPath() {
-    return this.rootPath;
   }
 }
