@@ -6,7 +6,7 @@ import {
   ADD_REAL_NAME_BEGIN,
   ADD_REAL_NAME_SUCCESS,
   ADD_REAL_NAME_FAILURE
-} from '../constants';
+} from '../../constants';
 
 const fatherPath = [features.h5Platform, 'realName'];
 

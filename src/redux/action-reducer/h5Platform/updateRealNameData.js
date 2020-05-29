@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { UPDATE_REAL_NAME_DATA } from '../constants';
+import { UPDATE_REAL_NAME_DATA } from '../../constants';
 import { features } from 'sdk/config';
 
 const statePath = [features.h5Platform, 'realName'];

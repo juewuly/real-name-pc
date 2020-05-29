@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { SET_POPUP_DATA } from '../constants';
+import { SET_POPUP_DATA } from '../../constants';
 import { features } from 'sdk/config';
 
 const statePath = [features.h5Platform, 'popup'];

@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { UPDATE_GLOBAL_DATA } from '../constants';
+import { UPDATE_GLOBAL_DATA } from '../../constants';
 
 const statePath = ['global'];
 
