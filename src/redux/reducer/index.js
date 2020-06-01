@@ -12,7 +12,7 @@ const allReducers = [
   ...lobbyMiniReducers
 ];
 
-export default function reducer(state=initialState, action) {
+export default function reducer(state=initialState.initState, action) {
   let newState;
   switch (action.type) {
   // 其他类型的处理
