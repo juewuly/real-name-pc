@@ -21540,7 +21540,6 @@ var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableA
 
 // EXTERNAL MODULE: ./node_modules/immutable/dist/immutable.js
 var immutable = __webpack_require__(15);
-var immutable_default = /*#__PURE__*/__webpack_require__.n(immutable);
 
 // CONCATENATED MODULE: ./src/sdk/config/h5Platform/eventConfig.js
 
@@ -22025,59 +22024,206 @@ var statePath_proxy = /*#__PURE__*/function () {
 
 
 
-// CONCATENATED MODULE: ./src/redux/initialState.js
-
-
-var _I$fromJS;
+// CONCATENATED MODULE: ./src/redux/initialState/h5Platform/realName.js
 
 
 
-var initialState_initialState = immutable_default.a.fromJS((_I$fromJS = {
-  global: {
-    // 应用的场景
-    feature: features_features.h5Platform
+/**
+ * @author: liuyang9
+ * @description: 实名认证的state 
+ */
+var realName_realName = /*#__PURE__*/function () {
+  function realName() {
+    classCallCheck_default()(this, realName);
   }
-}, defineProperty_default()(_I$fromJS, features_features.h5Platform, {
-  // 弹窗相关数据
-  popup: {
-    // 是否显示弹窗
-    show: false,
-    title: '',
-    subTitle: '',
-    content: ''
-  },
-  // 实名认证相关数据
-  realName: {
-    // 是否显示实名认证
-    show: false,
-    // 是否可关闭
-    canClose: false,
-    // 进行实名认证时需要传递的参数
-    options: {},
-    // 实名认证信息
-    fetch: {
-      fetching: false,
-      data: {}
-    },
-    // 实名认证结果
-    add: {
-      posting: false,
-      result: {}
+
+  createClass_default()(realName, null, [{
+    key: "initState",
+    get: function get() {
+      return {
+        // 是否显示实名认证
+        show: false,
+        // 是否可关闭
+        canClose: false,
+        // 进行实名认证时需要传递的参数
+        options: {},
+        // 实名认证信息
+        fetch: {
+          fetching: false,
+          data: {}
+        },
+        // 实名认证结果
+        add: {
+          posting: false,
+          result: {}
+        }
+      };
     }
+  }]);
+
+  return realName;
+}();
+
+
+// CONCATENATED MODULE: ./src/redux/initialState/h5Platform/popup.js
+
+
+
+/**
+ * @author: liuyang9
+ * @description: 弹窗的state
+ */
+var popup_popup = /*#__PURE__*/function () {
+  function popup() {
+    classCallCheck_default()(this, popup);
   }
-}), defineProperty_default()(_I$fromJS, features_features.lobby, {
-  show: false,
-  title: '',
-  subTitle: '',
-  content: ''
-}), defineProperty_default()(_I$fromJS, features_features.lobbyMini, {
-  show: false,
-  title: '',
-  subTitle: '',
-  content: '',
-  onClickOk: function onClickOk() {}
-}), _I$fromJS));
-/* harmony default export */ var redux_initialState = (initialState_initialState);
+
+  createClass_default()(popup, null, [{
+    key: "initState",
+    get: function get() {
+      return {
+        // 是否显示弹窗
+        show: false,
+        title: '',
+        subTitle: '',
+        content: ''
+      };
+    }
+  }]);
+
+  return popup;
+}();
+
+
+// CONCATENATED MODULE: ./src/redux/initialState/h5Platform/index.js
+
+
+
+/**
+ * @author: liuyang9
+ * @description: h5联运平台的state
+ */
+
+
+
+var h5Platform_h5Platform = /*#__PURE__*/function () {
+  function h5Platform() {
+    classCallCheck_default()(this, h5Platform);
+  }
+
+  createClass_default()(h5Platform, null, [{
+    key: "initState",
+    get: function get() {
+      return {
+        realName: realName_realName.initState,
+        popup: popup_popup.initState
+      };
+    }
+  }]);
+
+  return h5Platform;
+}();
+
+
+// CONCATENATED MODULE: ./src/redux/initialState/lobby/index.js
+
+
+
+/**
+ * @author: liuyang9
+ * @description: 大厅支付的state 
+ */
+var lobby_lobby = /*#__PURE__*/function () {
+  function lobby() {
+    classCallCheck_default()(this, lobby);
+  }
+
+  createClass_default()(lobby, null, [{
+    key: "initState",
+    get: function get() {
+      return {
+        // 是否显示
+        show: false,
+        title: '',
+        subTitle: '',
+        content: ''
+      };
+    }
+  }]);
+
+  return lobby;
+}();
+
+
+// CONCATENATED MODULE: ./src/redux/initialState/lobbyMini/index.js
+
+
+
+/**
+ * @author: liuyang9
+ * @description: 大厅mini的state
+ */
+var lobbyMini_lobbyMini = /*#__PURE__*/function () {
+  function lobbyMini() {
+    classCallCheck_default()(this, lobbyMini);
+  }
+
+  createClass_default()(lobbyMini, null, [{
+    key: "initState",
+    get: function get() {
+      return {
+        show: false,
+        title: '',
+        subTitle: '',
+        content: '',
+        onClickOk: function onClickOk() {}
+      };
+    }
+  }]);
+
+  return lobbyMini;
+}();
+
+
+// CONCATENATED MODULE: ./src/redux/initialState/index.js
+
+
+
+
+/**
+ * @author: liuyang9
+ * @description: redux中state的初始化
+ */
+
+
+
+
+
+
+var initialState_initialState = /*#__PURE__*/function () {
+  function initialState() {
+    classCallCheck_default()(this, initialState);
+  }
+
+  createClass_default()(initialState, null, [{
+    key: "initState",
+    get: function get() {
+      var _fromJS;
+
+      return Object(immutable["fromJS"])((_fromJS = {
+        // 公用数据
+        global: {
+          // 应用的场景
+          feature: features_features.h5Platform
+        }
+      }, defineProperty_default()(_fromJS, features_features.h5Platform, h5Platform_h5Platform.initState), defineProperty_default()(_fromJS, features_features.lobby, lobby_lobby.initState), defineProperty_default()(_fromJS, features_features.lobbyMini, lobbyMini_lobbyMini.initState), _fromJS));
+    }
+  }]);
+
+  return initialState;
+}();
+
+
 // CONCATENATED MODULE: ./src/redux/constants/common/index.js
 /**
  * @author: liuyang9
@@ -22445,7 +22591,7 @@ var setLobbyMiniData_reducer = function reducer(state, action) {
 
 var allReducers = [].concat(toConsumableArray_default()(common), toConsumableArray_default()(reducer_h5Platform), toConsumableArray_default()(reducer_lobby), toConsumableArray_default()(reducer_lobbyMini));
 function reducer_reducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : redux_initialState;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState_initialState.initState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   var newState;
 
@@ -23055,7 +23201,7 @@ function realName_isNativeReflectConstruct() { if (typeof Reflect === "undefined
  */
 
 
-var realName_realName = /*#__PURE__*/function (_base) {
+var h5Platform_realName_realName = /*#__PURE__*/function (_base) {
   inherits_default()(realName, _base);
 
   var _super = realName_createSuper(realName);
@@ -23135,7 +23281,7 @@ var realName_realName = /*#__PURE__*/function (_base) {
  */
 
 
-var h5Platform_h5Platform = /*#__PURE__*/function () {
+var logFactory_h5Platform_h5Platform = /*#__PURE__*/function () {
   createClass_default()(h5Platform, null, [{
     key: "Instance",
     value: function Instance(prefix) {
@@ -23150,7 +23296,7 @@ var h5Platform_h5Platform = /*#__PURE__*/function () {
   function h5Platform(prefix) {
     classCallCheck_default()(this, h5Platform);
 
-    this._realName = realName_realName.Instance(prefix);
+    this._realName = h5Platform_realName_realName.Instance(prefix);
   }
 
   createClass_default()(h5Platform, [{
@@ -23180,7 +23326,7 @@ function lobby_isNativeReflectConstruct() { if (typeof Reflect === "undefined" |
  */
 
 
-var lobby_lobby = /*#__PURE__*/function (_base) {
+var logFactory_lobby_lobby = /*#__PURE__*/function (_base) {
   inherits_default()(lobby, _base);
 
   var _super = lobby_createSuper(lobby);
@@ -23207,7 +23353,7 @@ function lobbyMini_isNativeReflectConstruct() { if (typeof Reflect === "undefine
 
 
 
-var lobbyMini_lobbyMini = /*#__PURE__*/function (_base) {
+var logFactory_lobbyMini_lobbyMini = /*#__PURE__*/function (_base) {
   inherits_default()(lobbyMini, _base);
 
   var _super = lobbyMini_createSuper(lobbyMini);
@@ -23252,7 +23398,7 @@ var classManager_classManager = /*#__PURE__*/function () {
     value: function getClassByFeature(feature) {
       var _featureMap;
 
-      var featureMap = (_featureMap = {}, defineProperty_default()(_featureMap, features_features.h5Platform, h5Platform_h5Platform), defineProperty_default()(_featureMap, features_features.lobby, lobby_lobby), defineProperty_default()(_featureMap, features_features.lobbyMini, lobbyMini_lobbyMini), _featureMap);
+      var featureMap = (_featureMap = {}, defineProperty_default()(_featureMap, features_features.h5Platform, logFactory_h5Platform_h5Platform), defineProperty_default()(_featureMap, features_features.lobby, logFactory_lobby_lobby), defineProperty_default()(_featureMap, features_features.lobbyMini, logFactory_lobbyMini_lobbyMini), _featureMap);
       var result = featureMap[feature];
       return result ? result : logFactory_base_base;
     }
@@ -23327,7 +23473,7 @@ function h5Platform_realName_isNativeReflectConstruct() { if (typeof Reflect ===
 
 var realName_logHelper = logFactory_logHelper.getHelperByFeature(features_features.h5Platform);
 
-var h5Platform_realName_realName = /*#__PURE__*/function (_base) {
+var storeFactory_h5Platform_realName_realName = /*#__PURE__*/function (_base) {
   inherits_default()(realName, _base);
 
   var _super = h5Platform_realName_createSuper(realName);
@@ -23473,7 +23619,7 @@ function popup_isNativeReflectConstruct() { if (typeof Reflect === "undefined" |
 
 
 
-var popup_popup = /*#__PURE__*/function (_base) {
+var h5Platform_popup_popup = /*#__PURE__*/function (_base) {
   inherits_default()(popup, _base);
 
   var _super = popup_createSuper(popup);
@@ -23529,8 +23675,8 @@ var storeFactory_h5Platform_h5Platform = /*#__PURE__*/function (_base) {
     classCallCheck_default()(this, h5Platform);
 
     _this = _super.call(this, store);
-    _this._realName = new h5Platform_realName_realName(store);
-    _this._popup = new popup_popup(store);
+    _this._realName = new storeFactory_h5Platform_realName_realName(store);
+    _this._popup = new h5Platform_popup_popup(store);
     return _this;
   }
 
