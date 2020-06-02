@@ -13,6 +13,9 @@
     <button id='lessThenSixteen' onclick="handleLessThenSixteen()">8~16岁，当月超额</button>
     <button id='lessThenEighteenCharge' onclick="handleLessThenEighteenCharge()">16~18岁，单笔超额</button>
     <button id='lessThenEighteen' onclick="handleLessThenEighteen()">16~18岁，当月超额</button>
+    <button id='timeLimitAfterLogin' onclick="handleTimeLimitAfterLogin()">登录后游戏达到时长上限</button>
+    <button id='timeLimitWhenPlaying' onclick="handleTimeLimitWhenPlaying()">游戏中时长达到上限</button>
+
     <button id='fetchRealNameInfo' onclick="handleFetchRealNameInfo()">获取实名信息</button>
     <button id='showRealName' onclick="handleShowRealName()">显示实名认证</button>
     <button id='checkAmount' onclick="handleCheckAmount()">验证金额是否允许充值</button>
@@ -49,6 +52,16 @@
     // 16~18岁，当月超额的提示
     function handleLessThenEighteen() {
       SdkInstance.showEighteen();
+    }
+
+    // 登录后游戏时长已达到上限时的提示
+    function handleTimeLimitAfterLogin() {
+      SdkInstance.showTimeLimitAfterLogin();
+    }
+
+    // 游戏中时长已达到上限时的提示
+    function handleTimeLimitWhenPlaying() {
+      SdkInstance.showTimeLimitWhenPlaying();
     }
 
     // 配置实名相关参数

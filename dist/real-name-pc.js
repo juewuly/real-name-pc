@@ -24892,6 +24892,7 @@ var popupView_popupView = /*#__PURE__*/function () {
     key: "showTimeLimitAfterLogin",
     value: function showTimeLimitAfterLogin() {
       var _tips$tipType$gameTim = tips_tips[tipType_tipType.gameTimeLimitWhenLogin],
+          className = _tips$tipType$gameTim.className,
           title = _tips$tipType$gameTim.title,
           content = _tips$tipType$gameTim.content;
       popupView_setPopupData({
@@ -24908,6 +24909,7 @@ var popupView_popupView = /*#__PURE__*/function () {
     key: "showTimeLimitWhenPlaying",
     value: function showTimeLimitWhenPlaying() {
       var _tips$tipType$gameTim2 = tips_tips[tipType_tipType.gameTimeLimitWhenPlaying],
+          className = _tips$tipType$gameTim2.className,
           title = _tips$tipType$gameTim2.title,
           subTitle = _tips$tipType$gameTim2.subTitle,
           content = _tips$tipType$gameTim2.content;

@@ -103,7 +103,7 @@ export default class popupView {
 
   // 登录后游戏时长已达到上限时的提示
   showTimeLimitAfterLogin() {
-    const { title, content } = tips[tipType.gameTimeLimitWhenLogin];
+    const { className, title, content } = tips[tipType.gameTimeLimitWhenLogin];
     setPopupData({
       show: true,
       className,
@@ -116,7 +116,7 @@ export default class popupView {
 
   // 游戏中时长已达到上限时的提示
   showTimeLimitWhenPlaying() {
-    const { title, subTitle, content } = tips[tipType.gameTimeLimitWhenPlaying];
+    const { className, title, subTitle, content } = tips[tipType.gameTimeLimitWhenPlaying];
     setPopupData({
       show: true,
       className,
