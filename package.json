@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
+    "cdn": "webpack --config webpack.cdn.js",
     "dev": "webpack-dev-server --config webpack.dev.js"
   },
   "repository": {
@@ -72,6 +73,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
+    "@q/webpack4-qcdn-plugin": "^1.5.2",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "fetch-jsonp": "^1.1.3",
