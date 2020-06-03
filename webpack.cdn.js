@@ -31,6 +31,10 @@ const getCdnPlugin = () => {
     backupHTMLFiles: true,
 
     async preUpload ({ file, content, hash, extname }) {
+      if (['txt'].includes(extname)) {
+        return false;
+      }
+      
       // C. 只有明确返回 true 才会进行下一步 qcdn 上传!!!
       return true
     },
