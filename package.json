@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
     "cdn": "webpack --config webpack.cdn.js",
-    "dev": "webpack-dev-server --config webpack.dev.js"
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "tag": "node ./bin/index.js file"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,9 @@
     "autoprefixer": "^9.7.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "chalk": "^4.0.0",
     "clean-webpack-plugin": "^3.0.0",
+    "commander": "^5.1.0",
     "css-loader": "^3.4.2",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
